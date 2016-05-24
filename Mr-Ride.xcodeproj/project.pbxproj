@@ -1,0 +1,357 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */; };
+		BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60D1CF2A1C000B11F89 /* ViewController.swift */; };
+		BC85F6111CF2A1C000B11F89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC85F60F1CF2A1C000B11F89 /* Main.storyboard */; };
+		BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */; };
+		BC85F6161CF2A1C000B11F89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC85F6151CF2A1C000B11F89 /* Assets.xcassets */; };
+		BC85F6191CF2A1C000B11F89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC85F6171CF2A1C000B11F89 /* LaunchScreen.storyboard */; };
+		BC85F6211CF2ADDE00B11F89 /* RideDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */; };
+		BC85F62B1CF2B20200B11F89 /* RideDetailsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F62A1CF2B20200B11F89 /* RideDetailsNavigationController.swift */; };
+		BC85F62F1CF30AE800B11F89 /* RideNewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F62E1CF30AE800B11F89 /* RideNewRecordViewController.swift */; };
+		BC85F6341CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */; };
+		BC85F6361CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BC85F60D1CF2A1C000B11F89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BC85F6101CF2A1C000B11F89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BC85F6131CF2A1C000B11F89 /* Mr_Ride.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mr_Ride.xcdatamodel; sourceTree = "<group>"; };
+		BC85F6151CF2A1C000B11F89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BC85F6181CF2A1C000B11F89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BC85F61A1CF2A1C000B11F89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsViewController.swift; sourceTree = "<group>"; };
+		BC85F62A1CF2B20200B11F89 /* RideDetailsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsNavigationController.swift; sourceTree = "<group>"; };
+		BC85F62E1CF30AE800B11F89 /* RideNewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideNewRecordViewController.swift; sourceTree = "<group>"; };
+		BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions (2).swift"; sourceTree = "<group>"; };
+		BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+YBKAdditions (2).swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC85F6051CF2A1C000B11F89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BC85F5FF1CF2A1C000B11F89 = {
+			isa = PBXGroup;
+			children = (
+				BC85F60A1CF2A1C000B11F89 /* Mr-Ride */,
+				BC85F6091CF2A1C000B11F89 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BC85F6091CF2A1C000B11F89 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC85F60A1CF2A1C000B11F89 /* Mr-Ride */ = {
+			isa = PBXGroup;
+			children = (
+				BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */,
+				BC85F60D1CF2A1C000B11F89 /* ViewController.swift */,
+				BC85F60F1CF2A1C000B11F89 /* Main.storyboard */,
+				BC85F6291CF2B09E00B11F89 /* Model */,
+				BC85F6321CF3625400B11F89 /* View */,
+				BC85F6221CF2ADEF00B11F89 /* Controller */,
+				BC85F6151CF2A1C000B11F89 /* Assets.xcassets */,
+				BC85F6171CF2A1C000B11F89 /* LaunchScreen.storyboard */,
+				BC85F61A1CF2A1C000B11F89 /* Info.plist */,
+				BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */,
+			);
+			path = "Mr-Ride";
+			sourceTree = "<group>";
+		};
+		BC85F6221CF2ADEF00B11F89 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BC85F62E1CF30AE800B11F89 /* RideNewRecordViewController.swift */,
+				BC85F62A1CF2B20200B11F89 /* RideDetailsNavigationController.swift */,
+				BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BC85F6291CF2B09E00B11F89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */,
+				BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BC85F6321CF3625400B11F89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BC85F6071CF2A1C000B11F89 /* Mr-Ride */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC85F61D1CF2A1C000B11F89 /* Build configuration list for PBXNativeTarget "Mr-Ride" */;
+			buildPhases = (
+				BC85F6041CF2A1C000B11F89 /* Sources */,
+				BC85F6051CF2A1C000B11F89 /* Frameworks */,
+				BC85F6061CF2A1C000B11F89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mr-Ride";
+			productName = "Mr-Ride";
+			productReference = BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BC85F6001CF2A1C000B11F89 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "AppWorks School HsinAn Hsu";
+				TargetAttributes = {
+					BC85F6071CF2A1C000B11F89 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = BC85F6031CF2A1C000B11F89 /* Build configuration list for PBXProject "Mr-Ride" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BC85F5FF1CF2A1C000B11F89;
+			productRefGroup = BC85F6091CF2A1C000B11F89 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BC85F6071CF2A1C000B11F89 /* Mr-Ride */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BC85F6061CF2A1C000B11F89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC85F6191CF2A1C000B11F89 /* LaunchScreen.storyboard in Resources */,
+				BC85F6161CF2A1C000B11F89 /* Assets.xcassets in Resources */,
+				BC85F6111CF2A1C000B11F89 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BC85F6041CF2A1C000B11F89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC85F62F1CF30AE800B11F89 /* RideNewRecordViewController.swift in Sources */,
+				BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */,
+				BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */,
+				BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */,
+				BC85F6341CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift in Sources */,
+				BC85F6211CF2ADDE00B11F89 /* RideDetailsViewController.swift in Sources */,
+				BC85F6361CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift in Sources */,
+				BC85F62B1CF2B20200B11F89 /* RideDetailsNavigationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BC85F60F1CF2A1C000B11F89 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC85F6101CF2A1C000B11F89 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BC85F6171CF2A1C000B11F89 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC85F6181CF2A1C000B11F89 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BC85F61B1CF2A1C000B11F89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BC85F61C1CF2A1C000B11F89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BC85F61E1CF2A1C000B11F89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Mr-Ride/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-HsinAn-Hsu.Mr-Ride";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BC85F61F1CF2A1C000B11F89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Mr-Ride/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-HsinAn-Hsu.Mr-Ride";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BC85F6031CF2A1C000B11F89 /* Build configuration list for PBXProject "Mr-Ride" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC85F61B1CF2A1C000B11F89 /* Debug */,
+				BC85F61C1CF2A1C000B11F89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC85F61D1CF2A1C000B11F89 /* Build configuration list for PBXNativeTarget "Mr-Ride" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC85F61E1CF2A1C000B11F89 /* Debug */,
+				BC85F61F1CF2A1C000B11F89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BC85F6131CF2A1C000B11F89 /* Mr_Ride.xcdatamodel */,
+			);
+			currentVersion = BC85F6131CF2A1C000B11F89 /* Mr_Ride.xcdatamodel */;
+			path = Mr_Ride.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BC85F6001CF2A1C000B11F89 /* Project object */;
+}
