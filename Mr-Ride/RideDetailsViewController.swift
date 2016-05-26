@@ -17,5 +17,6 @@ class RideDetailsViewController: UIViewController, MKMapViewDelegate, CLLocation
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
     }
 }

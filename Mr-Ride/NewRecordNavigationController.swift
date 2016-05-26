@@ -13,7 +13,6 @@ class NewRecordNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
         setupRideDetailsNavigationBar()
         
     }
@@ -21,11 +20,11 @@ class NewRecordNavigationController: UINavigationController {
     
     func setupRideDetailsNavigationBar(){
         
+        
+        navigationBar.translucent = false
+        
         //change status bar color to white
         navigationBar.barStyle = UIBarStyle.Black
-        
-        navigationBar.barTintColor = UIColor.mrLightblueColor()
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         //setup Date
         let todayDate = NSDate()
@@ -34,13 +33,14 @@ class NewRecordNavigationController: UINavigationController {
         let dateString = dateFormatter.stringFromDate(todayDate)
         
         navigationBar.topItem?.title = "\(dateString)"
+        navigationBar.barTintColor = UIColor.mrLightblueColor()
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        //Cancel BarButton
         navigationBar.topItem?.leftBarButtonItem?.title = "Cancel"
         navigationBar.topItem?.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
-        navigationBar.translucent = false
-
+        navigationBar.topItem?.rightBarButtonItem?.title = "Finish"
+        navigationBar.topItem?.rightBarButtonItem?.tintColor = UIColor.whiteColor()
     }
     
 

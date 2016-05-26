@@ -214,7 +214,8 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="hME-Iy-Jzo">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="teW-e6-i3R"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="teW-e6-i3R"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="wZo-H7-Arr"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
@@ -473,9 +474,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="clF-au-wli" kind="popoverPresentation" popoverAnchorView="hcI-ed-Jnc" id="bCX-n0-BKS">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="clF-au-wli" kind="presentation" id="6IA-2c-sSj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSE-8E-TGB">

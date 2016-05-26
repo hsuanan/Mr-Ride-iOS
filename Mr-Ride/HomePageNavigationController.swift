@@ -50,6 +50,7 @@ class HomePageNavigationController: UINavigationController {
         let tintedSideBarImage = originSidBarImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.topItem?.leftBarButtonItem?.customView = UIImageView(image: tintedSideBarImage)
+        
     }
     
    
