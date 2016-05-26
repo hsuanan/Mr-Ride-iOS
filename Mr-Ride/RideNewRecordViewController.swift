@@ -60,7 +60,7 @@ class RideNewRecordViewController: UIViewController, MKMapViewDelegate, CLLocati
         mapView.showsUserLocation = true
         //        mapView.userTrackingMode = MKUserTrackingMode.Follow
         
-        locationManager.stopUpdatingLocation()
+//        locationManager.stopUpdatingLocation()
         
     }
     
