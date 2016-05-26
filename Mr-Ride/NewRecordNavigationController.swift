@@ -1,5 +1,5 @@
 //
-//  RideDetailsNavigationController.swift
+//  NewRecordNavigationController.swift
 //  Mr-Ride
 //
 //  Created by Hsin An Hsu on 5/23/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RideDetailsNavigationController: UINavigationController {
+class NewRecordNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,12 @@ class RideDetailsNavigationController: UINavigationController {
         
         navigationBar.topItem?.title = "\(dateString)"
         
+        //Cancel BarButton
+        navigationBar.topItem?.leftBarButtonItem?.title = "Cancel"
+        navigationBar.topItem?.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
+        navigationBar.translucent = false
+
     }
     
 

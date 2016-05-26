@@ -1,5 +1,5 @@
 //
-//  RideNewRecordViewController.swift
+//  NewRecordViewController.swift
 //  Mr-Ride
 //
 //  Created by Hsin An Hsu on 5/23/16.
@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import HealthKit
 
-class RideNewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -228,7 +228,7 @@ class RideNewRecordViewController: UIViewController, MKMapViewDelegate, CLLocati
     func animatedWithDuration(){
         
         UIView.animateWithDuration(
-            0.6 , animations: {
+            0.0 , animations: {
                 self.playPauseButtonView.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.playPauseButtonView.layer.cornerRadius = 4
         })
