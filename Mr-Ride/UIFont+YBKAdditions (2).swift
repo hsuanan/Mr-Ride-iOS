@@ -38,7 +38,7 @@ extension UIFont {
   }
 
   class func mrTextStyle11Font() -> UIFont { 
-    return UIFont.systemFontOfSize(24.0, weight: UIFontWeightMedium)
+    return UIFont.systemFontOfSize(30.0, weight: UIFontWeightMedium)
   }
 
   class func mrTextStyle7Font() -> UIFont { 

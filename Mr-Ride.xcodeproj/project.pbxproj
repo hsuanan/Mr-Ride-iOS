@@ -18,6 +18,8 @@
 		BC85F62F1CF30AE800B11F89 /* RideNewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F62E1CF30AE800B11F89 /* RideNewRecordViewController.swift */; };
 		BC85F6341CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */; };
 		BC85F6361CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */; };
+		BC9C8B2E1CF5EC7400EB4FBE /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C8B2D1CF5EC7400EB4FBE /* HomePageViewController.swift */; };
+		BC9C8B301CF6AAAA00EB4FBE /* HomePageNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9C8B2F1CF6AAAA00EB4FBE /* HomePageNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		BC85F62E1CF30AE800B11F89 /* RideNewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideNewRecordViewController.swift; sourceTree = "<group>"; };
 		BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions (2).swift"; sourceTree = "<group>"; };
 		BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+YBKAdditions (2).swift"; sourceTree = "<group>"; };
+		BC9C8B2D1CF5EC7400EB4FBE /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		BC9C8B2F1CF6AAAA00EB4FBE /* HomePageNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 		BC85F6221CF2ADEF00B11F89 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BC9C8B2F1CF6AAAA00EB4FBE /* HomePageNavigationController.swift */,
+				BC9C8B2D1CF5EC7400EB4FBE /* HomePageViewController.swift */,
 				BC85F62E1CF30AE800B11F89 /* RideNewRecordViewController.swift */,
 				BC85F62A1CF2B20200B11F89 /* RideDetailsNavigationController.swift */,
 				BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */,
@@ -179,10 +185,12 @@
 			files = (
 				BC85F62F1CF30AE800B11F89 /* RideNewRecordViewController.swift in Sources */,
 				BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */,
+				BC9C8B2E1CF5EC7400EB4FBE /* HomePageViewController.swift in Sources */,
 				BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */,
 				BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */,
 				BC85F6341CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift in Sources */,
 				BC85F6211CF2ADDE00B11F89 /* RideDetailsViewController.swift in Sources */,
+				BC9C8B301CF6AAAA00EB4FBE /* HomePageNavigationController.swift in Sources */,
 				BC85F6361CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift in Sources */,
 				BC85F62B1CF2B20200B11F89 /* RideDetailsNavigationController.swift in Sources */,
 			);
