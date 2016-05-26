@@ -115,47 +115,75 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nD4-qa-cB5">
-                                <rect key="frame" x="167" y="310" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="CCA-Hm-Nfw"/>
-                                    <constraint firstAttribute="height" constant="80" id="b8a-Mc-Bib"/>
-                                </constraints>
-                            </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BBQ-gU-HOx">
-                                <rect key="frame" x="35" y="431" width="344" height="200"/>
+                                <rect key="frame" x="35" y="431" width="344" height="285"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Vyf-Gt-GMo"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Vyf-Gt-GMo"/>
+                                    </mask>
+                                </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="Vyf-Gt-GMo"/>
                                     </mask>
                                 </variation>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XAZ-GK-vu1">
+                                <rect key="frame" x="167" y="310" width="80" height="80"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="mcr-2A-2cj"/>
+                                    <constraint firstAttribute="width" constant="80" id="uLI-EQ-7tc"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAK-Ko-7zb">
+                                <rect key="frame" x="177" y="320" width="60" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJW-nf-kwL">
+                                        <rect key="frame" x="-10" y="-10" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="kBd-DD-dOA"/>
+                                            <constraint firstAttribute="width" constant="80" id="xbU-sK-O35"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="playPauseButtonPressed:" destination="zbu-3p-H3S" eventType="touchUpInside" id="YTV-Uj-p4y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Tco-xR-LCY"/>
+                                    <constraint firstAttribute="height" constant="60" id="uwu-7i-wkM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="w3r-7K-bgU" firstAttribute="top" secondItem="PQw-YE-iRZ" secondAttribute="bottom" constant="15" id="0QC-mJ-cWG"/>
+                            <constraint firstItem="kJW-nf-kwL" firstAttribute="centerY" secondItem="XAZ-GK-vu1" secondAttribute="centerY" id="1GF-Os-D4H"/>
                             <constraint firstItem="BBQ-gU-HOx" firstAttribute="leading" secondItem="YJR-IM-DCP" secondAttribute="leadingMargin" constant="15" id="3Uc-ai-bfP"/>
-                            <constraint firstItem="nD4-qa-cB5" firstAttribute="top" secondItem="fk4-l2-dnK" secondAttribute="bottom" constant="10" id="3e7-LO-cN4"/>
                             <constraint firstItem="Zf9-04-SxO" firstAttribute="top" secondItem="w3r-7K-bgU" secondAttribute="bottom" id="4h3-lE-a1S">
                                 <variation key="widthClass=compact" constant="1"/>
                             </constraint>
+                            <constraint firstItem="XAZ-GK-vu1" firstAttribute="top" secondItem="fk4-l2-dnK" secondAttribute="bottom" constant="10" id="5Pz-1m-LvH"/>
                             <constraint firstItem="w3r-7K-bgU" firstAttribute="leading" secondItem="PQw-YE-iRZ" secondAttribute="trailing" constant="-42" id="7bq-kS-kNa">
                                 <variation key="widthClass=compact" constant="8" symbolic="YES"/>
                             </constraint>
-                            <constraint firstItem="nD4-qa-cB5" firstAttribute="centerX" secondItem="fk4-l2-dnK" secondAttribute="centerX" id="7qe-tg-zvA"/>
+                            <constraint firstItem="BBQ-gU-HOx" firstAttribute="top" secondItem="XAZ-GK-vu1" secondAttribute="bottom" constant="41" id="8sx-eV-aTr"/>
+                            <constraint firstItem="v3l-3H-U3d" firstAttribute="top" secondItem="BBQ-gU-HOx" secondAttribute="bottom" constant="20" id="9LE-wd-DkY"/>
+                            <constraint firstItem="xAK-Ko-7zb" firstAttribute="centerX" secondItem="XAZ-GK-vu1" secondAttribute="centerX" id="9MH-m1-G1M"/>
                             <constraint firstItem="A89-q0-d2o" firstAttribute="leading" secondItem="YJR-IM-DCP" secondAttribute="leadingMargin" constant="36" id="A1G-Y3-oAY"/>
+                            <constraint firstItem="XAZ-GK-vu1" firstAttribute="centerX" secondItem="YJR-IM-DCP" secondAttribute="centerX" id="FG6-np-A3q"/>
                             <constraint firstItem="v3l-3H-U3d" firstAttribute="top" secondItem="BBQ-gU-HOx" secondAttribute="bottom" constant="20" id="Jgo-xK-qmC"/>
                             <constraint firstItem="Vhl-dy-wVb" firstAttribute="top" secondItem="I5v-bX-NpI" secondAttribute="bottom" constant="20" id="KKF-ld-t39"/>
+                            <constraint firstItem="xAK-Ko-7zb" firstAttribute="centerY" secondItem="XAZ-GK-vu1" secondAttribute="centerY" id="OOk-ea-cEu"/>
                             <constraint firstItem="fk4-l2-dnK" firstAttribute="centerX" secondItem="YJR-IM-DCP" secondAttribute="centerX" id="QY8-4O-SWp"/>
                             <constraint firstItem="PQw-YE-iRZ" firstAttribute="leading" secondItem="YJR-IM-DCP" secondAttribute="leadingMargin" constant="36" id="XJH-FV-nH9"/>
-                            <constraint firstItem="BBQ-gU-HOx" firstAttribute="top" secondItem="nD4-qa-cB5" secondAttribute="bottom" constant="41" id="YN1-uZ-7Dm">
-                                <variation key="widthClass=compact" constant="41"/>
-                            </constraint>
-                            <constraint firstItem="nD4-qa-cB5" firstAttribute="top" secondItem="fk4-l2-dnK" secondAttribute="bottom" constant="8" symbolic="YES" id="aOv-Yw-4cx"/>
                             <constraint firstItem="A89-q0-d2o" firstAttribute="top" secondItem="lkZ-AB-juX" secondAttribute="bottom" constant="15" id="ctH-ew-LEv"/>
+                            <constraint firstItem="kJW-nf-kwL" firstAttribute="centerX" secondItem="XAZ-GK-vu1" secondAttribute="centerX" id="gLc-Z0-bds"/>
                             <constraint firstItem="lkZ-AB-juX" firstAttribute="leading" secondItem="YJR-IM-DCP" secondAttribute="leadingMargin" constant="36" id="jCK-zF-bik"/>
                             <constraint firstItem="Zf9-04-SxO" firstAttribute="leading" secondItem="YJR-IM-DCP" secondAttribute="leadingMargin" constant="36" id="jFD-sl-paR"/>
                             <constraint firstItem="fk4-l2-dnK" firstAttribute="top" secondItem="Zf9-04-SxO" secondAttribute="bottom" constant="15" id="jJ6-xz-tlP"/>
@@ -174,7 +202,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="aOv-Yw-4cx"/>
                                 <exclude reference="Jgo-xK-qmC"/>
                                 <exclude reference="qrC-aV-XgJ"/>
                             </mask>
@@ -193,15 +220,17 @@
                         <outlet property="averageSpeedValue" destination="PQw-YE-iRZ" id="p3f-WL-L3h"/>
                         <outlet property="caloriesTitle" destination="w3r-7K-bgU" id="SED-Pl-2ha"/>
                         <outlet property="caloriesValue" destination="Zf9-04-SxO" id="84k-L5-ncR"/>
+                        <outlet property="circleView" destination="XAZ-GK-vu1" id="zTO-kf-eqC"/>
                         <outlet property="distanceTitle" destination="Vhl-dy-wVb" id="agI-Gs-it7"/>
                         <outlet property="distanceValue" destination="lkZ-AB-juX" id="BZT-JO-6lt"/>
                         <outlet property="mapView" destination="BBQ-gU-HOx" id="xf8-ji-N2m"/>
+                        <outlet property="playPauseButtonView" destination="xAK-Ko-7zb" id="rHh-f5-jqA"/>
                         <outlet property="timeLabel" destination="fk4-l2-dnK" id="ilC-yx-pc0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PR5-5c-0qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2315" y="-423"/>
+            <point key="canvasLocation" x="2069" y="-396"/>
         </scene>
         <!--Ride Details View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -503,7 +532,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1X-vj-pBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1661" y="-423"/>
+            <point key="canvasLocation" x="1479" y="-423"/>
         </scene>
         <!--Home Page Navigation Controller-->
         <scene sceneID="8tt-42-smg">

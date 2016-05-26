@@ -29,6 +29,8 @@ class HomePageViewController: UIViewController {
     
     @IBOutlet weak var sideBarButton: UIBarButtonItem!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -29,6 +29,18 @@ class RideNewRecordViewController: UIViewController, MKMapViewDelegate, CLLocati
     
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBOutlet weak var circleView: UIView!
+    
+    @IBOutlet weak var playPauseButtonView: UIView!
+    
+    @IBAction func playPauseButtonPressed(sender: AnyObject) {
+        
+        animatedWithDuration()
+    }
+  
+    
+    
+    
     let locationManager = CLLocationManager()
     
     var currentLocation: CLLocation?
@@ -44,6 +56,9 @@ class RideNewRecordViewController: UIViewController, MKMapViewDelegate, CLLocati
         setupCalories()
         setupTimeLabel()
         setupMap()
+        drawCircle()
+        
+        setupPlayButton()
         
         locationManager.delegate = self
         mapView.delegate = self
@@ -187,7 +202,42 @@ class RideNewRecordViewController: UIViewController, MKMapViewDelegate, CLLocati
         label.attributedText = attributedText
     }
     
+    func drawCircle() {
+        
+        let circleLayer = CAShapeLayer()
+        let circlePath = UIBezierPath(
+            roundedRect: circleView.bounds,
+            byRoundingCorners: [ .BottomLeft, .BottomRight, .TopLeft, .TopRight],
+            cornerRadii: CGSize(width: 80, height: 80))
+        
+        circleLayer.frame = circleView.bounds
+        circleLayer.path = circlePath.CGPath
+        circleLayer.lineWidth = 4
+        circleLayer.strokeColor = UIColor.whiteColor().CGColor
+        circleLayer.fillColor = UIColor.clearColor().CGColor
+        
+        circleView.layer.addSublayer(circleLayer)
+    }
     
+    func setupPlayButton(){
+        
+        playPauseButtonView.layer.cornerRadius = playPauseButtonView.frame.size.width / 2
+        playPauseButtonView.backgroundColor = UIColor.redColor()
+    }
+    
+    func animatedWithDuration(){
+        
+        UIView.animateWithDuration(
+            0.6 , animations: {
+                self.playPauseButtonView.transform = CGAffineTransformMakeScale(0.5, 0.5)
+                self.playPauseButtonView.layer.cornerRadius = 4
+        })
+    }
+    
+    
+    
+    
+
     
     
     
