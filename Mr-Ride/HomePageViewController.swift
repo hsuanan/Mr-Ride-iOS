@@ -64,17 +64,17 @@ class HomePageViewController: UIViewController {
         
         totalCoutValue.font = UIFont.mrTextStyle15Font()
         totalCoutValue.textColor = UIColor.mrWhiteColor()
-        totalCoutValue.text = "8 km / h"
+        totalCoutValue.text = "14 times"
         letterSpacing(totalCoutValue.text!, letterSpacing: 0.7, label: totalCoutValue)
         
         averageSpeedTitle.font = UIFont.mrTextStyle16Font()
         averageSpeedTitle.textColor = UIColor.mrWhiteColor()
-        averageSpeedTitle.text = "Total Count"
+        averageSpeedTitle.text = "Average Speed"
         letterSpacing(averageSpeedTitle.text!, letterSpacing: 0.3, label: averageSpeedTitle)
         
         averageSpeedValue.font = UIFont.mrTextStyle15Font()
         averageSpeedValue.textColor = UIColor.mrWhiteColor()
-        averageSpeedValue.text = "Total Count"
+        averageSpeedValue.text = "8 km / h"
         letterSpacing(averageSpeedValue.text!, letterSpacing: 0.7, label: averageSpeedValue)
         
         setupLetsRideButton(letsRideButton)
