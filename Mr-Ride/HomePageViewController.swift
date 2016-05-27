@@ -30,7 +30,7 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var sideBarButton: UIBarButtonItem!
     
     @IBAction func cancelToHomePageViewController(segue:UIStoryboardSegue) {
-    } //cancel button
+    } //cancel buttongit 
     
 
     override func viewDidLoad() {
