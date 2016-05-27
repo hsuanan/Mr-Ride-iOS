@@ -126,4 +126,18 @@ class HomePageViewController: UIViewController {
         letsRideButton.layer.insertSublayer(shadowLayer, below: roundLayer)
 
     }
+    
+    func testFontInstall(){
+        
+        for fontFamilyName in UIFont.familyNames() {
+            print("-- \(fontFamilyName) --")
+            
+            for fontName in UIFont.fontNamesForFamilyName(fontFamilyName as String) {
+                print(fontName)
+            }
+            
+            print(" ")
+        }
+
+    }
 }
