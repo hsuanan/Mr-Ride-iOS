@@ -78,8 +78,10 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 //        locationManager.stopUpdatingLocation()
         
     }
+
     
-    // MARK: Location Delegate Methods
+    
+// MARK: Location Delegate Methods
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         

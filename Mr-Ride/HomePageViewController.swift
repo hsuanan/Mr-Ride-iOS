@@ -29,15 +29,17 @@ class HomePageViewController: UIViewController {
     
     @IBOutlet weak var sideBarButton: UIBarButtonItem!
     
+    @IBAction func cancelToHomePageViewController(segue:UIStoryboardSegue) {
+    } //cancel button
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupLabel()
 
     }
-
+    
     // MARK : Setup Label
     
     func setupLabel(){
@@ -124,6 +126,20 @@ class HomePageViewController: UIViewController {
         shadowLayer.shadowOpacity = 0.25
         shadowLayer.shadowRadius = 2
         letsRideButton.layer.insertSublayer(shadowLayer, below: roundLayer)
+
+    }
+    
+    func testFontInstall(){
+        
+        for fontFamilyName in UIFont.familyNames() {
+            print("-- \(fontFamilyName) --")
+            
+            for fontName in UIFont.fontNamesForFamilyName(fontFamilyName as String) {
+                print(fontName)
+            }
+            
+            print(" ")
+        }
 
     }
 }

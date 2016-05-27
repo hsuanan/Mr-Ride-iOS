@@ -214,7 +214,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="hME-Iy-Jzo">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="teW-e6-i3R"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="teW-e6-i3R">
+                            <connections>
+                                <segue destination="TCZ-ls-Gxg" kind="unwind" unwindAction="cancelToHomePageViewController:" id="Kez-9O-X6I"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="wZo-H7-Arr"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
@@ -231,6 +236,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PR5-5c-0qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TCZ-ls-Gxg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2045" y="-430"/>
         </scene>
@@ -473,9 +479,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="clF-au-wli" kind="popoverPresentation" popoverAnchorView="hcI-ed-Jnc" id="bCX-n0-BKS">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="clF-au-wli" kind="presentation" identifier="to NewRecordViewController" id="6IA-2c-sSj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSE-8E-TGB">
