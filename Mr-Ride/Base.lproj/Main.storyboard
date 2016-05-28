@@ -421,7 +421,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="JMM-Nb-cSb">
             <objects>
-                <viewController id="M0q-5d-7g8" customClass="HomePageViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomePageViewController" id="M0q-5d-7g8" customClass="HomePageViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P3J-fl-8sa"/>
                         <viewControllerLayoutGuide type="bottom" id="UPR-F0-TEg"/>
@@ -510,13 +510,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j5m-tt-ndh">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="V71-Hb-l91"/>
+                        <barButtonItem key="leftBarButtonItem" image="icon-menu" id="bPo-4Q-byk">
+                            <connections>
+                                <action selector="sideBarButtonTapped:" destination="M0q-5d-7g8" id="aSU-M0-Mlk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="averageSpeedTitle" destination="vhU-Rr-cPX" id="JX1-hZ-8F5"/>
                         <outlet property="averageSpeedValue" destination="F6d-g9-rPg" id="mdO-m3-QaN"/>
                         <outlet property="letsRideButton" destination="hcI-ed-Jnc" id="Ndm-08-QqB"/>
                         <outlet property="letsRideButtonLabel" destination="hSE-8E-TGB" id="vd8-j6-sEQ"/>
+                        <outlet property="sideBarButton" destination="bPo-4Q-byk" id="Ptw-du-Z0x"/>
                         <outlet property="totalCountTitle" destination="rwP-5r-2tP" id="KvG-Mb-Dz1"/>
                         <outlet property="totalCoutValue" destination="RPz-Uy-XBE" id="8gy-n2-waN"/>
                         <outlet property="totalDistanceTitle" destination="AaD-lG-a99" id="5Uf-xy-vUb"/>
@@ -548,7 +553,7 @@
         <!--Home Page Navigation Controller-->
         <scene sceneID="8tt-42-smg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2MK-6v-hjm" customClass="HomePageNavigationController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomePageNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="2MK-6v-hjm" customClass="HomePageNavigationController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BL6-7y-A5Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -563,5 +568,26 @@
             </objects>
             <point key="canvasLocation" x="180" y="-430"/>
         </scene>
+        <!--Left Side View Controller-->
+        <scene sceneID="lAE-nn-aGy">
+            <objects>
+                <viewController storyboardIdentifier="LeftSideViewController" id="cKl-F9-cw8" customClass="LeftSideViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TQu-yF-lUg"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vly-lk-Cv7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tkQ-Rt-PfK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xpx-gT-6VM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="835" y="235"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="icon-menu" width="30" height="30"/>
+    </resources>
 </document>

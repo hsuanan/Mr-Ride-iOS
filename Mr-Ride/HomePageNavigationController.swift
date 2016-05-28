@@ -46,10 +46,7 @@ class HomePageNavigationController: UINavigationController {
         navigationBar.topItem?.titleView = UIImageView(image: tintedImage)
         
         //setup sideBar
-        let originSidBarImage = UIImage(named: "icon-menu")
-        let tintedSideBarImage = originSidBarImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         navigationBar.tintColor = UIColor.whiteColor()
-        navigationBar.topItem?.leftBarButtonItem?.customView = UIImageView(image: tintedSideBarImage)
         
     }
     

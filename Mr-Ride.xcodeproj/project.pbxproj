@@ -31,6 +31,11 @@
 		BCCFE51B1CF79D68004323B0 /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCCFE5101CF79D68004323B0 /* RobotoMono-Regular.ttf */; };
 		BCCFE51C1CF79D68004323B0 /* RobotoMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCCFE5111CF79D68004323B0 /* RobotoMono-Thin.ttf */; };
 		BCCFE51D1CF79D68004323B0 /* RobotoMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCCFE5121CF79D68004323B0 /* RobotoMono-ThinItalic.ttf */; };
+		BCCFE60F1CF98D6D004323B0 /* LeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE60E1CF98D6D004323B0 /* LeftSideViewController.swift */; };
+		BCCFE61B1CF98E34004323B0 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE6131CF98E34004323B0 /* MMDrawerBarButtonItem.m */; };
+		BCCFE61C1CF98E34004323B0 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE6151CF98E34004323B0 /* MMDrawerController.m */; };
+		BCCFE61D1CF98E34004323B0 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE6181CF98E34004323B0 /* MMDrawerVisualState.m */; };
+		BCCFE61E1CF98E34004323B0 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE61A1CF98E34004323B0 /* UIViewController+MMDrawerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +65,17 @@
 		BCCFE5101CF79D68004323B0 /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
 		BCCFE5111CF79D68004323B0 /* RobotoMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Thin.ttf"; sourceTree = "<group>"; };
 		BCCFE5121CF79D68004323B0 /* RobotoMono-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-ThinItalic.ttf"; sourceTree = "<group>"; };
+		BCCFE60E1CF98D6D004323B0 /* LeftSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideViewController.swift; sourceTree = "<group>"; };
+		BCCFE6111CF98E33004323B0 /* Mr-Ride-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-Bridging-Header.h"; sourceTree = "<group>"; };
+		BCCFE6121CF98E34004323B0 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
+		BCCFE6131CF98E34004323B0 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		BCCFE6141CF98E34004323B0 /* MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerController.h; sourceTree = "<group>"; };
+		BCCFE6151CF98E34004323B0 /* MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerController.m; sourceTree = "<group>"; };
+		BCCFE6161CF98E34004323B0 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
+		BCCFE6171CF98E34004323B0 /* MMDrawerVisualState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerVisualState.h; sourceTree = "<group>"; };
+		BCCFE6181CF98E34004323B0 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
+		BCCFE6191CF98E34004323B0 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
+		BCCFE61A1CF98E34004323B0 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +108,7 @@
 		BC85F60A1CF2A1C000B11F89 /* Mr-Ride */ = {
 			isa = PBXGroup;
 			children = (
+				BCCFE6101CF98DD2004323B0 /* MMDrawerController */,
 				BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */,
 				BC85F60D1CF2A1C000B11F89 /* ViewController.swift */,
 				BCCFE51E1CF79D7E004323B0 /* Roboto_Mono */,
@@ -115,6 +132,7 @@
 				BC85F62A1CF2B20200B11F89 /* NewRecordNavigationController.swift */,
 				BC85F62E1CF30AE800B11F89 /* NewRecordViewController.swift */,
 				BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */,
+				BCCFE60E1CF98D6D004323B0 /* LeftSideViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -151,6 +169,23 @@
 				BCCFE50C1CF79D68004323B0 /* RobotoMono-Light.ttf */,
 			);
 			name = Roboto_Mono;
+			sourceTree = "<group>";
+		};
+		BCCFE6101CF98DD2004323B0 /* MMDrawerController */ = {
+			isa = PBXGroup;
+			children = (
+				BCCFE6121CF98E34004323B0 /* MMDrawerBarButtonItem.h */,
+				BCCFE6131CF98E34004323B0 /* MMDrawerBarButtonItem.m */,
+				BCCFE6141CF98E34004323B0 /* MMDrawerController.h */,
+				BCCFE6151CF98E34004323B0 /* MMDrawerController.m */,
+				BCCFE6161CF98E34004323B0 /* MMDrawerController+Subclass.h */,
+				BCCFE6171CF98E34004323B0 /* MMDrawerVisualState.h */,
+				BCCFE6181CF98E34004323B0 /* MMDrawerVisualState.m */,
+				BCCFE6191CF98E34004323B0 /* UIViewController+MMDrawerController.h */,
+				BCCFE61A1CF98E34004323B0 /* UIViewController+MMDrawerController.m */,
+				BCCFE6111CF98E33004323B0 /* Mr-Ride-Bridging-Header.h */,
+			);
+			name = MMDrawerController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,9 +270,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCFE60F1CF98D6D004323B0 /* LeftSideViewController.swift in Sources */,
+				BCCFE61B1CF98E34004323B0 /* MMDrawerBarButtonItem.m in Sources */,
 				BC85F62F1CF30AE800B11F89 /* NewRecordViewController.swift in Sources */,
+				BCCFE61E1CF98E34004323B0 /* UIViewController+MMDrawerController.m in Sources */,
 				BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */,
 				BC9C8B2E1CF5EC7400EB4FBE /* HomePageViewController.swift in Sources */,
+				BCCFE61C1CF98E34004323B0 /* MMDrawerController.m in Sources */,
+				BCCFE61D1CF98E34004323B0 /* MMDrawerVisualState.m in Sources */,
 				BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */,
 				BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */,
 				BC85F6341CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift in Sources */,
@@ -359,10 +399,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Mr-Ride/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-HsinAn-Hsu.Mr-Ride";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mr-Ride/Mr-Ride-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -370,10 +413,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Mr-Ride/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-HsinAn-Hsu.Mr-Ride";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mr-Ride/Mr-Ride-Bridging-Header.h";
 			};
 			name = Release;
 		};
