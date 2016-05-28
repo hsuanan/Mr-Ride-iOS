@@ -39,13 +39,13 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
   
     
-    
-    
     let locationManager = CLLocationManager()
     
     var currentLocation: CLLocation?
     
     var myLocations = [CLLocation]()
+    
+    let gradient = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +78,13 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 //        locationManager.stopUpdatingLocation()
         
     }
+    
+    //resize layers based on the view's new frame
+    override func viewDidLayoutSubviews() {
+        
+        gradient.frame = self.view.bounds
+    }
+
 
     
     
@@ -130,12 +137,12 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     // MARK: Setup
     
     func setupBackground() {
+        
         view.backgroundColor = UIColor.mrWaterBlueColor()
         
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        let gradient = CAGradientLayer()
-        gradient.frame = self.view.frame
+        gradient.frame = self.view.bounds
         gradient.colors = [color1.CGColor,color2.CGColor]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
         
