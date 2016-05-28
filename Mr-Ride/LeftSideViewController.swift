@@ -8,12 +8,14 @@
 
 import UIKit
 
-class LeftSideViewController: UIViewController {
+class LeftSideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var itemArray : [String] = [ "Home", "History" ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = UIColor.mrDarkSlateBlueColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +23,30 @@ class LeftSideViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return itemArray.count
+}
+
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("sideBarCell", forIndexPath: indexPath) as! LeftSideTableViewCell
+ 
+        cell.itemLabel.text = itemArray[indexPath.row]
+ 
+ return cell
+ }
+
+ 
+ 
+ 
     /*
     // MARK: - Navigation
 
