@@ -129,10 +129,10 @@
 			children = (
 				BC9C8B2F1CF6AAAA00EB4FBE /* HomePageNavigationController.swift */,
 				BC9C8B2D1CF5EC7400EB4FBE /* HomePageViewController.swift */,
+				BCCFE60E1CF98D6D004323B0 /* LeftSideViewController.swift */,
 				BC85F62A1CF2B20200B11F89 /* NewRecordNavigationController.swift */,
 				BC85F62E1CF30AE800B11F89 /* NewRecordViewController.swift */,
 				BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */,
-				BCCFE60E1CF98D6D004323B0 /* LeftSideViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
