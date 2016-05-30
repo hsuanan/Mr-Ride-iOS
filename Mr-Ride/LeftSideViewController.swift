@@ -10,12 +10,15 @@ import UIKit
 
 class LeftSideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
+    @IBOutlet weak var tableView: UITableView!
+    
     var itemArray : [String] = [ "Home", "History" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.mrDarkSlateBlueColor()
+        tableView.backgroundColor = UIColor.mrDarkSlateBlueColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +32,6 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
         return 1
@@ -38,6 +40,7 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return itemArray.count
+
     }
 
 
@@ -66,7 +69,6 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
             appDelegate.centerContainer!.centerViewController = centerNav
             
             appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-            
             
             break
             

@@ -655,6 +655,9 @@
                             <constraint firstItem="ZJq-2h-xgi" firstAttribute="leading" secondItem="tkQ-Rt-PfK" secondAttribute="leadingMargin" constant="-20" id="wEj-cB-gtZ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ZJq-2h-xgi" id="XfO-mF-wPY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xpx-gT-6VM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
