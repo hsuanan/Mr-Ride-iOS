@@ -110,9 +110,9 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk4-l2-dnK">
-                                <rect key="frame" x="107" y="279" width="201" height="36"/>
+                                <rect key="frame" x="57" y="279" width="300" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="201" id="aLT-rj-09S"/>
+                                    <constraint firstAttribute="width" constant="300" id="aLT-rj-09S"/>
                                     <constraint firstAttribute="height" constant="36" id="pH5-AR-3VX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
