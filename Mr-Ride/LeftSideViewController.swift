@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeftSideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class LeftSideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     var itemArray : [String] = [ "Home", "History" ]
     
@@ -23,6 +23,12 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        
+        return UIStatusBarStyle.LightContent
+        
+    }
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
@@ -32,7 +38,7 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return itemArray.count
-}
+    }
 
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -40,9 +46,53 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("sideBarCell", forIndexPath: indexPath) as! LeftSideTableViewCell
  
         cell.itemLabel.text = itemArray[indexPath.row]
- 
- return cell
- }
+        
+        return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+                
+        switch(indexPath.row)
+            
+        {
+            
+        case 0:
+            
+            let centerNav = self.storyboard?.instantiateViewControllerWithIdentifier("HomePageNavigationController") as! HomePageNavigationController
+            
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.centerContainer!.centerViewController = centerNav
+            
+            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            
+            
+            break
+            
+        case 1:
+            
+            let historyNavController = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryNavigationController") as! HistoryNavigationController
+
+            
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.centerContainer!.centerViewController = historyNavController
+            
+            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+            
+            break
+            
+        default:
+            
+            print("\(itemArray[indexPath.row]) is selected")
+            
+        }
+        
+    }
+    
+    
+    
 
  
  
@@ -50,7 +100,7 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // In a toryboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

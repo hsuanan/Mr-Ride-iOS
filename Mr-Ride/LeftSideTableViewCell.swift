@@ -23,18 +23,46 @@ class LeftSideTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         backgroundColor = UIColor.mrDarkSlateBlueColor()
-//        itemLabel.textColor = UIColor.mrWhiteColor()
+        
+        itemLabel.textColor = UIColor.mrWhite50Color()
 //        itemLabel.font = UIFont.mrTextStyle3Font()
+        itemLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        itemLabel.layer.shadowOpacity = 0.25
+        itemLabel.layer.shadowRadius = 2
+        itemLabel.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
+        if selected {
+            
+            itemLabel.highlightedTextColor = UIColor.mrWhiteColor()
+            
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = UIColor.mrDarkSlateBlueColor()
+            self.selectedBackgroundView = bgColorView
+            
 
-        // Configure the view for the selected state
+            bullet.frame = CGRectMake (30, 28, 8, 8)
+            bullet.layer.cornerRadius = bullet.frame.size.width / 2
+            bullet.backgroundColor = UIColor.whiteColor()
+
+        }
+        else {
+            
+            bullet.backgroundColor = UIColor.clearColor()
+
+        }
+        
+        
+
     }
     
     func drawBullet(){
-        
-//        bullet.layer.cornerRadius = bounds.size.width / 2
+        bullet.layer.cornerRadius = bullet.frame.size.width / 2
+        bullet.backgroundColor = UIColor.clearColor()
     }
+
 }

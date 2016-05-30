@@ -29,11 +29,11 @@ class HomePageViewController: UIViewController {
     
     @IBOutlet weak var sideBarButton: UIBarButtonItem!
     
-    @IBAction func sideBarButtonTapped(sender: AnyObject) {
+    @IBAction func sideBarButtonTapped(sender: UIButton) {
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-        print ("SideBarButtonTapped")
+        print ("HomePage : SideBarButtonTapped")
 
     }
     

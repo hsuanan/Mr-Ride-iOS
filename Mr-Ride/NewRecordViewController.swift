@@ -33,7 +33,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var playPauseButtonView: UIView!
     
-    @IBAction func playPauseButtonPressed(sender: AnyObject) {
+    @IBAction func playPauseButtonPressed(sender: UIButton) {
         
         animatedWithDuration()
     }
