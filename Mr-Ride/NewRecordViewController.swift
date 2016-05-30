@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
-import HealthKit
+import AVFoundation
 
 class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -27,7 +27,11 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var caloriesValue: UILabel!
     
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    var Seconds = 0.0
+    var timer = NSTimer()
+    var startIsOn = false
     
     @IBOutlet weak var circleView: UIView!
     
@@ -35,7 +39,27 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBAction func playPauseButtonPressed(sender: UIButton) {
         
-        animatedWithDuration()
+        if startIsOn == false {
+            
+            animateFromCircleToSquare()
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+            
+            startIsOn = true
+
+            print ("StartIsOn:\(startIsOn)")
+            
+        } else {
+            
+            animateFromSqareToCircle()
+            
+            timer.invalidate()
+            
+            startIsOn = false
+            
+            print ("StartIsOn:\(startIsOn)")
+            
+        }
     }
   
     
@@ -85,10 +109,25 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         gradient.frame = self.view.bounds
     }
 
-
+    // MARK: Timer
+    
+    func updateTimer(){
+        
+        Seconds += 1.0
+        timerLabel.text = "\(timerString(Seconds))"
+        
+    }
+    
+    func timerString(time: NSTimeInterval) -> String {
+        let hours = Int(time) / (100*60*60)
+        let minutes = Int(time) / 100 / 60 % 60
+        let seconds = Int(time) / 100 % 60
+        let lessSeconds = Int(time) % 100
+        return String(format:"%02i:%02i:%02i.%02i", hours, minutes, seconds, lessSeconds)
+    }
     
     
-// MARK: Location Delegate Methods
+    // MARK: Location Delegate Methods
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -192,12 +231,10 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
     
     func setupTimeLabel() {
-        timeLabel.font = UIFont.mrTextStyle9Font()
-        timeLabel.textColor = UIColor.mrWhiteColor()
-        letterSpacing(timeLabel.text!, letterSpacing: 0.7, label: timeLabel)
-        
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "HH:MM:SS"
+        timerLabel.font = UIFont.mrTextStyle9Font()
+        timerLabel.textColor = UIColor.mrWhiteColor()
+        letterSpacing(timerLabel.text!, letterSpacing: 0.7, label: timerLabel)
+        timerLabel.text = "00:00:00:00"
 
     }
     
@@ -234,7 +271,9 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         playPauseButtonView.backgroundColor = UIColor.redColor()
     }
     
-    func animatedWithDuration(){
+    //MARK: Button animation
+    
+    func animateFromCircleToSquare(){
         
         UIView.animateWithDuration(
             0.0 , animations: {
@@ -243,9 +282,17 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         })
     }
     
-    
-    
-    
+    func animateFromSqareToCircle(){
+        
+        UIView.animateWithDuration(
+            0.0 , animations: {
+                self.playPauseButtonView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                self.playPauseButtonView.layer.cornerRadius = self.playPauseButtonView.frame.size.width / 2
+
+        })
+    }
+
+
 
     
     
