@@ -27,7 +27,11 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var caloriesValue: UILabel!
     
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    var timeInterval = 0.0
+    var timer = NSTimer()
+    var startIsOn = false
     
     @IBOutlet weak var circleView: UIView!
     
@@ -35,17 +39,52 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBAction func playPauseButtonPressed(sender: UIButton) {
         
-        animatedWithDuration()
+        if startIsOn == false {
+            
+            animateFromCircleToSquare()
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+            
+            startIsOn = true
+
+            print ("StartIsOn:\(startIsOn)")
+            
+        } else {
+            
+            animateFromSqareToCircle()
+            
+            timer.invalidate()
+            
+            startIsOn = false
+            
+            print ("StartIsOn:\(startIsOn)")
+            
+        }
     }
-  
+    
+    @IBAction func finishButtonTapped(sender: UIButton) {
+        
+        saveDataToHealthApp()
+        
+    }
+    
+    
     
     let locationManager = CLLocationManager()
-    
     var currentLocation: CLLocation?
-    
     var myLocations = [CLLocation]()
     
+    var startLocation: CLLocation?
+    var lastLocation: CLLocation?
+    var traveledDistance = 0.0
+    var averageSpeed = 0.0
+    
+  
+    
+    let healthManager = HealthKithManager()
+    
     let gradient = CAGradientLayer()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,25 +96,16 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         setupTimeLabel()
         setupMap()
         drawCircle()
-        
         setupPlayButton()
         
+        
         locationManager.delegate = self
+        getLocationUpdate()
+ 
         mapView.delegate = self
-        
-        
-        //setup Map
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        locationManager.activityType = .Fitness //??
-        locationManager.distanceFilter = 10.0
-        
         mapView.showsUserLocation = true
-        //        mapView.userTrackingMode = MKUserTrackingMode.Follow
         
-//        locationManager.stopUpdatingLocation()
+        getHealthKitPermission()
         
     }
     
@@ -84,41 +114,166 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         gradient.frame = self.view.bounds
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        locationManager.stopUpdatingLocation()
+        print("Stop Updating Location")
+    }
+    
+    // Mark: HealthManager
+    
+    func getHealthKitPermission() {
+        
+        // Seek authorization in HealthKitManager.swift.
+        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                
+                print ("HealthKit authorization received")
 
+            } else {
+                if error != nil {
+                    print(error)
+                }
+                print("HealthKit permission denied.")
+            }
+        }
+    }
+    
+    func saveDataToHealthApp () {
+        
+        healthManager.saveDistance(traveledDistance, date: NSDate())
+        
+    }
+    
 
+    // MARK: Timer
+    
+    func updateTimer(){
+        
+        timeInterval += 1.0
+        timerLabel.text = "\(timerString(timeInterval))"
+        
+    }
+    
+    func timerString(time: NSTimeInterval) -> String {
+        
+        let hours = Int(time) / (100*60*60)
+        let minutes = Int(time) / (100 * 60) % 60
+        let seconds = Int(time) / 100 % 60
+        let secondsFrec = Int(time) % 100
+        return String(format:"%02i:%02i:%02i.%02i", hours, minutes, seconds, secondsFrec)
+        
+    }
     
     
-// MARK: Location Delegate Methods
+    // MARK: Location
+    
+    func getLocationUpdate() {
+        
+        locationManager.delegate = self
+        
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled(){
+            
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            
+            locationManager.distanceFilter = 5 // update every 5 meters
+            
+            locationManager.activityType = .Fitness
+            
+            locationManager.startUpdatingLocation()
+            
+        } else {
+            
+            print ("Need to Enable Location")
+            
+        }
+        
+    }
+
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        //rember to setup timestamp: 5 min to avoid get other location from last time
+        
+
         let currentLocation = locations.last
-        //didUpdateLocations hase been call over and over agian after we called startUpdatingLocation until we call stopUpdatingLocation, so "last" get the most current one
-        myLocations.append(currentLocation!)
         
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         
         // map zoom in
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.005, 0.005))
-        // map zoom in animation
         mapView.setRegion(region, animated: true)
         
-        // Show Route
-        if (myLocations.count > 1){
+        
+        // Distance
+        
+        if startLocation == nil {
+            
+            startLocation = locations.last
+            
+        } else {
+            
+            startLocation = myLocations.last
+            
+            let lastLocation = locations.last
+            
+            let distance = startLocation?.distanceFromLocation(lastLocation!)
+            
+            if startIsOn == true {
+                
+                traveledDistance += distance!
+                
+                averageSpeed = (traveledDistance/1000) / (timeInterval/(100*60*60))
+            
+                distanceValue.text = ("\(Int(traveledDistance)) m")
+                averageSpeedValue.text = ("\(Int(averageSpeed)) km / h")
+    
+            } else {
+                
+                distanceValue.text = ("\(Int(traveledDistance)) m")
+                
+            }
+            
+            myLocations.append(currentLocation!)
+            
+            showRoute()
+
+            
+        }
+        
+
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        
+        print("Errors: \(error.localizedDescription)")
+    }
+    
+    // Mark: Map
+    
+    func showRoute() {
+        
+        if (myLocations.count > 1) {
             let sourceIndex = myLocations.count-1
             let destinationIndex = myLocations.count-2
             let oldCoord1 = myLocations[sourceIndex].coordinate
             let oldCoord2 = myLocations[destinationIndex].coordinate
             var coord = [oldCoord1, oldCoord2]
             let polyline = MKPolyline(coordinates: &coord, count: coord.count)
-            self.mapView.addOverlay(polyline)
             
+            if startIsOn == true {
+            
+            self.mapView.addOverlay(polyline)
+                
+            } else {
+                
+                return
+            }
         }
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
-        print("Errors: \(error.localizedDescription)")
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
@@ -127,10 +282,11 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
             polylineRenderer.strokeColor = UIColor.mrBubblegumColor()
-            polylineRenderer.lineWidth = 10
+            polylineRenderer.lineWidth = 8
             return polylineRenderer
             
         }
+        
         return nil
     }
     
@@ -157,7 +313,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         distanceValue.font = UIFont.mrTextStyle15Font()
         distanceValue.textColor = UIColor.mrWhiteColor()
-        distanceValue.text = "109 m"
+        distanceValue.text = "0 m"
         letterSpacing(distanceValue.text!, letterSpacing: 0.7, label: distanceValue)
     
     }
@@ -172,7 +328,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         averageSpeedValue.font = UIFont.mrTextStyle15Font()
         averageSpeedValue.textColor = UIColor.mrWhiteColor()
-        averageSpeedValue.text = "12 km/h"
+        averageSpeedValue.text = "0 km / h"
         letterSpacing(averageSpeedValue.text!, letterSpacing: 0.7, label: averageSpeedValue)
     }
     
@@ -186,18 +342,16 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         caloriesValue.font = UIFont.mrTextStyle15Font()
         caloriesValue.textColor = UIColor.mrWhiteColor()
-        caloriesValue.text = "910 kcal"
+        caloriesValue.text = "0 kcal"
         letterSpacing(caloriesValue.text!, letterSpacing: 0.7, label: caloriesValue)
 
     }
     
     func setupTimeLabel() {
-        timeLabel.font = UIFont.mrTextStyle9Font()
-        timeLabel.textColor = UIColor.mrWhiteColor()
-        letterSpacing(timeLabel.text!, letterSpacing: 0.7, label: timeLabel)
-        
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "HH:MM:SS"
+        timerLabel.font = UIFont(name: "RobotoMono-Light", size: 30)
+        timerLabel.textColor = UIColor.mrWhiteColor()
+        letterSpacing(timerLabel.text!, letterSpacing: 0.7, label: timerLabel)
+        timerLabel.text = "00:00:00:00"
 
     }
     
@@ -234,7 +388,9 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         playPauseButtonView.backgroundColor = UIColor.redColor()
     }
     
-    func animatedWithDuration(){
+    //MARK: Button animation
+    
+    func animateFromCircleToSquare(){
         
         UIView.animateWithDuration(
             0.0 , animations: {
@@ -243,9 +399,17 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         })
     }
     
-    
-    
-    
+    func animateFromSqareToCircle(){
+        
+        UIView.animateWithDuration(
+            0.0 , animations: {
+                self.playPauseButtonView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                self.playPauseButtonView.layer.cornerRadius = self.playPauseButtonView.frame.size.width / 2
+
+        })
+    }
+
+
 
     
     

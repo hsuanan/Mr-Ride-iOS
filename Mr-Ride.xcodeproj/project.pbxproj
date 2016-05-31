@@ -13,7 +13,7 @@
 		BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */; };
 		BC85F6161CF2A1C000B11F89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC85F6151CF2A1C000B11F89 /* Assets.xcassets */; };
 		BC85F6191CF2A1C000B11F89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC85F6171CF2A1C000B11F89 /* LaunchScreen.storyboard */; };
-		BC85F6211CF2ADDE00B11F89 /* RideDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */; };
+		BC85F6211CF2ADDE00B11F89 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6201CF2ADDE00B11F89 /* StatisticsViewController.swift */; };
 		BC85F62B1CF2B20200B11F89 /* NewRecordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F62A1CF2B20200B11F89 /* NewRecordNavigationController.swift */; };
 		BC85F62F1CF30AE800B11F89 /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F62E1CF30AE800B11F89 /* NewRecordViewController.swift */; };
 		BC85F6341CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */; };
@@ -36,6 +36,9 @@
 		BCCFE61C1CF98E34004323B0 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE6151CF98E34004323B0 /* MMDrawerController.m */; };
 		BCCFE61D1CF98E34004323B0 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE6181CF98E34004323B0 /* MMDrawerVisualState.m */; };
 		BCCFE61E1CF98E34004323B0 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE61A1CF98E34004323B0 /* UIViewController+MMDrawerController.m */; };
+		BCDB655F1CFD3BF90041FBAD /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB655E1CFD3BF90041FBAD /* HealthKitManager.swift */; };
+		BCDB65621CFD3E130041FBAD /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDB65611CFD3E130041FBAD /* HealthKit.framework */; };
+		BCDB65641CFD80F10041FBAD /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB65631CFD80F10041FBAD /* StatisticsView.swift */; };
 		BCE4E9041CF9DDD600976948 /* LeftSideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE4E9031CF9DDD600976948 /* LeftSideTableViewCell.swift */; };
 		BCE4E90A1CFA7DC700976948 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE4E9091CFA7DC700976948 /* HistoryViewController.swift */; };
 		BCE4E90C1CFA824F00976948 /* HistoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */; };
@@ -50,7 +53,7 @@
 		BC85F6151CF2A1C000B11F89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC85F6181CF2A1C000B11F89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC85F61A1CF2A1C000B11F89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsViewController.swift; sourceTree = "<group>"; };
+		BC85F6201CF2ADDE00B11F89 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		BC85F62A1CF2B20200B11F89 /* NewRecordNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordNavigationController.swift; sourceTree = "<group>"; };
 		BC85F62E1CF30AE800B11F89 /* NewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
 		BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+YBKAdditions (2).swift"; sourceTree = "<group>"; };
@@ -79,6 +82,10 @@
 		BCCFE6181CF98E34004323B0 /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
 		BCCFE6191CF98E34004323B0 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
 		BCCFE61A1CF98E34004323B0 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		BCDB655E1CFD3BF90041FBAD /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		BCDB65601CFD3E130041FBAD /* Mr-Ride.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Mr-Ride.entitlements"; sourceTree = "<group>"; };
+		BCDB65611CFD3E130041FBAD /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		BCDB65631CFD80F10041FBAD /* StatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		BCE4E9031CF9DDD600976948 /* LeftSideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideTableViewCell.swift; sourceTree = "<group>"; };
 		BCE4E9091CFA7DC700976948 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNavigationController.swift; sourceTree = "<group>"; };
@@ -89,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCDB65621CFD3E130041FBAD /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +106,7 @@
 		BC85F5FF1CF2A1C000B11F89 = {
 			isa = PBXGroup;
 			children = (
+				BCDB65611CFD3E130041FBAD /* HealthKit.framework */,
 				BC85F60A1CF2A1C000B11F89 /* Mr-Ride */,
 				BC85F6091CF2A1C000B11F89 /* Products */,
 			);
@@ -114,6 +123,7 @@
 		BC85F60A1CF2A1C000B11F89 /* Mr-Ride */ = {
 			isa = PBXGroup;
 			children = (
+				BCDB65601CFD3E130041FBAD /* Mr-Ride.entitlements */,
 				BCCFE6101CF98DD2004323B0 /* MMDrawerController */,
 				BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */,
 				BC85F60D1CF2A1C000B11F89 /* ViewController.swift */,
@@ -138,7 +148,7 @@
 				BCCFE60E1CF98D6D004323B0 /* LeftSideViewController.swift */,
 				BC85F62A1CF2B20200B11F89 /* NewRecordNavigationController.swift */,
 				BC85F62E1CF30AE800B11F89 /* NewRecordViewController.swift */,
-				BC85F6201CF2ADDE00B11F89 /* RideDetailsViewController.swift */,
+				BC85F6201CF2ADDE00B11F89 /* StatisticsViewController.swift */,
 				BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */,
 				BCE4E9091CFA7DC700976948 /* HistoryViewController.swift */,
 			);
@@ -150,6 +160,7 @@
 			children = (
 				BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */,
 				BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */,
+				BCDB655E1CFD3BF90041FBAD /* HealthKitManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -158,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				BCE4E9031CF9DDD600976948 /* LeftSideTableViewCell.swift */,
+				BCDB65631CFD80F10041FBAD /* StatisticsView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -229,6 +241,15 @@
 				TargetAttributes = {
 					BC85F6071CF2A1C000B11F89 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = BGU87W5D85;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -280,8 +301,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCCFE60F1CF98D6D004323B0 /* LeftSideViewController.swift in Sources */,
+				BCDB65641CFD80F10041FBAD /* StatisticsView.swift in Sources */,
 				BCCFE61B1CF98E34004323B0 /* MMDrawerBarButtonItem.m in Sources */,
 				BCE4E90C1CFA824F00976948 /* HistoryNavigationController.swift in Sources */,
+				BCDB655F1CFD3BF90041FBAD /* HealthKitManager.swift in Sources */,
 				BC85F62F1CF30AE800B11F89 /* NewRecordViewController.swift in Sources */,
 				BCCFE61E1CF98E34004323B0 /* UIViewController+MMDrawerController.m in Sources */,
 				BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */,
@@ -292,7 +315,7 @@
 				BCE4E9041CF9DDD600976948 /* LeftSideTableViewCell.swift in Sources */,
 				BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */,
 				BC85F6341CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift in Sources */,
-				BC85F6211CF2ADDE00B11F89 /* RideDetailsViewController.swift in Sources */,
+				BC85F6211CF2ADDE00B11F89 /* StatisticsViewController.swift in Sources */,
 				BC9C8B301CF6AAAA00EB4FBE /* HomePageNavigationController.swift in Sources */,
 				BC85F6361CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift in Sources */,
 				BCE4E90A1CFA7DC700976948 /* HistoryViewController.swift in Sources */,
@@ -412,6 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Mr-Ride/Mr-Ride.entitlements";
 				INFOPLIST_FILE = "Mr-Ride/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-HsinAn-Hsu.Mr-Ride";
@@ -426,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Mr-Ride/Mr-Ride.entitlements";
 				INFOPLIST_FILE = "Mr-Ride/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-HsinAn-Hsu.Mr-Ride";

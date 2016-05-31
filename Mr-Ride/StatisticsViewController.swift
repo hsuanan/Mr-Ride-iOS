@@ -1,5 +1,5 @@
 //
-//  RideDetailsViewController.swift
+//  StatisticsViewController.swift
 //  Mr-Ride
 //
 //  Created by Hsin An Hsu on 5/23/16.
@@ -8,15 +8,16 @@
 
 import UIKit
 import MapKit
-import CoreLocation
-import HealthKit
 
-class RideDetailsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
-    @IBOutlet weak var mapView: MKMapView!
+class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    let statisticsView = StatisticsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     
     }
+    
+
 }
