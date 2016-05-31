@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
-import AVFoundation
+import HealthKit
 
 class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -64,16 +64,18 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
   
     
     let locationManager = CLLocationManager()
-    
     var currentLocation: CLLocation?
+    var myLocations = [CLLocation]()
     
     var startLocation: CLLocation?
-    
     var lastLocation: CLLocation?
-    
     var traveledDistance = 0.0
+    var currentSpeed = 0.0
     
-    var myLocations = [CLLocation]()
+  
+    
+    let healthManager = HealthKithManager()
+    var height: HKQuantitySample?
     
     
     let gradient = CAGradientLayer()
@@ -98,8 +100,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        
-//        locationManager.stopUpdatingLocation()
+        getHealthKitPermission()
         
     }
     
@@ -108,6 +109,32 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         gradient.frame = self.view.bounds
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        locationManager.stopUpdatingLocation()
+        print("Stop Updating Location")
+    }
+    
+    // Mark: HealthManager
+    
+    func getHealthKitPermission() {
+        
+        // Seek authorization in HealthKitManager.swift.
+        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                
+                print ("HealthKit authorization received")
+
+            } else {
+                if error != nil {
+                    print(error)
+                }
+                print("HealthKit permission denied.")
+            }
+        }
+    }
+    
 
     // MARK: Timer
     
@@ -137,15 +164,21 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         locationManager.requestWhenInUseAuthorization()
         
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        locationManager.distanceFilter = 10.0
-        
-//        locationManager.pausesLocationUpdatesAutomatically = true
-        
-        locationManager.activityType = .Fitness
-        
-        self.locationManager.startUpdatingLocation()
+        if CLLocationManager.locationServicesEnabled(){
+            
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            
+            locationManager.distanceFilter = 5 // update every 5 meters
+            
+            locationManager.activityType = .Fitness
+            
+            locationManager.startUpdatingLocation()
+            
+        } else {
+            
+            print ("Need to Enable Location")
+            
+        }
         
     }
 
@@ -154,11 +187,8 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         //rember to setup timestamp: 5 min to avoid get other location from last time
         
-        let currentLocation = locations.last
-        
-        myLocations.append(currentLocation!)
-        
 
+        let currentLocation = locations.last
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         
         // map zoom in
@@ -167,16 +197,15 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.setRegion(region, animated: true)
         
         
-        showRoute()
-    
-        
         // Distance
         
         if startLocation == nil {
             
-            startLocation = locations.first
+            startLocation = locations.last
             
         } else {
+            
+            startLocation = myLocations.last
             
             let lastLocation = locations.last
             
@@ -188,16 +217,29 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 
                 traveledDistance += distance!
                 
+                currentSpeed = (traveledDistance/1000) / (Seconds/(100*60*60))
+                
                 print ("traveledDistance: \(traveledDistance)")
             
                 distanceValue.text = ("\(Int(traveledDistance)) m")
+                averageSpeedValue.text = ("\(Int(currentSpeed)) km / h")
     
             } else {
                 
                 distanceValue.text = ("\(Int(traveledDistance)) m")
+//                averageSpeedValue.text = ("\(Int(currentSpeed)) km / h")
             }
             
+            
+            myLocations.append(currentLocation!)
+            
+
+            
+            showRoute()
+
+            
         }
+        
 
     }
     
@@ -273,7 +315,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         averageSpeedValue.font = UIFont.mrTextStyle15Font()
         averageSpeedValue.textColor = UIColor.mrWhiteColor()
-        averageSpeedValue.text = "0 km/h"
+        averageSpeedValue.text = "0 km / h"
         letterSpacing(averageSpeedValue.text!, letterSpacing: 0.7, label: averageSpeedValue)
     }
     
