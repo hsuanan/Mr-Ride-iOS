@@ -73,5 +73,29 @@ class HealthKithManager {
             return (age)
 //        return (age, biologicalSex)
     }
+    
+    func saveDistance(distanceRecorded: Double, date: NSDate ) {
+        
+        // Set the quantity type to the running/walking distance.
+        let distanceType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceCycling)
+        
+        // Set the unit of measurement to miles.
+        let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: distanceRecorded)
+        
+        // Set the official Quantity Sample.
+        let distance = HKQuantitySample(type: distanceType!, quantity: distanceQuantity, startDate: date, endDate: date)
+        
+        // Save the distance quantity sample to the HealthKit Store.
+        healthKitStore.saveObject(distance, withCompletion: { (success, error) -> Void in
+            if( error != nil ) {
+                print(error)
+            } else {
+                print("The distance has been recorded!")
+                
+                print("HealthKitDistance: \(distance)")
+            }
+        })
+        
+    }
         
 }

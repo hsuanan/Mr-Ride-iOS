@@ -61,6 +61,13 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
         }
     }
+    
+    @IBAction func finishButtonTapped(sender: UIButton) {
+        
+        saveDataToHealthApp()
+        
+    }
+    
   
     
     let locationManager = CLLocationManager()
@@ -75,8 +82,6 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
   
     
     let healthManager = HealthKithManager()
-    var height: HKQuantitySample?
-    
     
     let gradient = CAGradientLayer()
     
@@ -112,6 +117,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        
         locationManager.stopUpdatingLocation()
         print("Stop Updating Location")
     }
@@ -133,6 +139,12 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 print("HealthKit permission denied.")
             }
         }
+    }
+    
+    func saveDataToHealthApp () {
+        
+        healthManager.saveDistance(traveledDistance, date: NSDate())
+        
     }
     
 
@@ -216,8 +228,6 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 traveledDistance += distance!
                 
                 averageSpeed = (traveledDistance/1000) / (timeInterval/(100*60*60))
-                
-                print ("traveledDistance: \(traveledDistance)")
             
                 distanceValue.text = ("\(Int(traveledDistance)) m")
                 averageSpeedValue.text = ("\(Int(averageSpeed)) km / h")
@@ -254,7 +264,15 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             let oldCoord2 = myLocations[destinationIndex].coordinate
             var coord = [oldCoord1, oldCoord2]
             let polyline = MKPolyline(coordinates: &coord, count: coord.count)
+            
+            if startIsOn == true {
+            
             self.mapView.addOverlay(polyline)
+                
+            } else {
+                
+                return
+            }
         }
     }
     
