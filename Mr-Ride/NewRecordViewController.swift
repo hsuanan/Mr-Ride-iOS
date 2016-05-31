@@ -29,7 +29,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var timerLabel: UILabel!
     
-    var Seconds = 0.0
+    var timeInterval = 0.0
     var timer = NSTimer()
     var startIsOn = false
     
@@ -70,7 +70,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var startLocation: CLLocation?
     var lastLocation: CLLocation?
     var traveledDistance = 0.0
-    var currentSpeed = 0.0
+    var averageSpeed = 0.0
     
   
     
@@ -140,8 +140,8 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     func updateTimer(){
         
-        Seconds += 1.0
-        timerLabel.text = "\(timerString(Seconds))"
+        timeInterval += 1.0
+        timerLabel.text = "\(timerString(timeInterval))"
         
     }
     
@@ -189,11 +189,11 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
 
         let currentLocation = locations.last
+        
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         
         // map zoom in
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.005, 0.005))
-        
         mapView.setRegion(region, animated: true)
         
         
@@ -211,29 +211,24 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
             let distance = startLocation?.distanceFromLocation(lastLocation!)
             
-            startLocation = lastLocation
-            
             if startIsOn == true {
                 
                 traveledDistance += distance!
                 
-                currentSpeed = (traveledDistance/1000) / (Seconds/(100*60*60))
+                averageSpeed = (traveledDistance/1000) / (timeInterval/(100*60*60))
                 
                 print ("traveledDistance: \(traveledDistance)")
             
                 distanceValue.text = ("\(Int(traveledDistance)) m")
-                averageSpeedValue.text = ("\(Int(currentSpeed)) km / h")
+                averageSpeedValue.text = ("\(Int(averageSpeed)) km / h")
     
             } else {
                 
                 distanceValue.text = ("\(Int(traveledDistance)) m")
-//                averageSpeedValue.text = ("\(Int(currentSpeed)) km / h")
+                
             }
             
-            
             myLocations.append(currentLocation!)
-            
-
             
             showRoute()
 
