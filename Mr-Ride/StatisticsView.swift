@@ -46,7 +46,6 @@ class StatisticsView: UIView {
         setupMap()
         setupMedal()
         setupGoodJob()
-
         
     }
     
@@ -57,7 +56,7 @@ class StatisticsView: UIView {
         
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        gradient.frame = bounds
+        gradient.frame = self.bounds
         gradient.colors = [color1.CGColor,color2.CGColor]
         layer.insertSublayer(gradient, atIndex: 0)
         

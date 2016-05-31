@@ -68,7 +68,7 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-  
+    
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?

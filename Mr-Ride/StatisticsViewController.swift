@@ -8,8 +8,6 @@
 
 import UIKit
 import MapKit
-import CoreLocation
-import HealthKit
 
 class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -17,12 +15,9 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-    }
-    
-    override func viewDidLayoutSubviews() {
         
-        statisticsView.gradient.frame = self.view.bounds
+    
     }
+    
 
 }
