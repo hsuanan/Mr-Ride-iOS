@@ -46,8 +46,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A89-q0-d2o">
-                                <rect key="frame" x="56" y="149" width="116" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A89-q0-d2o">
+                                <rect key="frame" x="56" y="149" width="112" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="5Nq-9m-SGk"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="YKd-So-2Hw"/>
@@ -245,11 +245,11 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="averageSpeedTitle" destination="A89-q0-d2o" id="Wr5-TS-BY7"/>
-                        <outlet property="averageSpeedValue" destination="PQw-YE-iRZ" id="p3f-WL-L3h"/>
                         <outlet property="caloriesTitle" destination="w3r-7K-bgU" id="SED-Pl-2ha"/>
                         <outlet property="caloriesValue" destination="Zf9-04-SxO" id="84k-L5-ncR"/>
                         <outlet property="circleView" destination="XAZ-GK-vu1" id="zTO-kf-eqC"/>
+                        <outlet property="currentSpeedTitle" destination="A89-q0-d2o" id="9v3-va-8sJ"/>
+                        <outlet property="currentSpeedValue" destination="PQw-YE-iRZ" id="AvG-eZ-Rwf"/>
                         <outlet property="distanceTitle" destination="Vhl-dy-wVb" id="agI-Gs-it7"/>
                         <outlet property="distanceValue" destination="lkZ-AB-juX" id="BZT-JO-6lt"/>
                         <outlet property="mapView" destination="BBQ-gU-HOx" id="xf8-ji-N2m"/>
