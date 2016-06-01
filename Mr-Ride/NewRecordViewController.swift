@@ -64,8 +64,6 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBAction func finishButtonTapped(sender: UIButton) {
         
-        saveDataToHealthApp()
-        
     }
     
     
@@ -78,10 +76,6 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var lastLocation: CLLocation?
     var traveledDistance = 0.0
     var averageSpeed = 0.0
-    
-  
-    
-    let healthManager = HealthKithManager()
     
     let gradient = CAGradientLayer()
     
@@ -105,7 +99,6 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        getHealthKitPermission()
         
     }
     
@@ -120,31 +113,6 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         locationManager.stopUpdatingLocation()
         print("Stop Updating Location")
-    }
-    
-    // Mark: HealthManager
-    
-    func getHealthKitPermission() {
-        
-        // Seek authorization in HealthKitManager.swift.
-        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
-            if authorized {
-                
-                print ("HealthKit authorization received")
-
-            } else {
-                if error != nil {
-                    print(error)
-                }
-                print("HealthKit permission denied.")
-            }
-        }
-    }
-    
-    func saveDataToHealthApp () {
-        
-        healthManager.saveDistance(traveledDistance, date: NSDate())
-        
     }
     
 

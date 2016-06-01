@@ -48,7 +48,6 @@ NSLocationWhenInUseUsageDescription
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string></string>
-		<string>healthkit</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
