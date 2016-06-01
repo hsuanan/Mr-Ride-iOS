@@ -205,9 +205,9 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
             distanceValue.text = ("\(Int(traveledDistance)) m")
             
-            let currentSpeed = currentLocation?.speed
+            let currentSpeed = Int((currentLocation?.speed)!/1000*(60*60)) // m/s -> km /hr
             
-            currentSpeedValue.text = ("\(String(currentSpeed!))")
+            currentSpeedValue.text = ("\(String(currentSpeed)) k / hr")
             
             //            averageSpeedValue.text = ("\(Int(averageSpeed)) km / h")
             
@@ -215,11 +215,12 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             calculatedCalories()
             
             
-        } else {
-            
-            distanceValue.text = ("\(Int(traveledDistance)) m")
-            
         }
+//        else {
+//            
+//            distanceValue.text = ("\(Int(traveledDistance)) m")
+//            
+//        }
         
         myLocations.append(currentLocation!)
         
