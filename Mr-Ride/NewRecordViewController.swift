@@ -9,9 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
-import HealthKit
 
-class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -28,10 +27,6 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     @IBOutlet weak var caloriesValue: UILabel!
     
     @IBOutlet weak var timerLabel: UILabel!
-    
-    var timeInterval = 0.0
-    var timer = NSTimer()
-    var startIsOn = false
     
     @IBOutlet weak var circleView: UIView!
     
@@ -52,7 +47,6 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
         } else {
             
-            
             animateFromSqareToCircle()
             
             timer.invalidate()
@@ -69,6 +63,11 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
+    var startIsOn = false
+    
+    var timeInterval = 0.0
+    var timer = NSTimer()
+
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var myLocations = [CLLocation]()
@@ -97,11 +96,9 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         drawCircle()
         setupPlayButton()
         
-        locationManager.delegate = self
-        getLocationUpdate()
         
-        mapView.delegate = self
-        mapView.showsUserLocation = true
+        getLocationUpdate()
+
         
         
     }
@@ -158,6 +155,9 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             locationManager.activityType = .Fitness
             
             locationManager.startUpdatingLocation()
+            
+            mapView.delegate = self
+            mapView.showsUserLocation = true
             
         } else {
             
@@ -251,10 +251,12 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         print ("caloriesBurned:\(caloriesBurned)")
         print ("CaloriesBurnedPerHourPerKg: \(CaloriesBurnedPerHourPerKg)")
     }
-    
+}
     
     // Mark: Map
-    
+
+extension NewRecordViewController: MKMapViewDelegate {
+
     func showRoute() {
         
         if (myLocations.count > 1) {
@@ -289,8 +291,10 @@ class NewRecordViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         return nil
     }
-    
+}
+
     // MARK: Setup
+extension NewRecordViewController {
     
     func setupBackground() {
         
