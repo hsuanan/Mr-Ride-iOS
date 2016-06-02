@@ -64,15 +64,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         saveRecordsToCoreData()
         print ("finishButtonTapped")
         
-//        prepareForSegue(segue: UIStoryboardSegue, sender: <#T##AnyObject?#>){
-//            
-//            if segue.identifier == "showStatisticsPage" {
-//                
-//                let destination = segue.destinationViewController as StatisticsViewController
-//                
-//            }
-//        }
-        
+        performSegueWithIdentifier("showStatisticsPage", sender: sender)
     }
     
     var startIsOn = false
@@ -95,6 +87,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     var weight = 0.0
     
     
+    
+    
     let gradient = CAGradientLayer()
     
     
@@ -110,6 +104,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         setupMap()
         drawCircle()
         setupPlayButton()
+        
+        getLocationUpdate()
         
         
         
@@ -128,7 +124,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
 
         print("viewDidAppear")
         
-        getLocationUpdate()
+
         
     }
     
