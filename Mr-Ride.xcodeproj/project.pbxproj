@@ -38,8 +38,10 @@
 		BCCFE61E1CF98E34004323B0 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCFE61A1CF98E34004323B0 /* UIViewController+MMDrawerController.m */; };
 		BCDB65641CFD80F10041FBAD /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB65631CFD80F10041FBAD /* StatisticsView.swift */; };
 		BCDB65991CFF18760041FBAD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB65981CFF18760041FBAD /* MapViewController.swift */; };
-		BCDB659C1D0010290041FBAD /* Records+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB659A1D0010280041FBAD /* Records+CoreDataProperties.swift */; };
-		BCDB659D1D0010290041FBAD /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB659B1D0010290041FBAD /* Records.swift */; };
+		BCDB65B01D0041D80041FBAD /* Records+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB65AC1D0041D80041FBAD /* Records+CoreDataProperties.swift */; };
+		BCDB65B11D0041D80041FBAD /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB65AD1D0041D80041FBAD /* Records.swift */; };
+		BCDB65B21D0041D80041FBAD /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB65AE1D0041D80041FBAD /* Location+CoreDataProperties.swift */; };
+		BCDB65B31D0041D80041FBAD /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB65AF1D0041D80041FBAD /* Location.swift */; };
 		BCE4E9041CF9DDD600976948 /* LeftSideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE4E9031CF9DDD600976948 /* LeftSideTableViewCell.swift */; };
 		BCE4E90A1CFA7DC700976948 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE4E9091CFA7DC700976948 /* HistoryViewController.swift */; };
 		BCE4E90C1CFA824F00976948 /* HistoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */; };
@@ -86,8 +88,10 @@
 		BCDB65601CFD3E130041FBAD /* Mr-Ride.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Mr-Ride.entitlements"; sourceTree = "<group>"; };
 		BCDB65631CFD80F10041FBAD /* StatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		BCDB65981CFF18760041FBAD /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		BCDB659A1D0010280041FBAD /* Records+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Records+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BCDB659B1D0010290041FBAD /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
+		BCDB65AC1D0041D80041FBAD /* Records+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Records+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BCDB65AD1D0041D80041FBAD /* Records.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
+		BCDB65AE1D0041D80041FBAD /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BCDB65AF1D0041D80041FBAD /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BCE4E9031CF9DDD600976948 /* LeftSideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideTableViewCell.swift; sourceTree = "<group>"; };
 		BCE4E9091CFA7DC700976948 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNavigationController.swift; sourceTree = "<group>"; };
@@ -107,8 +111,6 @@
 		BC85F5FF1CF2A1C000B11F89 = {
 			isa = PBXGroup;
 			children = (
-				BCDB659A1D0010280041FBAD /* Records+CoreDataProperties.swift */,
-				BCDB659B1D0010290041FBAD /* Records.swift */,
 				BC85F60A1CF2A1C000B11F89 /* Mr-Ride */,
 				BC85F6091CF2A1C000B11F89 /* Products */,
 			);
@@ -161,6 +163,10 @@
 		BC85F6291CF2B09E00B11F89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BCDB65AC1D0041D80041FBAD /* Records+CoreDataProperties.swift */,
+				BCDB65AD1D0041D80041FBAD /* Records.swift */,
+				BCDB65AE1D0041D80041FBAD /* Location+CoreDataProperties.swift */,
+				BCDB65AF1D0041D80041FBAD /* Location.swift */,
 				BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */,
 				BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */,
 			);
@@ -306,12 +312,14 @@
 				BCDB65641CFD80F10041FBAD /* StatisticsView.swift in Sources */,
 				BCCFE61B1CF98E34004323B0 /* MMDrawerBarButtonItem.m in Sources */,
 				BCDB65991CFF18760041FBAD /* MapViewController.swift in Sources */,
-				BCDB659D1D0010290041FBAD /* Records.swift in Sources */,
-				BCDB659C1D0010290041FBAD /* Records+CoreDataProperties.swift in Sources */,
+				BCDB65B11D0041D80041FBAD /* Records.swift in Sources */,
+				BCDB65B01D0041D80041FBAD /* Records+CoreDataProperties.swift in Sources */,
 				BCE4E90C1CFA824F00976948 /* HistoryNavigationController.swift in Sources */,
 				BC85F62F1CF30AE800B11F89 /* NewRecordViewController.swift in Sources */,
 				BCCFE61E1CF98E34004323B0 /* UIViewController+MMDrawerController.m in Sources */,
 				BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */,
+				BCDB65B31D0041D80041FBAD /* Location.swift in Sources */,
+				BCDB65B21D0041D80041FBAD /* Location+CoreDataProperties.swift in Sources */,
 				BC9C8B2E1CF5EC7400EB4FBE /* HomePageViewController.swift in Sources */,
 				BCCFE61C1CF98E34004323B0 /* MMDrawerController.m in Sources */,
 				BCCFE61D1CF98E34004323B0 /* MMDrawerVisualState.m in Sources */,

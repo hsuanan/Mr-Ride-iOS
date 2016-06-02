@@ -125,7 +125,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         print("viewDidAppear")
         
         getLocationUpdate()
@@ -290,14 +290,31 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         entityRecords.distance = Int(traveledDistance)
         entityRecords.duration = timerString(timeInterval)
         entityRecords.calories = caloriesBurned
-        entityRecords.locations = myLocations
+        
+        var savedLocations = [Location]()
+        for location in myLocations {
+            
+            let entityLocation = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: moc) as! Location
+            entityLocation.timeStamp = location.timestamp
+            entityLocation.latitude = location.coordinate.latitude
+            entityLocation.longitude = location.coordinate.longitude
+            savedLocations.append(entityLocation)
+
+        }
+        
+        entityRecords.location = NSSet(array: savedLocations)
+        
+        print ("entityRecords.location: \(entityRecords.location)")
+        
+        
+
         
         do {
             
             try self.moc.save()
             
             print ("save records to Core Data===========")
-            print("date:\(entityRecords.timestamp), distance: \(entityRecords.distance), duration: \(entityRecords.duration),calories: \(entityRecords.calories), locations: \(entityRecords.locations)")
+            print("date:\(entityRecords.timestamp), distance: \(entityRecords.distance), duration: \(entityRecords.duration),calories: \(entityRecords.calories), savedLocations: \(savedLocations)")
             
         } catch {
             
