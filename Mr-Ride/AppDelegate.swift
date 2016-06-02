@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         centerContainer!.maximumLeftDrawerWidth = 260
         
-        window!.rootViewController = centerContainer
+//        window!.rootViewController = centerContainer
         window!.makeKeyAndVisible()
         
         return true

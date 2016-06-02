@@ -9,10 +9,11 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView?
     
     @IBOutlet weak var distanceTitle: UILabel!
     
@@ -60,6 +61,17 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func finishButtonTapped(sender: UIButton) {
         
+        saveRecordsToCoreData()
+        print ("finishButtonTapped")
+        
+//        prepareForSegue(segue: UIStoryboardSegue, sender: <#T##AnyObject?#>){
+//            
+//            if segue.identifier == "showStatisticsPage" {
+//                
+//                let destination = segue.destinationViewController as StatisticsViewController
+//                
+//            }
+//        }
         
     }
     
@@ -67,25 +79,28 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     var timeInterval = 0.0
     var timer = NSTimer()
-
+    
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var myLocations = [CLLocation]()
-    
     var startLocation: CLLocation?
     var lastLocation: CLLocation?
     var traveledDistance = 0.0
     var averageSpeed = 0.0
     var currentSpeed = 0.0
-    var calories = 0
+    var caloriesBurned = 0
     let date = NSDate()
-    var CaloriesBurnedPerHourPerKg = 0.0
+    
+    
+    var weight = 0.0
+    
     
     let gradient = CAGradientLayer()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print ("viewDidLoad")
         
         setupBackground()
         setupDistance()
@@ -97,26 +112,42 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         setupPlayButton()
         
         
-        getLocationUpdate()
-
         
         
     }
     
     //resize layers based on the view's new frame
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         gradient.frame = self.view.bounds
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("viewDidAppear")
+        
+        getLocationUpdate()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        print("viewWillDisappear")
         locationManager.stopUpdatingLocation()
         print("Stop Updating Location")
         
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        mapView = nil
+        // avoid mapView佔記憶體
+    }
+        
     
     // MARK: Timer
     
@@ -150,14 +181,14 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             
-            locationManager.distanceFilter = 5 // update every 5 meters
+            locationManager.distanceFilter = 10 // update every 10 meters
             
             locationManager.activityType = .Fitness
             
             locationManager.startUpdatingLocation()
             
-            mapView.delegate = self
-            mapView.showsUserLocation = true
+            mapView!.delegate = self
+            mapView!.showsUserLocation = true
             
         } else {
             
@@ -172,13 +203,13 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         //rember to setup timestamp: 5 min to avoid get other location from last time
         
-        let currentLocation = locations.last
+        currentLocation = locations.last
         
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         
         // map zoom in
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.005, 0.005))
-        mapView.setRegion(region, animated: true)
+        mapView!.setRegion(region, animated: true)
         
         
         // Distance, Speed, Calories
@@ -213,16 +244,10 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             
             
             calculatedCalories()
-            
-            
         }
-//        else {
-//            
-//            distanceValue.text = ("\(Int(traveledDistance)) m")
-//            
-//        }
         
         myLocations.append(currentLocation!)
+        
         
         showRoute()
         
@@ -237,7 +262,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     func calculatedCalories() {
         
-        let weight: Double = 50.0
+        weight = 50.0
+        var CaloriesBurnedPerHourPerKg: Double
         
         switch averageSpeed {
         case 1.0..<20.0 : CaloriesBurnedPerHourPerKg = 4.0
@@ -246,17 +272,45 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         default : CaloriesBurnedPerHourPerKg = 0
         }
         
-        let caloriesBurned = Int(weight * CaloriesBurnedPerHourPerKg * (timeInterval/(100*60*60)))
+        caloriesBurned = Int(weight * CaloriesBurnedPerHourPerKg * (timeInterval/(100*60*60)))
         caloriesValue.text = "\(caloriesBurned) Kcal"
-        print ("caloriesBurned:\(caloriesBurned)")
-        print ("CaloriesBurnedPerHourPerKg: \(CaloriesBurnedPerHourPerKg)")
+        
+    }
+    
+    
+    // MARK: Core Data
+    
+    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
+    func saveRecordsToCoreData() {
+        
+        let entityRecords = NSEntityDescription.insertNewObjectForEntityForName("Records", inManagedObjectContext: moc) as! Records
+        
+        entityRecords.timestamp = date
+        entityRecords.distance = Int(traveledDistance)
+        entityRecords.duration = timerString(timeInterval)
+        entityRecords.calories = caloriesBurned
+        entityRecords.locations = myLocations
+        
+        do {
+            
+            try self.moc.save()
+            
+            print ("save records to Core Data===========")
+            print("date:\(entityRecords.timestamp), distance: \(entityRecords.distance), duration: \(entityRecords.duration),calories: \(entityRecords.calories), locations: \(entityRecords.locations)")
+            
+        } catch {
+            
+            fatalError("Failure to save context: \(error)")
+            
+        }
     }
 }
-    
-    // Mark: Map
+
+// Mark: Map
 
 extension NewRecordViewController: MKMapViewDelegate {
-
+    
     func showRoute() {
         
         if (myLocations.count > 1) {
@@ -269,7 +323,7 @@ extension NewRecordViewController: MKMapViewDelegate {
             
             if startIsOn == true {
                 
-                self.mapView.addOverlay(polyline)
+                self.mapView!.addOverlay(polyline)
                 
             } else {
                 
@@ -293,7 +347,7 @@ extension NewRecordViewController: MKMapViewDelegate {
     }
 }
 
-    // MARK: Setup
+// MARK: Setup
 extension NewRecordViewController {
     
     func setupBackground() {
@@ -360,7 +414,7 @@ extension NewRecordViewController {
     }
     
     func setupMap(){
-        mapView.layer.cornerRadius = 10.0
+        mapView!.layer.cornerRadius = 10.0
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
@@ -417,5 +471,5 @@ extension NewRecordViewController {
         })
     }
     
-
+    
 }

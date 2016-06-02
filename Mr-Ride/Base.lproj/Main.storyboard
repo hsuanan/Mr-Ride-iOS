@@ -239,7 +239,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Finish" id="wZo-H7-Arr">
                             <connections>
                                 <action selector="finishButtonTapped:" destination="zbu-3p-H3S" id="eUM-rl-gOm"/>
-                                <segue destination="BYZ-38-t0r" kind="show" id="U5o-be-hga"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -255,6 +254,7 @@
                         <outlet property="mapView" destination="BBQ-gU-HOx" id="xf8-ji-N2m"/>
                         <outlet property="playPauseButtonView" destination="xAK-Ko-7zb" id="rHh-f5-jqA"/>
                         <outlet property="timerLabel" destination="fk4-l2-dnK" id="L01-Zi-Rka"/>
+                        <segue destination="BYZ-38-t0r" kind="show" id="gpX-c5-SSm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PR5-5c-0qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
