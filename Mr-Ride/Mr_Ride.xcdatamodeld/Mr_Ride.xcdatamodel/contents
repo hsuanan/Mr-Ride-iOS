@@ -7,6 +7,7 @@
         <relationship name="record" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Records" inverseName="location" inverseEntity="Records" syncable="YES"/>
     </entity>
     <entity name="Records" representedClassName=".Records" syncable="YES">
+        <attribute name="averageSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,7 +15,7 @@
         <relationship name="location" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="record" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Records" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Location" positionX="-27" positionY="45" width="128" height="105"/>
+        <element name="Records" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

@@ -205,7 +205,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         if startIsOn == true {
             
             traveledDistance += distance!
-            averageSpeed = (traveledDistance/1000) / (timeInterval/(100*60*60))
+            averageSpeed = traveledDistance/1000 / (timeInterval/(100*60*60))
             distanceValue.text = ("\(Int(traveledDistance)) m")
             let currentSpeed = Int((currentLocation?.speed)!/1000*(60*60)) // m/s -> km /hr
             currentSpeedValue.text = ("\(String(currentSpeed)) k / hr")
@@ -260,6 +260,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         entityRecords.distance = Int(traveledDistance)
         entityRecords.duration = timerString(timeInterval)
         entityRecords.calories = caloriesBurned
+        entityRecords.averageSpeed = Int(averageSpeed)
         
         var savedLocations = [Location]()
         for location in myLocations {

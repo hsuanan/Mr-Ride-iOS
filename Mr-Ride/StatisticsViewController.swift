@@ -53,16 +53,17 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             guard
                 let distance = fetchedRecords.last?.valueForKey("distance"),
                 let calories = fetchedRecords.last?.valueForKey("calories"),
-                let duration = fetchedRecords.last?.valueForKey("duration")
-//                let location = fetchedRecords.last?.valueForKey("locations")
+                let duration = fetchedRecords.last?.valueForKey("duration"),
+                let averageSpeed = fetchedRecords.last?.valueForKey("averageSpeed")
             
             else { return }
         
             print("distance: \(distance), calories: \(calories), duration: \(duration)")
             
-            statisticsView.distanceValue.text = "\(distance) km"
+            statisticsView.distanceValue.text = "\(distance) m"
             statisticsView.caloriesValue.text = "\(calories) kcal"
             statisticsView.totalTimeValue.text = "\(duration)"
+            statisticsView.averageSpeedValue.text = "\(averageSpeed) km/hr"
             
         } catch {
             let fetchError = error as NSError
