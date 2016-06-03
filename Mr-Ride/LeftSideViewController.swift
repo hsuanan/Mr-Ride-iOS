@@ -46,7 +46,7 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("sideBarCell", forIndexPath: indexPath) as! LeftSideTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("sideMenuCell", forIndexPath: indexPath) as! LeftSideTableViewCell
  
         cell.itemLabel.text = itemArray[indexPath.row]
         
@@ -76,7 +76,6 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
             
             let historyNavController = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryNavigationController") as! HistoryNavigationController
 
-            
             let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.centerContainer!.centerViewController = historyNavController

@@ -59,7 +59,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    @IBAction func finishButtonTapped(sender: UIButton) {
+    @IBAction func finishButtonTapped(sender: AnyObject) {
         
         saveRecordsToCoreData()
         print ("finishButtonTapped")
@@ -300,7 +300,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         entityRecords.location = NSSet(array: savedLocations)
         
-        print ("entityRecords.location: \(entityRecords.location)")
+        print ("entityRecords: \(entityRecords)")
         
         
 
@@ -310,7 +310,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             try self.moc.save()
             
             print ("save records to Core Data===========")
-            print("date:\(entityRecords.timestamp), distance: \(entityRecords.distance), duration: \(entityRecords.duration),calories: \(entityRecords.calories), savedLocations: \(savedLocations)")
+//            print("date:\(entityRecords.timestamp), distance: \(entityRecords.distance), duration: \(entityRecords.duration),calories: \(entityRecords.calories), savedLocations: \(savedLocations)")
             
         } catch {
             
