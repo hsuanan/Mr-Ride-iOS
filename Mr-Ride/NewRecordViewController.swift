@@ -37,7 +37,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         if startIsOn == false {
             
-            
             animateFromCircleToSquare()
             
             timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
@@ -63,6 +62,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         saveRecordsToCoreData()
         print ("finishButtonTapped")
+        startIsOn = false
         
         performSegueWithIdentifier("showStatisticsPage", sender: sender)
     }
@@ -83,11 +83,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     var caloriesBurned = 0
     let date = NSDate()
     
-    
     var weight = 0.0
-    
-    
-    
     
     let gradient = CAGradientLayer()
     
@@ -106,10 +102,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         setupPlayButton()
         
         getLocationUpdate()
-        
-        
-        
-        
     }
     
     //resize layers based on the view's new frame
@@ -123,9 +115,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidAppear(animated)
 
         print("viewDidAppear")
-        
-
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -134,7 +123,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         print("viewWillDisappear")
         locationManager.stopUpdatingLocation()
         print("Stop Updating Location")
-        
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -151,7 +139,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         timeInterval += 1.0
         timerLabel.text = "\(timerString(timeInterval))"
-        
     }
     
     func timerString(time: NSTimeInterval) -> String {
@@ -161,7 +148,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         let seconds = Int(time) / 100 % 60
         let secondsFrec = Int(time) % 100
         return String(format:"%02i:%02i:%02i.%02i", hours, minutes, seconds, secondsFrec)
-        
     }
     
     
@@ -170,19 +156,14 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     func getLocationUpdate() {
         
         locationManager.delegate = self
-        
         locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled(){
             
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            
             locationManager.distanceFilter = 10 // update every 10 meters
-            
             locationManager.activityType = .Fitness
-            
             locationManager.startUpdatingLocation()
-            
             mapView!.delegate = self
             mapView!.showsUserLocation = true
             
@@ -203,7 +184,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         
-        // map zoom in
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.005, 0.005))
         mapView!.setRegion(region, animated: true)
         
@@ -220,20 +200,14 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         let lastLocation = locations.last
-        
         let distance = startLocation?.distanceFromLocation(lastLocation!)
-        
         
         if startIsOn == true {
             
             traveledDistance += distance!
-            
             averageSpeed = (traveledDistance/1000) / (timeInterval/(100*60*60))
-            
             distanceValue.text = ("\(Int(traveledDistance)) m")
-            
             let currentSpeed = Int((currentLocation?.speed)!/1000*(60*60)) // m/s -> km /hr
-            
             currentSpeedValue.text = ("\(String(currentSpeed)) k / hr")
             
             //            averageSpeedValue.text = ("\(Int(averageSpeed)) km / h")
@@ -310,7 +284,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             try self.moc.save()
             
             print ("save records to Core Data===========")
-//            print("date:\(entityRecords.timestamp), distance: \(entityRecords.distance), duration: \(entityRecords.duration),calories: \(entityRecords.calories), savedLocations: \(savedLocations)")
+
             
         } catch {
             

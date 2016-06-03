@@ -238,7 +238,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Finish" id="wZo-H7-Arr">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="push" identifier="showStatisticsPage" id="4yx-4N-zEq"/>
+                                <action selector="finishButtonTapped:" destination="zbu-3p-H3S" id="egq-Sy-ngT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -254,6 +254,7 @@
                         <outlet property="mapView" destination="BBQ-gU-HOx" id="xf8-ji-N2m"/>
                         <outlet property="playPauseButtonView" destination="xAK-Ko-7zb" id="rHh-f5-jqA"/>
                         <outlet property="timerLabel" destination="fk4-l2-dnK" id="L01-Zi-Rka"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showStatisticsPage" id="w2h-y2-yE7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PR5-5c-0qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -479,6 +480,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="statisticsView" destination="8bC-Xf-vdC" id="O54-nk-NpL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="Zq2-ew-tHz" userLabel="Exit" sceneMemberID="exit"/>

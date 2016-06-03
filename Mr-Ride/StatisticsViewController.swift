@@ -13,40 +13,69 @@ import CoreData
 class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     
-
-    
-    let statisticsView = StatisticsView()
-    
+    @IBOutlet var statisticsView: StatisticsView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        navigationController?.navigationBar.topItem?.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-//        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-//        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+
+      
+        fetchRecordsCoreData()
         
         
         
     }
     
-//    func fetchRecordsCoreData(){
+    func fetchRecordsCoreData(){
+        
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+
+        
+        let fetchRequest = NSFetchRequest(entityName: "Records")
+        
+//        let timestamp = NSDate().timeIntervalSince1970
 //        
-//        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+//        fetchRequest.predicate = NSPredicate(format: "timestamp == %@", timestamp)
+//        
+//        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
+//        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        
+        do {
+            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
+        
+            print("fetchedRecords:\(fetchedRecords)")
+            
+            print("distance = \(fetchedRecords.last?.valueForKey("distance"))")
+            print("calories = \(fetchedRecords.last?.valueForKey("calories"))")
+            print("duration =\(fetchedRecords.last?.valueForKey("duration"))")
+            
+            
+            guard
+                let distance = fetchedRecords.last?.valueForKey("distance"),
+                let calories = fetchedRecords.last?.valueForKey("calories"),
+                let duration = fetchedRecords.last?.valueForKey("duration")
+//                let location = fetchedRecords.last?.valueForKey("locations")
+            
+            else { return }
+        
+            print("distance: \(distance), calories: \(calories), duration: \(duration)")
+            
+            statisticsView.distanceValue.text = "\(distance) km"
+            statisticsView.caloriesValue.text = "\(calories) kcal"
+            statisticsView.totalTimeValue.text = "\(duration)"
+            
+        } catch {
+            let fetchError = error as NSError
+            print("fetchError:\(fetchError)")
+        }
 //
-//        
-//        let fetchRequest = NSFetchRequest(entityName: "Records")
-//        fetchRequest.predicate = NSPredicate(format: "timestamp == %@", timestemp)
-//        
-//        do {
-//            
-//            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
-////                statisticsView.distanceValue = Records
-//            
-//            
-//        }
-//            
-//    }
+    }
 
     
-    
 }
+
+
+
+//        navigationController?.navigationBar.topItem?.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+//        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+//        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
