@@ -62,9 +62,11 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         saveRecordsToCoreData()
         print ("finishButtonTapped")
+        
         startIsOn = false
         
         performSegueWithIdentifier("showStatisticsPage", sender: sender)
+
     }
     
     var startIsOn = false
@@ -82,15 +84,12 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     var currentSpeed = 0.0
     var caloriesBurned = 0
     let date = NSDate()
-    
     var weight = 0.0
     
     let gradient = CAGradientLayer()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print ("viewDidLoad")
+        print ("NewRecordsViewDidLoad")
         
         setupBackground()
         setupDistance()
@@ -114,19 +113,22 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        print("viewDidAppear")
+        print("NewRecordsViewDidAppear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        print("viewWillDisappear")
+        print("NewRecordsViewWillDisappear")
+        
         locationManager.stopUpdatingLocation()
         print("Stop Updating Location")
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        print("NewRecordsViewDidDisappear")
         
         mapView = nil
         // avoid mapView佔記憶體

@@ -19,8 +19,11 @@ struct Locations{
 
 class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
+//    var coords = [CLLocation]()
     var locationList = [Locations]()
     var coordToUse = [CLLocationCoordinate2D]()
+    
+    var distance = 0.0
     
     let locationManager = CLLocationManager()
     
@@ -31,9 +34,10 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         fetchRecordsCoreData()
         statisticsView.mapView.delegate = self
-        statisticsView.mapView.region = mapRegion()
+        
         showRoute()
     }
+    
     
     
     
@@ -44,25 +48,26 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         let fetchRequest = NSFetchRequest(entityName: "Records")
         let searchDate = NSDate(timeIntervalSinceNow: -60)
-        fetchRequest.predicate = NSPredicate(format: "timestamp > %@", searchDate)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
+//        fetchRequest.predicate = NSPredicate(format: "timestamp > %@", searchDate)
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
         
         do {
             let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
             
-            //            print ("fetchRecords\(fetchedRecords)==============")
+//                        print ("fetchRecords\(fetchedRecords)==============")
             
             guard
                 let distance = fetchedRecords.last?.valueForKey("distance"),
                 let calories = fetchedRecords.last?.valueForKey("calories"),
                 let duration = fetchedRecords.last?.valueForKey("duration"),
                 let averageSpeed = fetchedRecords.last?.valueForKey("averageSpeed"),
-                let location = fetchedRecords.last?.valueForKey("location")
-                
+                let locations = fetchedRecords.last?.valueForKey("location")
                 else { return }
             
+            
             print("fetchedRecords - distance: \(distance), calories: \(calories), duration: \(duration)===========")
-            print("FetchedLocation: \(location)")
+            print("locations : \(locations)")
+            
             
             statisticsView.distanceValue.text = "\(distance) m"
             statisticsView.caloriesValue.text = "\(calories) kcal"
@@ -82,8 +87,8 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         do {
             let fetchedLocations = try moc.executeFetchRequest(fetchLocationRequest) as! [Location]
             
-
             for coordinate in fetchedLocations {
+                
                 guard
                     let latitude = coordinate.latitude as? Double,
                     let longitude = coordinate.longitude as? Double
@@ -97,6 +102,13 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             
             print("=============locationList : \(locationList)=============")
             
+            
+            for location in locationList {
+                coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+                        }
+                print("===========coords: \(coordToUse)==============")
+            
+            
         } catch {
             let fetchError = error as NSError
             print("fetchError:\(fetchError)")
@@ -104,16 +116,14 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     }
     
     
-    //MARK: Map
+    
+//    MARK: Map
     func showRoute() {
         
-        for location in locationList {
-            coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-        }
-
         let polyline = MKPolyline(coordinates: &coordToUse, count: locationList.count)
         
         statisticsView.mapView.addOverlay(polyline)
+        statisticsView.mapView.zoomToPolyLine(polyline, animated: true)
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
@@ -127,29 +137,19 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         return nil
     }
     
-    func mapRegion() -> MKCoordinateRegion{
+}
+
+extension MKMapView {
+    
+    private func zoomToPolyLine(polyline: MKPolyline, animated: Bool) {
         
-        let initialLoc = coordToUse.first
-        
-        var minLat = initialLoc?.latitude
-        var minLng = initialLoc?.longitude
-        var maxLat = minLat
-        var maxLng = minLng
-        
-        for location in coordToUse {
-            minLat = min(minLat!, location.latitude)
-            minLng = min(minLng!, location.longitude)
-            maxLat = max(maxLat!, location.latitude)
-            maxLng = max(maxLng!, location.longitude)
-        }
-        
-        return MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: (minLat! + maxLat!)/2,
-                longitude: (minLng! + maxLng!)/2),
-            span: MKCoordinateSpan(latitudeDelta: (maxLat! - minLat!)*1.1,
-                longitudeDelta: (maxLng! - minLng!)*1.1))
+        setVisibleMapRect(
+            polyline.boundingMapRect,
+            edgePadding: UIEdgeInsets(top: 50.0, left: 50.0, bottom: 50.0, right: 50.0),
+            animated: animated)
     }
 }
+
 
 
 
