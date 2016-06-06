@@ -250,22 +250,24 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: Core Data
     
-    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var moc: NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
     
     func saveRecordsToCoreData() {
         
-        let entityRecords = NSEntityDescription.insertNewObjectForEntityForName("Records", inManagedObjectContext: moc) as! Records
+        let entityRecords = NSEntityDescription.insertNewObjectForEntityForName("Records", inManagedObjectContext: moc!) as! Records
         
         entityRecords.timestamp = date
         entityRecords.distance = Int(traveledDistance)
         entityRecords.duration = timerString(timeInterval)
         entityRecords.calories = caloriesBurned
         entityRecords.averageSpeed = Int(averageSpeed)
+//        entityRecords.objectID
+        
         
         var savedLocations = [Location]()
         for location in myLocations {
             
-            let entityLocation = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: moc) as! Location
+            let entityLocation = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: moc!) as! Location
             entityLocation.timeStamp = location.timestamp
             entityLocation.latitude = location.coordinate.latitude
             entityLocation.longitude = location.coordinate.longitude
@@ -277,20 +279,11 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         print ("entityRecords: \(entityRecords)")
         
-        
-
-        
         do {
-            
-            try self.moc.save()
-            
+            try self.moc?.save()
             print ("save records to Core Data===========")
-
-            
         } catch {
-            
             fatalError("Failure to save context: \(error)")
-            
         }
     }
 }
@@ -341,9 +334,10 @@ extension NewRecordViewController {
     func setupBackground() {
         
         view.backgroundColor = UIColor.mrWaterBlueColor()
-        
-        let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-        let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        let color1 = UIColor.clearColor().colorWithAlphaComponent(0.6)
+        let color2 = UIColor.clearColor().colorWithAlphaComponent(0.4)
+//        let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+//        let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         gradient.frame = self.view.bounds
         gradient.colors = [color1.CGColor,color2.CGColor]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
@@ -413,10 +407,18 @@ extension NewRecordViewController {
     
     func drawCircle() {
         
+//        let rect = CGRectMake(0, 0, 80, 80)
+//        let oval = UIBezierPath(ovalInRect: rect)
+//        UIColor.whiteColor().setStroke()
+//        UIColor.clearColor().setFill()
+//        oval.lineWidth = 4
+//        oval.stroke()
+//        oval.fill()
+        
         let circleLayer = CAShapeLayer()
         let circlePath = UIBezierPath(
             roundedRect: circleView.bounds,
-            byRoundingCorners: [ .BottomLeft, .BottomRight, .TopLeft, .TopRight],
+            byRoundingCorners: [ .AllCorners],//[.BottomLeft, .BottomRight, .TopLeft, .TopRight],
             cornerRadii: CGSize(width: 80, height: 80))
         
         circleLayer.frame = circleView.bounds

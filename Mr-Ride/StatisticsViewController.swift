@@ -19,13 +19,20 @@ struct Locations{
 
 class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    var coords = [Locations]()
+    var locationList = [Locations]()
+    var coordToUse = [CLLocationCoordinate2D]()
+    
+    let locationManager = CLLocationManager()
     
     @IBOutlet var statisticsView: StatisticsView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchRecordsCoreData()
+        statisticsView.mapView.delegate = self
+        statisticsView.mapView.region = mapRegion()
+        showRoute()
     }
     
     
@@ -35,19 +42,15 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
-        
         let fetchRequest = NSFetchRequest(entityName: "Records")
-        
-        //        let timestamp = NSDate().timeIntervalSince1970
-        //
-        //        fetchRequest.predicate = NSPredicate(format: "timestamp == %@", timestamp)
-        //
-        //        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: true)
-        //        fetchRequest.sortDescriptors = [sortDescriptor]
-        
+        let searchDate = NSDate(timeIntervalSinceNow: -60)
+        fetchRequest.predicate = NSPredicate(format: "timestamp > %@", searchDate)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
         
         do {
-            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) //as! [Records]
+            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
+            
+            //            print ("fetchRecords\(fetchedRecords)==============")
             
             guard
                 let distance = fetchedRecords.last?.valueForKey("distance"),
@@ -72,70 +75,82 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         }
         
         
-//        let fetchLocationRequest = NSFetchRequest(entityName: "Location")
-//        
-//        do {
-//            let fetchedLocations = try moc.executeRequest(fetchLocationRequest)
-//            
-//            guard
-//                let latitude = fetchedLocations.valueForKey("latitude")as? Double,
-//                let longitude = fetchedLocations.valueForKey("longitude")as? Double
-//            
-//                else {return}
-//            
-//            print("latitude: \(latitude), longitude: \(longitude)============================")
-//            
-//            
-//        } catch {
-//            let fetchError = error as NSError
-//            print("fetchError:\(fetchError)")
-//        }
-//        
-//        
-//        
+        let fetchLocationRequest = NSFetchRequest(entityName: "Location")
+        fetchLocationRequest.predicate = NSPredicate(format: "timeStamp > %@", searchDate)
+        fetchLocationRequest.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: true)]
+        
+        do {
+            let fetchedLocations = try moc.executeFetchRequest(fetchLocationRequest) as! [Location]
+            
+
+            for coordinate in fetchedLocations {
+                guard
+                    let latitude = coordinate.latitude as? Double,
+                    let longitude = coordinate.longitude as? Double
+                    else {continue}
+                
+                self.locationList.append(
+                    Locations(
+                        latitude: latitude,
+                        longitude: longitude))
+            }
+            
+            print("=============locationList : \(locationList)=============")
+            
+        } catch {
+            let fetchError = error as NSError
+            print("fetchError:\(fetchError)")
+        }
+    }
+    
+    
+    //MARK: Map
+    func showRoute() {
+        
+        for location in locationList {
+            coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+        }
+
+        let polyline = MKPolyline(coordinates: &coordToUse, count: locationList.count)
+        
+        statisticsView.mapView.addOverlay(polyline)
+    }
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
+        
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.mrBubblegumColor()
+            polylineRenderer.lineWidth = 8
+            return polylineRenderer
+        }
+        return nil
+    }
+    
+    func mapRegion() -> MKCoordinateRegion{
+        
+        let initialLoc = coordToUse.first
+        
+        var minLat = initialLoc?.latitude
+        var minLng = initialLoc?.longitude
+        var maxLat = minLat
+        var maxLng = minLng
+        
+        for location in coordToUse {
+            minLat = min(minLat!, location.latitude)
+            minLng = min(minLng!, location.longitude)
+            maxLat = max(maxLat!, location.latitude)
+            maxLng = max(maxLng!, location.longitude)
+        }
+        
+        return MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: (minLat! + maxLat!)/2,
+                longitude: (minLng! + maxLng!)/2),
+            span: MKCoordinateSpan(latitudeDelta: (maxLat! - minLat!)*1.1,
+                longitudeDelta: (maxLng! - minLng!)*1.1))
     }
 }
 
-
-//MARK: Map
-
-//extension NewRecordViewController{
-//
-//    func showRoute() {
-//
-//        if (myLocations.count > 1) {
-//            let sourceIndex = myLocations.count-1
-//            let destinationIndex = myLocations.count-2
-//            let oldCoord1 = myLocations[sourceIndex].coordinate
-//            let oldCoord2 = myLocations[destinationIndex].coordinate
-//            var coord = [oldCoord1, oldCoord2]
-//            let polyline = MKPolyline(coordinates: &coord, count: coord.count)
-//
-//            if startIsOn == true {
-//
-//                self.mapView!.addOverlay(polyline)
-//
-//            } else {
-//
-//                return
-//            }
-//        }
-//    }
-//
-//    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
-//
-//        if overlay is MKPolyline {
-//
-//            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-//            polylineRenderer.strokeColor = UIColor.mrBubblegumColor()
-//            polylineRenderer.lineWidth = 8
-//            return polylineRenderer
-//
-//        }
-//
-//        return nil
-//    }
-//}
 
 
 

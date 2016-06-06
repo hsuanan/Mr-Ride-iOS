@@ -108,6 +108,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC08DE161D05136F00D7D362 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */,
+				BCDB65AC1D0041D80041FBAD /* Records+CoreDataProperties.swift */,
+				BCDB65AD1D0041D80041FBAD /* Records.swift */,
+				BCDB65AE1D0041D80041FBAD /* Location+CoreDataProperties.swift */,
+				BCDB65AF1D0041D80041FBAD /* Location.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		BC85F5FF1CF2A1C000B11F89 = {
 			isa = PBXGroup;
 			children = (
@@ -133,13 +145,13 @@
 				BC85F60D1CF2A1C000B11F89 /* ViewController.swift */,
 				BCCFE51E1CF79D7E004323B0 /* Roboto_Mono */,
 				BC85F60F1CF2A1C000B11F89 /* Main.storyboard */,
+				BC08DE161D05136F00D7D362 /* CoreData */,
 				BC85F6291CF2B09E00B11F89 /* Model */,
 				BC85F6321CF3625400B11F89 /* View */,
 				BC85F6221CF2ADEF00B11F89 /* Controller */,
 				BC85F6151CF2A1C000B11F89 /* Assets.xcassets */,
 				BC85F6171CF2A1C000B11F89 /* LaunchScreen.storyboard */,
 				BC85F61A1CF2A1C000B11F89 /* Info.plist */,
-				BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */,
 			);
 			path = "Mr-Ride";
 			sourceTree = "<group>";
@@ -163,10 +175,6 @@
 		BC85F6291CF2B09E00B11F89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BCDB65AC1D0041D80041FBAD /* Records+CoreDataProperties.swift */,
-				BCDB65AD1D0041D80041FBAD /* Records.swift */,
-				BCDB65AE1D0041D80041FBAD /* Location+CoreDataProperties.swift */,
-				BCDB65AF1D0041D80041FBAD /* Location.swift */,
 				BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */,
 				BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */,
 			);
