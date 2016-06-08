@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC52085B1D07FE700051742A /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208591D07FE700051742A /* HistoryTableViewCell.swift */; };
+		BC52085C1D07FE700051742A /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */; };
 		BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */; };
 		BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60D1CF2A1C000B11F89 /* ViewController.swift */; };
 		BC85F6111CF2A1C000B11F89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC85F60F1CF2A1C000B11F89 /* Main.storyboard */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC5208591D07FE700051742A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC85F60D1CF2A1C000B11F89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 			children = (
 				BCE4E9031CF9DDD600976948 /* LeftSideTableViewCell.swift */,
 				BCDB65631CFD80F10041FBAD /* StatisticsView.swift */,
+				BC5208591D07FE700051742A /* HistoryTableViewCell.swift */,
+				BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCCFE5161CF79D68004323B0 /* RobotoMono-Italic.ttf in Resources */,
+				BC52085C1D07FE700051742A /* HistoryTableViewCell.xib in Resources */,
 				BCCFE51A1CF79D68004323B0 /* RobotoMono-MediumItalic.ttf in Resources */,
 				BCCFE5131CF79D68004323B0 /* LICENSE.txt in Resources */,
 				BCCFE5151CF79D68004323B0 /* RobotoMono-BoldItalic.ttf in Resources */,
@@ -320,6 +327,7 @@
 				BCDB65641CFD80F10041FBAD /* StatisticsView.swift in Sources */,
 				BCCFE61B1CF98E34004323B0 /* MMDrawerBarButtonItem.m in Sources */,
 				BCDB65991CFF18760041FBAD /* MapViewController.swift in Sources */,
+				BC52085B1D07FE700051742A /* HistoryTableViewCell.swift in Sources */,
 				BCDB65B11D0041D80041FBAD /* Records.swift in Sources */,
 				BCDB65B01D0041D80041FBAD /* Records+CoreDataProperties.swift in Sources */,
 				BCE4E90C1CFA824F00976948 /* HistoryNavigationController.swift in Sources */,

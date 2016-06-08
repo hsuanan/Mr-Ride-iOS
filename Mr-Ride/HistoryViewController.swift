@@ -7,36 +7,82 @@
 //
 
 import UIKit
+import CoreData
 
-class HistoryViewController: UIViewController {
+
+
+class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
 
     @IBAction func sideBarButtonTapped(sender: AnyObject) {
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+        
         print ("HistoryPage : SideBarButtonTapped")
     }
+    
+    var testArray = ["test1","test2","test3"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("HistoryViewDidLoad")
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+        let nib = UINib(nibName: "HistoryTableViewCell" , bundle: nil)
+        
+        tableView.registerNib(nib, forCellReuseIdentifier: "HistoryTableViewCell")
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
+    // MARK: - Table view data source
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        return 1
     }
-    */
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return testArray.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("HistoryTableViewCell", forIndexPath: indexPath) as! HistoryTableViewCell
+        
+        cell.distanceLabel.text = "\(testArray[indexPath.row]) Km"
+        
+        
+        return cell
+    }
+    
+//    func fetchRecordsCoreData(){
+//        
+//        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+//        
+//        let fetchRequest = NSFetchRequest(entityName: "Records")
+//        
+//        do {
+//            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
+//            
+//            
+//        } catch {
+//            let fetchError = error as NSError
+//            print("fetchError:\(fetchError)")
+//        }
+//    }
+    
+
+    
+    
+
+
+    
+
 
 }

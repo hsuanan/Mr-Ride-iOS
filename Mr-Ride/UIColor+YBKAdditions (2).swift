@@ -104,4 +104,9 @@ extension UIColor {
   class func mrWaterBlueColor() -> UIColor { 
     return UIColor(red: 11.0 / 255.0, green: 151.0 / 255.0, blue: 189.0 / 255.0, alpha: 1)
   }
+    
+    class func mrPineGreen85Color() -> UIColor {
+        return UIColor(red: 13.0 / 255.0, green: 53.0 / 255.0, blue: 64.0 / 255.0, alpha: 0.85)
+    }
+
 }
