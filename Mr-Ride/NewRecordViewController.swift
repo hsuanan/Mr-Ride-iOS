@@ -277,9 +277,9 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
 
         }
         
-        entityRecords.location = NSSet(array: savedLocations)
+        entityRecords.location = NSOrderedSet(array: savedLocations)
         
-        print ("entityRecords: \(entityRecords)")
+//        print ("entityRecords: \(entityRecords)")
         
         do {
             try self.moc?.save()
@@ -416,6 +416,20 @@ extension NewRecordViewController {
 //        oval.lineWidth = 4
 //        oval.stroke()
 //        oval.fill()
+        
+//        let circleRadius = min(circleView.bounds.size.width, circleView.bounds.size.height) / 2
+//        let circleCenter = CGPoint(x: circleView.bounds.minX, y: circleView.bounds.minY)
+//        
+//        let circlePath = UIBezierPath(arcCenter: circleCenter, radius: circleRadius, startAngle: 0.0, endAngle: CGFloat(2*M_PI), clockwise: false)
+//        circlePath.lineWidth = 4.0
+//        UIColor.whiteColor().setStroke()
+//        UIColor.clearColor().setFill()
+//        circlePath.stroke()
+//        circlePath.fill()
+        
+        
+        
+        
         
         let circleLayer = CAShapeLayer()
         let circlePath = UIBezierPath(

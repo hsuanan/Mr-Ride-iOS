@@ -37,7 +37,7 @@ class StatisticsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+    
         print("StatisticsViewAwakeFromNib")
         setupBackground()
         setupDistance()
