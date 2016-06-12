@@ -14,7 +14,7 @@ struct SavedRecords {
     var timestamp = NSDate()
     var distance = 0.0
     var calories = 0.0
-    var duration = ""
+    var duration = 0.0
     var averageSpeed = 0.0
     
 }
@@ -106,15 +106,15 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
                 
                 guard
-                let timestemp = eachFetchedRecord.timestamp,
-                let distance = eachFetchedRecord.distance as? Double,
-                let calories = eachFetchedRecord.calories as? Double,
-                let duration = eachFetchedRecord.duration,
-                let averageSpeed = eachFetchedRecord.averageSpeed as? Double
-                
-                else {
-                    print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
-                    continue }
+                    let timestemp = eachFetchedRecord.timestamp,
+                    let distance = eachFetchedRecord.distance as? Double,
+                    let calories = eachFetchedRecord.calories as? Double,
+                    let duration = eachFetchedRecord.duration as? Double,
+                    let averageSpeed = eachFetchedRecord.averageSpeed as? Double
+                    
+                    else {
+                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
+                        continue }
                 
                 saveRecords.append(
                     SavedRecords(
@@ -132,6 +132,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
+    
+    
     // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -147,15 +149,34 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryTableViewCell", forIndexPath: indexPath) as! HistoryTableViewCell
         
-//        cell.dateLabel.text = "\(saveRecords[indexPath.row].timestamp)"
-        cell.distanceLabel.text = "\(NSString(format:"%.2f", saveRecords[indexPath.row].distance)) Km"
-        cell.durationLabel.text = "\(saveRecords[indexPath.row].duration)"
+        cell.dateLabel.text = "\(dateString(saveRecords[indexPath.row].timestamp))"
+        cell.distanceLabel.text = "\(numberString((saveRecords[indexPath.row].distance)/1000)) km"
+        cell.durationLabel.text = "\(timerString(saveRecords[indexPath.row].duration))"
         
         return cell
     }
     
+    func dateString(date: NSDate) -> String {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd"
+        return dateFormatter.stringFromDate(date)
+        
+    }
     
+    func numberString(number: Double ) -> NSString {
+        
+        return NSString(format:"%.2f",number)
+    }
     
+    func timerString(time: Double) -> String {
+        
+        let hours = Int(time) / (100*60*60)
+        let minutes = Int(time) / (100 * 60) % 60
+        let seconds = Int(time) / 100 % 60
+        let secondsFrec = Int(time) % 100
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds, secondsFrec)
+    }
     
     
     

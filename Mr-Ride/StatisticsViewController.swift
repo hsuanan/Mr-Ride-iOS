@@ -55,7 +55,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             guard
                 let distance = lastRecord.distance,
                 let calories = lastRecord.calories,
-                let duration = lastRecord.duration,
+                let duration = lastRecord.duration as? Double,
                 let averageSpeed = lastRecord.averageSpeed,
                 let locationSet = lastRecord.location
                 
@@ -87,7 +87,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             
             statisticsView.distanceValue.text = "\(Int(distance)) m"
             statisticsView.caloriesValue.text = "\(calories) kcal"
-            statisticsView.totalTimeValue.text = "\(duration)"
+            statisticsView.totalTimeValue.text = "\(timerString(duration))"
             statisticsView.averageSpeedValue.text = "\(averageSpeed) km/hr"
             
         } catch {
@@ -96,7 +96,15 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         }
     }
     
-    
+    func timerString(time: Double) -> String {
+        
+        let hours = Int(time) / (100*60*60)
+        let minutes = Int(time) / (100 * 60) % 60
+        let seconds = Int(time) / 100 % 60
+        let secondsFrec = Int(time) % 100
+        return String(format:"%02i:%02i:%02i.%02i", hours, minutes, seconds, secondsFrec)
+    }
+
     
     //    MARK: Map
     func showRoute() {
@@ -135,6 +143,8 @@ extension MKMapView {
             animated: animated)
     }
 }
+
+
 
 
 

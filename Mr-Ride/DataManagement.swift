@@ -11,10 +11,11 @@
 //
 //
 //
-//class DataManager {
-//    
-//    static let sharedDataManager = DataManager()
-//    
+class DataManager {
+//
+    static let sharedDataManager = DataManager()
+    
+//
 //    
 //    func fetchRecordsCoreData(){
 //        
@@ -72,4 +73,4 @@
 //        }
 //    }
 //    
-//}
+}

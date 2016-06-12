@@ -262,7 +262,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         entityRecords.timestamp = date
         entityRecords.distance = traveledDistance
-        entityRecords.duration = timerString(timeInterval)
+        entityRecords.duration = timeInterval
         entityRecords.calories = caloriesBurned
         entityRecords.averageSpeed = Int(averageSpeed)
 //        entityRecords.objectID

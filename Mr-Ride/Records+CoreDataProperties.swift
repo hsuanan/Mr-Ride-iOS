@@ -17,7 +17,7 @@ extension Records {
     @NSManaged var averageSpeed: NSNumber?
     @NSManaged var calories: NSNumber?
     @NSManaged var distance: NSNumber?
-    @NSManaged var duration: String?
+    @NSManaged var duration: NSNumber?
     @NSManaged var timestamp: NSDate?
     @NSManaged var location: NSOrderedSet?
 
