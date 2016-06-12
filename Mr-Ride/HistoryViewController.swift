@@ -35,9 +35,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         print ("HistoryPage : SideBarButtonTapped")
     }
-    
-    var testArray = ["test1","test2","test3"]
-    
+        
     var saveRecords = [SavedRecords]()
     
     var locationList = [Locations]()
@@ -155,7 +153,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         return cell
     }
-    
+   
     func dateString(date: NSDate) -> String {
         
         let dateFormatter = NSDateFormatter()

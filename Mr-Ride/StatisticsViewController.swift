@@ -33,6 +33,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         statisticsView.mapView.delegate = self
         
         showRoute()
+        
     }
     
     
@@ -53,6 +54,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
                     return }
             
             guard
+                let timestemp = lastRecord.timestamp,
                 let distance = lastRecord.distance,
                 let calories = lastRecord.calories,
                 let duration = lastRecord.duration as? Double,
@@ -89,6 +91,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             statisticsView.caloriesValue.text = "\(calories) kcal"
             statisticsView.totalTimeValue.text = "\(timerString(duration))"
             statisticsView.averageSpeedValue.text = "\(averageSpeed) km/hr"
+            navigationItem.title = "\(dateString(timestemp))"
             
         } catch {
             let fetchError = error as NSError
@@ -129,6 +132,13 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             return polylineRenderer
         }
         return nil
+    }
+    
+    
+    func dateString(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        return dateFormatter.stringFromDate(date)
     }
     
 }
