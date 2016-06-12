@@ -9,15 +9,7 @@
 import UIKit
 import CoreData
 
-struct SavedRecords {
-    
-    var timestamp = NSDate()
-    var distance = 0.0
-    var calories = 0.0
-    var duration = 0.0
-    var averageSpeed = 0.0
-    
-}
+
 
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -35,10 +27,12 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         print ("HistoryPage : SideBarButtonTapped")
     }
-        
-    var saveRecords = [SavedRecords]()
     
-    var locationList = [Locations]()
+    let recordModel = DataManager.sharedDataManager
+    
+//    var saveRecords = [SavedRecords]()
+//    
+//    var locationList = [Locations]()
     
     
     override func viewDidLoad() {
@@ -53,81 +47,81 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.dataSource = self  // 或這是從storyboard拉tableview到controller選擇dataSource
         tableView.delegate = self   // 或這是從storyboard拉tableview到controller選擇delegate
         
-        fetchRecordsCoreData()
+        recordModel.fetchRecordsCoreData()
         
     }
     //MARK: CoreData
     
-    func fetchRecordsCoreData(){
-        
-        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        
-        let fetchRequest = NSFetchRequest(entityName: "Records")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
-        let date = NSDate()
-        fetchRequest.predicate = NSPredicate(format: "timestamp < %@", date )
-        fetchRequest.fetchBatchSize = 10
-        //        fetchRequest.fetchLimit = 1
-        
-        do {
-            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
-            
-            print("fetchedRecords: \(fetchedRecords)")
-            
-            for eachFetchedRecord in fetchedRecords {
-                
-                guard let locationSet = eachFetchedRecord.location
-                    else {
-                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationSet");
-                        return}
-                
-                guard let loctionArray = locationSet.array as? [Location]
-                    
-                    else {
-                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
-                        return }
-                
-                for location in loctionArray {
-                    
-                    print("latitude:\(location.latitude) longitude:\(location.longitude)")
-                    
-                    guard
-                        let latitude = location.latitude as? Double,
-                        let longitude = location.longitude as? Double
-                        
-                        else {
-                            print("[StaticsViewController](fetchRecordsCoreData) can't get latitude and logitude");
-                            continue}
-                    locationList.append(
-                        Locations(latitude: latitude, longitude: longitude))
-                    
-                }
-                
-                guard
-                    let timestemp = eachFetchedRecord.timestamp,
-                    let distance = eachFetchedRecord.distance as? Double,
-                    let calories = eachFetchedRecord.calories as? Double,
-                    let duration = eachFetchedRecord.duration as? Double,
-                    let averageSpeed = eachFetchedRecord.averageSpeed as? Double
-                    
-                    else {
-                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
-                        continue }
-                
-                saveRecords.append(
-                    SavedRecords(
-                        timestamp: timestemp,
-                        distance: distance,
-                        calories: calories,
-                        duration: duration,
-                        averageSpeed: averageSpeed))
-            }
-            
-        } catch {
-            let fetchError = error as NSError
-            print("fetchError:\(fetchError)")
-        }
-    }
+//    func fetchRecordsCoreData(){
+//        
+//        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+//        
+//        let fetchRequest = NSFetchRequest(entityName: "Records")
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
+//        let date = NSDate()
+//        fetchRequest.predicate = NSPredicate(format: "timestamp < %@", date )
+//        fetchRequest.fetchBatchSize = 10
+//        //        fetchRequest.fetchLimit = 1
+//        
+//        do {
+//            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
+//            
+//            print("fetchedRecords: \(fetchedRecords)")
+//            
+//            for eachFetchedRecord in fetchedRecords {
+//                
+//                guard let locationSet = eachFetchedRecord.location
+//                    else {
+//                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationSet");
+//                        return}
+//                
+//                guard let loctionArray = locationSet.array as? [Location]
+//                    
+//                    else {
+//                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
+//                        return }
+//                
+//                for location in loctionArray {
+//                    
+//                    print("latitude:\(location.latitude) longitude:\(location.longitude)")
+//                    
+//                    guard
+//                        let latitude = location.latitude as? Double,
+//                        let longitude = location.longitude as? Double
+//                        
+//                        else {
+//                            print("[StaticsViewController](fetchRecordsCoreData) can't get latitude and logitude");
+//                            continue}
+//                    locationList.append(
+//                        Locations(latitude: latitude, longitude: longitude))
+//                    
+//                }
+//                
+//                guard
+//                    let timestemp = eachFetchedRecord.timestamp,
+//                    let distance = eachFetchedRecord.distance as? Double,
+//                    let calories = eachFetchedRecord.calories as? Double,
+//                    let duration = eachFetchedRecord.duration as? Double,
+//                    let averageSpeed = eachFetchedRecord.averageSpeed as? Double
+//                    
+//                    else {
+//                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
+//                        continue }
+//                
+//                saveRecords.append(
+//                    SavedRecords(
+//                        timestamp: timestemp,
+//                        distance: distance,
+//                        calories: calories,
+//                        duration: duration,
+//                        averageSpeed: averageSpeed))
+//            }
+//            
+//        } catch {
+//            let fetchError = error as NSError
+//            print("fetchError:\(fetchError)")
+//        }
+//    }
     
     
     
@@ -141,15 +135,15 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return saveRecords.count
+        return recordModel.saveRecords.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryTableViewCell", forIndexPath: indexPath) as! HistoryTableViewCell
         
-        cell.dateLabel.text = "\(dateString(saveRecords[indexPath.row].timestamp))"
-        cell.distanceLabel.text = "\(numberString((saveRecords[indexPath.row].distance)/1000)) km"
-        cell.durationLabel.text = "\(timerString(saveRecords[indexPath.row].duration))"
+        cell.dateLabel.text = "\(dateString(recordModel.saveRecords[indexPath.row].timestamp))"
+        cell.distanceLabel.text = "\(numberString((recordModel.saveRecords[indexPath.row].distance)/1000)) km"
+        cell.durationLabel.text = "\(timerString(recordModel.saveRecords[indexPath.row].duration))"
         
         return cell
     }
