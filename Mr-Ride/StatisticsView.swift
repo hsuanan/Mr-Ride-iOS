@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class StatisticsView: UIView {
     
     @IBOutlet weak var distanceTitle: UILabel!

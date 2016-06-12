@@ -33,7 +33,7 @@ class HistoryTableViewCell: UITableViewCell {
     
     func setup(){
         
-        self.backgroundColor = UIColor.mrPineGreen85Color()
+        self.backgroundColor = UIColor.mrPineGreen85Color()        
         
         distanceLabel.font = UIFont(name: "RobotoMono-Light", size: 24)
         distanceLabel.textColor = UIColor.mrWhiteColor()

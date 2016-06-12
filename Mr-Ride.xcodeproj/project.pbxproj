@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BC52085B1D07FE700051742A /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208591D07FE700051742A /* HistoryTableViewCell.swift */; };
 		BC52085C1D07FE700051742A /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */; };
+		BC5208621D095B1B0051742A /* DataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208611D095B1B0051742A /* DataManagement.swift */; };
 		BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */; };
 		BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60D1CF2A1C000B11F89 /* ViewController.swift */; };
 		BC85F6111CF2A1C000B11F89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC85F60F1CF2A1C000B11F89 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		BC5208591D07FE700051742A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		BC5208611D095B1B0051742A /* DataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagement.swift; sourceTree = "<group>"; };
 		BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC85F60D1CF2A1C000B11F89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */,
 				BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */,
+				BC5208611D095B1B0051742A /* DataManagement.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				BC9C8B2E1CF5EC7400EB4FBE /* HomePageViewController.swift in Sources */,
 				BCCFE61C1CF98E34004323B0 /* MMDrawerController.m in Sources */,
 				BCCFE61D1CF98E34004323B0 /* MMDrawerVisualState.m in Sources */,
+				BC5208621D095B1B0051742A /* DataManagement.swift in Sources */,
 				BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */,
 				BCE4E9041CF9DDD600976948 /* LeftSideTableViewCell.swift in Sources */,
 				BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */,

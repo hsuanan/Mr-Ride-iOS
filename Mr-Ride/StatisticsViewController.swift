@@ -85,7 +85,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             
 //            print("locationList: \(locationList)")
             
-            statisticsView.distanceValue.text = "\(distance) m"
+            statisticsView.distanceValue.text = "\(Int(distance)) m"
             statisticsView.caloriesValue.text = "\(calories) kcal"
             statisticsView.totalTimeValue.text = "\(duration)"
             statisticsView.averageSpeedValue.text = "\(averageSpeed) km/hr"

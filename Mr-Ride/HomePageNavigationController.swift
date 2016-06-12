@@ -45,9 +45,6 @@ class HomePageNavigationController: UINavigationController {
         navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.topItem?.titleView = UIImageView(image: tintedImage)
         
-        //setup sideBar
-        navigationBar.tintColor = UIColor.whiteColor()
-        
     }
     
    

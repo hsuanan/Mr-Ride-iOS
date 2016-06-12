@@ -13,12 +13,12 @@ class NewRecordNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupRideDetailsNavigationBar()
+        setupNewRecordNavigationBar()
         
     }
     
     
-    func setupRideDetailsNavigationBar(){
+    func setupNewRecordNavigationBar(){
         
         
         navigationBar.translucent = false

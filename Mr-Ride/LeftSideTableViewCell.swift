@@ -25,7 +25,7 @@ class LeftSideTableViewCell: UITableViewCell {
         backgroundColor = UIColor.mrDarkSlateBlueColor()
         
         itemLabel.textColor = UIColor.mrWhite50Color()
-//        itemLabel.font = UIFont.mrTextStyle3Font()
+        itemLabel.font = UIFont.mrTextStyle7Font()
         itemLabel.layer.shadowColor = UIColor.blackColor().CGColor
         itemLabel.layer.shadowOpacity = 0.25
         itemLabel.layer.shadowRadius = 2

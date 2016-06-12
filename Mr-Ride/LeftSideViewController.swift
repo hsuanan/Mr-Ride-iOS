@@ -16,6 +16,8 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        print ("SideViewDidLoad")
 
         view.backgroundColor = UIColor.mrDarkSlateBlueColor()
         tableView.backgroundColor = UIColor.mrDarkSlateBlueColor()

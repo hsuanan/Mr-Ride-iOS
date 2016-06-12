@@ -87,6 +87,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     var weight = 0.0
     
     let gradient = CAGradientLayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print ("NewRecordsViewDidLoad")
@@ -257,9 +258,10 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     func saveRecordsToCoreData() {
         
         let entityRecords = NSEntityDescription.insertNewObjectForEntityForName("Records", inManagedObjectContext: moc!) as! Records
+    
         
         entityRecords.timestamp = date
-        entityRecords.distance = Int(traveledDistance)
+        entityRecords.distance = traveledDistance
         entityRecords.duration = timerString(timeInterval)
         entityRecords.calories = caloriesBurned
         entityRecords.averageSpeed = Int(averageSpeed)
