@@ -23,6 +23,7 @@ class HistoryTableViewCell: UITableViewCell {
         // Initialization code
         
         setup()
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

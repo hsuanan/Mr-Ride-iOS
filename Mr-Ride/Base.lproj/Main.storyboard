@@ -671,22 +671,31 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="B7Q-dz-1aU"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfP-4f-i3k">
-                                                    <rect key="frame" x="8" y="8" width="47" height="43"/>
+                                                    <rect key="frame" x="28" y="25" width="8" height="8"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="47" id="gth-xV-sAh"/>
-                                                        <constraint firstAttribute="height" constant="43" id="hOS-c7-jjf"/>
+                                                        <constraint firstAttribute="width" constant="8" id="gth-xV-sAh"/>
+                                                        <constraint firstAttribute="height" constant="8" id="hOS-c7-jjf"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dcV-Np-hNO" firstAttribute="top" secondItem="NMY-2W-gJn" secondAttribute="topMargin" constant="8" id="0J5-F5-WjO"/>
+                                                <constraint firstItem="sfP-4f-i3k" firstAttribute="bottom" secondItem="NMY-2W-gJn" secondAttribute="bottomMargin" constant="16" id="AzH-t1-bAV"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="dcV-Np-hNO" secondAttribute="bottom" constant="6" id="Dbu-uz-DVq"/>
-                                                <constraint firstItem="dcV-Np-hNO" firstAttribute="leading" secondItem="sfP-4f-i3k" secondAttribute="trailing" constant="1" id="NLa-ZX-gJl"/>
+                                                <constraint firstItem="dcV-Np-hNO" firstAttribute="leading" secondItem="sfP-4f-i3k" secondAttribute="trailing" constant="20" id="NLa-ZX-gJl"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="sfP-4f-i3k" secondAttribute="leading" id="OE3-Gz-7iT"/>
+                                                <constraint firstItem="sfP-4f-i3k" firstAttribute="centerY" secondItem="NMY-2W-gJn" secondAttribute="centerY" id="Xty-ac-DC4"/>
+                                                <constraint firstItem="sfP-4f-i3k" firstAttribute="leading" secondItem="NMY-2W-gJn" secondAttribute="leadingMargin" constant="20" id="e2I-5R-gXi"/>
                                                 <constraint firstItem="dcV-Np-hNO" firstAttribute="top" secondItem="NMY-2W-gJn" secondAttribute="topMargin" constant="8" id="euT-iI-K5A"/>
+                                                <constraint firstItem="sfP-4f-i3k" firstAttribute="top" secondItem="NMY-2W-gJn" secondAttribute="topMargin" constant="17" id="gEX-sj-S6I"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="sfP-4f-i3k" secondAttribute="bottom" id="gr6-wu-vkt"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="sfP-4f-i3k" secondAttribute="bottom" id="lZJ-uV-ap0"/>
                                                 <constraint firstItem="sfP-4f-i3k" firstAttribute="height" secondItem="NMY-2W-gJn" secondAttribute="height" id="njy-HF-9ld"/>
@@ -697,9 +706,14 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="AzH-t1-bAV"/>
+                                                    <exclude reference="OE3-Gz-7iT"/>
+                                                    <exclude reference="gEX-sj-S6I"/>
+                                                    <exclude reference="gr6-wu-vkt"/>
                                                     <exclude reference="lZJ-uV-ap0"/>
                                                     <exclude reference="njy-HF-9ld"/>
                                                     <exclude reference="xI7-Qh-utV"/>
+                                                    <exclude reference="yjx-GO-ML8"/>
                                                     <exclude reference="0J5-F5-WjO"/>
                                                     <exclude reference="pji-le-zV3"/>
                                                     <exclude reference="syQ-0e-ksM"/>
@@ -732,7 +746,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xpx-gT-6VM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="835" y="275"/>
+            <point key="canvasLocation" x="824" y="275"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="9Zt-ko-Ixq">

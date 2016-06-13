@@ -46,8 +46,8 @@ class LeftSideTableViewCell: UITableViewCell {
             let bgColorView = UIView()
             bgColorView.backgroundColor = UIColor.mrDarkSlateBlueColor()
             self.selectedBackgroundView = bgColorView
-            
-            bullet.frame = CGRectMake (30, 28, 8, 8)
+        
+//            bullet.frame = CGRectMake (30, 28, 8, 8)
             bullet.layer.cornerRadius = bullet.frame.size.width / 2
             bullet.backgroundColor = UIColor.whiteColor()
 
@@ -61,9 +61,16 @@ class LeftSideTableViewCell: UITableViewCell {
 
     }
     
-    func drawBullet(){
-        bullet.layer.cornerRadius = bullet.frame.size.width / 2
-        bullet.backgroundColor = UIColor.clearColor()
-    }
+//    func drawBullet(){
+//        let circleRadius = min(bullet.bounds.size.width, bullet.bounds.size.height) / 2
+//        let circleCenter = CGPoint(x: bullet.bounds.minX, y: bullet.bounds.minY)
+//
+//        let circlePath = UIBezierPath(arcCenter: circleCenter, radius: circleRadius, startAngle: 0.0, endAngle: CGFloat(2*M_PI), clockwise: false)
+//        circlePath.lineWidth = 4.0
+//        UIColor.whiteColor().setStroke()
+//        UIColor.whiteColor().setFill()
+//        circlePath.stroke()
+//        circlePath.fill()
+//    }
 
 }

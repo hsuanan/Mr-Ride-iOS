@@ -44,7 +44,7 @@ class DataManager {
         do {
             let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
             
-            print("fetchedRecords: \(fetchedRecords)")
+//            print("fetchedRecords: \(fetchedRecords)")
             
             for eachFetchedRecord in fetchedRecords {
                 

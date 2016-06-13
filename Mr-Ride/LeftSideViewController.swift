@@ -9,7 +9,7 @@
 import UIKit
 
 class LeftSideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var itemArray : [String] = [ "Home", "History" ]
@@ -17,12 +17,12 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print ("SideViewDidLoad")
-
+        //        print ("SideViewDidLoad")
+        
         view.backgroundColor = UIColor.mrDarkSlateBlueColor()
         tableView.backgroundColor = UIColor.mrDarkSlateBlueColor()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -35,21 +35,21 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-
+        
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return itemArray.count
-
+        
     }
-
-
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("sideMenuCell", forIndexPath: indexPath) as! LeftSideTableViewCell
- 
+        
         cell.itemLabel.text = itemArray[indexPath.row]
         
         return cell
@@ -57,7 +57,7 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-                
+        
         switch(indexPath.row)
             
         {
@@ -77,7 +77,7 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
         case 1:
             
             let historyNavController = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryNavigationController") as! HistoryNavigationController
-
+            
             let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
             appDelegate.centerContainer!.centerViewController = historyNavController
@@ -91,23 +91,29 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
             print("\(itemArray[indexPath.row]) is selected")
             
         }
+    }
         
-    }
     
     
     
-
- 
- 
- 
+    //        estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+    //        {
+    //            return UITableViewAutomaticDimension;
+    //        }
+    //
+    //    }
+    
+    
+    
+    
     /*
-    // MARK: - Navigation
-
-    // In a toryboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a toryboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
