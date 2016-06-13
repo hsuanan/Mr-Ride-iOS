@@ -22,6 +22,9 @@ class LeftSideTableViewCell: UITableViewCell {
         
         super.awakeFromNib()
         
+        // remove problem of unable to simultaneously satisfy constraints
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
         backgroundColor = UIColor.mrDarkSlateBlueColor()
         
         itemLabel.textColor = UIColor.mrWhite50Color()
@@ -54,7 +57,6 @@ class LeftSideTableViewCell: UITableViewCell {
             bullet.backgroundColor = UIColor.clearColor()
 
         }
-        
         
 
     }
