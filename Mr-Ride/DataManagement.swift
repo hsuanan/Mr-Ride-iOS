@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-struct SavedRecords {
+struct RecordsModel {
     
     var timestamp = NSDate()
     var distance = 0.0
@@ -26,7 +26,7 @@ class DataManager {
     
     let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
-    var saveRecords = [SavedRecords]()
+    var saveRecords = [RecordsModel]()
     
     var locationList = [Locations]()
     
@@ -83,7 +83,7 @@ class DataManager {
                 }
                 
                 saveRecords.append(
-                    SavedRecords(
+                    RecordsModel(
                         timestamp: timestemp,
                         distance: distance,
                         calories: calories,

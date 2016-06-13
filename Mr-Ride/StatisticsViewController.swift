@@ -18,6 +18,7 @@ struct Locations{
 }
 
 
+
 class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
 //    var locationList = [Locations]()
@@ -27,21 +28,36 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     let recordModel = DataManager.sharedDataManager
     
+    var records: RecordsModel?
+    
+    var isFromHistory = false
+    
     @IBOutlet var statisticsView: StatisticsView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        fetchRecordsCoreData()
         recordModel.fetchRecordsCoreData()
-        uploadData()
         statisticsView.mapView.delegate = self
         
-        showRoute()
+//        showRoute()
+        
+        if isFromHistory == false {
+            
+            print("isFromHistory is false")
+            uploadNewRecord()
+            
+        } else {
+            
+            print("isFromHistory is true")
+            uploadRecordFromHistoryPage()
+        }
         
     }
     
     
-    //MARK: Core Data
+//    //MARK: Core Data
 //    func fetchRecordsCoreData(){
 //
 //        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -89,37 +105,46 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
 //
 //            }
 //            
-////            print("locationList: \(locationList)")
+//            print("locationList: \(locationList)")
 //         
-
+//
 //            statisticsView.distanceValue.text = "\(Int(duration)) m"
-//            statisticsView.caloriesValue.text = "\(calories) kcal"
+//            statisticsView.caloriesValue.text = "\(Int(calories)) kcal"
 //            statisticsView.totalTimeValue.text = "\(timerString(duration))"
-//            statisticsView.averageSpeedValue.text = "\(averageSpeed) km/hr"
+//            statisticsView.averageSpeedValue.text = "\(Int(averageSpeed)) km/hr"
 //            navigationItem.title = "\(dateString(timestemp))"
-    
+//    
 //        } catch {
 //            let fetchError = error as NSError
 //            print("fetchError:\(fetchError)")
 //        }
 //    }
     
-    func uploadData() {
+    func uploadNewRecord() {
         
         let savedData = recordModel.saveRecords.last
 
         if savedData != nil {
             statisticsView.distanceValue.text = "\(Int(savedData!.distance)) m"
-            statisticsView.caloriesValue.text = "\(savedData!.calories) kcal"
+            statisticsView.caloriesValue.text = "\(Int(savedData!.calories)) kcal"
             statisticsView.totalTimeValue.text = "\(timerString(savedData!.duration))"
-            statisticsView.averageSpeedValue.text = "\(savedData!.averageSpeed) km/hr"
+            statisticsView.averageSpeedValue.text = "\(Int(savedData!.averageSpeed)) km/hr"
             navigationItem.title = "\(dateString(savedData!.timestamp))"
             
         } else {
             print ("recordModel.saveRecords.last is nil");
             return
         }
+    }
+    
+    func uploadRecordFromHistoryPage() {
         
+        statisticsView.distanceValue.text = "\(Int((records?.distance)!)) m"
+        statisticsView.caloriesValue.text = "\((records?.calories)!) kcal"
+        statisticsView.totalTimeValue.text = "\(timerString((records?.duration)!))"
+        statisticsView.averageSpeedValue.text = "\((records?.averageSpeed)!) km/hr"
+        navigationItem.title = "\(dateString((records?.timestamp)!))"
+
     }
     func dateString(date: NSDate) -> String {
         
@@ -147,11 +172,14 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     //    MARK: Map
     func showRoute() {
+//        for location in locationList {
+        
+        
         
         let savedData = recordModel.saveRecords.last
         
         for location in savedData!.location {
-            
+        
             coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
         }
 
@@ -171,6 +199,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         }
         return nil
     }
+    
     
 }
 

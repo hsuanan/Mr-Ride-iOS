@@ -61,12 +61,13 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
         saveRecordsToCoreData()
+        
         print ("finishButtonTapped")
         
         startIsOn = false
         
         performSegueWithIdentifier("showStatisticsPage", sender: sender)
-
+        
     }
     
     var startIsOn = false

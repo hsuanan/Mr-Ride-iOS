@@ -30,6 +30,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let recordModel = DataManager.sharedDataManager
     
+    
 //    var saveRecords = [SavedRecords]()
 //    
 //    var locationList = [Locations]()
@@ -50,81 +51,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         recordModel.fetchRecordsCoreData()
         
     }
-    //MARK: CoreData
-    
-//    func fetchRecordsCoreData(){
-//        
-//        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-//        
-//        let fetchRequest = NSFetchRequest(entityName: "Records")
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
-//        let date = NSDate()
-//        fetchRequest.predicate = NSPredicate(format: "timestamp < %@", date )
-//        fetchRequest.fetchBatchSize = 10
-//        //        fetchRequest.fetchLimit = 1
-//        
-//        do {
-//            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
-//            
-//            print("fetchedRecords: \(fetchedRecords)")
-//            
-//            for eachFetchedRecord in fetchedRecords {
-//                
-//                guard let locationSet = eachFetchedRecord.location
-//                    else {
-//                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationSet");
-//                        return}
-//                
-//                guard let loctionArray = locationSet.array as? [Location]
-//                    
-//                    else {
-//                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
-//                        return }
-//                
-//                for location in loctionArray {
-//                    
-//                    print("latitude:\(location.latitude) longitude:\(location.longitude)")
-//                    
-//                    guard
-//                        let latitude = location.latitude as? Double,
-//                        let longitude = location.longitude as? Double
-//                        
-//                        else {
-//                            print("[StaticsViewController](fetchRecordsCoreData) can't get latitude and logitude");
-//                            continue}
-//                    locationList.append(
-//                        Locations(latitude: latitude, longitude: longitude))
-//                    
-//                }
-//                
-//                guard
-//                    let timestemp = eachFetchedRecord.timestamp,
-//                    let distance = eachFetchedRecord.distance as? Double,
-//                    let calories = eachFetchedRecord.calories as? Double,
-//                    let duration = eachFetchedRecord.duration as? Double,
-//                    let averageSpeed = eachFetchedRecord.averageSpeed as? Double
-//                    
-//                    else {
-//                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
-//                        continue }
-//                
-//                saveRecords.append(
-//                    SavedRecords(
-//                        timestamp: timestemp,
-//                        distance: distance,
-//                        calories: calories,
-//                        duration: duration,
-//                        averageSpeed: averageSpeed))
-//            }
-//            
-//        } catch {
-//            let fetchError = error as NSError
-//            print("fetchError:\(fetchError)")
-//        }
-//    }
-    
-    
-    
+
     
     // MARK: - Table view data source
     
@@ -148,10 +75,53 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
-//    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension
+    
+    //MARK: Navigation
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print ("row\(indexPath.row)selected")
+       
+        let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
+        destinationController.records = recordModel.saveRecords[indexPath.row]
+        destinationController.isFromHistory = true
+        self.navigationController?.pushViewController(destinationController, animated: true)
+//        performSegueWithIdentifier("showStatisticsViewController", sender: self)
+    }
+    
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "showStatisticsViewController" {
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//                let destinationController = segue.destinationViewController as! StatisticsViewController
+//                destinationController.records = recordModel.saveRecords[indexPath.row]
+//            } else {print("indexPath fail")}
+//        }else {print ("idetifier error")}
 //    }
-
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        guard let identifier = segue.identifier else {return}
+//        
+//            switch identifier {
+//            case "showStatisticsViewController": destinationController = segue.destinationViewController as? StatisticsViewController
+//                
+//            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+//                destinationController?.records = recordsAtIndexPath(indexPath)
+//                }
+//                
+//            default: break
+//
+//            }
+//    }
+//    
+//    func recordsAtIndexPath(indexPath: NSIndexPath) -> SavedRecords {
+//        
+//        return recordModel.saveRecords[indexPath.row]
+//    }
+ 
+    
+    
+    
    
     func dateString(date: NSDate) -> String {
         
@@ -174,7 +144,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let secondsFrec = Int(time) % 100
         return String(format:"%02i:%02i:%02i", hours, minutes, seconds, secondsFrec)
     }
-    
     
     
     //MARK: setup
