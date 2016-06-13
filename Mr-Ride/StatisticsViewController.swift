@@ -10,12 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 
-struct Locations{
-    
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
-    
-}
+
 
 
 
@@ -34,6 +29,18 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     @IBOutlet var statisticsView: StatisticsView!
     
+    @IBAction func BackOrDoneButtonTapped(sender: AnyObject) {
+        
+        if isFromHistory == true {
+            print("BackButtonTapped")
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        } else {
+            print("DoneButtonTapped")
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,15 +48,15 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         recordModel.fetchRecordsCoreData()
         statisticsView.mapView.delegate = self
         
-//        showRoute()
+        showRoute()
         
         if isFromHistory == false {
-            
+            navigationItem.leftBarButtonItem?.title = "Done"
             print("isFromHistory is false")
             uploadNewRecord()
             
         } else {
-            
+            navigationItem.leftBarButtonItem?.title = "< Back"
             print("isFromHistory is true")
             uploadRecordFromHistoryPage()
         }
@@ -139,11 +146,17 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     func uploadRecordFromHistoryPage() {
         
-        statisticsView.distanceValue.text = "\(Int((records?.distance)!)) m"
-        statisticsView.caloriesValue.text = "\((records?.calories)!) kcal"
+        if records != nil {
+        
+        statisticsView.distanceValue.text = "\(Int(records!.distance)) m"
+        statisticsView.caloriesValue.text = "\(Int(records!.calories)) kcal"
         statisticsView.totalTimeValue.text = "\(timerString((records?.duration)!))"
-        statisticsView.averageSpeedValue.text = "\((records?.averageSpeed)!) km/hr"
+        statisticsView.averageSpeedValue.text = "\(Int((records?.averageSpeed)!)) km/hr"
         navigationItem.title = "\(dateString((records?.timestamp)!))"
+        
+        } else {
+            print("records is nil");
+            return }
 
     }
     func dateString(date: NSDate) -> String {
@@ -162,7 +175,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     func timerString(time: Double) -> String {
         
-        let hours = Int(time) / (100*60*60)
+        let hours = Int(time) / (100 * 60 * 60)
         let minutes = Int(time) / (100 * 60) % 60
         let seconds = Int(time) / 100 % 60
         let secondsFrec = Int(time) % 100
@@ -174,13 +187,20 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     func showRoute() {
 //        for location in locationList {
         
-        
-        
-        let savedData = recordModel.saveRecords.last
-        
-        for location in savedData!.location {
-        
-            coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+        if isFromHistory == false {
+            
+            let savedData = recordModel.saveRecords.last
+            
+            for location in savedData!.location {
+                
+                coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+            }
+        } else {
+            
+            for location in (records?.location)! {
+                
+                coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+            }
         }
 
         let polyline = MKPolyline(coordinates: &coordToUse, count: coordToUse.count)

@@ -53,6 +53,7 @@ class HistoryTableViewCell: UITableViewCell {
         
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
+        
         let attributedText = NSMutableAttributedString (string: text)
         attributedText.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSMakeRange(0, attributedText.length))
         label.attributedText = attributedText

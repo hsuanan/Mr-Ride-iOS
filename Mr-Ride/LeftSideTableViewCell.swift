@@ -16,10 +16,7 @@ class LeftSideTableViewCell: UITableViewCell {
     @IBOutlet weak var itemLabel: UILabel!
     
     
-    
     override func awakeFromNib() {
-
-        
         super.awakeFromNib()
         
         // remove problem of unable to simultaneously satisfy constraints
@@ -57,20 +54,5 @@ class LeftSideTableViewCell: UITableViewCell {
             bullet.backgroundColor = UIColor.clearColor()
 
         }
-        
-
     }
-    
-//    func drawBullet(){
-//        let circleRadius = min(bullet.bounds.size.width, bullet.bounds.size.height) / 2
-//        let circleCenter = CGPoint(x: bullet.bounds.minX, y: bullet.bounds.minY)
-//
-//        let circlePath = UIBezierPath(arcCenter: circleCenter, radius: circleRadius, startAngle: 0.0, endAngle: CGFloat(2*M_PI), clockwise: false)
-//        circlePath.lineWidth = 4.0
-//        UIColor.whiteColor().setStroke()
-//        UIColor.whiteColor().setFill()
-//        circlePath.stroke()
-//        circlePath.fill()
-//    }
-
 }

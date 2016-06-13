@@ -475,7 +475,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Done" id="0MZ-3e-d9Q">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="Zq2-ew-tHz" kind="unwind" unwindAction="cancelToHomePageViewController:" id="Jq7-HL-byJ"/>
+                                <action selector="BackOrDoneButtonTapped:" destination="BYZ-38-t0r" id="LUA-5m-joA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -485,7 +485,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="Zq2-ew-tHz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2483" y="-430"/>
         </scene>

@@ -9,6 +9,13 @@
 import Foundation
 import CoreData
 
+struct Locations{
+    
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    
+}
+
 struct RecordsModel {
     
     var timestamp = NSDate()
@@ -17,6 +24,7 @@ struct RecordsModel {
     var duration = 0.0
     var averageSpeed = 0.0
     var location = [Locations]()
+    
 }
 
 
