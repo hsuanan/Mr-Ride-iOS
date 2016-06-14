@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import CoreData
 
+
 class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView?
@@ -86,6 +87,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     var caloriesBurned = 0
     let date = NSDate()
     var weight = 0.0
+//    var myLocationSet = [[CLLocation]]()
     
     let gradient = CAGradientLayer()
     
@@ -195,14 +197,14 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         // Distance, Speed, Calories
         
         if startLocation == nil {
-            
+        
             startLocation = locations.last
             
         } else {
             
             startLocation = myLocations.last
         }
-        
+    
         let lastLocation = locations.last
         let distance = startLocation?.distanceFromLocation(lastLocation!)
         
@@ -218,9 +220,13 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             
             
             calculatedCalories()
+            
+//            myLocations.append(currentLocation!)
         }
         
         myLocations.append(currentLocation!)
+//        myLocationSet.append(myLocations)
+        
         
         
         showRoute()
