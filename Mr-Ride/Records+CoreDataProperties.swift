@@ -27,7 +27,7 @@ extension Records {
     var dateForSection: String {
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMMM, YYYY"
+        dateFormatter.dateFormat = "MMM, YYYY"
         return dateFormatter.stringFromDate(timestamp!)
         
         

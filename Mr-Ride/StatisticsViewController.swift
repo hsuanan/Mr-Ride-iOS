@@ -165,7 +165,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     func dateString(date: NSDate) -> String {
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy/mm/dd"
+        dateFormatter.dateFormat = "YYYY/MM/DD"
         return dateFormatter.stringFromDate(date)
         
     }
