@@ -30,9 +30,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     let recordModel = DataManager.sharedDataManager
     
     
-//    var saveRecords = [SavedRecords]()
-//    
-//    var locationList = [Locations]()
+    //    var saveRecords = [SavedRecords]()
+    //
+    //    var locationList = [Locations]()
     
     
     
@@ -55,31 +55,51 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         recordModel.fetchRecordsCoreData()
         
     }
-
+    
     
     // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-       return recordModel.fetchedResultsController.sections?.count ?? 1
+        return recordModel.fetchedResultsController.sections?.count ?? 1
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        
+        //
         if let sections = recordModel.fetchedResultsController?.sections where sections.count > 0 {
             return sections[section].numberOfObjects
         } else { return 0 }
-       
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryTableViewCell", forIndexPath: indexPath) as! HistoryTableViewCell
         
+        let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
         
-        cell.dateLabel.text = "\(dateString(recordModel.saveRecords[indexPath.row].timestamp))"
-        cell.distanceLabel.text = "\(numberString((recordModel.saveRecords[indexPath.row].distance)/1000)) km"
-        cell.durationLabel.text = "\(timerString(recordModel.saveRecords[indexPath.row].duration))"
+        guard
+            let timestemp = records.timestamp,
+            let distance = records.distance as? Double,
+            //            let calories = records.calories as? Double,
+            let duration = records.duration as? Double
+            //            let averageSpeed = records.averageSpeed as? Double,
+            //            let locationSet = records.location
+            
+            else {
+                print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
+                return cell}
+        
+        
+        cell.dateLabel.text = "\(dateString(timestemp))"
+        cell.distanceLabel.text = "\(numberString(distance/1000)) km"
+        cell.durationLabel.text = "\(timerString(duration))"
+        
+        
+        
+        //        cell.dateLabel.text = "\(dateString(recordModel.saveRecords[indexPath.row].timestamp))"
+        //        cell.distanceLabel.text = "\(numberString((recordModel.saveRecords[indexPath.row].distance)/1000)) km"
+        //        cell.durationLabel.text = "\(timerString(recordModel.saveRecords[indexPath.row].duration))"
         
         return cell
     }
@@ -105,7 +125,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         return headerCell
     }
- 
+    
     
     
     
@@ -113,16 +133,20 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print ("row\(indexPath.row)selected")
-       
+        
         let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
-        destinationController.records = recordModel.saveRecords[indexPath.row]
+        
+        let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
+        destinationController.date = records.timestamp
+        
+//        destinationController.records = recordModel.saveRecords[indexPath.row]
         destinationController.isFromHistory = true
         self.navigationController?.pushViewController(destinationController, animated: true)
-
+        
     }
     
     
-   
+    
     func dateString(date: NSDate) -> String {
         
         let dateFormatter = NSDateFormatter()

@@ -25,6 +25,8 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     var records: RecordsModel?
     
+    var date: NSDate?
+    
     var isFromHistory = false
     
     @IBOutlet var statisticsView: StatisticsView!

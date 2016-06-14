@@ -54,7 +54,7 @@ class DataManager {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
         let date = NSDate()
         fetchRequest.predicate = NSPredicate(format: "timestamp < %@", date )
-        fetchRequest.fetchBatchSize = 10
+//        fetchRequest.fetchBatchSize = 10
         //        fetchRequest.fetchLimit = 1
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: "dateForSection", cacheName: nil)
@@ -67,64 +67,64 @@ class DataManager {
             print ("Unable to perform fetch: \(error.localizedDescription)")
         }
         
-        do {
-            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
-            
-//            print("fetchedRecords: \(fetchedRecords)")
-            
-            saveRecords.removeAll()
-            
-            for eachFetchedRecord in fetchedRecords {
-                
-                guard
-                    let timestemp = eachFetchedRecord.timestamp,
-                    let distance = eachFetchedRecord.distance as? Double,
-                    let calories = eachFetchedRecord.calories as? Double,
-                    let duration = eachFetchedRecord.duration as? Double,
-                    let averageSpeed = eachFetchedRecord.averageSpeed as? Double,
-                    let locationSet = eachFetchedRecord.location
-                    
-                    else {
-                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
-                        continue }
-                
-                guard let loctionArray = locationSet.array as? [Location]
-                
-                    else {
-                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
-                        return }
-                
-                locationList.removeAll()  // 清空之前的array
-                
-                for location in loctionArray {
-                    
-//                    print("latitude:\(location.latitude) longitude:\(location.longitude)")
-                    
-                    guard
-                        let latitude = location.latitude as? Double,
-                        let longitude = location.longitude as? Double
-                        
-                        else {
-                            print("[StaticsViewController](fetchRecordsCoreData) can't get latitude and logitude");
-                            continue}
-                    locationList.append(
-                        Locations(latitude: latitude, longitude: longitude))
-                    
-                }
-                saveRecords.append(
-                    RecordsModel(
-                        timestamp: timestemp,
-                        distance: distance,
-                        calories: calories,
-                        duration: duration,
-                        averageSpeed: averageSpeed,
-                        location: locationList))
-            }
-            
-        } catch {
-            let fetchError = error as NSError
-            print("fetchError:\(fetchError)")
-        }
+//        do {
+//            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
+//            
+////            print("fetchedRecords: \(fetchedRecords)")
+//            
+//            saveRecords.removeAll()
+//            
+//            for eachFetchedRecord in fetchedRecords {
+//                
+//                guard
+//                    let timestemp = eachFetchedRecord.timestamp,
+//                    let distance = eachFetchedRecord.distance as? Double,
+//                    let calories = eachFetchedRecord.calories as? Double,
+//                    let duration = eachFetchedRecord.duration as? Double,
+//                    let averageSpeed = eachFetchedRecord.averageSpeed as? Double,
+//                    let locationSet = eachFetchedRecord.location
+//                    
+//                    else {
+//                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
+//                        continue }
+//                
+//                guard let loctionArray = locationSet.array as? [Location]
+//                
+//                    else {
+//                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
+//                        return }
+//                
+//                locationList.removeAll()  // 清空之前的array
+//                
+//                for location in loctionArray {
+//                    
+////                    print("latitude:\(location.latitude) longitude:\(location.longitude)")
+//                    
+//                    guard
+//                        let latitude = location.latitude as? Double,
+//                        let longitude = location.longitude as? Double
+//                        
+//                        else {
+//                            print("[StaticsViewController](fetchRecordsCoreData) can't get latitude and logitude");
+//                            continue}
+//                    locationList.append(
+//                        Locations(latitude: latitude, longitude: longitude))
+//                    
+//                }
+//                saveRecords.append(
+//                    RecordsModel(
+//                        timestamp: timestemp,
+//                        distance: distance,
+//                        calories: calories,
+//                        duration: duration,
+//                        averageSpeed: averageSpeed,
+//                        location: locationList))
+//            }
+//            
+//        } catch {
+//            let fetchError = error as NSError
+//            print("fetchError:\(fetchError)")
+//        }
     }
 
 }
