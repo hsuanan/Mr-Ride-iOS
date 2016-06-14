@@ -24,7 +24,7 @@ struct RecordsModel {
     var duration = 0.0
     var averageSpeed = 0.0
     var location = [Locations]()
-    
+
 }
 
 
@@ -74,6 +74,8 @@ class DataManager {
                         print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
                         return }
                 
+                locationList.removeAll()  // 清空之前的array
+                
                 for location in loctionArray {
                     
 //                    print("latitude:\(location.latitude) longitude:\(location.longitude)")
@@ -89,7 +91,6 @@ class DataManager {
                         Locations(latitude: latitude, longitude: longitude))
                     
                 }
-                
                 saveRecords.append(
                     RecordsModel(
                         timestamp: timestemp,

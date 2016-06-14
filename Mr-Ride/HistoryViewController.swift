@@ -85,41 +85,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         destinationController.records = recordModel.saveRecords[indexPath.row]
         destinationController.isFromHistory = true
         self.navigationController?.pushViewController(destinationController, animated: true)
-//        performSegueWithIdentifier("showStatisticsViewController", sender: self)
+
     }
-    
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "showStatisticsViewController" {
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                let destinationController = segue.destinationViewController as! StatisticsViewController
-//                destinationController.records = recordModel.saveRecords[indexPath.row]
-//            } else {print("indexPath fail")}
-//        }else {print ("idetifier error")}
-//    }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        
-//        guard let identifier = segue.identifier else {return}
-//        
-//            switch identifier {
-//            case "showStatisticsViewController": destinationController = segue.destinationViewController as? StatisticsViewController
-//                
-//            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-//                destinationController?.records = recordsAtIndexPath(indexPath)
-//                }
-//                
-//            default: break
-//
-//            }
-//    }
-//    
-//    func recordsAtIndexPath(indexPath: NSIndexPath) -> SavedRecords {
-//        
-//        return recordModel.saveRecords[indexPath.row]
-//    }
- 
-    
     
     
    
