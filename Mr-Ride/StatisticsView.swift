@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class StatisticsView: UIView {
     
     @IBOutlet weak var distanceTitle: UILabel!
@@ -121,15 +122,18 @@ class StatisticsView: UIView {
     }
     
     func setupMap() {
+        
         mapView.layer.cornerRadius = 10.0
     }
     
     func setupMedal() {
+        
         medal.image = UIImage(named: "image-medal")
     }
     
     
     func setupGoodJob() {
+        
         goodJob.font = UIFont.mrTextStyle12Font()
         goodJob.textColor = UIColor.mrWhiteColor()
         goodJob.text = "Good Job!"

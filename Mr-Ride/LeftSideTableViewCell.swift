@@ -16,16 +16,16 @@ class LeftSideTableViewCell: UITableViewCell {
     @IBOutlet weak var itemLabel: UILabel!
     
     
-    
     override func awakeFromNib() {
-
-        
         super.awakeFromNib()
         
+        // remove problem of unable to simultaneously satisfy constraints
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
         backgroundColor = UIColor.mrDarkSlateBlueColor()
         
         itemLabel.textColor = UIColor.mrWhite50Color()
-//        itemLabel.font = UIFont.mrTextStyle3Font()
+        itemLabel.font = UIFont.mrTextStyle7Font()
         itemLabel.layer.shadowColor = UIColor.blackColor().CGColor
         itemLabel.layer.shadowOpacity = 0.25
         itemLabel.layer.shadowRadius = 2
@@ -43,8 +43,8 @@ class LeftSideTableViewCell: UITableViewCell {
             let bgColorView = UIView()
             bgColorView.backgroundColor = UIColor.mrDarkSlateBlueColor()
             self.selectedBackgroundView = bgColorView
-            
-            bullet.frame = CGRectMake (30, 28, 8, 8)
+        
+//            bullet.frame = CGRectMake (30, 28, 8, 8)
             bullet.layer.cornerRadius = bullet.frame.size.width / 2
             bullet.backgroundColor = UIColor.whiteColor()
 
@@ -54,14 +54,5 @@ class LeftSideTableViewCell: UITableViewCell {
             bullet.backgroundColor = UIColor.clearColor()
 
         }
-        
-        
-
     }
-    
-    func drawBullet(){
-        bullet.layer.cornerRadius = bullet.frame.size.width / 2
-        bullet.backgroundColor = UIColor.clearColor()
-    }
-
 }

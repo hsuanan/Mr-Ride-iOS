@@ -61,12 +61,13 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
         saveRecordsToCoreData()
+        
         print ("finishButtonTapped")
         
         startIsOn = false
         
         performSegueWithIdentifier("showStatisticsPage", sender: sender)
-
+        
     }
     
     var startIsOn = false
@@ -87,6 +88,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     var weight = 0.0
     
     let gradient = CAGradientLayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print ("NewRecordsViewDidLoad")
@@ -257,10 +259,11 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     func saveRecordsToCoreData() {
         
         let entityRecords = NSEntityDescription.insertNewObjectForEntityForName("Records", inManagedObjectContext: moc!) as! Records
+    
         
         entityRecords.timestamp = date
-        entityRecords.distance = Int(traveledDistance)
-        entityRecords.duration = timerString(timeInterval)
+        entityRecords.distance = traveledDistance
+        entityRecords.duration = timeInterval
         entityRecords.calories = caloriesBurned
         entityRecords.averageSpeed = Int(averageSpeed)
 //        entityRecords.objectID
