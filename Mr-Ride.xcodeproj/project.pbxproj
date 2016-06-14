@@ -10,6 +10,8 @@
 		BC52085B1D07FE700051742A /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208591D07FE700051742A /* HistoryTableViewCell.swift */; };
 		BC52085C1D07FE700051742A /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */; };
 		BC5208621D095B1B0051742A /* DataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208611D095B1B0051742A /* DataManagement.swift */; };
+		BC7770201D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77701E1D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift */; };
+		BC7770211D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC77701F1D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib */; };
 		BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */; };
 		BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60D1CF2A1C000B11F89 /* ViewController.swift */; };
 		BC85F6111CF2A1C000B11F89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC85F60F1CF2A1C000B11F89 /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		BC5208591D07FE700051742A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC5208611D095B1B0051742A /* DataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagement.swift; sourceTree = "<group>"; };
+		BC77701E1D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCustomHeaderCell.swift; sourceTree = "<group>"; };
+		BC77701F1D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryCustomHeaderCell.xib; sourceTree = "<group>"; };
 		BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC85F60D1CF2A1C000B11F89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				BCDB65631CFD80F10041FBAD /* StatisticsView.swift */,
 				BC5208591D07FE700051742A /* HistoryTableViewCell.swift */,
 				BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */,
+				BC77701E1D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift */,
+				BC77701F1D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 			files = (
 				BCCFE5161CF79D68004323B0 /* RobotoMono-Italic.ttf in Resources */,
 				BC52085C1D07FE700051742A /* HistoryTableViewCell.xib in Resources */,
+				BC7770211D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib in Resources */,
 				BCCFE51A1CF79D68004323B0 /* RobotoMono-MediumItalic.ttf in Resources */,
 				BCCFE5131CF79D68004323B0 /* LICENSE.txt in Resources */,
 				BCCFE5151CF79D68004323B0 /* RobotoMono-BoldItalic.ttf in Resources */,
@@ -352,6 +359,7 @@
 				BC85F6361CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift in Sources */,
 				BCE4E90A1CFA7DC700976948 /* HistoryViewController.swift in Sources */,
 				BC85F62B1CF2B20200B11F89 /* NewRecordNavigationController.swift in Sources */,
+				BC7770201D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,8 +11,7 @@ import CoreData
 
 
 
-
-class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,6 +35,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
 //    var locationList = [Locations]()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +45,10 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let nib = UINib(nibName: "HistoryTableViewCell" , bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "HistoryTableViewCell")
+        
+        let nibHealder = UINib(nibName: "HistoryCustomHeaderCell", bundle: nil)
+        tableView.registerNib(nibHealder, forCellReuseIdentifier: "HistoryCustomHeaderCell")
+        
         tableView.dataSource = self  // 或這是從storyboard拉tableview到controller選擇dataSource
         tableView.delegate = self   // 或這是從storyboard拉tableview到controller選擇delegate
         
@@ -57,16 +61,21 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 1
+       return recordModel.fetchedResultsController.sections?.count ?? 1
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return recordModel.saveRecords.count
+//        
+        if let sections = recordModel.fetchedResultsController?.sections where sections.count > 0 {
+            return sections[section].numberOfObjects
+        } else { return 0 }
+       
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryTableViewCell", forIndexPath: indexPath) as! HistoryTableViewCell
+        
         
         cell.dateLabel.text = "\(dateString(recordModel.saveRecords[indexPath.row].timestamp))"
         cell.distanceLabel.text = "\(numberString((recordModel.saveRecords[indexPath.row].distance)/1000)) km"
@@ -74,6 +83,30 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         return cell
     }
+    
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let sections = recordModel.fetchedResultsController?.sections where sections.count > 0 {
+            return sections[section].name
+        } else { return nil }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24.0
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.dequeueReusableCellWithIdentifier("HistoryCustomHeaderCell") as! HistoryCustomHeaderCell
+        if let sections = recordModel.fetchedResultsController?.sections where sections.count > 0 {
+            headerCell.dateLabel.text = sections[section].name
+        }else {
+            return nil
+        }
+        
+        return headerCell
+    }
+ 
+    
     
     
     //MARK: Navigation

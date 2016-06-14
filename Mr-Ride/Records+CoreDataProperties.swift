@@ -23,5 +23,19 @@ extension Records {
     @NSManaged var totalAverageSpeed: NSNumber?
     @NSManaged var totalCount: NSNumber?
     @NSManaged var location: NSOrderedSet?
+    
+    var dateForSection: String {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMMM, YYYY"
+        return dateFormatter.stringFromDate(timestamp!)
+        
+        
+//        let calendar = NSCalendar.currentCalendar()
+//        let dateComponents = calendar.components([.Day, .Month, .Year], fromDate: timestamp!)
+//        dateComponents.timeZone = NSTimeZone(name: "CST")
+//        let sectionName = String(dateComponents.month) + ", " + String(dateComponents.year)
+//        return sectionName
+    }
 
 }

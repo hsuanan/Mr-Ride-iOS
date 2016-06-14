@@ -32,11 +32,19 @@ class DataManager {
 
     static let sharedDataManager = DataManager()
     
-    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+//    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
+    lazy var moc: NSManagedObjectContext = {
+        return (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    }()
+    
+    var fetchedResultsController: NSFetchedResultsController!
     
     var saveRecords = [RecordsModel]()
     
     var locationList = [Locations]()
+    
+    
     
     func fetchRecordsCoreData(){
         
@@ -49,10 +57,22 @@ class DataManager {
         fetchRequest.fetchBatchSize = 10
         //        fetchRequest.fetchLimit = 1
         
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: "dateForSection", cacheName: nil)
+        
+        do {
+            try fetchedResultsController.performFetch()
+            print ("fetchedResultsController.performFetch")
+            print ("SectionCount: \(fetchedResultsController.sections!.count)")
+        } catch let error as NSError {
+            print ("Unable to perform fetch: \(error.localizedDescription)")
+        }
+        
         do {
             let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
             
 //            print("fetchedRecords: \(fetchedRecords)")
+            
+            saveRecords.removeAll()
             
             for eachFetchedRecord in fetchedRecords {
                 
