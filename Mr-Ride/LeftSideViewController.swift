@@ -76,11 +76,11 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
             
         case 1:
             
-            let historyNavController = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryNavigationController") as! HistoryNavigationController
+            let historyNav = self.storyboard?.instantiateViewControllerWithIdentifier("HistoryNavigationController") as! HistoryNavigationController
             
             let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
-            appDelegate.centerContainer!.centerViewController = historyNavController
+            appDelegate.centerContainer!.centerViewController = historyNav
             
             appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
             

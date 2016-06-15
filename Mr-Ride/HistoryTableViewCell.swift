@@ -10,6 +10,7 @@ import UIKit
 
 class HistoryTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var distanceLabel: UILabel!
@@ -34,7 +35,8 @@ class HistoryTableViewCell: UITableViewCell {
     
     func setup(){
         
-        self.backgroundColor = UIColor.mrPineGreen85Color()        
+        self.backgroundColor = UIColor.clearColor()
+        cellView.backgroundColor = UIColor.mrPineGreen85Color()
         
         distanceLabel.font = UIFont(name: "RobotoMono-Light", size: 24)
         distanceLabel.textColor = UIColor.mrWhiteColor()

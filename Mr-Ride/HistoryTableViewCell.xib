@@ -15,6 +15,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="451" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAh-jH-0t0" userLabel="cellView">
+                        <rect key="frame" x="0.0" y="0.0" width="451" height="68"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBm-d5-0HO">
                         <rect key="frame" x="21" y="24" width="21" height="21"/>
                         <constraints>
@@ -90,10 +94,13 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="rAh-jH-0t0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0o1-Al-zGM"/>
                     <constraint firstItem="dBm-d5-0HO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="13" id="53B-3O-VXk"/>
                     <constraint firstItem="UEb-t3-Wi9" firstAttribute="leading" secondItem="9sB-6u-6Oi" secondAttribute="trailing" constant="16" id="5zT-4f-KsJ"/>
                     <constraint firstItem="UEb-t3-Wi9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="13" id="7ry-P4-J4w"/>
                     <constraint firstItem="MwH-a9-09G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="66" id="9Tn-FF-tAE"/>
+                    <constraint firstAttribute="bottom" secondItem="rAh-jH-0t0" secondAttribute="bottom" constant="1" id="B3q-OH-HJk"/>
+                    <constraint firstAttribute="trailing" secondItem="rAh-jH-0t0" secondAttribute="trailing" id="EDw-4r-mK6"/>
                     <constraint firstItem="MwH-a9-09G" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="EN8-hR-74C"/>
                     <constraint firstItem="WIb-Xk-KbH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="23" id="OpU-gL-zRi"/>
                     <constraint firstAttribute="bottomMargin" secondItem="UEb-t3-Wi9" secondAttribute="bottom" constant="13" id="TTy-BN-fFa"/>
@@ -101,6 +108,7 @@
                     <constraint firstItem="MwH-a9-09G" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Xzw-hy-6JM"/>
                     <constraint firstAttribute="bottomMargin" secondItem="WIb-Xk-KbH" secondAttribute="bottom" constant="18" id="YvJ-u4-Zzb"/>
                     <constraint firstItem="UEb-t3-Wi9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bsC-tb-Sa7"/>
+                    <constraint firstItem="rAh-jH-0t0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dGf-FU-PR6"/>
                     <constraint firstItem="dBm-d5-0HO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="e41-hd-Stv"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UEb-t3-Wi9" secondAttribute="trailing" constant="25" id="eHi-B9-fOG"/>
                     <constraint firstItem="9sB-6u-6Oi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="13" id="eiQ-bg-o0d"/>
@@ -128,6 +136,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="cellView" destination="rAh-jH-0t0" id="LaG-4J-Lff"/>
                 <outlet property="dateLabel" destination="dBm-d5-0HO" id="0kn-5Y-YNi"/>
                 <outlet property="distanceLabel" destination="9sB-6u-6Oi" id="ngu-dP-bqn"/>
                 <outlet property="durationLabel" destination="UEb-t3-Wi9" id="dPC-Ec-9xu"/>

@@ -472,7 +472,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="dra-qF-pbM">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="0MZ-3e-d9Q">
+                        <barButtonItem key="leftBarButtonItem" id="0MZ-3e-d9Q">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="BackOrDoneButtonTapped:" destination="BYZ-38-t0r" id="LUA-5m-joA"/>
@@ -765,10 +765,10 @@
                                     <constraint firstAttribute="height" constant="333" id="XwE-Og-06O"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sFP-d0-Umd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sFP-d0-Umd">
                                 <rect key="frame" x="25" y="255" width="551" height="345"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryTableViewCell" rowHeight="60" id="6ru-zX-ODI" customClass="HistoryTableViewCell" customModule="Mr_Ride" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="551" height="60"/>
@@ -849,6 +849,6 @@
         <image name="image-history-background" width="1536" height="1021"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w2h-y2-yE7"/>
+        <segue reference="Tio-gD-Ec1"/>
     </inferredMetricsTieBreakers>
 </document>

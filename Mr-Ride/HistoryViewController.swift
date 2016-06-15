@@ -39,12 +39,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         setup()
         
-        let nib = UINib(nibName: "HistoryTableViewCell" , bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "HistoryTableViewCell")
-        
-        let nibHealder = UINib(nibName: "HistoryCustomHeaderCell", bundle: nil)
-        tableView.registerNib(nibHealder, forCellReuseIdentifier: "HistoryCustomHeaderCell")
-        
         tableView.dataSource = self  // or 從storyboard拉tableview到controller選擇dataSource
         tableView.delegate = self   // or 從storyboard拉tableview到controller選擇delegate
         
@@ -83,20 +77,12 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
                 print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
                 return cell}
         
-        
         cell.dateLabel.text = "\(dateString(timestemp))"
         cell.distanceLabel.text = "\(numberString(distance/1000)) km"
         cell.durationLabel.text = "\(timerString(duration))"
         
-        
-        
-        //        cell.dateLabel.text = "\(dateString(recordModel.saveRecords[indexPath.row].timestamp))"
-        //        cell.distanceLabel.text = "\(numberString((recordModel.saveRecords[indexPath.row].distance)/1000)) km"
-        //        cell.durationLabel.text = "\(timerString(recordModel.saveRecords[indexPath.row].duration))"
-        
         return cell
     }
-    
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = recordModel.fetchedResultsController?.sections where sections.count > 0 {
@@ -120,8 +106,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    
-    
     //MARK: Navigation
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -129,6 +113,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
         
+
         let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
         
         guard
@@ -166,7 +151,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
         
-        
             destinationController.timestamp = timestemp
             destinationController.distance = distance
             destinationController.calories = calories
@@ -178,8 +162,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             self.navigationController?.pushViewController(destinationController, animated: true)
         
     }
-    
-    
     
     func dateString(date: NSDate) -> String {
         
@@ -204,14 +186,15 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    
     //MARK: setup
     
     func setup() {
         
         view.backgroundColor = UIColor.mrLightblueColor()
+        
         tableView.backgroundColor = UIColor.clearColor()
-        tableView.separatorColor = UIColor.redColor()
+//        tableView.separatorColor = UIColor.redColor()
+//        tableView.separatorStyle = .SingleLine
         
         let gradient = CAGradientLayer()
         let color1 = UIColor.mrLightblueColor().colorWithAlphaComponent(1)
@@ -219,6 +202,14 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         gradient.frame = backgroundImage.bounds
         gradient.colors = [color1.CGColor,color2.CGColor]
         backgroundImage.layer.insertSublayer(gradient, atIndex: 0)
+        
+        // setup xib
+        let nib = UINib(nibName: "HistoryTableViewCell" , bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "HistoryTableViewCell")
+        
+        let nibHealder = UINib(nibName: "HistoryCustomHeaderCell", bundle: nil)
+        tableView.registerNib(nibHealder, forCellReuseIdentifier: "HistoryCustomHeaderCell")
+        
         
     }
     
