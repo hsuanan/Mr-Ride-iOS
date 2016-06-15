@@ -68,7 +68,7 @@ class DataManager {
         } catch let error as NSError {
             print ("Unable to perform fetch: \(error.localizedDescription)")
         }
-        
+ //// storing data to array will cause memory usege raise
 //        do {
 //            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
 //            

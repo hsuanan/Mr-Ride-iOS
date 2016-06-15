@@ -163,8 +163,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             
             locationList.append(
                 Locations(latitude: latitude, longitude: longitude))
-        
+            
         }
+        
         
             destinationController.timestamp = timestemp
             destinationController.distance = distance
@@ -173,7 +174,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             destinationController.duration = duration
             destinationController.locations = locationList
                 
-                //        destinationController.records = recordModel.saveRecords[indexPath.row]
             destinationController.isFromHistory = true
             self.navigationController?.pushViewController(destinationController, animated: true)
         

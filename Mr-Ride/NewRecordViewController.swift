@@ -67,7 +67,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         startIsOn = false
         
-        performSegueWithIdentifier("showStatisticsPage", sender: sender)
+        passDataToStatisticsPage()
         
     }
     
@@ -127,15 +127,15 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         locationManager.stopUpdatingLocation()
         print("Stop Updating Location")
+        
+        mapView = nil
+        // avoid mapView佔記憶體
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
         print("NewRecordsViewDidDisappear")
-        
-        mapView = nil
-        // avoid mapView佔記憶體
     }
         
     
@@ -257,6 +257,37 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    //MARK: passdata
+    
+    func passDataToStatisticsPage() {
+        
+        let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
+        
+        destinationController.timestamp = date
+        destinationController.distance = traveledDistance
+        destinationController.duration = timeInterval
+        destinationController.calories = Double(caloriesBurned)
+        destinationController.averageSpeed = averageSpeed
+        
+        var passedLocations = [Locations]()
+        for location in myLocations {
+            guard
+            let latitude = location.coordinate.latitude as? Double,
+            let longitude = location.coordinate.longitude as? Double
+            
+            else {return}
+            
+            passedLocations.append(
+                Locations(
+                    latitude: latitude,
+                    longitude: longitude))
+        }
+    
+        destinationController.locations = passedLocations
+        
+        self.navigationController?.pushViewController(destinationController, animated: true)
+        
+    }
     
     // MARK: Core Data
     

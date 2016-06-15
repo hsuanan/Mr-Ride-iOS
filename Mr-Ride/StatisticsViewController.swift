@@ -20,7 +20,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     let recordModel = DataManager.sharedDataManager
     
-//    var records: RecordsModel?
+    //    var records: RecordsModel?
     
     var timestamp: NSDate?
     var distance: Double?
@@ -52,22 +52,34 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         recordModel.fetchRecordsCoreData()
         statisticsView.mapView.delegate = self
         
+        uploadRecord()
         showRoute()
         
         if isFromHistory == false {
             navigationItem.leftBarButtonItem?.title = "Done"
             print("isFromHistory is false")
-//            uploadNewRecord()
+            //            uploadNewRecord()
             
         } else {
             navigationItem.leftBarButtonItem?.title = "< Back"
             print("isFromHistory is true")
-            uploadRecordFromHistoryPage()
+//            uploadRecord()
         }
         
     }
     
-    func uploadRecordFromHistoryPage() {
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        print("StatisticViewWillDisappear")
+        
+        statisticsView.mapView = nil
+        // avoid mapView佔記憶體
+    }
+    
+    
+    
+    func uploadRecord() {
         
         statisticsView.distanceValue.text = "\(Int(distance!)) m"
         statisticsView.caloriesValue.text = "\(Int(calories!)) kcal"
@@ -76,107 +88,143 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         navigationItem.title = "\(dateString(timestamp!))"
         
     }
-    
-    
-    
-//    func uploadNewRecord() {
-//
-//        let savedData = recordModel.saveRecords.last
+
+////  fetchdata according timestamp pass from history page or newrecord page
+//    func uploadRecords(){
 //        
-//        if savedData != nil {
-//            statisticsView.distanceValue.text = "\(Int(savedData!.distance)) m"
-//            statisticsView.caloriesValue.text = "\(Int(savedData!.calories)) kcal"
-//            statisticsView.totalTimeValue.text = "\(timerString(savedData!.duration))"
-//            statisticsView.averageSpeedValue.text = "\(Int(savedData!.averageSpeed)) km/hr"
-//            navigationItem.title = "\(dateString(savedData!.timestamp))"
+//        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+//        
+//        let fetchRequest = NSFetchRequest(entityName: "Records")
+//        fetchRequest.predicate = NSPredicate(format: "timestamp = %@", timestamp!)
+//        fetchRequest.fetchLimit = 1
+//
+//        do {
+//            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
 //            
-//        } else {
-//            print ("recordModel.saveRecords.last is nil");
-//            return
+//            guard
+//                let timestemp = fetchedRecords.timestamp,
+//                let distance = fetchedRecords.distance as? Double,
+//                let calories = fetchedRecords.calories as? Double,
+//                let duration = fetchedRecords.duration as? Double,
+//                let averageSpeed = fetchedRecords.averageSpeed as? Double,
+//                let locationSet = fetchedRecords.location
+//                
+//                else {
+//                    print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
+//                    continue }
+//            
+//            statisticsView.distanceValue.text = "\(Int(distance)) m"
+//            statisticsView.caloriesValue.text = "\(Int(calories)) kcal"
+//            statisticsView.totalTimeValue.text = "\(timerString(duration))"
+//            statisticsView.averageSpeedValue.text = "\(Int(averageSpeed)) km/hr"
+//            navigationItem.title = "\(dateString(timestamp))"
+//            
+//        }
+//        catch {
+//            let fetchError = error as NSError
+//            print("fetchError:\(fetchError)")
 //        }
 //    }
-//    
-//    func uploadRecordFromHistoryPage() {
-//        
-//        if records != nil {
-//            
-//            statisticsView.distanceValue.text = "\(Int(records!.distance)) m"
-//            statisticsView.caloriesValue.text = "\(Int(records!.calories)) kcal"
-//            statisticsView.totalTimeValue.text = "\(timerString((records?.duration)!))"
-//            statisticsView.averageSpeedValue.text = "\(Int((records?.averageSpeed)!)) km/hr"
-//            navigationItem.title = "\(dateString((records?.timestamp)!))"
-//            
-//        } else {
-//            print("records is nil");
-//            return }
     
-        
-        //    //MARK: Core Data
-        //    func fetchRecordsCoreData(){
-        //
-        //        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        //
-        //        let fetchRequest = NSFetchRequest(entityName: "Records")
-        //
-        //        do {
-        //            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
-        //
-        //            guard let lastRecord = fetchedRecords.last
-        //
-        //                else {
-        //                    print("[StaticsViewController](fetchRecordsCoreData) can't get last record");
-        //                    return }
-        //
-        //            guard
-        //                let timestemp = lastRecord.timestamp,
-        //                let distance = lastRecord.distance,
-        //                let calories = lastRecord.calories,
-        //                let duration = lastRecord.duration as? Double,
-        //                let averageSpeed = lastRecord.averageSpeed,
-        //                let locationSet = lastRecord.location
-        //
-        //                else {
-        //                    print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
-        //                    return }
-        //
-        //            guard let loctionArray = locationSet.array as? [Location]
-        //
-        //                else {
-        //                    print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
-        //                    return }
-        //
-        //            for location in loctionArray {
-        //
-        ////                print("latitude:\(location.latitude) longitude:\(location.longitude)")
-        //
-        //                guard
-        //                    let latitude = location.latitude as? Double,
-        //                    let longitude = location.longitude as? Double
-        //
-        //                    else {continue}
-        //                locationList.append(
-        //                    Locations(latitude: latitude, longitude: longitude))
-        //
-        //            }
-        //
-        //            print("locationList: \(locationList)")
-        //
-        //
-        //            statisticsView.distanceValue.text = "\(Int(duration)) m"
-        //            statisticsView.caloriesValue.text = "\(Int(calories)) kcal"
-        //            statisticsView.totalTimeValue.text = "\(timerString(duration))"
-        //            statisticsView.averageSpeedValue.text = "\(Int(averageSpeed)) km/hr"
-        //            navigationItem.title = "\(dateString(timestemp))"
-        //
-        //        } catch {
-        //            let fetchError = error as NSError
-        //            print("fetchError:\(fetchError)")
-        //        }
-        //    }
-        
-//    }
-        //MARK: Helper Method
-  
+ //// upload data from saved array
+    //    func uploadNewRecord() {
+    //
+    //        let savedData = recordModel.saveRecords.last
+    //
+    //        if savedData != nil {
+    //            statisticsView.distanceValue.text = "\(Int(savedData!.distance)) m"
+    //            statisticsView.caloriesValue.text = "\(Int(savedData!.calories)) kcal"
+    //            statisticsView.totalTimeValue.text = "\(timerString(savedData!.duration))"
+    //            statisticsView.averageSpeedValue.text = "\(Int(savedData!.averageSpeed)) km/hr"
+    //            navigationItem.title = "\(dateString(savedData!.timestamp))"
+    //
+    //        } else {
+    //            print ("recordModel.saveRecords.last is nil");
+    //            return
+    //        }
+    //    }
+    //
+    //    func uploadRecordFromHistoryPage() {
+    //
+    //        if records != nil {
+    //
+    //            statisticsView.distanceValue.text = "\(Int(records!.distance)) m"
+    //            statisticsView.caloriesValue.text = "\(Int(records!.calories)) kcal"
+    //            statisticsView.totalTimeValue.text = "\(timerString((records?.duration)!))"
+    //            statisticsView.averageSpeedValue.text = "\(Int((records?.averageSpeed)!)) km/hr"
+    //            navigationItem.title = "\(dateString((records?.timestamp)!))"
+    //
+    //        } else {
+    //            print("records is nil");
+    //            return }
+    
+    
+    //    //MARK: Core Data
+    //    func fetchRecordsCoreData(){
+    //
+    //        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    //
+    //        let fetchRequest = NSFetchRequest(entityName: "Records")
+    //
+    //        do {
+    //            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
+    //
+    //            guard let lastRecord = fetchedRecords.last
+    //
+    //                else {
+    //                    print("[StaticsViewController](fetchRecordsCoreData) can't get last record");
+    //                    return }
+    //
+    //            guard
+    //                let timestemp = lastRecord.timestamp,
+    //                let distance = lastRecord.distance,
+    //                let calories = lastRecord.calories,
+    //                let duration = lastRecord.duration as? Double,
+    //                let averageSpeed = lastRecord.averageSpeed,
+    //                let locationSet = lastRecord.location
+    //
+    //                else {
+    //                    print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
+    //                    return }
+    //
+    //            guard let loctionArray = locationSet.array as? [Location]
+    //
+    //                else {
+    //                    print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
+    //                    return }
+    //
+    //            for location in loctionArray {
+    //
+    ////                print("latitude:\(location.latitude) longitude:\(location.longitude)")
+    //
+    //                guard
+    //                    let latitude = location.latitude as? Double,
+    //                    let longitude = location.longitude as? Double
+    //
+    //                    else {continue}
+    //                locationList.append(
+    //                    Locations(latitude: latitude, longitude: longitude))
+    //
+    //            }
+    //
+    //            print("locationList: \(locationList)")
+    //
+    //
+    //            statisticsView.distanceValue.text = "\(Int(duration)) m"
+    //            statisticsView.caloriesValue.text = "\(Int(calories)) kcal"
+    //            statisticsView.totalTimeValue.text = "\(timerString(duration))"
+    //            statisticsView.averageSpeedValue.text = "\(Int(averageSpeed)) km/hr"
+    //            navigationItem.title = "\(dateString(timestemp))"
+    //
+    //        } catch {
+    //            let fetchError = error as NSError
+    //            print("fetchError:\(fetchError)")
+    //        }
+    //    }
+    
+    //    }
+    //MARK: Helper Method
+    
     func dateString(date: NSDate) -> String {
         
         let dateFormatter = NSDateFormatter()
@@ -205,20 +253,24 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     func showRoute() {
         //        for location in locationList {
         
-//        if isFromHistory == false {
-//            
-//            let savedData = recordModel.saveRecords.last
-//            
-//            for location in savedData!.location {
-//                
-//                coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-//            }
-//        } else {
+        //        if isFromHistory == false {
+        //
+        //            let savedData = recordModel.saveRecords.last
+        //
+        //            for location in savedData!.location {
+        //
+        //                coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+        //            }
+        //        } else {
         
-            for location in locations {
-                
-                coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-            }
+        for location in locations {
+            
+            coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+        }
+    
+        
+//        for location in locations {
+//            coordToUse.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
 //        }
         
         let polyline = MKPolyline(coordinates: &coordToUse, count: coordToUse.count)
@@ -226,6 +278,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         statisticsView.mapView.addOverlay(polyline)
         statisticsView.mapView.zoomToPolyLine(polyline, animated: true)
     }
+    
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
         
