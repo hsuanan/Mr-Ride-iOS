@@ -85,7 +85,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     var averageSpeed = 0.0
     var currentSpeed = 0.0
     var caloriesBurned = 0
-    let date = NSDate()
+    var date = NSDate()
     var weight = 0.0
 //    var myLocationSet = [[CLLocation]]()
     
@@ -105,6 +105,9 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         setupPlayButton()
         
         getLocationUpdate()
+        
+//        dateTest("2016/04/21")
+        
     }
     
     //resize layers based on the view's new frame
@@ -328,6 +331,15 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             fatalError("Failure to save context: \(error)")
         }
     }
+    
+    //MARK: Test date
+    func dateTest(dateString: String){
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        date = dateFormatter.dateFromString(dateString)!
+        
+    }
 }
 
 // Mark: Map
@@ -516,6 +528,5 @@ extension NewRecordViewController {
                 self.playPauseButtonView.layer.cornerRadius = self.playPauseButtonView.frame.size.width / 2
         })
     }
-    
     
 }

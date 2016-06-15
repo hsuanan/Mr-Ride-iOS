@@ -14,7 +14,7 @@ class HistoryNavigationController: UINavigationController {
         super.viewDidLoad()
         
         navigationBar.barStyle = UIBarStyle.Black
-        navigationBar.topItem?.title = "AA"
+        navigationBar.topItem?.title = "Hsitory"
         navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.barTintColor = UIColor.mrLightblueColor()
         navigationBar.translucent = false

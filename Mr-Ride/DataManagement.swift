@@ -51,7 +51,7 @@ class DataManager {
         let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
         let fetchRequest = NSFetchRequest(entityName: "Records")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
         let date = NSDate()
         fetchRequest.predicate = NSPredicate(format: "timestamp < %@", date )
 //        fetchRequest.fetchBatchSize = 10

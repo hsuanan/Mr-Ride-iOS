@@ -15,20 +15,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="540" height="127"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vW-rz-tUv">
-                        <rect key="frame" x="28" y="53" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9e-rZ-wcH">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="117"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vW-rz-tUv">
+                                <rect key="frame" x="20" y="48" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3vW-rz-tUv" firstAttribute="leading" secondItem="x9e-rZ-wcH" secondAttribute="leading" constant="20" id="a7y-6K-rp0"/>
+                            <constraint firstItem="3vW-rz-tUv" firstAttribute="centerY" secondItem="x9e-rZ-wcH" secondAttribute="centerY" id="hIn-LL-gSH"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="3vW-rz-tUv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="Whe-NJ-2Jb"/>
-                    <constraint firstItem="3vW-rz-tUv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jgL-Bq-p8r"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="x9e-rZ-wcH" secondAttribute="trailing" constant="-8" id="Mea-ka-cDu"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="x9e-rZ-wcH" secondAttribute="bottom" constant="2" id="kVO-ja-bVR"/>
+                    <constraint firstItem="x9e-rZ-wcH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="mQa-j3-Rn2"/>
+                    <constraint firstItem="x9e-rZ-wcH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="wq7-y5-lcB"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="dateLabel" destination="3vW-rz-tUv" id="ArG-px-e7F"/>
+                <outlet property="headerView" destination="x9e-rZ-wcH" id="gj9-ZN-9ey"/>
             </connections>
             <point key="canvasLocation" x="501" y="319"/>
         </tableViewCell>

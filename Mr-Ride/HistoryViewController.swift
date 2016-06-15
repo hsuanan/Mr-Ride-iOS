@@ -91,7 +91,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 24.0
+        return 34.0
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -193,8 +193,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         view.backgroundColor = UIColor.mrLightblueColor()
         
         tableView.backgroundColor = UIColor.clearColor()
-//        tableView.separatorColor = UIColor.redColor()
-//        tableView.separatorStyle = .SingleLine
         
         let gradient = CAGradientLayer()
         let color1 = UIColor.mrLightblueColor().colorWithAlphaComponent(1)

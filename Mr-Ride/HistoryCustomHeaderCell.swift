@@ -12,10 +12,13 @@ class HistoryCustomHeaderCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var headerView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.clearColor()
+        headerView.backgroundColor = UIColor.whiteColor()
         
 //        dateLabel.font = UIFont.mrTextStyle125Font()
         dateLabel.textColor = UIColor.mrDarkSlateBlueColor()
