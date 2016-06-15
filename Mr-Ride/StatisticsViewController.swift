@@ -11,9 +11,6 @@ import MapKit
 import CoreData
 
 
-
-
-
 class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     //    var locationList = [Locations]()
@@ -23,9 +20,14 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     let recordModel = DataManager.sharedDataManager
     
-    var records: RecordsModel?
+//    var records: RecordsModel?
     
-    var date: NSDate?
+    var timestamp: NSDate?
+    var distance: Double?
+    var averageSpeed: Double?
+    var calories: Double?
+    var duration: Double?
+    var locations: [Locations]=[]
     
     var isFromHistory = false
     
@@ -55,7 +57,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         if isFromHistory == false {
             navigationItem.leftBarButtonItem?.title = "Done"
             print("isFromHistory is false")
-            uploadNewRecord()
+//            uploadNewRecord()
             
         } else {
             navigationItem.leftBarButtonItem?.title = "< Back"
@@ -65,38 +67,49 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
     }
     
-    
-    func uploadNewRecord() {
-        
-        let savedData = recordModel.saveRecords.last
-        
-        if savedData != nil {
-            statisticsView.distanceValue.text = "\(Int(savedData!.distance)) m"
-            statisticsView.caloriesValue.text = "\(Int(savedData!.calories)) kcal"
-            statisticsView.totalTimeValue.text = "\(timerString(savedData!.duration))"
-            statisticsView.averageSpeedValue.text = "\(Int(savedData!.averageSpeed)) km/hr"
-            navigationItem.title = "\(dateString(savedData!.timestamp))"
-            
-        } else {
-            print ("recordModel.saveRecords.last is nil");
-            return
-        }
-    }
-    
     func uploadRecordFromHistoryPage() {
         
-        if records != nil {
-            
-            statisticsView.distanceValue.text = "\(Int(records!.distance)) m"
-            statisticsView.caloriesValue.text = "\(Int(records!.calories)) kcal"
-            statisticsView.totalTimeValue.text = "\(timerString((records?.duration)!))"
-            statisticsView.averageSpeedValue.text = "\(Int((records?.averageSpeed)!)) km/hr"
-            navigationItem.title = "\(dateString((records?.timestamp)!))"
-            
-        } else {
-            print("records is nil");
-            return }
+        statisticsView.distanceValue.text = "\(Int(distance!)) m"
+        statisticsView.caloriesValue.text = "\(Int(calories!)) kcal"
+        statisticsView.totalTimeValue.text = "\(timerString(duration!))"
+        statisticsView.averageSpeedValue.text = "\(Int(averageSpeed!)) km/hr"
+        navigationItem.title = "\(dateString(timestamp!))"
         
+    }
+    
+    
+    
+//    func uploadNewRecord() {
+//
+//        let savedData = recordModel.saveRecords.last
+//        
+//        if savedData != nil {
+//            statisticsView.distanceValue.text = "\(Int(savedData!.distance)) m"
+//            statisticsView.caloriesValue.text = "\(Int(savedData!.calories)) kcal"
+//            statisticsView.totalTimeValue.text = "\(timerString(savedData!.duration))"
+//            statisticsView.averageSpeedValue.text = "\(Int(savedData!.averageSpeed)) km/hr"
+//            navigationItem.title = "\(dateString(savedData!.timestamp))"
+//            
+//        } else {
+//            print ("recordModel.saveRecords.last is nil");
+//            return
+//        }
+//    }
+//    
+//    func uploadRecordFromHistoryPage() {
+//        
+//        if records != nil {
+//            
+//            statisticsView.distanceValue.text = "\(Int(records!.distance)) m"
+//            statisticsView.caloriesValue.text = "\(Int(records!.calories)) kcal"
+//            statisticsView.totalTimeValue.text = "\(timerString((records?.duration)!))"
+//            statisticsView.averageSpeedValue.text = "\(Int((records?.averageSpeed)!)) km/hr"
+//            navigationItem.title = "\(dateString((records?.timestamp)!))"
+//            
+//        } else {
+//            print("records is nil");
+//            return }
+    
         
         //    //MARK: Core Data
         //    func fetchRecordsCoreData(){
@@ -161,9 +174,9 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         //        }
         //    }
         
-        
+//    }
         //MARK: Helper Method
-    }
+  
     func dateString(date: NSDate) -> String {
         
         let dateFormatter = NSDateFormatter()
@@ -192,21 +205,21 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     func showRoute() {
         //        for location in locationList {
         
-        if isFromHistory == false {
-            
-            let savedData = recordModel.saveRecords.last
-            
-            for location in savedData!.location {
+//        if isFromHistory == false {
+//            
+//            let savedData = recordModel.saveRecords.last
+//            
+//            for location in savedData!.location {
+//                
+//                coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+//            }
+//        } else {
+        
+            for location in locations {
                 
                 coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
             }
-        } else {
-            
-            for location in (records?.location)! {
-                
-                coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-            }
-        }
+//        }
         
         let polyline = MKPolyline(coordinates: &coordToUse, count: coordToUse.count)
         

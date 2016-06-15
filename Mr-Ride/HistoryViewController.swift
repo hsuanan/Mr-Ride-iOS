@@ -17,7 +17,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var backgroundImage: UIImageView!
     
-    
     @IBAction func sideBarButtonTapped(sender: AnyObject) {
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -32,9 +31,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //    var saveRecords = [SavedRecords]()
     //
-    //    var locationList = [Locations]()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +45,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let nibHealder = UINib(nibName: "HistoryCustomHeaderCell", bundle: nil)
         tableView.registerNib(nibHealder, forCellReuseIdentifier: "HistoryCustomHeaderCell")
         
-        tableView.dataSource = self  // 或這是從storyboard拉tableview到controller選擇dataSource
-        tableView.delegate = self   // 或這是從storyboard拉tableview到controller選擇delegate
+        tableView.dataSource = self  // or 從storyboard拉tableview到controller選擇dataSource
+        tableView.delegate = self   // or 從storyboard拉tableview到controller選擇delegate
         
         recordModel.fetchRecordsCoreData()
         
@@ -81,10 +77,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         guard
             let timestemp = records.timestamp,
             let distance = records.distance as? Double,
-            //            let calories = records.calories as? Double,
             let duration = records.duration as? Double
-            //            let averageSpeed = records.averageSpeed as? Double,
-            //            let locationSet = records.location
             
             else {
                 print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
@@ -137,11 +130,52 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
         
         let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
-        destinationController.date = records.timestamp
         
-//        destinationController.records = recordModel.saveRecords[indexPath.row]
-        destinationController.isFromHistory = true
-        self.navigationController?.pushViewController(destinationController, animated: true)
+        guard
+            let timestemp = records.timestamp,
+            let distance = records.distance as? Double,
+            let calories = records.calories as? Double,
+            let duration = records.duration as? Double,
+            let averageSpeed = records.averageSpeed as? Double,
+            let locationSet = records.location
+        
+            else {
+                print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
+                return}
+        
+        var locationList = [Locations]()  // put array inside the function rather than public to avoid appending previous data
+        
+        guard let loctionArray = locationSet.array as? [Location]
+            
+            else {
+                print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
+                return }
+        
+        for location in loctionArray {
+            
+            guard
+                let latitude = location.latitude as? Double,
+                let longitude = location.longitude as? Double
+                
+                else {
+                    print("[StaticsViewController](fetchRecordsCoreData) can't get latitude and logitude");
+                    continue}
+            
+            locationList.append(
+                Locations(latitude: latitude, longitude: longitude))
+        
+        }
+        
+            destinationController.timestamp = timestemp
+            destinationController.distance = distance
+            destinationController.calories = calories
+            destinationController.averageSpeed = averageSpeed
+            destinationController.duration = duration
+            destinationController.locations = locationList
+                
+                //        destinationController.records = recordModel.saveRecords[indexPath.row]
+            destinationController.isFromHistory = true
+            self.navigationController?.pushViewController(destinationController, animated: true)
         
     }
     
