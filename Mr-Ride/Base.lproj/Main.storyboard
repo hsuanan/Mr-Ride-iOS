@@ -798,7 +798,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqo-GT-qFP" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="25" y="84" width="551" height="131"/>
+                                <rect key="frame" x="25" y="84" width="551" height="151"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -811,7 +811,7 @@
                             <constraint firstItem="sFP-d0-Umd" firstAttribute="top" secondItem="sSm-vX-Gzn" secondAttribute="bottom" constant="191" id="Feo-fX-TqF"/>
                             <constraint firstItem="Xys-Cb-Y3t" firstAttribute="leading" secondItem="MS5-Z9-XV3" secondAttribute="leadingMargin" constant="-20" id="Rse-zb-rBu"/>
                             <constraint firstItem="Gbr-bj-qM2" firstAttribute="top" secondItem="sFP-d0-Umd" secondAttribute="bottom" id="W9z-hb-Ee5"/>
-                            <constraint firstItem="sFP-d0-Umd" firstAttribute="top" secondItem="hqo-GT-qFP" secondAttribute="bottom" constant="40" id="ZUM-Cf-bef"/>
+                            <constraint firstItem="sFP-d0-Umd" firstAttribute="top" secondItem="hqo-GT-qFP" secondAttribute="bottom" constant="20" id="ZUM-Cf-bef"/>
                             <constraint firstItem="sFP-d0-Umd" firstAttribute="leading" secondItem="MS5-Z9-XV3" secondAttribute="leadingMargin" constant="5" id="ehc-HR-2ek"/>
                             <constraint firstItem="Xys-Cb-Y3t" firstAttribute="trailing" secondItem="MS5-Z9-XV3" secondAttribute="trailingMargin" constant="20" id="yEG-zz-6zQ"/>
                             <constraint firstItem="hqo-GT-qFP" firstAttribute="top" secondItem="sSm-vX-Gzn" secondAttribute="bottom" constant="20" id="yrw-SZ-O4T"/>

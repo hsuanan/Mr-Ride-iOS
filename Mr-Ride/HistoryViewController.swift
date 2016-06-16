@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import Charts
 
-
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -30,6 +29,10 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let recordModel = DataManager.sharedDataManager
     
+    var date=[NSDate]()
+    var distance=[Double]()
+    var months:[String]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +45,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         recordModel.fetchRecordsCoreData()
         
+        
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        distance = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
+        
+        setChart(months, values: distance)
     }
     //MARK: Chart
     
@@ -54,10 +62,38 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             dataEntries.append(dataEntry)
         }
         
-        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Units Sold")
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "")
         let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
         
+        lineChartView.descriptionText = ""
+        lineChartView.backgroundColor = UIColor.mrLightblueColor()
+        
+        lineChartView.rightAxis.enabled = false
+        lineChartView.leftAxis.drawLabelsEnabled = false
+        lineChartView.leftAxis.drawAxisLineEnabled = false
+        lineChartView.leftAxis.gridColor = UIColor.whiteColor()
+        
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.xAxis.axisLineColor = UIColor.whiteColor()
+        lineChartView.xAxis.labelPosition = .Bottom
+        lineChartView.xAxis.labelTextColor = UIColor.whiteColor()
+        
+        
+        //        lineChartDataSet.setColor(UIColor.mrBrightSkyColor())
+        lineChartDataSet.colors = [UIColor.clearColor()]
+        lineChartDataSet.drawCirclesEnabled = false
+        lineChartDataSet.drawValuesEnabled = false
+        
+        lineChartDataSet.mode = .CubicBezier
+        lineChartDataSet.drawFilledEnabled = true
+        
+        let gradColors = [UIColor.mrBrightSkyColor().CGColor,UIColor.mrTurquoiseBlueColor().CGColor]
+        let colorLocations:[CGFloat] = [1.0, 0.0]
+        if let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradColors, colorLocations) {
+        lineChartDataSet.fill = ChartFill(linearGradient: gradient, angle: 90.0)
+            
+        }
     }
     
     
@@ -128,7 +164,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
         
-
+        
         let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
         
         guard
@@ -138,7 +174,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             let duration = records.duration as? Double,
             let averageSpeed = records.averageSpeed as? Double,
             let locationSet = records.location
-        
+            
             else {
                 print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
                 return}
@@ -166,15 +202,15 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
         
-            destinationController.timestamp = timestemp
-            destinationController.distance = distance
-            destinationController.calories = calories
-            destinationController.averageSpeed = averageSpeed
-            destinationController.duration = duration
-            destinationController.locations = locationList
-                
-            destinationController.isFromHistory = true
-            self.navigationController?.pushViewController(destinationController, animated: true)
+        destinationController.timestamp = timestemp
+        destinationController.distance = distance
+        destinationController.calories = calories
+        destinationController.averageSpeed = averageSpeed
+        destinationController.duration = duration
+        destinationController.locations = locationList
+        
+        destinationController.isFromHistory = true
+        self.navigationController?.pushViewController(destinationController, animated: true)
         
     }
     
