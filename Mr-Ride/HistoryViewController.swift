@@ -8,12 +8,14 @@
 
 import UIKit
 import CoreData
-
+import Charts
 
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var lineChartView: LineChartView!
     
     @IBOutlet weak var backgroundImage: UIImageView!
     
@@ -28,10 +30,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let recordModel = DataManager.sharedDataManager
     
-    
-    //    var saveRecords = [SavedRecords]()
-    //
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +43,23 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         recordModel.fetchRecordsCoreData()
         
     }
+    //MARK: Chart
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Units Sold")
+        let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
+        lineChartView.data = lineChartData
+        
+    }
+    
     
     
     // MARK: - Table view data source

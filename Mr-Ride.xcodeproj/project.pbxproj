@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC10F6741D1253B7006B37F3 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC10F66D1D125395006B37F3 /* Charts.framework */; };
+		BC10F6751D1253B7006B37F3 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC10F66D1D125395006B37F3 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BC52085B1D07FE700051742A /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208591D07FE700051742A /* HistoryTableViewCell.swift */; };
 		BC52085C1D07FE700051742A /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */; };
 		BC5208621D095B1B0051742A /* DataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208611D095B1B0051742A /* DataManagement.swift */; };
@@ -52,7 +54,60 @@
 		BCE4E90C1CFA824F00976948 /* HistoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BC10F66C1D125395006B37F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC10F6651D125395006B37F3 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+		BC10F66E1D125395006B37F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC10F6651D125395006B37F3 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
+			remoteInfo = "Charts-TV";
+		};
+		BC10F6701D125395006B37F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC10F6651D125395006B37F3 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65B3F5BF1C7370BE000983D0;
+			remoteInfo = "Charts-OSX";
+		};
+		BC10F6721D125395006B37F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC10F6651D125395006B37F3 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
+			remoteInfo = ChartsTests;
+		};
+		BC10F6761D1253B7006B37F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC10F6651D125395006B37F3 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC10F6781D1253B7006B37F3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BC10F6751D1253B7006B37F3 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BC10F6651D125395006B37F3 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master 2/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		BC5208591D07FE700051742A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC5208611D095B1B0051742A /* DataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagement.swift; sourceTree = "<group>"; };
@@ -112,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC10F6741D1253B7006B37F3 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +184,17 @@
 				BCDB65AF1D0041D80041FBAD /* Location.swift */,
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		BC10F6661D125395006B37F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC10F66D1D125395006B37F3 /* Charts.framework */,
+				BC10F66F1D125395006B37F3 /* Charts.framework */,
+				BC10F6711D125395006B37F3 /* Charts.framework */,
+				BC10F6731D125395006B37F3 /* ChartsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BC85F5FF1CF2A1C000B11F89 = {
@@ -149,6 +216,7 @@
 		BC85F60A1CF2A1C000B11F89 /* Mr-Ride */ = {
 			isa = PBXGroup;
 			children = (
+				BC10F6651D125395006B37F3 /* Charts.xcodeproj */,
 				BCDB65601CFD3E130041FBAD /* Mr-Ride.entitlements */,
 				BCCFE6101CF98DD2004323B0 /* MMDrawerController */,
 				BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */,
@@ -250,10 +318,12 @@
 				BC85F6041CF2A1C000B11F89 /* Sources */,
 				BC85F6051CF2A1C000B11F89 /* Frameworks */,
 				BC85F6061CF2A1C000B11F89 /* Resources */,
+				BC10F6781D1253B7006B37F3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BC10F6771D1253B7006B37F3 /* PBXTargetDependency */,
 			);
 			name = "Mr-Ride";
 			productName = "Mr-Ride";
@@ -295,12 +365,49 @@
 			mainGroup = BC85F5FF1CF2A1C000B11F89;
 			productRefGroup = BC85F6091CF2A1C000B11F89 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BC10F6661D125395006B37F3 /* Products */;
+					ProjectRef = BC10F6651D125395006B37F3 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BC85F6071CF2A1C000B11F89 /* Mr-Ride */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BC10F66D1D125395006B37F3 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = BC10F66C1D125395006B37F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC10F66F1D125395006B37F3 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = BC10F66E1D125395006B37F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC10F6711D125395006B37F3 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = BC10F6701D125395006B37F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BC10F6731D125395006B37F3 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = BC10F6721D125395006B37F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BC85F6061CF2A1C000B11F89 /* Resources */ = {
@@ -364,6 +471,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BC10F6771D1253B7006B37F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Charts-iOS";
+			targetProxy = BC10F6761D1253B7006B37F3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BC85F60F1CF2A1C000B11F89 /* Main.storyboard */ = {
@@ -475,6 +590,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Mr-Ride/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-HsinAn-Hsu.Mr-Ride";
@@ -489,6 +605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Mr-Ride/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-HsinAn-Hsu.Mr-Ride";
