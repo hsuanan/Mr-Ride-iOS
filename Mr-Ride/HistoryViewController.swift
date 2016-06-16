@@ -29,9 +29,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     let recordModel = DataManager.sharedDataManager
     
-    var date=[NSDate]()
-    var distance=[Double]()
-    var months:[String]!
+    var date=[String]()
+    var distances=[Double]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,25 +45,49 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         recordModel.fetchRecordsCoreData()
         
-        
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        distance = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
-        
-        setChart(months, values: distance)
+        getDataForChart()
+        setChart(date.reverse(), yAxis: distances.reverse())
+        print(date.count)
     }
     //MARK: Chart
     
-    func setChart(dataPoints: [String], values: [Double]) {
+    
+    func getDataForChart() {
+        for section in 0..<tableView.numberOfSections {
+            for row in 0..<tableView.numberOfRowsInSection(section) {
+                let indexPath = NSIndexPath(forRow: row, inSection: section)
+                
+                
+                let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
+                
+                guard
+                    let timestamp = records.timestamp,
+                    let distance = records.distance as? Double
+                    
+                    else {
+                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
+                        continue}
+                
+                date.append(dateString2(timestamp))
+                distances.append(distance)
+            }
+        }
+        
+        print("date\(date)")
+    }
+    
+    func setChart(xAxis: [String], yAxis: [Double]) {
+        
         
         var dataEntries: [ChartDataEntry] = []
         
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+        for i in 0..<xAxis.count {
+            let dataEntry = ChartDataEntry(value: yAxis[i], xIndex: i)
             dataEntries.append(dataEntry)
         }
         
         let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "")
-        let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
+        let lineChartData = LineChartData(xVals: xAxis, dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
         
         lineChartView.descriptionText = ""
@@ -79,15 +103,17 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         lineChartView.xAxis.labelPosition = .Bottom
         lineChartView.xAxis.labelTextColor = UIColor.whiteColor()
         
+        lineChartView.legend.enabled = false
         
-        //        lineChartDataSet.setColor(UIColor.mrBrightSkyColor())
+        
+        
+//        lineChartDataSet.setColor(UIColor.mrBrightSkyColor())
         lineChartDataSet.colors = [UIColor.clearColor()]
         lineChartDataSet.drawCirclesEnabled = false
         lineChartDataSet.drawValuesEnabled = false
         
         lineChartDataSet.mode = .CubicBezier
         lineChartDataSet.drawFilledEnabled = true
-        
         let gradColors = [UIColor.mrBrightSkyColor().CGColor,UIColor.mrTurquoiseBlueColor().CGColor]
         let colorLocations:[CGFloat] = [1.0, 0.0]
         if let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradColors, colorLocations) {
@@ -120,7 +146,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
         
         guard
-            let timestemp = records.timestamp,
+            let timestamp = records.timestamp,
             let distance = records.distance as? Double,
             let duration = records.duration as? Double
             
@@ -128,7 +154,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
                 print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
                 return cell}
         
-        cell.dateLabel.text = "\(dateString(timestemp))"
+        cell.dateLabel.text = "\(dateString(timestamp))"
         cell.distanceLabel.text = "\(numberString(distance/1000)) km"
         cell.durationLabel.text = "\(timerString(duration))"
         
@@ -156,6 +182,18 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         return headerCell
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerCell = tableView.dequeueReusableCellWithIdentifier("HistoryFooterTableViewCell") as! HistoryFooterTableViewCell
+        return footerCell
+    }
+    
+
+    
     
     //MARK: Navigation
     
@@ -168,7 +206,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
         
         guard
-            let timestemp = records.timestamp,
+            let timestamp = records.timestamp,
             let distance = records.distance as? Double,
             let calories = records.calories as? Double,
             let duration = records.duration as? Double,
@@ -202,7 +240,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
         
-        destinationController.timestamp = timestemp
+        destinationController.timestamp = timestamp
         destinationController.distance = distance
         destinationController.calories = calories
         destinationController.averageSpeed = averageSpeed
@@ -221,6 +259,16 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         return dateFormatter.stringFromDate(date)
         
     }
+    
+    func dateString2(date: NSDate) -> String {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        return dateFormatter.stringFromDate(date)
+        
+    }
+    
+    
     
     func numberString(number: Double ) -> NSString {
         
@@ -258,6 +306,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let nibHealder = UINib(nibName: "HistoryCustomHeaderCell", bundle: nil)
         tableView.registerNib(nibHealder, forCellReuseIdentifier: "HistoryCustomHeaderCell")
+        
+        let nibFooter = UINib(nibName: "HistoryFooterTableViewCell", bundle: nil)
+        tableView.registerNib(nibFooter, forCellReuseIdentifier: "HistoryFooterTableViewCell")
         
         
     }

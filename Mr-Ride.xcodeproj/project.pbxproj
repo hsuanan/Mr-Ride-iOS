@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BC10F6741D1253B7006B37F3 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC10F66D1D125395006B37F3 /* Charts.framework */; };
 		BC10F6751D1253B7006B37F3 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC10F66D1D125395006B37F3 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BC10F67B1D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC10F6791D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift */; };
+		BC10F67C1D12CA6D006B37F3 /* HistoryFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC10F67A1D12CA6D006B37F3 /* HistoryFooterTableViewCell.xib */; };
 		BC52085B1D07FE700051742A /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208591D07FE700051742A /* HistoryTableViewCell.swift */; };
 		BC52085C1D07FE700051742A /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */; };
 		BC5208621D095B1B0051742A /* DataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5208611D095B1B0051742A /* DataManagement.swift */; };
@@ -108,6 +110,8 @@
 
 /* Begin PBXFileReference section */
 		BC10F6651D125395006B37F3 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master 2/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		BC10F6791D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryFooterTableViewCell.swift; sourceTree = "<group>"; };
+		BC10F67A1D12CA6D006B37F3 /* HistoryFooterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryFooterTableViewCell.xib; sourceTree = "<group>"; };
 		BC5208591D07FE700051742A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC5208611D095B1B0051742A /* DataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagement.swift; sourceTree = "<group>"; };
@@ -269,6 +273,8 @@
 				BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */,
 				BC77701E1D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift */,
 				BC77701F1D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib */,
+				BC10F6791D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift */,
+				BC10F67A1D12CA6D006B37F3 /* HistoryFooterTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 				BCCFE5131CF79D68004323B0 /* LICENSE.txt in Resources */,
 				BCCFE5151CF79D68004323B0 /* RobotoMono-BoldItalic.ttf in Resources */,
 				BCCFE5171CF79D68004323B0 /* RobotoMono-Light.ttf in Resources */,
+				BC10F67C1D12CA6D006B37F3 /* HistoryFooterTableViewCell.xib in Resources */,
 				BCCFE5141CF79D68004323B0 /* RobotoMono-Bold.ttf in Resources */,
 				BCCFE5181CF79D68004323B0 /* RobotoMono-LightItalic.ttf in Resources */,
 				BC85F6191CF2A1C000B11F89 /* LaunchScreen.storyboard in Resources */,
@@ -458,6 +465,7 @@
 				BCCFE61D1CF98E34004323B0 /* MMDrawerVisualState.m in Sources */,
 				BC5208621D095B1B0051742A /* DataManagement.swift in Sources */,
 				BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */,
+				BC10F67B1D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift in Sources */,
 				BCE4E9041CF9DDD600976948 /* LeftSideTableViewCell.swift in Sources */,
 				BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */,
 				BC85F6341CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift in Sources */,
