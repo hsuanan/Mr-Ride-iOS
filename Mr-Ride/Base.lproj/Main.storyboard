@@ -233,7 +233,7 @@
                     <navigationItem key="navigationItem" id="hME-Iy-Jzo">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="teW-e6-i3R">
                             <connections>
-                                <segue destination="TCZ-ls-Gxg" kind="unwind" unwindAction="cancelToHomePageViewController:" id="Kez-9O-X6I"/>
+                                <action selector="cancelButtonTapped:" destination="zbu-3p-H3S" id="PnD-52-Qny"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Finish" id="wZo-H7-Arr">
@@ -258,7 +258,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PR5-5c-0qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="TCZ-ls-Gxg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2018" y="-430"/>
         </scene>
@@ -556,7 +555,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="clF-au-wli" kind="presentation" identifier="to NewRecordViewController" id="6IA-2c-sSj"/>
+                                    <action selector="letsRideButtonTapped:" destination="M0q-5d-7g8" eventType="touchUpInside" id="5Uc-b5-IZe"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSE-8E-TGB">
@@ -607,6 +606,7 @@
                         <outlet property="totalCoutValue" destination="RPz-Uy-XBE" id="8gy-n2-waN"/>
                         <outlet property="totalDistanceTitle" destination="AaD-lG-a99" id="5Uf-xy-vUb"/>
                         <outlet property="totalDistanceValue" destination="bS8-4q-dgs" id="XIO-LW-TfD"/>
+                        <segue destination="clF-au-wli" kind="presentation" id="Mk3-zT-w51"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXO-Lz-CHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -616,7 +616,7 @@
         <!--New Record Navigation Controller-->
         <scene sceneID="aYN-HJ-amR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="clF-au-wli" customClass="NewRecordNavigationController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewRecordNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="clF-au-wli" customClass="NewRecordNavigationController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jdk-Tb-bA0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -809,7 +809,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqo-GT-qFP" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="25" y="84" width="551" height="151"/>
+                                <rect key="frame" x="15" y="84" width="570" height="151"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -817,8 +817,8 @@
                         <constraints>
                             <constraint firstItem="sFP-d0-Umd" firstAttribute="trailing" secondItem="MS5-Z9-XV3" secondAttribute="trailingMargin" constant="-4" id="0Ak-ED-bVN"/>
                             <constraint firstItem="Gbr-bj-qM2" firstAttribute="top" secondItem="Xys-Cb-Y3t" secondAttribute="bottom" id="5aa-kR-8oE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hqo-GT-qFP" secondAttribute="trailing" constant="4" id="DAw-NZ-QtJ"/>
-                            <constraint firstItem="hqo-GT-qFP" firstAttribute="leading" secondItem="MS5-Z9-XV3" secondAttribute="leadingMargin" constant="5" id="Ezp-5B-E71"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hqo-GT-qFP" secondAttribute="trailing" constant="-5" id="DAw-NZ-QtJ"/>
+                            <constraint firstItem="hqo-GT-qFP" firstAttribute="leading" secondItem="MS5-Z9-XV3" secondAttribute="leadingMargin" constant="-5" id="Ezp-5B-E71"/>
                             <constraint firstItem="sFP-d0-Umd" firstAttribute="top" secondItem="sSm-vX-Gzn" secondAttribute="bottom" constant="191" id="Feo-fX-TqF"/>
                             <constraint firstItem="Xys-Cb-Y3t" firstAttribute="leading" secondItem="MS5-Z9-XV3" secondAttribute="leadingMargin" constant="-20" id="Rse-zb-rBu"/>
                             <constraint firstItem="Gbr-bj-qM2" firstAttribute="top" secondItem="sFP-d0-Umd" secondAttribute="bottom" id="W9z-hb-Ee5"/>
@@ -869,6 +869,6 @@
         <image name="image-history-background" width="1536" height="1021"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tio-gD-Ec1"/>
+        <segue reference="w2h-y2-yE7"/>
     </inferredMetricsTieBreakers>
 </document>

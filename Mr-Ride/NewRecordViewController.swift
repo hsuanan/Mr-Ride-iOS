@@ -12,6 +12,14 @@ import CoreLocation
 import CoreData
 
 
+// newrecordpage dismissed 之後需要 homepage 執行 didDismiss 功能（將label重新顯示）, 所以homepage 在newRecordPge 產生時 宣告 newRecordPage 的 delegate 是自己, 然後在 newrecordpage 給個 protocol , 並在 newrecordpage 宣告 delegate 遵循此 protocol, 之後便可呼叫自己代理人使用 protocol 的內容 （self.delegate.didDismiss)
+
+protocol NewRecordViewControllerDelegate: class {
+    
+    func didDismiss()
+    
+}
+
 class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView?
@@ -32,6 +40,18 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var circleView: UIView!
     
+    weak var delegate: NewRecordViewControllerDelegate?
+    
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        
+        print ("cancel button pressed")
+        
+        delegate?.didDismiss()
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        
+    }
     @IBOutlet weak var playPauseButtonView: UIView!
     
     @IBAction func playPauseButtonPressed(sender: UIButton) {
@@ -66,6 +86,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         print ("finishButtonTapped")
         
         startIsOn = false
+        
+        delegate?.didDismiss()
         
         passDataToStatisticsPage()
         
@@ -108,7 +130,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         getLocationUpdate()
         
 //        dateTest("2016/04/21")
-        
+
     }
     
     //resize layers based on the view's new frame
@@ -122,6 +144,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidAppear(animated)
 
         print("NewRecordsViewDidAppear")
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -387,19 +410,23 @@ extension NewRecordViewController: MKMapViewDelegate {
     }
 }
 
+
 // MARK: Setup
 extension NewRecordViewController {
     
     func setupBackground() {
         
-        view.backgroundColor = UIColor.mrWaterBlueColor()
+//        view.opaque = false
+        view.backgroundColor = UIColor.clearColor()
         let color1 = UIColor.clearColor().colorWithAlphaComponent(0.6)
         let color2 = UIColor.clearColor().colorWithAlphaComponent(0.4)
-//        let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
-//        let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         gradient.frame = self.view.bounds
         gradient.colors = [color1.CGColor,color2.CGColor]
+        gradient.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
+//        view.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.6)
+        
+
         
     }
     

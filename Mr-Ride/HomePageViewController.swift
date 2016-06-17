@@ -9,7 +9,8 @@
 import UIKit
 import Charts
 
-class HomePageViewController: UIViewController {
+
+class HomePageViewController: UIViewController, NewRecordViewControllerDelegate{
     
     @IBOutlet weak var lineChartView: LineChartView!
     
@@ -26,6 +27,45 @@ class HomePageViewController: UIViewController {
     @IBOutlet weak var averageSpeedValue: UILabel!
     
     @IBOutlet weak var letsRideButton: UIButton!
+    
+    @IBAction func letsRideButtonTapped(sender: AnyObject) {
+        
+//        NSNotificationCenter.defaultCenter().addObserver(
+//            self,
+//            selector: #selector(newNewViewControllerDidDismiss(_:)),
+//            name: "NewRecordViewControllerWillDismiss",
+//            object: nil
+//        )
+        
+        let nvc = self.storyboard!.instantiateViewControllerWithIdentifier("NewRecordNavigationController") as! UINavigationController
+        nvc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+        self.navigationController?.presentViewController(nvc, animated: true, completion: nil)
+        let newRecordVC = nvc.viewControllers.first as! NewRecordViewController
+        
+        newRecordVC.delegate = self
+        
+        hideLabel()
+
+    }
+    
+    func didDismiss() {
+        
+        totalDistanceTitle.hidden = false
+        totalDistanceValue.hidden = false
+        totalCountTitle.hidden = false
+        totalCoutValue.hidden = false
+        averageSpeedTitle.hidden = false
+        averageSpeedValue.hidden = false
+        letsRideButton.hidden = false
+        letsRideButtonLabel.hidden = false
+    }
+    
+//    @objc func newNewViewControllerDidDismiss(notification: NSNotification) {
+//        
+//        
+//        print("did received notification")
+//        
+//    }
     
     @IBOutlet weak var letsRideButtonLabel: UILabel!
     
@@ -44,8 +84,11 @@ class HomePageViewController: UIViewController {
     
     let recordModel = DataManager.sharedDataManager
     
+//    weak var delegate: cancelDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         //        print ("HomePageViewDidLoad")
         
@@ -59,8 +102,18 @@ class HomePageViewController: UIViewController {
         recordModel.fetchRecordsCoreData()
 
         setChart()
+        
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        print("HomePageViewDidAppear")
+    
+    }
+    
+    func cancelButtonTapped() {
+//        self.delegate?.resumeLabel()
+    }
     
     //MARK : Chart
     
@@ -206,6 +259,20 @@ class HomePageViewController: UIViewController {
         letsRideButton.layer.insertSublayer(shadowLayer, below: roundLayer)
         
     }
+    
+    func hideLabel() {
+        
+        totalDistanceTitle.hidden = true
+        totalDistanceValue.hidden = true
+        totalCountTitle.hidden = true
+        totalCoutValue.hidden = true
+        averageSpeedTitle.hidden = true
+        averageSpeedValue.hidden = true
+        letsRideButton.hidden = true
+        letsRideButtonLabel.hidden = true
+
+    }
+    
     
     func dateString2(date: NSDate) -> String {
         
