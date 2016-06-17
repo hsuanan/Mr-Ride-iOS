@@ -51,6 +51,7 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("sideMenuCell", forIndexPath: indexPath) as! LeftSideTableViewCell
         
         cell.itemLabel.text = itemArray[indexPath.row]
+        cell.selectionStyle = .None
         
         return cell
         
@@ -103,17 +104,6 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     //
     //    }
     
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a toryboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
 }

@@ -41,7 +41,6 @@ class LeftSideTableViewCell: UITableViewCell {
             itemLabel.highlightedTextColor = UIColor.mrWhiteColor()
             
             let bgColorView = UIView()
-            bgColorView.backgroundColor = UIColor.mrDarkSlateBlueColor()
             self.selectedBackgroundView = bgColorView
         
 //            bullet.frame = CGRectMake (30, 28, 8, 8)

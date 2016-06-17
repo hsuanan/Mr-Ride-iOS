@@ -87,6 +87,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     var caloriesBurned = 0
     var date = NSDate()
     var weight = 0.0
+
 //    var myLocationSet = [[CLLocation]]()
     
     let gradient = CAGradientLayer()
@@ -139,6 +140,10 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidDisappear(animated)
         
         print("NewRecordsViewDidDisappear")
+    }
+    
+    deinit {
+        print("Leave New Record Page")
     }
         
     

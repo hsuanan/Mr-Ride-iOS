@@ -10,14 +10,15 @@ import UIKit
 import Charts
 
 class HomePageViewController: UIViewController {
-
-
+    
+    @IBOutlet weak var lineChartView: LineChartView!
+    
     @IBOutlet weak var totalDistanceTitle: UILabel!
-  
+    
     @IBOutlet weak var totalDistanceValue: UILabel!
     
     @IBOutlet weak var totalCountTitle: UILabel!
-  
+    
     @IBOutlet weak var totalCoutValue: UILabel!
     
     @IBOutlet weak var averageSpeedTitle: UILabel!
@@ -35,20 +36,86 @@ class HomePageViewController: UIViewController {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
         print ("HomePage : SideBarButtonTapped")
-
+        
     }
     
     @IBAction func cancelToHomePageViewController(segue:UIStoryboardSegue) {
     } //cancel button
     
-
+    let recordModel = DataManager.sharedDataManager
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print ("HomePageViewDidLoad")
+        //        print ("HomePageViewDidLoad")
         
         setupLabel()
+        //        historyPageController.getDataForChart()
+        
+        //
+        //        dates = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        //        distances = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
+        
+        recordModel.fetchRecordsCoreData()
 
+        setChart()
+    }
+    
+    
+    //MARK : Chart
+    
+    func setChart() {
+        
+        var dates=[String]()
+        var distances=[Double]()
+        
+        for data in recordModel.saveRecords {
+            
+            let date = data.timestamp,
+            distance = data.distance as Double
+            
+            dates.append(dateString2(date))
+            distances.append(distance)
+        }
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dates.count {
+            let dataEntry = ChartDataEntry(value: distances.reverse()[i], xIndex: i)
+            dataEntries.append(dataEntry)
+            
+            let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "")
+            let lineChartData = LineChartData(xVals: dates.reverse(), dataSet: lineChartDataSet)
+            lineChartView.data = lineChartData
+            
+            lineChartView.descriptionText = ""
+            lineChartView.backgroundColor = UIColor.mrLightblueColor()
+            
+            lineChartView.rightAxis.enabled = false
+            lineChartView.leftAxis.enabled = false
+            
+            lineChartView.xAxis.drawGridLinesEnabled = false
+            lineChartView.xAxis.drawAxisLineEnabled = false
+            lineChartView.xAxis.drawLabelsEnabled = false
+            
+            lineChartView.legend.enabled = false
+            
+            
+            
+            //        lineChartDataSet.setColor(UIColor.mrBrightSkyColor())
+            lineChartDataSet.colors = [UIColor.clearColor()]
+            lineChartDataSet.drawCirclesEnabled = false
+            lineChartDataSet.drawValuesEnabled = false
+            
+            lineChartDataSet.mode = .CubicBezier
+            lineChartDataSet.drawFilledEnabled = true
+            let gradColors = [UIColor.mrRobinsEggBlue0Color().CGColor,UIColor.mrWaterBlueColor().CGColor]
+            let colorLocations:[CGFloat] = [0.0, 1.0]
+            if let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradColors, colorLocations) {
+                lineChartDataSet.fill = ChartFill(linearGradient: gradient, angle: 90.0)
+                
+            }
+        }
     }
     
     // MARK : Setup Label
@@ -110,7 +177,7 @@ class HomePageViewController: UIViewController {
         attributedText.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSMakeRange(0, attributedText.length))
         label.attributedText = attributedText
     }
-
+    
     func setupLetsRideButton(Button: UIButton) {
         
         letsRideButton.layer.backgroundColor = UIColor.clearColor().CGColor
@@ -137,7 +204,15 @@ class HomePageViewController: UIViewController {
         shadowLayer.shadowOpacity = 0.25
         shadowLayer.shadowRadius = 2
         letsRideButton.layer.insertSublayer(shadowLayer, below: roundLayer)
-
+        
+    }
+    
+    func dateString2(date: NSDate) -> String {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        return dateFormatter.stringFromDate(date)
+        
     }
     
     func testFontInstall(){
@@ -151,6 +226,8 @@ class HomePageViewController: UIViewController {
             
             print(" ")
         }
-
+        
     }
+    
 }
+

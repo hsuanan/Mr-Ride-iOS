@@ -500,6 +500,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X79-ee-wxT" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="-20" y="190" width="640" height="122"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="122" id="7pv-Ij-JPp"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaD-lG-a99">
                                 <rect key="frame" x="58" y="139" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -573,10 +580,13 @@
                             <constraint firstItem="F6d-g9-rPg" firstAttribute="top" secondItem="vhU-Rr-cPX" secondAttribute="bottom" constant="1" id="ZCL-TG-e7T"/>
                             <constraint firstItem="vhU-Rr-cPX" firstAttribute="leading" secondItem="vkY-G9-cmq" secondAttribute="leadingMargin" constant="38" id="ZCx-UK-7Eh"/>
                             <constraint firstItem="F6d-g9-rPg" firstAttribute="leading" secondItem="vkY-G9-cmq" secondAttribute="leadingMargin" constant="38" id="amg-Hw-v8w"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="X79-ee-wxT" secondAttribute="trailing" constant="-40" id="dTk-a2-rJg"/>
                             <constraint firstItem="RPz-Uy-XBE" firstAttribute="top" secondItem="rwP-5r-2tP" secondAttribute="bottom" constant="1" id="gRi-0c-ssQ"/>
                             <constraint firstItem="bS8-4q-dgs" firstAttribute="centerX" secondItem="vkY-G9-cmq" secondAttribute="centerX" id="glO-tL-pn4"/>
+                            <constraint firstItem="X79-ee-wxT" firstAttribute="top" secondItem="bS8-4q-dgs" secondAttribute="bottom" constant="8" id="mPm-LO-oP3"/>
                             <constraint firstItem="hcI-ed-Jnc" firstAttribute="top" secondItem="F6d-g9-rPg" secondAttribute="bottom" constant="51" id="pN4-mM-0Zf"/>
                             <constraint firstItem="RPz-Uy-XBE" firstAttribute="leading" secondItem="vkY-G9-cmq" secondAttribute="leadingMargin" constant="38" id="pSr-lu-GrA"/>
+                            <constraint firstItem="X79-ee-wxT" firstAttribute="leading" secondItem="vkY-G9-cmq" secondAttribute="leadingMargin" constant="-40" id="vjy-KN-EgE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j5m-tt-ndh">
@@ -591,6 +601,7 @@
                         <outlet property="averageSpeedValue" destination="F6d-g9-rPg" id="mdO-m3-QaN"/>
                         <outlet property="letsRideButton" destination="hcI-ed-Jnc" id="Ndm-08-QqB"/>
                         <outlet property="letsRideButtonLabel" destination="hSE-8E-TGB" id="vd8-j6-sEQ"/>
+                        <outlet property="lineChartView" destination="X79-ee-wxT" id="r7r-g4-Ugf"/>
                         <outlet property="sideBarButton" destination="bPo-4Q-byk" id="Ptw-du-Z0x"/>
                         <outlet property="totalCountTitle" destination="rwP-5r-2tP" id="KvG-Mb-Dz1"/>
                         <outlet property="totalCoutValue" destination="RPz-Uy-XBE" id="8gy-n2-waN"/>

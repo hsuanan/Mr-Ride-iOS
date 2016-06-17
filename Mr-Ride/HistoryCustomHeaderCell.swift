@@ -19,6 +19,7 @@ class HistoryCustomHeaderCell: UITableViewCell {
         
         backgroundColor = UIColor.clearColor()
         headerView.backgroundColor = UIColor.whiteColor()
+        headerView.layer.cornerRadius = 2
         
 //        dateLabel.font = UIFont.mrTextStyle125Font()
         dateLabel.textColor = UIColor.mrDarkSlateBlueColor()
