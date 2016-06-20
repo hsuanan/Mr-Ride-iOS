@@ -51,7 +51,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     deinit {
-        print("leave History page")
+        print("Leave History Page")
     }
     //MARK: Chart
     

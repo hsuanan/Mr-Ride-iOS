@@ -124,7 +124,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print ("NewRecordsViewDidLoad")
+        print ("__NewRecordsViewDidLoad")
         
         setupBackground()
         setupDistance()
@@ -151,17 +151,17 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        print("NewRecordsViewDidAppear")
+        print("__NewRecordsViewDidAppear")
         
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        print("NewRecordsViewWillDisappear")
+        print("__NewRecordsViewWillDisappear")
         
         locationManager.stopUpdatingLocation()
-        print("Stop Updating Location")
+        print("__Stop Updating Location")
         
         mapView = nil
         // avoid mapView佔記憶體
@@ -170,14 +170,14 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
-        print("NewRecordsViewDidDisappear")
+        print("__NewRecordsViewDidDisappear")
     }
     
     deinit {
         
         delegate?.didDismiss()
         
-        print("Leave New Record Page")
+        print("__Leave New Record Page")
     }
         
     

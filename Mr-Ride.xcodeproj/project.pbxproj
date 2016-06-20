@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0123701D179401005A3363 /* MapViewNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01236F1D179400005A3363 /* MapViewNavigationController.swift */; };
 		BC10F6741D1253B7006B37F3 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC10F66D1D125395006B37F3 /* Charts.framework */; };
 		BC10F6751D1253B7006B37F3 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC10F66D1D125395006B37F3 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BC10F67B1D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC10F6791D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift */; };
@@ -109,6 +110,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC01236F1D179400005A3363 /* MapViewNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewNavigationController.swift; sourceTree = "<group>"; };
 		BC10F6651D125395006B37F3 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master 2/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		BC10F6791D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryFooterTableViewCell.swift; sourceTree = "<group>"; };
 		BC10F67A1D12CA6D006B37F3 /* HistoryFooterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryFooterTableViewCell.xib; sourceTree = "<group>"; };
@@ -246,10 +248,11 @@
 				BCCFE60E1CF98D6D004323B0 /* LeftSideViewController.swift */,
 				BC85F62A1CF2B20200B11F89 /* NewRecordNavigationController.swift */,
 				BC85F62E1CF30AE800B11F89 /* NewRecordViewController.swift */,
-				BCDB65981CFF18760041FBAD /* MapViewController.swift */,
 				BC85F6201CF2ADDE00B11F89 /* StatisticsViewController.swift */,
 				BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */,
 				BCE4E9091CFA7DC700976948 /* HistoryViewController.swift */,
+				BC01236F1D179400005A3363 /* MapViewNavigationController.swift */,
+				BCDB65981CFF18760041FBAD /* MapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 			files = (
 				BCCFE60F1CF98D6D004323B0 /* LeftSideViewController.swift in Sources */,
 				BCDB65641CFD80F10041FBAD /* StatisticsView.swift in Sources */,
+				BC0123701D179401005A3363 /* MapViewNavigationController.swift in Sources */,
 				BCCFE61B1CF98E34004323B0 /* MMDrawerBarButtonItem.m in Sources */,
 				BCDB65991CFF18760041FBAD /* MapViewController.swift in Sources */,
 				BC52085B1D07FE700051742A /* HistoryTableViewCell.swift in Sources */,

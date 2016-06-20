@@ -46,7 +46,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("StatisticsViewDidLoad")
+        print("____StatisticsViewDidLoad")
         
         //        fetchRecordsCoreData()
         recordModel.fetchRecordsCoreData()
@@ -69,17 +69,22 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("StatisticsViewWillAppear")
+        print("____StatisticsViewWillAppear")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        print("StatisticViewWillDisappear")
+        print("____StatisticViewWillDisappear")
         
-        statisticsView.mapView = nil
-        // avoid mapView佔記憶體
     }
+    
+    deinit {
+        
+        print("____Leave Statistics Page")
+    }
+
+    
     
     func uploadRecord() {
         

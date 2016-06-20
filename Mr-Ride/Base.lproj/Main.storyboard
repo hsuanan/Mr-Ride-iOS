@@ -758,6 +758,51 @@
             </objects>
             <point key="canvasLocation" x="824" y="275"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="QRs-Au-Bud">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="RtK-a6-mhs" customClass="MapViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SvS-O0-aj9"/>
+                        <viewControllerLayoutGuide type="bottom" id="DFN-JC-fkB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ekk-DR-BqK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-Te-pKb">
+                                <rect key="frame" x="42" y="86" width="516" height="429"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DFN-JC-fkB" firstAttribute="top" secondItem="pm5-Te-pKb" secondAttribute="bottom" constant="85" id="Ere-Rr-Uza"/>
+                            <constraint firstItem="pm5-Te-pKb" firstAttribute="top" secondItem="SvS-O0-aj9" secondAttribute="bottom" constant="22" id="Ie7-L2-mhb"/>
+                            <constraint firstItem="pm5-Te-pKb" firstAttribute="top" secondItem="SvS-O0-aj9" secondAttribute="bottom" constant="85" id="eH2-K8-i53"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pm5-Te-pKb" secondAttribute="trailing" constant="22" id="pf2-bm-BmX"/>
+                            <constraint firstItem="pm5-Te-pKb" firstAttribute="leading" secondItem="ekk-DR-BqK" secondAttribute="leadingMargin" constant="22" id="uib-yv-eVw"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="eH2-K8-i53"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="dMr-QE-gCF">
+                        <barButtonItem key="leftBarButtonItem" image="icon-menu" id="NTP-By-5xt">
+                            <connections>
+                                <action selector="barButtonTapped:" destination="RtK-a6-mhs" id="FSg-dp-CyW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="pm5-Te-pKb" id="in1-wu-KuY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XWP-Ts-TUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111" y="950"/>
+        </scene>
         <!--History View Controller-->
         <scene sceneID="9Zt-ko-Ixq">
             <objects>
@@ -863,12 +908,30 @@
             </objects>
             <point key="canvasLocation" x="1470" y="275"/>
         </scene>
+        <!--Map View Navigation Controller-->
+        <scene sceneID="Dge-uv-4lF">
+            <objects>
+                <navigationController storyboardIdentifier="MapViewNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Rnv-gt-4Uh" customClass="MapViewNavigationController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x3M-t1-mqn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RtK-a6-mhs" kind="relationship" relationship="rootViewController" id="cDM-2F-ZXj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ri-dK-KGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="950"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon-menu" width="30" height="30"/>
         <image name="image-history-background" width="1536" height="1021"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w2h-y2-yE7"/>
+        <segue reference="Tio-gD-Ec1"/>
     </inferredMetricsTieBreakers>
 </document>

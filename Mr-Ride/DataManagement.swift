@@ -71,7 +71,6 @@ class DataManager {
             try fetchedResultsController.performFetch()
             
             print ("fetchedResultsController.performFetch")
-            print ("SectionCount: \(fetchedResultsController.sections!.count)")
             
         } catch let error as NSError {
             print ("Unable to perform fetch: \(error.localizedDescription)")

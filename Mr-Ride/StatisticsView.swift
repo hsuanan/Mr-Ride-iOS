@@ -39,7 +39,7 @@ class StatisticsView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
     
-        print("StatisticsViewAwakeFromNib")
+        print("____StatisticsViewAwakeFromNib")
         setupBackground()
         setupDistance()
         setupAverageSpeed()

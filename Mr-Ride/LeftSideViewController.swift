@@ -12,7 +12,7 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    var itemArray : [String] = [ "Home", "History" ]
+    var itemArray : [String] = [ "Home", "History", "Map" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +85,17 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
             
             appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
             
+            break
+            
+        case 2:
+            
+            let mapNav = self.storyboard?.instantiateViewControllerWithIdentifier("MapViewNavigationController") as! MapViewNavigationController
+            
+            let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            appDelegate.centerContainer!.centerViewController = mapNav
+            
+            appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
             break
             
         default:
