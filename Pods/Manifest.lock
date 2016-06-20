@@ -1,0 +1,16 @@
+PODS:
+  - Alamofire (3.4.1)
+  - CryptoSwift (0.4.1)
+  - JSONWebToken (1.5.0):
+    - CryptoSwift (~> 0.4.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - JSONWebToken (~> 1.5)
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  CryptoSwift: 25b5aff3f260967391f8fff2e9abe4254d2c6fd5
+  JSONWebToken: 6c8968ace6b60b2e6156a7bbe5019fd9b5ff9b5a
+
+COCOAPODS: 0.39.0
