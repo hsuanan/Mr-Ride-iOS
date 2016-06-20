@@ -54,7 +54,8 @@ class StatisticsView: UIView {
 
     func setupBackground() {
         
-        backgroundColor = UIColor.mrWaterBlueColor()
+        self.opaque = false
+        backgroundColor = UIColor.clearColor()
         
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)

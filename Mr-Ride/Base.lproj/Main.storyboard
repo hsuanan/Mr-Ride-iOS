@@ -606,7 +606,7 @@
                         <outlet property="totalCoutValue" destination="RPz-Uy-XBE" id="8gy-n2-waN"/>
                         <outlet property="totalDistanceTitle" destination="AaD-lG-a99" id="5Uf-xy-vUb"/>
                         <outlet property="totalDistanceValue" destination="bS8-4q-dgs" id="XIO-LW-TfD"/>
-                        <segue destination="clF-au-wli" kind="presentation" id="Mk3-zT-w51"/>
+                        <segue destination="clF-au-wli" kind="presentation" identifier="presentNewRecordPage" id="Mk3-zT-w51"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXO-Lz-CHE" userLabel="First Responder" sceneMemberID="firstResponder"/>

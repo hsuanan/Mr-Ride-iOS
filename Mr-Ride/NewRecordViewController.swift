@@ -87,9 +87,17 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         
         startIsOn = false
         
-        delegate?.didDismiss()
+//        delegate?.didDismiss()
+//
+//        let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
+//        
+//        self.navigationController?.pushViewController(destinationController, animated: true)
+//        
+//        destinationController.delegate = self
         
         passDataToStatisticsPage()
+        
+        
         
     }
     
@@ -166,10 +174,14 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     deinit {
+        
+        delegate?.didDismiss()
+        
         print("Leave New Record Page")
     }
         
     
+        
     // MARK: Timer
     
     func updateTimer(){
@@ -423,9 +435,7 @@ extension NewRecordViewController {
         gradient.frame = self.view.bounds
         gradient.colors = [color1.CGColor,color2.CGColor]
         gradient.locations = [0.0, 1.0]
-        self.view.layer.insertSublayer(gradient, atIndex: 0)
-//        view.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.6)
-        
+        self.view.layer.insertSublayer(gradient, atIndex: 0)        
 
         
     }

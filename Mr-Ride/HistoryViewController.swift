@@ -238,7 +238,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
         
-        
         let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
         
         guard
@@ -284,7 +283,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         destinationController.locations = locationList
         
         destinationController.isFromHistory = true
+        
+        destinationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+
         self.navigationController?.pushViewController(destinationController, animated: true)
+
         
     }
     

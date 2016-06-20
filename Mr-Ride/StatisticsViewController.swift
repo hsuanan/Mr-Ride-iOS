@@ -37,6 +37,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             self.navigationController?.popToRootViewControllerAnimated(true)
         } else {
             print("DoneButtonTapped")
+            
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         
@@ -44,6 +45,8 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("StatisticsViewDidLoad")
         
         //        fetchRecordsCoreData()
         recordModel.fetchRecordsCoreData()
@@ -61,6 +64,12 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             print("isFromHistory is true")
         }
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("StatisticsViewWillAppear")
     }
     
     override func viewWillDisappear(animated: Bool) {

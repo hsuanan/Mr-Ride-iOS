@@ -41,6 +41,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate{
         nvc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         self.navigationController?.presentViewController(nvc, animated: true, completion: nil)
         let newRecordVC = nvc.viewControllers.first as! NewRecordViewController
+  
         
         newRecordVC.delegate = self
         
@@ -58,6 +59,8 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate{
         averageSpeedValue.hidden = false
         letsRideButton.hidden = false
         letsRideButtonLabel.hidden = false
+        
+        print("labelResume")
     }
     
 //    @objc func newNewViewControllerDidDismiss(notification: NSNotification) {
@@ -79,8 +82,8 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate{
         
     }
     
-    @IBAction func cancelToHomePageViewController(segue:UIStoryboardSegue) {
-    } //cancel button
+//    @IBAction func cancelToHomePageViewController(segue:UIStoryboardSegue) {
+//    } //cancel button
     
     let recordModel = DataManager.sharedDataManager
     
@@ -108,12 +111,11 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate{
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("HomePageViewDidAppear")
+        
+        didDismiss()
     
     }
     
-    func cancelButtonTapped() {
-//        self.delegate?.resumeLabel()
-    }
     
     //MARK : Chart
     
