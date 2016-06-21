@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 
-class HomePageViewController: UIViewController, NewRecordViewControllerDelegate{
+class HomePageViewController: UIViewController, NewRecordViewControllerDelegate {
     
     @IBOutlet weak var lineChartView: LineChartView!
     
@@ -41,9 +41,11 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate{
         nvc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         self.navigationController?.presentViewController(nvc, animated: true, completion: nil)
         let newRecordVC = nvc.viewControllers.first as! NewRecordViewController
+
   
         
         newRecordVC.delegate = self
+       
         
         hideLabel()
 

@@ -27,7 +27,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     var locations: [Locations]=[]
     
     var isFromHistory = false
-    
+        
     @IBOutlet var statisticsView: StatisticsView!
     
     @IBAction func BackOrDoneButtonTapped(sender: AnyObject) {

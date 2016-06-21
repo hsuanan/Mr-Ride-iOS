@@ -14,7 +14,7 @@ class MapViewNavigationController: UINavigationController {
         super.viewDidLoad()
 
         navigationBar.barStyle = UIBarStyle.Black
-        navigationBar.topItem?.title = "Hsitory"
+        navigationBar.topItem?.title = "Map"
         navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.barTintColor = UIColor.mrLightblueColor()
         navigationBar.translucent = false

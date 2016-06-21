@@ -23,6 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     }
     
+    let recordModal = DataManager.sharedDataManager
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -33,6 +34,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         setup()
         getLocationUpdate()
         mapView.delegate = self
+        
+        recordModal.getBikeDataFromServer()
+        
         
     }
     

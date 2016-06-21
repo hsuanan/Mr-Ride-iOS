@@ -175,7 +175,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     deinit {
         
-        delegate?.didDismiss()
+//        delegate?.didDismiss()
         
         print("__Leave New Record Page")
     }
