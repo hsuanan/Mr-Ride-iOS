@@ -148,8 +148,10 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         gradient.frame = self.view.bounds
     }
     
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        locationManager.startUpdatingLocation()
 
         print("__NewRecordsViewDidAppear")
         
@@ -212,7 +214,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.distanceFilter = 10 // update every 10 meters
             locationManager.activityType = .Fitness
-            locationManager.startUpdatingLocation()
+//            locationManager.startUpdatingLocation()
             mapView!.delegate = self
             mapView!.showsUserLocation = true
             

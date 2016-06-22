@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation {
     
     
     @IBOutlet weak var mapView: MKMapView!
@@ -36,8 +36,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.delegate = self
         
         recordModal.getBikeDataFromServer()
+        recordModal.delegate = self
         
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        locationManager.startUpdatingLocation()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -80,7 +85,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.distanceFilter = 10 // update every 10 meters
             locationManager.activityType = .Fitness
-            locationManager.startUpdatingLocation()
+//            locationManager.startUpdatingLocation()
             mapView!.delegate = self
             mapView!.showsUserLocation = true
             
@@ -89,7 +94,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             print ("Need to Enable Location")
             
         }
-        
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -98,11 +102,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.005, 0.005))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.09, 0.09))
         mapView!.setRegion(region, animated: true)
         
     }
-    
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         
@@ -110,6 +113,37 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     
+    
+    func showAnnotation() {
+        
+//        print("recordModal.stationArray:\(recordModal.stationArray)")
+        
+        for station in recordModal.stationArray {
+            
+            let latitude = station.latitude
+            let longitude = station.longitude
+            let location = CLLocationCoordinate2DMake(latitude, longitude)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location  // pin a marker
+            annotation.title = station.station
+            mapView.addAnnotation(annotation)
+        }
+    }
+    
+    
+    
+    
+    // Mark: implement protocol
+    
+    func didReceiveDataFromServer() {
+        print("didReceiveDataFromServer")
+        showAnnotation()
+    }
+    
+    func didReceiveDataFromCoreData() {
+        print("didReceiveDataFromCoreData")
+    }
     
     
 }

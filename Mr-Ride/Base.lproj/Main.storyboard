@@ -848,10 +848,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="0vn-xy-9KX" id="rth-m0-cJn"/>
-                                    <outlet property="delegate" destination="0vn-xy-9KX" id="sY3-zb-1pz"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqo-GT-qFP" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="15" y="84" width="570" height="151"/>

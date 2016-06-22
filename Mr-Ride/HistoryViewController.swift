@@ -83,30 +83,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func setChart(xAxis: [String], yAxis: [Double]) {
         
-        //        var date=[String]()
-        //        var distances=[Double]()
-        //
-        //        for section in 0..<tableView.numberOfSections {
-        //            for row in 0..<tableView.numberOfRowsInSection(section) {
-        //                let indexPath = NSIndexPath(forRow: row, inSection: section)
-        //
-        //                let records = recordModel.fetchedResultsController.objectAtIndexPath(indexPath) as! Records
-        //
-        //                guard
-        //                    let timestamp = records.timestamp,
-        //                    let distance = records.distance as? Double
-        //
-        //                    else {
-        //                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
-        //                        continue}
-        //
-        //                date.append(dateString2(timestamp))
-        //                distances.append(distance)
-        //            }
-        //        }
-        //
-        //        print("date\(date)")
-        
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0..<xAxis.count {
@@ -114,14 +90,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             dataEntries.append(dataEntry)
         }
         
-        //        for i in 0..<date.count {
-        //            let dataEntry = ChartDataEntry(value: distances.reverse()[i], xIndex: i)
-        //            dataEntries.append(dataEntry)
-        //        }
-        
         let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "")
         let lineChartData = LineChartData(xVals: xAxis, dataSet: lineChartDataSet)
-        //        let lineChartData = LineChartData(xVals: date.reverse(), dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
         
         lineChartView.descriptionText = ""

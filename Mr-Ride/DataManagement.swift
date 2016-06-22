@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 import Alamofire
 import JWT
+import CoreLocation
 
 protocol JSONDataDelegation: class {
     func didReceiveDataFromServer()
@@ -40,7 +41,7 @@ struct RecordsModel2 {
     
 }
 
-struct StationData{
+struct StationModel{
     
     var station: String = ""
     var district: String = ""
@@ -70,7 +71,7 @@ class DataManager {
     
     var saveRecords = [RecordsModel2]()
     
-    var stationArray = [StationData]()
+    var stationArray = [StationModel]()
     
     weak var delegate: JSONDataDelegation?
     
@@ -195,7 +196,7 @@ class DataManager {
             print("This is run on the background quene")
             
             let JWT = self.generateJWT()
-            print ("This is JWT: \(JWT)")
+//            print ("This is JWT: \(JWT)")
             
             Alamofire.request(
                 .GET,
@@ -223,9 +224,9 @@ class DataManager {
                             return
                     }
 //                    print("json:\(json)")
-//                    self.cleanUpCoreData()
+                    self.cleanUpCoreData()
                     self.readJSONObject(json)
-//                    self.SaveStationToCoreData()
+                    self.SaveStationToCoreData()
 //                    self.showStationCoreData() //test if get data
                     
                     dispatch_async(dispatch_get_main_queue()) {
@@ -247,22 +248,20 @@ class DataManager {
     
     func readJSONObject(json: [String: AnyObject]){
         
-//        print("json:\(json)")
         guard
-            let data = json["retVal"] //!["0001"]
-                as? [String:AnyObject]
+            let data = json["retVal"] as? [String:AnyObject]
             else {
                 
                 print("readJSONObject step1 wrong")
                 return }
-        print("data:\(data)")
+//        print("data:\(data)")
         
         for value in data.values {
             
 //            print (value["sbi"] as! String)
             
             guard
-            let station = value["snaen"],
+            let station = value["snaen"] as? String,
             let district = value["sareaen"],
             let location = value["aren"],
             let availableBikesNumber = value["sbi"] as? String,
@@ -271,8 +270,8 @@ class DataManager {
             else { continue }
             
             stationArray.append(
-                StationData(
-                    station: String(station),
+                StationModel(
+                    station: station,
                     district: String(district),
                     location: String(location),
                     availableBikesNumber: Int(availableBikesNumber)!,
@@ -280,49 +279,8 @@ class DataManager {
                     longitude: Double(longitude)!))
         
         }
-        print ("stationArray:\(stationArray)")
+//        print ("stationArray:\(stationArray)")
     
-    
-    
-//        for record in data {
-//
-//            let language = NSLocale.preferredLanguages()[0]
-//            
-//            let station: String
-//            let district: String
-//            let location: String
-//            
-//            if language == "zh-Hant-US" {  //zh-Hant-US 中文
-//   
-//                station = (record["sna"] as? String)!
-//                district = (record["sarea"] as? String)!
-//                location = (record["ar"] as? String)!
-//                
-//            } else {
-//                station = (record["snaen"] as? String)!
-//                district = (record["sareaen"] as? String)!
-//                location = (record["aren"] as? String)!
-//            }
-//        
-//            guard let sbi = record["sbi"] as? String,
-//                let availableBikesNumber = Int(sbi),
-//                let lat = record["lat"] as? String,
-//                let latitude = Double(lat),
-//                let lng = record["lng"] as? String,
-//                let longitude = Double(lng)
-//                else { continue }
-//            
-//            stationArray.append(
-//                StationData(
-//                    station: station,
-//                    district: district,
-//                    location: location,
-//                    availableBikesNumber: availableBikesNumber,
-//                    latitude: latitude,
-//                    longitude: longitude))
-//        }
-//        
-//        print("stationArray:\(stationArray)")
     }
     
     func SaveStationToCoreData(){
@@ -345,8 +303,7 @@ class DataManager {
             
             do {
                 try moc.save()
-                print ("save station coredata")
-                                print ("stationarray \(stationArray)")
+//                print ("save station coredata")
                 
             }catch{
                 fatalError("Failure to save station coredata: \(error)")
@@ -372,7 +329,7 @@ class DataManager {
                     else { continue }
                 
                 self.stationArray.append(
-                    StationData(
+                    StationModel(
                         station: station,
                         district: district,
                         location: location,
