@@ -773,13 +773,20 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-Te-pKb">
                                 <rect key="frame" x="42" y="86" width="516" height="429"/>
                             </mapView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YIT-TD-scF">
+                                <rect key="frame" x="122" y="532" width="438" height="48"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DFN-JC-fkB" firstAttribute="top" secondItem="pm5-Te-pKb" secondAttribute="bottom" constant="85" id="Ere-Rr-Uza"/>
                             <constraint firstItem="pm5-Te-pKb" firstAttribute="top" secondItem="SvS-O0-aj9" secondAttribute="bottom" constant="22" id="Ie7-L2-mhb"/>
+                            <constraint firstItem="DFN-JC-fkB" firstAttribute="top" secondItem="YIT-TD-scF" secondAttribute="bottom" constant="20" id="bbt-WI-2GD"/>
                             <constraint firstItem="pm5-Te-pKb" firstAttribute="top" secondItem="SvS-O0-aj9" secondAttribute="bottom" constant="85" id="eH2-K8-i53"/>
+                            <constraint firstItem="YIT-TD-scF" firstAttribute="top" secondItem="pm5-Te-pKb" secondAttribute="bottom" constant="17" id="gVM-2r-Nej"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pm5-Te-pKb" secondAttribute="trailing" constant="22" id="pf2-bm-BmX"/>
+                            <constraint firstItem="YIT-TD-scF" firstAttribute="leading" secondItem="ekk-DR-BqK" secondAttribute="leadingMargin" constant="102" id="r8a-g9-KXm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YIT-TD-scF" secondAttribute="trailing" constant="20" id="sGc-Jk-NwE"/>
                             <constraint firstItem="pm5-Te-pKb" firstAttribute="leading" secondItem="ekk-DR-BqK" secondAttribute="leadingMargin" constant="22" id="uib-yv-eVw"/>
                         </constraints>
                         <variation key="default">

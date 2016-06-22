@@ -102,7 +102,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.09, 0.09))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.01, 0.01))
         mapView!.setRegion(region, animated: true)
         
     }
@@ -110,6 +110,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         
         print("Errors: \(error.localizedDescription)")
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let annotationId = "Station"
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
+            annotationView?.canShowCallout = true
+            
+            // Resize image
+            let pinImage = UIImage(named: "icon-station")
+            let size = CGSize(width: 30, height: 30)
+            UIGraphicsBeginImageContext(size)
+            pinImage!.drawInRect(CGRectMake(0, 0, size.width, size.height))
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            annotationView?.image = resizedImage
+            annotationView?.backgroundColor = UIColor.whiteColor()
+            annotationView!.layer.cornerRadius = annotationView!.frame.size.width / 2
+            
+        }
+        else {
+            annotationView?.annotation = annotation
+        }
+        return annotationView
     }
     
     
@@ -126,9 +153,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             let annotation = MKPointAnnotation()
             annotation.coordinate = location  // pin a marker
-            annotation.title = station.station
+            annotation.title = "\(station.availableBikesNumber) bikes left"
             mapView.addAnnotation(annotation)
         }
+        
     }
     
     
@@ -144,6 +172,5 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func didReceiveDataFromCoreData() {
         print("didReceiveDataFromCoreData")
     }
-    
     
 }
