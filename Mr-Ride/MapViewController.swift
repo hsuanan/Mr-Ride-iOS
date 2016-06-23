@@ -12,7 +12,18 @@ import CoreLocation
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation {
     
+    @IBOutlet weak var lookForLabel: UILabel!
     
+    @IBOutlet weak var inputButtonLabel: UILabel!
+    
+    @IBOutlet weak var inputButton: UIButton!
+    
+    @IBAction func inputButtonTapped(sender: UIButton) {
+        
+        showPickerView()
+        
+    }
+ 
     @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func barButtonTapped(sender: AnyObject) {
@@ -71,6 +82,56 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         view.backgroundColor = UIColor.mrLightblueColor()
         mapView.layer.cornerRadius = 10.0
         
+        lookForLabel.backgroundColor = UIColor.whiteColor()
+        lookForLabel.textColor = UIColor.mrDarkSlateBlueColor()
+        
+        let lookForLabelLayer = CAShapeLayer()
+        let roundedPath = UIBezierPath(
+            roundedRect: lookForLabel.bounds,
+            byRoundingCorners: [ .TopLeft, .BottomLeft],
+            cornerRadii: CGSize(width: 4, height: 4)
+        )
+        lookForLabelLayer.path = roundedPath.CGPath
+        lookForLabel.layer.mask = lookForLabelLayer
+        
+        
+        inputButtonLabel.backgroundColor = UIColor.whiteColor()
+        inputButtonLabel.font = UIFont.mrTextStyle10Font()
+        inputButtonLabel.textColor = UIColor.mrDarkSlateBlueColor()
+        inputButton.backgroundColor = UIColor.clearColor()
+        
+        let inputButtonLabelLayer = CAShapeLayer()
+        let rRoundedPath = UIBezierPath(
+            roundedRect: inputButtonLabel.bounds,
+            byRoundingCorners:[.TopRight, .BottomRight, .TopLeft, .BottomLeft],
+            cornerRadii: CGSize(width: 4, height: 4))
+        
+        inputButtonLabelLayer.path = rRoundedPath.CGPath
+        inputButtonLabel.layer.mask = inputButtonLabelLayer
+        
+    }
+    
+    func showPickerView() {
+        
+        let pickerView = UIPickerView(frame: CGRectMake(0, 406, view.frame.width, 300))
+        pickerView.backgroundColor = .whiteColor()
+        pickerView.showsSelectionIndicator = true
+        
+//        let toolBar = UIToolbar()
+//        toolBar.barStyle = UIBarStyle.Default
+//        toolBar.translucent = true
+//        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+//        toolBar.sizeToFit()
+//        
+//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: "donePicker")
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: "canclePicker")
+//        
+//        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+//        toolBar.userInteractionEnabled = true
+        
+        view.addSubview(pickerView)
+
     }
     
     //MARK: Map
@@ -159,9 +220,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
     }
     
-    
-    
-    
+
     // Mark: implement protocol
     
     func didReceiveDataFromServer() {
@@ -172,5 +231,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func didReceiveDataFromCoreData() {
         print("didReceiveDataFromCoreData")
     }
+    
     
 }
