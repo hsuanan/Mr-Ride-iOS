@@ -123,5 +123,17 @@ extension UIColor {
         
         return UIColor(red: 0.0 / 255.0, green: 156.0 / 255.0, blue: 197.0 / 255.0, alpha: 1.0)
     }
+    
+    class func mrBlueColor() -> UIColor {
+        
+        return UIColor(red: 0.0 / 255.0, green: 122.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+
+    }
+    
+    class func mrBarColor() -> UIColor {
+        
+        return UIColor(red: 249 / 255.0, green: 249 / 255.0, blue: 249 / 255.0, alpha: 1.0)
+        
+    }
 
 }

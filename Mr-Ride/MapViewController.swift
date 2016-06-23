@@ -10,8 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
     
+
     @IBOutlet weak var lookForLabel: UILabel!
     
     @IBOutlet weak var inputButtonLabel: UILabel!
@@ -38,6 +39,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
+    
+    
+    var pickerView = UIPickerView()
+    var toolBar = UIToolbar()
+    var pickOption = ["UBike Station", "Toilet"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +104,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         inputButtonLabel.backgroundColor = UIColor.whiteColor()
         inputButtonLabel.font = UIFont.mrTextStyle10Font()
         inputButtonLabel.textColor = UIColor.mrDarkSlateBlueColor()
+        inputButtonLabel.text = "Ubike Station"
+        
         inputButton.backgroundColor = UIColor.clearColor()
         
         let inputButtonLabelLayer = CAShapeLayer()
@@ -111,28 +119,78 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
     }
     
+    //MARK: PickerView
+    
     func showPickerView() {
         
-        let pickerView = UIPickerView(frame: CGRectMake(0, 406, view.frame.width, 300))
-        pickerView.backgroundColor = .whiteColor()
+//        let pickerView = UIPickerView(frame: CGRectMake(0, 411, view.frame.width, 261))
+        pickerView = UIPickerView(frame: CGRectMake(0, 455, view.frame.width, 217))
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.backgroundColor = UIColor.whiteColor()
         pickerView.showsSelectionIndicator = true
         
-//        let toolBar = UIToolbar()
-//        toolBar.barStyle = UIBarStyle.Default
-//        toolBar.translucent = true
-//        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-//        toolBar.sizeToFit()
-//        
-//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: "donePicker")
-//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: "canclePicker")
-//        
-//        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-//        toolBar.userInteractionEnabled = true
         
+        toolBar = UIToolbar(frame:CGRectMake(0, 411, view.frame.width, 44))
+//        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.barTintColor = UIColor.mrBarColor()
+        toolBar.translucent = false
+        toolBar.sizeToFit()
+        
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.cancelPickerTapped))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+//        spaceButton.title = "look For"
+        let lookFor = UIBarButtonItem(title: "Look for", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        lookFor.tintColor = UIColor.blackColor()
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.donePickerTapped))
+
+        toolBar.setItems([cancelButton, spaceButton, lookFor, spaceButton, doneButton], animated: true)
+        toolBar.userInteractionEnabled = true
+        
+        view.addSubview(toolBar)
         view.addSubview(pickerView)
 
     }
+    
+    func cancelPickerTapped() {
+        
+        pickerView.removeFromSuperview()
+        toolBar.removeFromSuperview()
+        print("cancelPickerTapped")
+        
+    }
+    
+    func donePickerTapped() {
+        
+        pickerView.removeFromSuperview()
+        toolBar.removeFromSuperview()
+        print("donePickerTapped")
+    }
+    
+    
+    //MarkL pickerView delegate
+
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickOption.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickOption[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        inputButtonLabel.text = pickOption[row]
+        
+        if row == 0 {
+            showStationAnnotation()
+        }
+    }
+    
     
     //MARK: Map
     
@@ -202,7 +260,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     
-    func showAnnotation() {
+    func showStationAnnotation() {
         
 //        print("recordModal.stationArray:\(recordModal.stationArray)")
         
@@ -220,12 +278,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
     }
     
-
     // Mark: implement protocol
     
     func didReceiveDataFromServer() {
         print("didReceiveDataFromServer")
-        showAnnotation()
+        showStationAnnotation()
     }
     
     func didReceiveDataFromCoreData() {
