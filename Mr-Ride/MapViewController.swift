@@ -123,7 +123,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func showPickerView() {
         
-//        let pickerView = UIPickerView(frame: CGRectMake(0, 411, view.frame.width, 261))
+//        pickerView = UIPickerView(frame: CGRectMake(0, 411, view.frame.width, 261))
         pickerView = UIPickerView(frame: CGRectMake(0, 455, view.frame.width, 217))
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -132,7 +132,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         
         toolBar = UIToolbar(frame:CGRectMake(0, 411, view.frame.width, 44))
-//        let toolBar = UIToolbar()
+//        toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.barTintColor = UIColor.mrBarColor()
         toolBar.translucent = false
@@ -148,6 +148,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         toolBar.setItems([cancelButton, spaceButton, lookFor, spaceButton, doneButton], animated: true)
         toolBar.userInteractionEnabled = true
         
+//        pickerView.addSubview(toolBar)
         view.addSubview(toolBar)
         view.addSubview(pickerView)
 
