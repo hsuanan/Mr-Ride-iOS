@@ -190,6 +190,8 @@ class DataManager {
         //        }
     }
     
+    
+    //MARK: UBike Data
     func getBikeDataFromServer(){
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)){
@@ -213,10 +215,10 @@ class DataManager {
                             print("Malformed data received from fetchAllRooms service")
                             
                             self.fetchStationCoreData() // 如果沒有拿到資料的話才從coreDatafetch資料
-                            self.showStationCoreData() //test if get data
+                            //self.showStationCoreData() //test if get data
                             
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.delegate?.didReceiveDataFromCoreData() //若不是從servers拿到資料,不會執行以下的didReceiveDataFromSerer
+                            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                                self?.delegate?.didReceiveDataFromCoreData() //若不是從servers拿到資料,不會執行以下的didReceiveDataFromSerer
                                 print("This is run on the main quene, after the previos code in outer block")
                             return}
                             print (response.response)
@@ -224,13 +226,13 @@ class DataManager {
                             return
                     }
 //                    print("json:\(json)")
-                    self.cleanUpCoreData()
+                    self.cleanUpStationCoreData()
                     self.readJSONObject(json)
                     self.SaveStationToCoreData()
 //                    self.showStationCoreData() //test if get data
                     
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.delegate?.didReceiveDataFromServer() //透過delegate通知controller拿到資料
+                    dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                        self?.delegate?.didReceiveDataFromServer() //透過delegate通知controller拿到資料
                         print("This is run on the main quene, after the previos code in outer block")
                     }
                     print (response.response)
@@ -338,7 +340,6 @@ class DataManager {
                         longitude: longitude))
             }
             print("Fetch data from coredata")
-            print("fetched stationArray \(stationArray)")
             
         } catch {
             fatalError("Failed to fetch coredata: \(error)")
@@ -346,7 +347,7 @@ class DataManager {
     }
 
     
-    func cleanUpCoreData(){
+    func cleanUpStationCoreData(){
         let request = NSFetchRequest(entityName: "Station")
         
         do {
@@ -361,9 +362,9 @@ class DataManager {
                 fatalError("Failure to save context: \(error)")
             }
         }catch {
-            fatalError("Failure to cleanup coredata: \(error)")
+            fatalError("Failure to cleanup station coredata: \(error)")
         }
-        print("clean up core data")
+        print("clean up station core data")
     }
     
     func showStationCoreData(){
@@ -380,6 +381,5 @@ class DataManager {
             fatalError("fail to fech data: \(error)")
         }
     }
-    
     
 }

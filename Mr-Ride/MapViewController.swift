@@ -10,7 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
+
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, JSONToiletDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
     
 
     @IBOutlet weak var lookForLabel: UILabel!
@@ -36,6 +37,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     let recordModal = DataManager.sharedDataManager
+    let toiletRecordModal = ToiletDataManager.sharedToiletDataManager
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -52,9 +54,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         getLocationUpdate()
         mapView.delegate = self
         
-        recordModal.getBikeDataFromServer()
         recordModal.delegate = self
+        recordModal.getBikeDataFromServer()
         
+        
+        toiletRecordModal.delegate = self
+        toiletRecordModal.getToiletDataFromServer()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -167,6 +172,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         pickerView.removeFromSuperview()
         toolBar.removeFromSuperview()
         print("donePickerTapped")
+        
+        if inputButtonLabel.text == "Ubike Station" {
+            showStationAnnotation()
+//            mapView.layoutIfNeeded()
+            
+        } else {
+            showToiletAnnotation()
+//            mapView.layoutIfNeeded()
+        }
     }
     
     
@@ -186,10 +200,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         inputButtonLabel.text = pickOption[row]
-        
-        if row == 0 {
-            showStationAnnotation()
-        }
     }
     
     
@@ -236,6 +246,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let annotationId = "Station"
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId)
+        //如果地標已經建立,直接顯示該地標,否則就建立一個可自訂圖示的新地標
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
             annotationView?.canShowCallout = true
@@ -246,9 +257,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             UIGraphicsBeginImageContext(size)
             pinImage!.drawInRect(CGRectMake(0, 0, size.width, size.height))
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
+             UIGraphicsEndImageContext()
             
-            annotationView?.image = resizedImage
+            if inputButtonLabel.text == "Ubike Station" {
+                
+                annotationView?.image = resizedImage
+                
+            } else if inputButtonLabel.text == "Toilet" {
+
+                annotationView?.image = UIImage(named: "icon-toilet")
+                
+            } else {
+                print ("annotation image error")
+            }
+            
+//            annotationView?.image = resizedImage
             annotationView?.backgroundColor = UIColor.whiteColor()
             annotationView!.layer.cornerRadius = annotationView!.frame.size.width / 2
             
@@ -260,10 +283,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     
-    
     func showStationAnnotation() {
-        
-//        print("recordModal.stationArray:\(recordModal.stationArray)")
         
         for station in recordModal.stationArray {
             
@@ -276,19 +296,51 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotation.title = "\(station.availableBikesNumber) bikes left"
             mapView.addAnnotation(annotation)
         }
-        
+        print("showStationAnnotation")
     }
+    
+    func showToiletAnnotation() {
+       
+        for toilet in toiletRecordModal.toiletArray {
+            
+            let latitude = toilet.latitude
+            let longitude = toilet.longitude
+            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = toilet.title
+            mapView.addAnnotation(annotation)
+        }
+        
+        print("showToiletAnnotation")
+    }
+    
+    
     
     // Mark: implement protocol
     
     func didReceiveDataFromServer() {
         print("didReceiveDataFromServer")
+        
+        
         showStationAnnotation()
+        
     }
     
     func didReceiveDataFromCoreData() {
         print("didReceiveDataFromCoreData")
+        showStationAnnotation()
+    }
+//    
+    func didReceiveToiletDataFromServer() {
+        print("didReceiveToiletDataFromServer")
+//        showToiletAnnotation()
     }
     
+    func didReceiveToiletDataFromCoreData() {
+        print("didReceiveToiletDataFromServer")
+//        showToiletAnnotation()
+    }
     
 }

@@ -57,6 +57,9 @@
 		BCE4E90C1CFA824F00976948 /* HistoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */; };
 		BCEF2EEC1D1CCEA50052CE64 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCEF2EE51D1CCE840052CE64 /* Charts.framework */; };
 		BCEF2EED1D1CCEA50052CE64 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BCEF2EE51D1CCE840052CE64 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BCEF2EF21D1CD92C0052CE64 /* ToiletDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEF2EF11D1CD92C0052CE64 /* ToiletDataManagement.swift */; };
+		BCEF2EFC1D1D04CB0052CE64 /* Toilet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEF2EFA1D1D04CB0052CE64 /* Toilet+CoreDataProperties.swift */; };
+		BCEF2EFD1D1D04CB0052CE64 /* Toilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEF2EFB1D1D04CB0052CE64 /* Toilet.swift */; };
 		D51620DCE59A9B50516CA597 /* Pods_Mr_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E327A326D02CA18563C71677 /* Pods_Mr_Ride.framework */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +176,9 @@
 		BCE4E9091CFA7DC700976948 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		BCE4E90B1CFA824F00976948 /* HistoryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNavigationController.swift; sourceTree = "<group>"; };
 		BCEF2EDD1D1CCE830052CE64 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		BCEF2EF11D1CD92C0052CE64 /* ToiletDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletDataManagement.swift; sourceTree = "<group>"; };
+		BCEF2EFA1D1D04CB0052CE64 /* Toilet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Toilet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BCEF2EFB1D1D04CB0052CE64 /* Toilet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toilet.swift; sourceTree = "<group>"; };
 		E327A326D02CA18563C71677 /* Pods_Mr_Ride.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mr_Ride.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -209,11 +215,15 @@
 		BC08DE161D05136F00D7D362 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				BCEF2EFA1D1D04CB0052CE64 /* Toilet+CoreDataProperties.swift */,
+				BCEF2EFB1D1D04CB0052CE64 /* Toilet.swift */,
 				BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */,
 				BCDB65AC1D0041D80041FBAD /* Records+CoreDataProperties.swift */,
 				BCDB65AD1D0041D80041FBAD /* Records.swift */,
 				BCDB65AE1D0041D80041FBAD /* Location+CoreDataProperties.swift */,
 				BCDB65AF1D0041D80041FBAD /* Location.swift */,
+				BC0123881D17E7DE005A3363 /* Station+CoreDataProperties.swift */,
+				BC0123891D17E7DE005A3363 /* Station.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -277,11 +287,10 @@
 		BC85F6291CF2B09E00B11F89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BC0123881D17E7DE005A3363 /* Station+CoreDataProperties.swift */,
-				BC0123891D17E7DE005A3363 /* Station.swift */,
 				BC85F6351CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift */,
 				BC85F6331CF3F12B00B11F89 /* UIFont+YBKAdditions (2).swift */,
 				BC5208611D095B1B0051742A /* DataManagement.swift */,
+				BCEF2EF11D1CD92C0052CE64 /* ToiletDataManagement.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -549,6 +558,7 @@
 				BCCFE61C1CF98E34004323B0 /* MMDrawerController.m in Sources */,
 				BCCFE61D1CF98E34004323B0 /* MMDrawerVisualState.m in Sources */,
 				BC5208621D095B1B0051742A /* DataManagement.swift in Sources */,
+				BCEF2EFD1D1D04CB0052CE64 /* Toilet.swift in Sources */,
 				BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */,
 				BC10F67B1D12CA6D006B37F3 /* HistoryFooterTableViewCell.swift in Sources */,
 				BCE4E9041CF9DDD600976948 /* LeftSideTableViewCell.swift in Sources */,
@@ -557,9 +567,11 @@
 				BC85F6211CF2ADDE00B11F89 /* StatisticsViewController.swift in Sources */,
 				BC01238B1D17E7DE005A3363 /* Station.swift in Sources */,
 				BC9C8B301CF6AAAA00EB4FBE /* HomePageNavigationController.swift in Sources */,
+				BCEF2EFC1D1D04CB0052CE64 /* Toilet+CoreDataProperties.swift in Sources */,
 				BC85F6361CF3F1AC00B11F89 /* UIColor+YBKAdditions (2).swift in Sources */,
 				BC01238A1D17E7DE005A3363 /* Station+CoreDataProperties.swift in Sources */,
 				BCE4E90A1CFA7DC700976948 /* HistoryViewController.swift in Sources */,
+				BCEF2EF21D1CD92C0052CE64 /* ToiletDataManagement.swift in Sources */,
 				BC85F62B1CF2B20200B11F89 /* NewRecordNavigationController.swift in Sources */,
 				BC7770201D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift in Sources */,
 			);

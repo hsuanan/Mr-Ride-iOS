@@ -556,6 +556,7 @@ extension NewRecordViewController {
             0.5 , animations: {
                 self.playPauseButtonView.transform = CGAffineTransformMakeScale(0.5, 0.5)},
             
+            
             completion: { finish in
                 UIView.animateWithDuration(0.6){
                     self.playPauseButtonView.transform = CGAffineTransformMakeScale(0.5, 0.5)
@@ -567,7 +568,7 @@ extension NewRecordViewController {
     func animateFromSqareToCircle(){
         
         UIView.animateWithDuration(
-            0.0 , animations: {
+            0.5 , animations: {
                 self.playPauseButtonView.transform = CGAffineTransformMakeScale(1.0, 1.0)
                 self.playPauseButtonView.layer.cornerRadius = self.playPauseButtonView.frame.size.width / 2
         })

@@ -107,7 +107,6 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         recordModel.fetchRecordsCoreData()
 
         setChart()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -119,12 +118,15 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     }
     
     
-    //MARK : Chart
+    //MARK: Chart
     
     func setChart() {
         
         var dates=[String]()
         var distances=[Double]()
+        
+        lineChartView.backgroundColor = UIColor.mrLightblueColor()
+        lineChartView.noDataText = ""
         
         for data in recordModel.saveRecords {
             
@@ -147,6 +149,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
             
             lineChartView.descriptionText = ""
             lineChartView.backgroundColor = UIColor.mrLightblueColor()
+            
             
             lineChartView.rightAxis.enabled = false
             lineChartView.leftAxis.enabled = false
