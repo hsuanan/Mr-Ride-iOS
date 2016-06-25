@@ -12,7 +12,7 @@ import CoreData
 
 protocol StatisticsViewControllerDelegate: class {
     
-    func didDismiss()
+    func didDismiss2()
     
 }
 
@@ -45,7 +45,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         } else {
             print("DoneButtonTapped")
             
-            delegate?.didDismiss()
+            delegate?.didDismiss2()
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }

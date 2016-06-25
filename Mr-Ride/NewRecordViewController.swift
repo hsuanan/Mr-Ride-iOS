@@ -17,6 +17,7 @@ import CoreData
 protocol NewRecordViewControllerDelegate: class {
     
     func didDismiss()
+    func setChart()
     
 }
 
@@ -177,8 +178,9 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     }
         
     
-    func didDismiss() {
+    func didDismiss2() {
         delegate?.didDismiss()
+        delegate?.setChart()
     }
     
         

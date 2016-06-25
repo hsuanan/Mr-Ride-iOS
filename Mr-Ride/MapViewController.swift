@@ -174,16 +174,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         pickerView.removeFromSuperview()
         toolBar.removeFromSuperview()
         print("donePickerTapped")
-        
-        if inputButtonLabel.text == "Ubike Station" {
-            removeAnnotation()
-            showStationAnnotation()
-            
-            
-        } else {
-            removeAnnotation()
-            showToiletAnnotation()
-        }
     
     }
     
@@ -205,6 +195,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         inputButtonLabel.text = pickOption[row]
         print("didSelectRow:\(row)")
+        
+        switch row {
+        case 0:
+            removeAnnotation()
+            showStationAnnotation()
+        case 1:
+            removeAnnotation()
+            showToiletAnnotation()
+        default: showStationAnnotation()
+            }
     }
     
     
@@ -249,6 +249,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
+        if !(annotation is CustomPointAnnotation) {
+            return nil
+        }
+        
         let annotationId = "Station"
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId)
         //如果地標已經建立,直接顯示該地標,否則就建立一個可自訂圖示的新地標
@@ -256,37 +260,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
             annotationView?.canShowCallout = true
             
-            // Resize image
-            let pinImage = UIImage(named: "icon-station")
-            let size = CGSize(width: 30, height: 30)
-            UIGraphicsBeginImageContext(size)
-            pinImage!.drawInRect(CGRectMake(0, 0, size.width, size.height))
-            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-             UIGraphicsEndImageContext()
-            
-//            if inputButtonLabel.text == "Ubike Station" {
-//                
-//                annotationView?.image = resizedImage
-//                
-//            } else if inputButtonLabel.text == "Toilet" {
-//
-//                annotationView?.image = UIImage(named: "icon-toilet")
-//                
-//            } else {
-//                print ("annotation image error")
-//            }
-            
-//            annotationView?.image = resizedImage
-            
-            let cpa = annotation as! CustomPointAnnotation
-             annotationView!.image = UIImage(named: cpa.imageName)
-            annotationView?.backgroundColor = UIColor.whiteColor()
-            annotationView!.layer.cornerRadius = annotationView!.frame.size.width / 2
-            
         }
         else {
             annotationView?.annotation = annotation
         }
+       
+        let cpa = annotation as! CustomPointAnnotation
+        
+        // Resize image
+        let pinImage = UIImage(named: cpa.imageName)
+        let size = CGSize(width: 30, height: 30)
+        UIGraphicsBeginImageContext(size)
+        pinImage!.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()        
+        
+//        annotationView!.image = UIImage(named: cpa.imageName)
+        annotationView!.image = resizedImage
+        annotationView?.backgroundColor = UIColor.whiteColor()
+        annotationView!.layer.cornerRadius = annotationView!.frame.size.width / 2
+
+        
+     
+        
+        
+        
         return annotationView
     }
     
