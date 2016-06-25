@@ -50,6 +50,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var toolBar = UIToolbar()
     var pickOption = ["UBike Station", "Toilet"]
     
+    var annotationView: MKAnnotationView?
+    var iconImageView: UIImageView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -247,45 +250,55 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print("Errors: \(error.localizedDescription)")
     }
     
+    
+    //MARK: Annotation
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         if !(annotation is CustomPointAnnotation) {
             return nil
         }
         
-        let annotationId = "Station"
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId)
+        let annotationId = "reuseID"
+        annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId)
         //如果地標已經建立,直接顯示該地標,否則就建立一個可自訂圖示的新地標
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
             annotationView?.canShowCallout = true
-            
         }
         else {
             annotationView?.annotation = annotation
         }
        
         let cpa = annotation as! CustomPointAnnotation
-        
-        // Resize image
         let pinImage = UIImage(named: cpa.imageName)
-        let size = CGSize(width: 30, height: 30)
-        UIGraphicsBeginImageContext(size)
-        pinImage!.drawInRect(CGRectMake(0, 0, size.width, size.height))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()        
-        
-//        annotationView!.image = UIImage(named: cpa.imageName)
-        annotationView!.image = resizedImage
-        annotationView?.backgroundColor = UIColor.whiteColor()
-        annotationView!.layer.cornerRadius = annotationView!.frame.size.width / 2
+        iconImageView = UIImageView(image: pinImage)
 
+//        annotationView?.image = pinImage
+        annotationView?.backgroundColor = UIColor.whiteColor()
+        annotationView?.frame = CGRectMake(0, 0, 40, 40)
+        annotationView?.layer.cornerRadius = annotationView!.frame.size.width / 2
         
-     
-        
-        
-        
+        annotationView?.addSubview(iconImageView!)
+        iconImageView?.center = (annotationView?.center)!
+    
+
         return annotationView
     }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        
+        print("didSelectAnnotationView")
+        view.backgroundColor = UIColor.mrLightblueColor()
+        
+    }
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        print("didDeselectAnnotationView")
+
+        view.backgroundColor = UIColor.whiteColor()
+    }
+
     
     
     func showStationAnnotation() {
@@ -326,6 +339,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func removeAnnotation() {
+        iconImageView?.removeFromSuperview()
         let annotations = mapView.annotations
         mapView.removeAnnotations(annotations)
         print("removeAnnotation")
