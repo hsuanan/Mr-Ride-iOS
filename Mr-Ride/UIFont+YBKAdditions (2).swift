@@ -45,6 +45,11 @@ extension UIFont {
         return UIFont.systemFontOfSize(24.0, weight: UIFontWeightMedium)
     }
     
+    class func mrTextStyle71Font() -> UIFont {
+        return UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
+    }
+    
+    
     class func mrTextStyle2Font() -> UIFont? {
         return UIFont(name: "PingFangTC-Medium", size: 20.0)
     }

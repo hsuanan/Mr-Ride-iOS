@@ -11,12 +11,24 @@ import MapKit
 import CoreLocation
 
 class CustomPointAnnotation: MKPointAnnotation {
-    var imageName: String!
+    var imageName: String?
+    var labelTitle: String?
+    var address: String?
+    var category: String?
 }
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, JSONToiletDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
     
-
+    @IBOutlet weak var dashBoardView: UIView!
+    
+    @IBOutlet weak var categoryLabel: UILabel!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBOutlet weak var trafficTimeLabel: UILabel!
+    
     @IBOutlet weak var lookForLabel: UILabel!
     
     @IBOutlet weak var inputButtonLabel: UILabel!
@@ -28,7 +40,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         showPickerView()
         
     }
- 
+    
     @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func barButtonTapped(sender: AnyObject) {
@@ -36,7 +48,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-
+        
     }
     
     let recordModal = DataManager.sharedDataManager
@@ -57,6 +69,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.viewDidLoad()
         
         setup()
+        dashBoardViewSetUp()
         getLocationUpdate()
         mapView.delegate = self
         
@@ -66,6 +79,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         toiletRecordModal.delegate = self
         toiletRecordModal.getToiletDataFromServer()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -130,10 +144,31 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
     }
     
+    func dashBoardViewSetUp() {
+        
+        dashBoardView.hidden = true
+        dashBoardView.backgroundColor = UIColor.mrDarkSlateBlue90Color()
+        
+        categoryLabel.textColor = UIColor.whiteColor()
+        categoryLabel.font = UIFont.mrTextStyle4Font()
+        categoryLabel.layer.borderColor = UIColor.whiteColor().CGColor
+        categoryLabel.layer.borderWidth = 0.5
+        categoryLabel.layer.cornerRadius = 2
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.font = UIFont.mrTextStyle71Font()
+        addressLabel.textColor = UIColor.whiteColor()
+        addressLabel.font = UIFont.mrTextStyle16Font()
+        trafficTimeLabel.textColor = UIColor.whiteColor()
+        trafficTimeLabel.font = UIFont.mrTextStyle4Font()
+        
+        
+        
+    }
+    
     //MARK: PickerView
     
     func showPickerView() {
-//        pickerView = UIPickerView()
+        //        pickerView = UIPickerView()
         pickerView = UIPickerView(frame: CGRectMake(0, 455, view.frame.width, 217))
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -142,7 +177,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         
         toolBar = UIToolbar(frame:CGRectMake(0, 411, view.frame.width, 44))
-//        toolBar = UIToolbar()
+        //        toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.barTintColor = UIColor.mrBarColor()
         toolBar.translucent = false
@@ -150,18 +185,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.cancelPickerTapped))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-//        spaceButton.title = "look For"
+        //        spaceButton.title = "look For"
         let lookFor = UIBarButtonItem(title: "Look for", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         lookFor.tintColor = UIColor.blackColor()
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.donePickerTapped))
-
+        
         toolBar.setItems([cancelButton, spaceButton, lookFor, spaceButton, doneButton], animated: true)
         toolBar.userInteractionEnabled = true
         
-//        pickerView.addSubview(toolBar)
+        //        pickerView.addSubview(toolBar)
         view.addSubview(toolBar)
         view.addSubview(pickerView)
-
+        
     }
     
     func cancelPickerTapped() {
@@ -177,12 +212,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         pickerView.removeFromSuperview()
         toolBar.removeFromSuperview()
         print("donePickerTapped")
-    
+        
     }
     
     
     //MarkL pickerView delegate
-
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -207,7 +242,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             removeAnnotation()
             showToiletAnnotation()
         default: showStationAnnotation()
-            }
+        }
     }
     
     
@@ -223,7 +258,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.distanceFilter = 10 // update every 10 meters
             locationManager.activityType = .Fitness
-//            locationManager.startUpdatingLocation()
+            //            locationManager.startUpdatingLocation()
             mapView!.delegate = self
             mapView!.showsUserLocation = true
             
@@ -269,20 +304,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         else {
             annotationView?.annotation = annotation
         }
-       
+        
         let cpa = annotation as! CustomPointAnnotation
-        let pinImage = UIImage(named: cpa.imageName)
+        let pinImage = UIImage(named: cpa.imageName!)
         iconImageView = UIImageView(image: pinImage)
-
-//        annotationView?.image = pinImage
+        
+        //        annotationView?.image = pinImage
         annotationView?.backgroundColor = UIColor.whiteColor()
         annotationView?.frame = CGRectMake(0, 0, 40, 40)
         annotationView?.layer.cornerRadius = annotationView!.frame.size.width / 2
         
         annotationView?.addSubview(iconImageView!)
         iconImageView?.center = (annotationView?.center)!
-    
-
+        
+        
         return annotationView
     }
     
@@ -291,15 +326,26 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print("didSelectAnnotationView")
         view.backgroundColor = UIColor.mrLightblueColor()
         
+        if let annotation = view.annotation as? CustomPointAnnotation {
+            
+            titleLabel.text = annotation.labelTitle
+            addressLabel.text = annotation.address
+            categoryLabel.text = annotation.category
+        }
+        
+
+        
+        dashBoardView.hidden = false
+        
+        
     }
     
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
         print("didDeselectAnnotationView")
-
+        
         view.backgroundColor = UIColor.whiteColor()
+        dashBoardView.hidden = true
     }
-
-    
     
     func showStationAnnotation() {
         
@@ -310,17 +356,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let location = CLLocationCoordinate2DMake(latitude, longitude)
             
             let annotation = CustomPointAnnotation()
-//            let annotation = MKPointAnnotation()
+            //            let annotation = MKPointAnnotation()
             annotation.coordinate = location  // pin a marker
             annotation.title = "\(station.availableBikesNumber) bikes left"
             annotation.imageName = "icon-station"
+            annotation.labelTitle = station.station
+            annotation.category = station.district
+            annotation.address = station.location
+            
             mapView.addAnnotation(annotation)
         }
         print("showStationAnnotation")
     }
     
     func showToiletAnnotation() {
-       
+        
         for toilet in toiletRecordModal.toiletArray {
             
             let latitude = toilet.latitude
@@ -328,11 +378,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             
             let annotation = CustomPointAnnotation()
-//            let annotation = MKPointAnnotation()
+            //            let annotation = MKPointAnnotation()
             annotation.coordinate = location
             annotation.title = toilet.title
             annotation.imageName = "icon-toilet"
+            annotation.labelTitle = toilet.title
+            annotation.address = toilet.address
             mapView.addAnnotation(annotation)
+
         }
         
         print("showToiletAnnotation")
@@ -361,15 +414,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print("didReceiveDataFromCoreData")
         showStationAnnotation()
     }
-//    
+    //
     func didReceiveToiletDataFromServer() {
         print("didReceiveToiletDataFromServer")
-//        showToiletAnnotation()
+        //        showToiletAnnotation()
     }
     
     func didReceiveToiletDataFromCoreData() {
         print("didReceiveToiletDataFromServer")
-//        showToiletAnnotation()
+        //        showToiletAnnotation()
     }
     
 }
