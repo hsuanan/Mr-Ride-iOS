@@ -10,6 +10,11 @@ import UIKit
 import MapKit
 import CoreData
 
+protocol StatisticsViewControllerDelegate: class {
+    
+    func didDismiss()
+    
+}
 
 class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -27,6 +32,8 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     var locations: [Locations]=[]
     
     var isFromHistory = false
+    
+    weak var delegate: StatisticsViewControllerDelegate?
         
     @IBOutlet var statisticsView: StatisticsView!
     
@@ -37,6 +44,8 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             self.navigationController?.popToRootViewControllerAnimated(true)
         } else {
             print("DoneButtonTapped")
+            
+            delegate?.didDismiss()
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }

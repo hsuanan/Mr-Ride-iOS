@@ -20,7 +20,7 @@ protocol NewRecordViewControllerDelegate: class {
     
 }
 
-class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
+class NewRecordViewController: UIViewController, CLLocationManagerDelegate, StatisticsViewControllerDelegate {
     
     @IBOutlet weak var mapView: MKMapView?
     
@@ -88,12 +88,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         startIsOn = false
         
 //        delegate?.didDismiss()
-//
-//        let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
-//        
-//        self.navigationController?.pushViewController(destinationController, animated: true)
-//        
-//        destinationController.delegate = self
         
         passDataToStatisticsPage()
         
@@ -182,6 +176,10 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         print("__Leave New Record Page")
     }
         
+    
+    func didDismiss() {
+        delegate?.didDismiss()
+    }
     
         
     // MARK: Timer
@@ -307,6 +305,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     func passDataToStatisticsPage() {
         
         let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
+        
+        destinationController.delegate = self
         
         destinationController.timestamp = date
         destinationController.distance = traveledDistance

@@ -10,6 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
+class CustomPointAnnotation: MKPointAnnotation {
+    var imageName: String!
+}
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, JSONToiletDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -127,8 +130,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     //MARK: PickerView
     
     func showPickerView() {
-        
-//        pickerView = UIPickerView(frame: CGRectMake(0, 411, view.frame.width, 261))
+//        pickerView = UIPickerView()
         pickerView = UIPickerView(frame: CGRectMake(0, 455, view.frame.width, 217))
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -174,13 +176,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print("donePickerTapped")
         
         if inputButtonLabel.text == "Ubike Station" {
+            removeAnnotation()
             showStationAnnotation()
-//            mapView.layoutIfNeeded()
+            
             
         } else {
+            removeAnnotation()
             showToiletAnnotation()
-//            mapView.layoutIfNeeded()
         }
+    
     }
     
     
@@ -200,6 +204,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         inputButtonLabel.text = pickOption[row]
+        print("didSelectRow:\(row)")
     }
     
     
@@ -259,19 +264,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
              UIGraphicsEndImageContext()
             
-            if inputButtonLabel.text == "Ubike Station" {
-                
-                annotationView?.image = resizedImage
-                
-            } else if inputButtonLabel.text == "Toilet" {
-
-                annotationView?.image = UIImage(named: "icon-toilet")
-                
-            } else {
-                print ("annotation image error")
-            }
+//            if inputButtonLabel.text == "Ubike Station" {
+//                
+//                annotationView?.image = resizedImage
+//                
+//            } else if inputButtonLabel.text == "Toilet" {
+//
+//                annotationView?.image = UIImage(named: "icon-toilet")
+//                
+//            } else {
+//                print ("annotation image error")
+//            }
             
 //            annotationView?.image = resizedImage
+            
+            let cpa = annotation as! CustomPointAnnotation
+             annotationView!.image = UIImage(named: cpa.imageName)
             annotationView?.backgroundColor = UIColor.whiteColor()
             annotationView!.layer.cornerRadius = annotationView!.frame.size.width / 2
             
@@ -291,9 +299,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let longitude = station.longitude
             let location = CLLocationCoordinate2DMake(latitude, longitude)
             
-            let annotation = MKPointAnnotation()
+            let annotation = CustomPointAnnotation()
+//            let annotation = MKPointAnnotation()
             annotation.coordinate = location  // pin a marker
             annotation.title = "\(station.availableBikesNumber) bikes left"
+            annotation.imageName = "icon-station"
             mapView.addAnnotation(annotation)
         }
         print("showStationAnnotation")
@@ -307,13 +317,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let longitude = toilet.longitude
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             
-            let annotation = MKPointAnnotation()
+            let annotation = CustomPointAnnotation()
+//            let annotation = MKPointAnnotation()
             annotation.coordinate = location
             annotation.title = toilet.title
+            annotation.imageName = "icon-toilet"
             mapView.addAnnotation(annotation)
         }
         
         print("showToiletAnnotation")
+    }
+    
+    func removeAnnotation() {
+        let annotations = mapView.annotations
+        mapView.removeAnnotations(annotations)
+        print("removeAnnotation")
     }
     
     

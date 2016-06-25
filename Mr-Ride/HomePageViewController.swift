@@ -42,8 +42,6 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         self.navigationController?.presentViewController(nvc, animated: true, completion: nil)
         let newRecordVC = nvc.viewControllers.first as! NewRecordViewController
 
-  
-        
         newRecordVC.delegate = self
        
         
