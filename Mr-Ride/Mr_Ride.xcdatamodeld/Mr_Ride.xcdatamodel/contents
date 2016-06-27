@@ -27,6 +27,7 @@
     </entity>
     <entity name="Toilet" representedClassName=".Toilet" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,6 +36,6 @@
         <element name="Location" positionX="-27" positionY="45" width="128" height="105"/>
         <element name="Records" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="Station" positionX="-27" positionY="72" width="128" height="135"/>
-        <element name="Toilet" positionX="-36" positionY="81" width="128" height="105"/>
+        <element name="Toilet" positionX="-36" positionY="81" width="128" height="120"/>
     </elements>
 </model>

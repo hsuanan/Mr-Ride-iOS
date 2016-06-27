@@ -264,8 +264,8 @@ class DataManager {
             
             guard
             let station = value["snaen"] as? String,
-            let district = value["sareaen"],
-            let location = value["aren"],
+            let district = value["sareaen"] as? String,
+            let location = value["aren"] as? String,
             let availableBikesNumber = value["sbi"] as? String,
             let latitude = value["lat"] as? String,
             let longitude = value["lng"] as? String
@@ -274,8 +274,8 @@ class DataManager {
             stationArray.append(
                 StationModel(
                     station: station,
-                    district: String(district),
-                    location: String(location),
+                    district: district,
+                    location: location,
                     availableBikesNumber: Int(availableBikesNumber)!,
                     latitude: Double(latitude)!,
                     longitude: Double(longitude)!))

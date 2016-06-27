@@ -12,14 +12,15 @@ import Alamofire
 import SwiftyJSON
 import JWT
 
-protocol JSONToiletDataDelegation: class {
-    func didReceiveToiletDataFromServer()
-    func didReceiveToiletDataFromCoreData()
-}
+//protocol JSONToiletDataDelegation: class {
+//    func didReceiveToiletDataFromServer()
+//    func didReceiveToiletDataFromCoreData()
+//}
 
 
 struct ToiletModel {
     
+    var category: String = ""
     var title: String = ""
     var address: String = ""
     var latitude: Double = 0.0
@@ -40,14 +41,17 @@ struct ToiletModelHelper {}
 extension ToiletModelHelper: JSONParsable {
     
     struct JSONKey {
+        static let category = "類別"
         static let title = "單位名稱"
         static let Latitude = "緯度"
         static let Longitude = "經度"
         static let Address = "地址"
     }
-    enum JSONError: ErrorType { case MissingLatitude, MissingLongitude, MissingTitle, MissingAddress }
+    enum JSONError: ErrorType { case MissingCategory, MissingLatitude, MissingLongitude, MissingTitle, MissingAddress }
     
     func parse(json json: JSON) throws -> ToiletModel {
+        
+        guard let category = json[JSONKey.category].string else {throw JSONError.MissingCategory}
         
         guard let title = json[JSONKey.title].string else { throw JSONError.MissingTitle }
         
@@ -62,6 +66,7 @@ extension ToiletModelHelper: JSONParsable {
         guard let address = json[JSONKey.Address].string else { throw JSONError.MissingAddress }
         
         let toilet = ToiletModel(
+            category: category,
             title: title,
             address: address,
             latitude: latitude,
@@ -77,7 +82,7 @@ class ToiletDataManager {
     
     static let sharedToiletDataManager = ToiletDataManager()
     
-    weak var delegate: JSONToiletDataDelegation?
+//    weak var delegate: JSONToiletDataDelegation?
     
     var toiletArray = [ToiletModel]()
     
@@ -157,6 +162,7 @@ class ToiletDataManager {
             
             for eachFethcToiletData in fetchedToilet {
                 guard
+                    let Category = eachFethcToiletData.category,
                     let title = eachFethcToiletData.title,
                     let address = eachFethcToiletData.address,
                     let latitude = eachFethcToiletData.latitude as? Double,
@@ -165,6 +171,7 @@ class ToiletDataManager {
                 
                 self.toiletArray.append(
                     ToiletModel(
+                        category: Category,
                         title: title,
                         address: address,
                         latitude: latitude,
@@ -207,6 +214,7 @@ class ToiletDataManager {
             
             let entityToilet = NSEntityDescription.insertNewObjectForEntityForName("Toilet", inManagedObjectContext: moc) as! Toilet
             
+            entityToilet.category = dataInfo.category
             entityToilet.title = dataInfo.title
             entityToilet.address = dataInfo.address
             entityToilet.latitude = dataInfo.latitude

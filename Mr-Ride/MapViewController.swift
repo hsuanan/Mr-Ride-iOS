@@ -15,33 +15,32 @@ class CustomPointAnnotation: MKPointAnnotation {
     var labelTitle: String?
     var address: String?
     var category: String?
+    var latitude: Double?
+    var longitude: Double?
 }
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, JSONToiletDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    
+    //dashBoardView
     @IBOutlet weak var dashBoardView: UIView!
-    
     @IBOutlet weak var categoryLabel: UILabel!
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var addressLabel: UILabel!
-    
     @IBOutlet weak var trafficTimeLabel: UILabel!
     
+    // inputButtonLabel
     @IBOutlet weak var lookForLabel: UILabel!
-    
     @IBOutlet weak var inputButtonLabel: UILabel!
-    
     @IBOutlet weak var inputButton: UIButton!
-    
     @IBAction func inputButtonTapped(sender: UIButton) {
-        
         showPickerView()
-        
     }
     
     @IBOutlet weak var mapView: MKMapView!
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
+    
     
     @IBAction func barButtonTapped(sender: AnyObject) {
         
@@ -50,20 +49,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
         
     }
+    //pickerView
+    var pickerView = UIPickerView()
+    var toolBar = UIToolbar()
+    var pickOption = ["UBike Station", "Toilet"]
+
     
     let recordModal = DataManager.sharedDataManager
     let toiletRecordModal = ToiletDataManager.sharedToiletDataManager
     
-    let locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
-    
-    
-    var pickerView = UIPickerView()
-    var toolBar = UIToolbar()
-    var pickOption = ["UBike Station", "Toilet"]
-    
-    var annotationView: MKAnnotationView?
-    var iconImageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,8 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         recordModal.delegate = self
         recordModal.getBikeDataFromServer()
         
-        
-        toiletRecordModal.delegate = self
+//        toiletRecordModal.delegate = self
         toiletRecordModal.getToiletDataFromServer()
         
     }
@@ -105,7 +98,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     
-    
     // MARK: Setup
     
     func setup() {
@@ -124,7 +116,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         )
         lookForLabelLayer.path = roundedPath.CGPath
         lookForLabel.layer.mask = lookForLabelLayer
-        
         
         inputButtonLabel.backgroundColor = UIColor.whiteColor()
         inputButtonLabel.font = UIFont.mrTextStyle10Font()
@@ -156,14 +147,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         categoryLabel.layer.cornerRadius = 2
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.font = UIFont.mrTextStyle71Font()
+        letterSpacing(titleLabel.text!, letterSpacing: -0.6, label: titleLabel)
         addressLabel.textColor = UIColor.whiteColor()
         addressLabel.font = UIFont.mrTextStyle16Font()
         trafficTimeLabel.textColor = UIColor.whiteColor()
         trafficTimeLabel.font = UIFont.mrTextStyle4Font()
         
-        
-        
     }
+    
+    func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
+        let attributedText = NSMutableAttributedString (string: text)
+        attributedText.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSMakeRange(0, attributedText.length))
+        label.attributedText = attributedText
+    }
+
     
     //MARK: PickerView
     
@@ -175,6 +172,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         pickerView.backgroundColor = UIColor.whiteColor()
         pickerView.showsSelectionIndicator = true
         
+        pickerView.selectRow(0, inComponent: 0, animated: true)
+        pickerView.delegate?.pickerView!(pickerView, didSelectRow: 0, inComponent: 0)
         
         toolBar = UIToolbar(frame:CGRectMake(0, 411, view.frame.width, 44))
         //        toolBar = UIToolbar()
@@ -256,7 +255,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if CLLocationManager.locationServicesEnabled(){
             
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.distanceFilter = 10 // update every 10 meters
+            locationManager.distanceFilter = 10
             locationManager.activityType = .Fitness
             //            locationManager.startUpdatingLocation()
             mapView!.delegate = self
@@ -294,9 +293,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return nil
         }
         
-        let annotationId = "reuseID"
-        annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId)
-        //如果地標已經建立,直接顯示該地標,否則就建立一個可自訂圖示的新地標
+        let annotationId: String?
+        
+        if inputButtonLabel.text == "UBike Station" {
+            annotationId = "station"
+        } else if inputButtonLabel.text == "Toilet" {
+            annotationId = "toilet"
+        } else {
+            annotationId = "reuseID"
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId!)
+       
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
             annotationView?.canShowCallout = true
@@ -305,18 +313,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotationView?.annotation = annotation
         }
         
-        let cpa = annotation as! CustomPointAnnotation
-        let pinImage = UIImage(named: cpa.imageName!)
-        iconImageView = UIImageView(image: pinImage)
+        let customPointAnnotation = annotation as! CustomPointAnnotation
+        let pinImage = UIImage(named: customPointAnnotation.imageName!)
+        let iconImageView = UIImageView(image: pinImage)
+        iconImageView.image = iconImageView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        iconImageView.tintColor = UIColor.mrDarkSlateBlueColor()
         
-        //        annotationView?.image = pinImage
         annotationView?.backgroundColor = UIColor.whiteColor()
         annotationView?.frame = CGRectMake(0, 0, 40, 40)
         annotationView?.layer.cornerRadius = annotationView!.frame.size.width / 2
-        
-        annotationView?.addSubview(iconImageView!)
-        iconImageView?.center = (annotationView?.center)!
-        
+       
+        annotationView?.addSubview(iconImageView)
+        iconImageView.center = (annotationView?.center)!
         
         return annotationView
     }
@@ -328,15 +336,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         if let annotation = view.annotation as? CustomPointAnnotation {
             
+            let annotationLocation = CLLocation(latitude:annotation.latitude! , longitude: annotation.longitude!)
+            
+            let distance = annotationLocation.distanceFromLocation(currentLocation!)
+            print ("distance: \(distance)")
+            
             titleLabel.text = annotation.labelTitle
             addressLabel.text = annotation.address
-            categoryLabel.text = annotation.category
+            categoryLabel.text = " \((annotation.category)!) "
+            trafficTimeLabel.text = "\(Int(distance)) m"
         }
         
-
-        
         dashBoardView.hidden = false
-        
         
     }
     
@@ -356,13 +367,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let location = CLLocationCoordinate2DMake(latitude, longitude)
             
             let annotation = CustomPointAnnotation()
-            //            let annotation = MKPointAnnotation()
             annotation.coordinate = location  // pin a marker
             annotation.title = "\(station.availableBikesNumber) bikes left"
             annotation.imageName = "icon-station"
             annotation.labelTitle = station.station
             annotation.category = station.district
             annotation.address = station.location
+            annotation.latitude = station.latitude
+            annotation.longitude = station.longitude
             
             mapView.addAnnotation(annotation)
         }
@@ -383,7 +395,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotation.title = toilet.title
             annotation.imageName = "icon-toilet"
             annotation.labelTitle = toilet.title
+            annotation.category = toilet.category
             annotation.address = toilet.address
+            annotation.latitude = toilet.latitude
+            annotation.longitude = toilet.longitude
             mapView.addAnnotation(annotation)
 
         }
@@ -392,37 +407,32 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func removeAnnotation() {
-        iconImageView?.removeFromSuperview()
         let annotations = mapView.annotations
         mapView.removeAnnotations(annotations)
         print("removeAnnotation")
     }
     
     
-    
     // Mark: implement protocol
     
     func didReceiveDataFromServer() {
         print("didReceiveDataFromServer")
-        
-        
         showStationAnnotation()
-        
     }
     
     func didReceiveDataFromCoreData() {
         print("didReceiveDataFromCoreData")
         showStationAnnotation()
     }
-    //
-    func didReceiveToiletDataFromServer() {
-        print("didReceiveToiletDataFromServer")
-        //        showToiletAnnotation()
-    }
     
-    func didReceiveToiletDataFromCoreData() {
-        print("didReceiveToiletDataFromServer")
-        //        showToiletAnnotation()
-    }
+//    func didReceiveToiletDataFromServer() {
+//        print("didReceiveToiletDataFromServer")
+//        //        showToiletAnnotation()
+//    }
+//    
+//    func didReceiveToiletDataFromCoreData() {
+//        print("didReceiveToiletDataFromServer")
+//        //        showToiletAnnotation()
+//    }
     
 }
