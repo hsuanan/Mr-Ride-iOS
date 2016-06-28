@@ -8,6 +8,8 @@ target 'Mr-Ride' do
 pod 'Alamofire', '~> 3.4'
 pod 'JSONWebToken', '~> 1.5'
 pod 'SwiftyJSON', '~> 2.3'
+pod 'Fabric'
+pod 'Crashlytics'
 
 end
 

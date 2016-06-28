@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import Crashlytics
 
 
 class HomePageViewController: UIViewController, NewRecordViewControllerDelegate {
@@ -105,6 +106,8 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         recordModel.fetchRecordsCoreData()
 
         setChart()
+        
+//        crashlyticsTest()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -299,6 +302,18 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
             print(" ")
         }
         
+    }
+    
+    func crashlyticsTest() {
+        let button = UIButton(type: UIButtonType.RoundedRect)
+        button.frame = CGRectMake(30, 100, 100, 30)
+        button.setTitle("Crash", forState: UIControlState.Normal)
+        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(button)
+    }
+    
+    @IBAction func crashButtonTapped(sender: AnyObject){
+        Crashlytics.sharedInstance().crash()
     }
     
 }

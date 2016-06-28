@@ -1,18 +1,25 @@
 PODS:
   - Alamofire (3.4.1)
+  - Crashlytics (3.7.2):
+    - Fabric (~> 1.6.3)
   - CryptoSwift (0.4.1)
+  - Fabric (1.6.7)
   - JSONWebToken (1.5.0):
     - CryptoSwift (~> 0.4.0)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - Crashlytics
+  - Fabric
   - JSONWebToken (~> 1.5)
   - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
   CryptoSwift: 25b5aff3f260967391f8fff2e9abe4254d2c6fd5
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   JSONWebToken: 6c8968ace6b60b2e6156a7bbe5019fd9b5ff9b5a
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 

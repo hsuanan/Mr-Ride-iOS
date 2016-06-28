@@ -73,6 +73,8 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
             
             appDelegate.centerContainer!.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
             
+        
+            
             break
             
         case 1:
