@@ -40,6 +40,7 @@ class StatisticsView: UIView {
         super.awakeFromNib()
     
         print("____StatisticsViewAwakeFromNib")
+    
         setupBackground()
         setupDistance()
         setupAverageSpeed()
@@ -54,7 +55,7 @@ class StatisticsView: UIView {
 
     func setupBackground() {
         
-        self.opaque = false
+        self.opaque = true
         backgroundColor = UIColor.clearColor()
         
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)

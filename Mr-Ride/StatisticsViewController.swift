@@ -49,7 +49,6 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }
-        
     }
     
     override func viewDidLoad() {
@@ -57,7 +56,6 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         print("____StatisticsViewDidLoad")
         
-        //        fetchRecordsCoreData()
         recordModel.fetchRecordsCoreData()
         statisticsView.mapView.delegate = self
         
@@ -66,11 +64,9 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         if isFromHistory == false {
             navigationItem.leftBarButtonItem?.title = "Done"
-            print("isFromHistory is false")
             
         } else {
             navigationItem.leftBarButtonItem?.title = "< Back"
-            print("isFromHistory is true")
         }
         
     }
@@ -100,7 +96,6 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         statisticsView.totalTimeValue.text = "\(timerString(duration!))"
         statisticsView.averageSpeedValue.text = "\(Int(averageSpeed!)) km/hr"
         navigationItem.title = "\(dateString(timestamp!))"
-        
     }
 
     //MARK: Helper Method
@@ -110,14 +105,12 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         return dateFormatter.stringFromDate(date)
-        
     }
     
     func numberString(number: Double ) -> NSString {
         
         return NSString(format:"%.2f",number)
     }
-    
     
     func timerString(time: Double) -> String {
         
@@ -128,7 +121,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         return String(format:"%02i:%02i:%02i.%02i", hours, minutes, seconds, secondsFrec)
     }
     
-    //    MARK: Map
+    //MARK: Map
     func showRoute() {
 
         for location in locations {
@@ -142,7 +135,6 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         statisticsView.mapView.zoomToPolyLine(polyline, animated: true)
     }
     
-    
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         if overlay is MKPolyline {
@@ -153,7 +145,6 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         }
         return MKOverlayRenderer()
     }
-    
 }
 
 extension MKMapView {

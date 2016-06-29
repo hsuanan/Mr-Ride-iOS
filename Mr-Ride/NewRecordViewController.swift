@@ -227,7 +227,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
             
             traveledDistance += distance!
             distanceValue.text = ("\(Int(traveledDistance)) m")
-
+            
             calculateCurrentSpeed()
             calculateAverageSpeed()
             calculatCalories()
@@ -262,9 +262,9 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         var CaloriesBurnedPerHourPerKg: Double
         
         switch averageSpeed {
-        case 1.0..<20.0 : CaloriesBurnedPerHourPerKg = 4.0
-        case 20.0..<30.0 : CaloriesBurnedPerHourPerKg = 8.4
-        case 30.0..<210 : CaloriesBurnedPerHourPerKg = 12.6
+        case 1.0 ..< 20.0: CaloriesBurnedPerHourPerKg = 4.0
+        case 20.0 ..< 30.0: CaloriesBurnedPerHourPerKg = 8.4
+        case 30.0 ..< 210: CaloriesBurnedPerHourPerKg = 12.6
         default : CaloriesBurnedPerHourPerKg = 0
         }
         
@@ -303,7 +303,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         destinationController.locations = passedLocations
         
         self.navigationController?.pushViewController(destinationController, animated: true)
-        
     }
     
     // MARK: Core Data
@@ -313,7 +312,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     func saveRecordsToCoreData() {
         
         let entityRecords = NSEntityDescription.insertNewObjectForEntityForName("Records", inManagedObjectContext: moc!) as! Records
-        
         
         entityRecords.timestamp = date
         entityRecords.distance = traveledDistance
@@ -333,11 +331,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         
         entityRecords.location = NSOrderedSet(array: savedLocations)
         
-        //        print ("entityRecords: \(entityRecords)")
-        
         do {
             try self.moc?.save()
-            print ("save records to Core Data===========")
         } catch {
             fatalError("Failure to save context: \(error)")
         }
@@ -349,7 +344,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         date = dateFormatter.dateFromString(dateString)!
-        
     }
 }
 
@@ -371,10 +365,7 @@ extension NewRecordViewController: MKMapViewDelegate {
                 
                 self.mapView!.addOverlay(polyline)
                 
-            } else {
-                
-                return
-            }
+            } else { return }
         }
     }
     
@@ -406,7 +397,7 @@ extension NewRecordViewController {
         gradient.colors = [color1.CGColor,color2.CGColor]
         gradient.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
-    
+        
         
         //setupDistance
         distanceTitle.font = UIFont.mrTextStyle16Font()
@@ -418,7 +409,7 @@ extension NewRecordViewController {
         distanceValue.textColor = UIColor.mrWhiteColor()
         distanceValue.text = "0 m"
         letterSpacing(distanceValue.text!, letterSpacing: 0.7, label: distanceValue)
-    
+        
         //setupAverageSpeed
         
         currentSpeedTitle.font = UIFont.mrTextStyle16Font()
@@ -430,8 +421,8 @@ extension NewRecordViewController {
         currentSpeedValue.textColor = UIColor.mrWhiteColor()
         currentSpeedValue.text = "0 km / h"
         letterSpacing(currentSpeedValue.text!, letterSpacing: 0.7, label: currentSpeedValue)
-    
-    
+        
+        
         //setupCalories
         caloriesTitle.font = UIFont.mrTextStyle16Font()
         caloriesTitle.textColor = UIColor.mrWhiteColor()
@@ -442,23 +433,28 @@ extension NewRecordViewController {
         caloriesValue.textColor = UIColor.mrWhiteColor()
         caloriesValue.text = "0 kcal"
         letterSpacing(caloriesValue.text!, letterSpacing: 0.7, label: caloriesValue)
-    
+        
         //setupTimeLabel
         
         timerLabel.font = UIFont(name: "RobotoMono-Light", size: 30)
         timerLabel.textColor = UIColor.mrWhiteColor()
         letterSpacing(timerLabel.text!, letterSpacing: 0.7, label: timerLabel)
         timerLabel.text = "00:00:00:00"
-    
+        
         //setupMap
         mapView!.layer.cornerRadius = 10.0
-    
+        
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
         
         let attributedText = NSMutableAttributedString (string: text)
-        attributedText.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSMakeRange(0, attributedText.length))
+        
+        attributedText.addAttribute(
+            NSKernAttributeName,
+            value: letterSpacing,
+            range: NSMakeRange(0, attributedText.length))
+        
         label.attributedText = attributedText
         
     }
@@ -493,7 +489,6 @@ extension NewRecordViewController {
         UIView.animateWithDuration(
             0.5 , animations: {
                 self.playPauseButtonView.transform = CGAffineTransformMakeScale(0.5, 0.5)},
-            
             
             completion: { finish in
                 UIView.animateWithDuration(0.6){

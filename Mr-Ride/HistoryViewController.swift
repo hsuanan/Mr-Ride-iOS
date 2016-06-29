@@ -109,9 +109,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         lineChartView.legend.enabled = false
         
-        
-        
-        //        lineChartDataSet.setColor(UIColor.mrBrightSkyColor())
         lineChartDataSet.colors = [UIColor.clearColor()]
         lineChartDataSet.drawCirclesEnabled = false
         lineChartDataSet.drawValuesEnabled = false
@@ -222,7 +219,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
                 print("[StaticsViewController](fetchRecordsCoreData) can't get Records")
                 return}
         
-        var locationList = [Locations]()  // put array inside the function rather than public to avoid appending previous data
+        var locationList = [Locations]()
         
         guard let loctionArray = locationSet.array as? [Location]
             
@@ -254,11 +251,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         destinationController.isFromHistory = true
         
-        destinationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-
+//        destinationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+        destinationController.view.backgroundColor = UIColor.mrLightblueColor()
         self.navigationController?.pushViewController(destinationController, animated: true)
-
-        
     }
     
     func dateString(date: NSDate) -> String {
