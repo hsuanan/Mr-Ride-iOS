@@ -143,7 +143,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     }
     
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
@@ -151,7 +151,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             polylineRenderer.lineWidth = 8
             return polylineRenderer
         }
-        return nil
+        return MKOverlayRenderer()
     }
     
 }

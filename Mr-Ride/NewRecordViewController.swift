@@ -76,19 +76,19 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     var timeInterval = 0.0
     var timer = NSTimer()
     
+    //Location
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var myLocations = [CLLocation]()
     var startLocation: CLLocation?
     
+    //Data properties
     var traveledDistance = 0.0
     var averageSpeed = 0.0
     var currentSpeed = 0.0
     var caloriesBurned = 0
     var date = NSDate()
     var weight = 0.0
-    
-    var ridingCount = 0
     
     let gradient = CAGradientLayer()
     
@@ -99,12 +99,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         locationManager.delegate = self
         mapView!.delegate = self
         
-        setupBackground()
-        setupDistance()
-        setupAverageSpeed()
-        setupCalories()
-        setupTimeLabel()
-        setupMap()
+        setup()
         drawCircle()
         setupPlayButton()
         
@@ -155,7 +150,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     }
     
     // MARK: Timer
-    
     func trackTime() {
         
         timer = NSTimer.scheduledTimerWithTimeInterval(
@@ -181,7 +175,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         return String(format:"%02i:%02i:%02i.%02i", hours, minutes, seconds, secondsFrec)
     }
     
-    
     // MARK: Location
     
     func getLocationUpdate() {
@@ -196,24 +189,28 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
             mapView!.showsUserLocation = true
             
         } else {
-            //push notification
+            
+            //need add push notification
             print ("Need to Enable Location")
         }
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        //rember to setup timestamp: 5 min to avoid get other location from last time
-        
         currentLocation = locations.last
         
-        let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
+        let center = CLLocationCoordinate2D(
+            latitude: (currentLocation?.coordinate.latitude)!,
+            longitude: (currentLocation?.coordinate.longitude)!)
         
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.005, 0.005))
+        let region = MKCoordinateRegion(
+            center: center,
+            span: MKCoordinateSpanMake(0.005, 0.005))
+        
         mapView!.setRegion(region, animated: true)
         
         
-        // Distance, Speed, Calories
+        // Distance Calculation
         
         if startLocation == nil {
             
@@ -229,12 +226,11 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         if timer.valid {
             
             traveledDistance += distance!
-            averageSpeed = traveledDistance/1000 / (timeInterval/(100*60*60))
             distanceValue.text = ("\(Int(traveledDistance)) m")
-            let currentSpeed = Int((currentLocation?.speed)!/1000*(60*60)) // m/s -> km /hr
-            currentSpeedValue.text = ("\(String(currentSpeed)) km / hr")
-            
-            calculatedCalories()
+
+            calculateCurrentSpeed()
+            calculateAverageSpeed()
+            calculatCalories()
         }
         
         myLocations.append(currentLocation!)
@@ -247,9 +243,20 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         print("Errors: \(error.localizedDescription)")
     }
     
-    // MARK: Calories
+    // MARK: Speed and Calories Calculation
     
-    func calculatedCalories() {
+    func calculateAverageSpeed() {
+        
+        averageSpeed = (traveledDistance / 1000) / (timeInterval / (100 * 60 * 60))
+    }
+    
+    func calculateCurrentSpeed() {
+        
+        let currentSpeed = Int((currentLocation?.speed)!/1000*(60*60)) // m/s -> km /hr
+        currentSpeedValue.text = ("\(String(currentSpeed)) km / hr")
+    }
+    
+    func calculatCalories() {
         
         weight = 50.0
         var CaloriesBurnedPerHourPerKg: Double
@@ -263,10 +270,9 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         
         caloriesBurned = Int(weight * CaloriesBurnedPerHourPerKg * (timeInterval/(100*60*60)))
         caloriesValue.text = "\(caloriesBurned) Kcal"
-        
     }
     
-    //MARK: Passdata
+    //MARK: Pass data
     
     func passDataToStatisticsPage() {
         
@@ -372,7 +378,7 @@ extension NewRecordViewController: MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         if overlay is MKPolyline {
             
@@ -380,10 +386,9 @@ extension NewRecordViewController: MKMapViewDelegate {
             polylineRenderer.strokeColor = UIColor.mrBubblegumColor()
             polylineRenderer.lineWidth = 8
             return polylineRenderer
-            
         }
         
-        return nil
+        return MKOverlayRenderer()
     }
 }
 
@@ -391,7 +396,7 @@ extension NewRecordViewController: MKMapViewDelegate {
 // MARK: Setup
 extension NewRecordViewController {
     
-    func setupBackground() {
+    func setup() {
         
         // setupBackground
         view.backgroundColor = UIColor.clearColor()
@@ -401,9 +406,9 @@ extension NewRecordViewController {
         gradient.colors = [color1.CGColor,color2.CGColor]
         gradient.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
-    }
     
-    func setupDistance() {
+        
+        //setupDistance
         distanceTitle.font = UIFont.mrTextStyle16Font()
         distanceTitle.textColor = UIColor.mrWhiteColor()
         distanceTitle.text = "Distance"
@@ -413,9 +418,8 @@ extension NewRecordViewController {
         distanceValue.textColor = UIColor.mrWhiteColor()
         distanceValue.text = "0 m"
         letterSpacing(distanceValue.text!, letterSpacing: 0.7, label: distanceValue)
-    }
     
-    func setupAverageSpeed() {
+        //setupAverageSpeed
         
         currentSpeedTitle.font = UIFont.mrTextStyle16Font()
         currentSpeedTitle.textColor = UIColor.mrWhiteColor()
@@ -426,10 +430,9 @@ extension NewRecordViewController {
         currentSpeedValue.textColor = UIColor.mrWhiteColor()
         currentSpeedValue.text = "0 km / h"
         letterSpacing(currentSpeedValue.text!, letterSpacing: 0.7, label: currentSpeedValue)
-    }
     
-    func setupCalories() {
-        
+    
+        //setupCalories
         caloriesTitle.font = UIFont.mrTextStyle16Font()
         caloriesTitle.textColor = UIColor.mrWhiteColor()
         caloriesTitle.text = "Calories"
@@ -439,19 +442,17 @@ extension NewRecordViewController {
         caloriesValue.textColor = UIColor.mrWhiteColor()
         caloriesValue.text = "0 kcal"
         letterSpacing(caloriesValue.text!, letterSpacing: 0.7, label: caloriesValue)
-    }
     
-    func setupTimeLabel() {
+        //setupTimeLabel
         
         timerLabel.font = UIFont(name: "RobotoMono-Light", size: 30)
         timerLabel.textColor = UIColor.mrWhiteColor()
         letterSpacing(timerLabel.text!, letterSpacing: 0.7, label: timerLabel)
         timerLabel.text = "00:00:00:00"
-    }
     
-    func setupMap(){
-        
+        //setupMap
         mapView!.layer.cornerRadius = 10.0
+    
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
@@ -459,6 +460,7 @@ extension NewRecordViewController {
         let attributedText = NSMutableAttributedString (string: text)
         attributedText.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSMakeRange(0, attributedText.length))
         label.attributedText = attributedText
+        
     }
     
     func drawCircle() {
@@ -509,5 +511,4 @@ extension NewRecordViewController {
                 self.playPauseButtonView.layer.cornerRadius = self.playPauseButtonView.frame.size.width / 2
         })
     }
-    
 }
