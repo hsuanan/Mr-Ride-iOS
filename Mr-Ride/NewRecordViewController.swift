@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import CoreData
+import Amplitude_iOS
 
 
 protocol NewRecordViewControllerDelegate: class {
@@ -47,16 +48,20 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
             
             trackTime()
             animateFromCircleToSquare()
+            Amplitude.instance().logEvent("select_start_in_record_creating")
             
         } else {
             
             timer.invalidate()
             animateFromSqareToCircle()
+            Amplitude.instance().logEvent("select_pause_in_record_creating")
         }
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         print ("cancel button pressed")
+        Amplitude.instance().logEvent("select_cancel_in_record_creating")
+        
         delegate?.didDismiss()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -64,6 +69,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
         print ("finishButtonTapped")
+        Amplitude.instance().logEvent("select_finish_in_record_creating")
         saveRecordsToCoreData()
         passDataToStatisticsPage()
         timer.invalidate()
@@ -125,7 +131,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         super.viewWillDisappear(animated)
         
         print("__NewRecordsViewWillDisappear")
-        
+        Amplitude.instance().logEvent("view_in_record_creating")
         locationManager.stopUpdatingLocation()
         
         mapView = nil

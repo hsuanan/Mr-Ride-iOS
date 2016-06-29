@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Fabric
 import Crashlytics
+import Amplitude_iOS
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Crashlytics
         Fabric.with([Crashlytics.self])
+        
+        //Amplitude
+        Amplitude.instance().initializeApiKey("31a769254fbd1d7d7252725ea6fc3f45")
         
         //Side Drawer
         

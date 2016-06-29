@@ -85,12 +85,14 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Mr-Ride/Alamofire.framework"
+  install_framework "Pods-Mr-Ride/Amplitude_iOS.framework"
   install_framework "Pods-Mr-Ride/CryptoSwift.framework"
   install_framework "Pods-Mr-Ride/JWT.framework"
   install_framework "Pods-Mr-Ride/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Mr-Ride/Alamofire.framework"
+  install_framework "Pods-Mr-Ride/Amplitude_iOS.framework"
   install_framework "Pods-Mr-Ride/CryptoSwift.framework"
   install_framework "Pods-Mr-Ride/JWT.framework"
   install_framework "Pods-Mr-Ride/SwiftyJSON.framework"

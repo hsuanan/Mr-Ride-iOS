@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Charts
+import Amplitude_iOS
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
@@ -48,6 +49,11 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         setChart(date.reverse(), yAxis: distances.reverse())
         //        setChart()
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        Amplitude.instance().logEvent("view_in_history")
     }
     
     deinit {
@@ -202,6 +208,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print ("row\(indexPath.row)selected")
+        
+        Amplitude.instance().logEvent("select_record_result_in_historyrecord_id=abc123")
         
         let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
         
