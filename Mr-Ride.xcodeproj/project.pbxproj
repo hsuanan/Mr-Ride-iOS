@@ -18,7 +18,6 @@
 		BC7770201D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77701E1D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift */; };
 		BC7770211D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC77701F1D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib */; };
 		BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */; };
-		BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60D1CF2A1C000B11F89 /* ViewController.swift */; };
 		BC85F6111CF2A1C000B11F89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC85F60F1CF2A1C000B11F89 /* Main.storyboard */; };
 		BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */; };
 		BC85F6161CF2A1C000B11F89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC85F6151CF2A1C000B11F89 /* Assets.xcassets */; };
@@ -130,7 +129,6 @@
 		BC77701F1D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryCustomHeaderCell.xib; sourceTree = "<group>"; };
 		BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BC85F60D1CF2A1C000B11F89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BC85F6101CF2A1C000B11F89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC85F6131CF2A1C000B11F89 /* Mr_Ride.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mr_Ride.xcdatamodel; sourceTree = "<group>"; };
 		BC85F6151CF2A1C000B11F89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 				BCDB65601CFD3E130041FBAD /* Mr-Ride.entitlements */,
 				BCCFE6101CF98DD2004323B0 /* MMDrawerController */,
 				BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */,
-				BC85F60D1CF2A1C000B11F89 /* ViewController.swift */,
 				BCCFE51E1CF79D7E004323B0 /* Roboto_Mono */,
 				BC85F60F1CF2A1C000B11F89 /* Main.storyboard */,
 				BC08DE161D05136F00D7D362 /* CoreData */,
@@ -565,7 +562,6 @@
 				BCE4E90C1CFA824F00976948 /* HistoryNavigationController.swift in Sources */,
 				BC85F62F1CF30AE800B11F89 /* NewRecordViewController.swift in Sources */,
 				BCCFE61E1CF98E34004323B0 /* UIViewController+MMDrawerController.m in Sources */,
-				BC85F60E1CF2A1C000B11F89 /* ViewController.swift in Sources */,
 				BCDB65B31D0041D80041FBAD /* Location.swift in Sources */,
 				BCDB65B21D0041D80041FBAD /* Location+CoreDataProperties.swift in Sources */,
 				BC9C8B2E1CF5EC7400EB4FBE /* HomePageViewController.swift in Sources */,

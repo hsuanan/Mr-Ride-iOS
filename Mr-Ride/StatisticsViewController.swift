@@ -85,7 +85,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         super.viewWillDisappear(animated)
         
         print("____StatisticViewWillDisappear")
-        
+    
     }
     
     deinit {
@@ -93,8 +93,6 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         print("____Leave Statistics Page")
     }
 
-    
-    
     func uploadRecord() {
         
         statisticsView.distanceValue.text = "\(Int(distance!)) m"

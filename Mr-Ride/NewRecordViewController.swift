@@ -12,13 +12,11 @@ import CoreLocation
 import CoreData
 
 
-// newrecordpage dismissed 之後需要 homepage 執行 didDismiss 功能（將label重新顯示）, 所以homepage 在newRecordPge 產生時 宣告 newRecordPage 的 delegate 是自己, 然後在 newrecordpage 給個 protocol , 並在 newrecordpage 宣告 delegate 遵循此 protocol, 之後便可呼叫自己代理人使用 protocol 的內容 （self.delegate.didDismiss)
-
 protocol NewRecordViewControllerDelegate: class {
     
     func didDismiss()
     func setChart()
-    
+    func updateLabelValue()
 }
 
 class NewRecordViewController: UIViewController, CLLocationManagerDelegate, StatisticsViewControllerDelegate {
@@ -41,63 +39,40 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     @IBOutlet weak var circleView: UIView!
     
-    weak var delegate: NewRecordViewControllerDelegate?
-    
-    @IBAction func cancelButtonTapped(sender: AnyObject) {
-        
-        print ("cancel button pressed")
-        
-        delegate?.didDismiss()
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-        
-    }
     @IBOutlet weak var playPauseButtonView: UIView!
     
     @IBAction func playPauseButtonPressed(sender: UIButton) {
         
-        if startIsOn == false {
+        if !timer.valid {
             
+            trackTime()
             animateFromCircleToSquare()
-            
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
-            
-            startIsOn = true
-            
-            print ("StartIsOn:\(startIsOn)")
             
         } else {
             
-            animateFromSqareToCircle()
-            
             timer.invalidate()
-            
-            startIsOn = false
-            
-            print ("StartIsOn:\(startIsOn)")
-            
+            animateFromSqareToCircle()
         }
+    }
+    
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        print ("cancel button pressed")
+        delegate?.didDismiss()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
-        saveRecordsToCoreData()
-        
         print ("finishButtonTapped")
-        
-        startIsOn = false
-        
-//        delegate?.didDismiss()
-        
+        saveRecordsToCoreData()
         passDataToStatisticsPage()
-        
-        
-        
+        timer.invalidate()
+        delegate?.updateLabelValue()
     }
     
-    var startIsOn = false
+    weak var delegate: NewRecordViewControllerDelegate?
     
+    //Timer
     var timeInterval = 0.0
     var timer = NSTimer()
     
@@ -105,21 +80,24 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     var currentLocation: CLLocation?
     var myLocations = [CLLocation]()
     var startLocation: CLLocation?
-    var lastLocation: CLLocation?
+    
     var traveledDistance = 0.0
     var averageSpeed = 0.0
     var currentSpeed = 0.0
     var caloriesBurned = 0
     var date = NSDate()
     var weight = 0.0
-
-//    var myLocationSet = [[CLLocation]]()
+    
+    var ridingCount = 0
     
     let gradient = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print ("__NewRecordsViewDidLoad")
+        
+        locationManager.delegate = self
+        mapView!.delegate = self
         
         setupBackground()
         setupDistance()
@@ -132,24 +110,20 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         
         getLocationUpdate()
         
-//        dateTest("2016/04/21")
-
+        //        dateTest("2016/04/21")
     }
     
-    //resize layers based on the view's new frame
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         gradient.frame = self.view.bounds
     }
     
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         locationManager.startUpdatingLocation()
-
-        print("__NewRecordsViewDidAppear")
         
+        print("__NewRecordsViewDidAppear")
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -158,10 +132,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         print("__NewRecordsViewWillDisappear")
         
         locationManager.stopUpdatingLocation()
-        print("__Stop Updating Location")
         
         mapView = nil
-        // avoid mapView佔記憶體
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -172,21 +144,29 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     deinit {
         
-//        delegate?.didDismiss()
-        
         print("__Leave New Record Page")
-    }
         
+    }
     
     func didDismiss2() {
+        
         delegate?.didDismiss()
         delegate?.setChart()
     }
     
-        
     // MARK: Timer
     
-    func updateTimer(){
+    func trackTime() {
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(
+            0.01,
+            target: self,
+            selector: #selector(addTime),
+            userInfo: nil,
+            repeats: true)
+    }
+    
+    @objc func addTime(){
         
         timeInterval += 1.0
         timerLabel.text = "\(timerString(timeInterval))"
@@ -194,7 +174,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     func timerString(time: NSTimeInterval) -> String {
         
-        let hours = Int(time) / (100*60*60)
+        let hours = Int(time) / (100 * 60 * 60)
         let minutes = Int(time) / (100 * 60) % 60
         let seconds = Int(time) / 100 % 60
         let secondsFrec = Int(time) % 100
@@ -206,26 +186,20 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     func getLocationUpdate() {
         
-        locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled(){
             
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.distanceFilter = 10 // update every 10 meters
+            locationManager.distanceFilter = 10
             locationManager.activityType = .Fitness
-//            locationManager.startUpdatingLocation()
-            mapView!.delegate = self
             mapView!.showsUserLocation = true
             
         } else {
-            
+            //push notification
             print ("Need to Enable Location")
-            
         }
-        
     }
-    
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -242,38 +216,28 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         // Distance, Speed, Calories
         
         if startLocation == nil {
-        
+            
             startLocation = locations.last
             
         } else {
             
             startLocation = myLocations.last
         }
-    
-        let lastLocation = locations.last
-        let distance = startLocation?.distanceFromLocation(lastLocation!)
         
-        if startIsOn == true {
+        let distance = startLocation?.distanceFromLocation(currentLocation!)
+        
+        if timer.valid {
             
             traveledDistance += distance!
             averageSpeed = traveledDistance/1000 / (timeInterval/(100*60*60))
             distanceValue.text = ("\(Int(traveledDistance)) m")
             let currentSpeed = Int((currentLocation?.speed)!/1000*(60*60)) // m/s -> km /hr
-            currentSpeedValue.text = ("\(String(currentSpeed)) k / hr")
-            
-            //            averageSpeedValue.text = ("\(Int(averageSpeed)) km / h")
-            
+            currentSpeedValue.text = ("\(String(currentSpeed)) km / hr")
             
             calculatedCalories()
-            
-//            myLocations.append(currentLocation!)
         }
         
         myLocations.append(currentLocation!)
-//        myLocationSet.append(myLocations)
-        
-        
-        
         showRoute()
         
     }
@@ -302,7 +266,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         
     }
     
-    //MARK: passdata
+    //MARK: Passdata
     
     func passDataToStatisticsPage() {
         
@@ -319,17 +283,17 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         var passedLocations = [Locations]()
         for location in myLocations {
             guard
-            let latitude = location.coordinate.latitude as? Double,
-            let longitude = location.coordinate.longitude as? Double
-            
-            else {return}
+                let latitude = location.coordinate.latitude as? Double,
+                let longitude = location.coordinate.longitude as? Double
+                
+                else {return}
             
             passedLocations.append(
                 Locations(
                     latitude: latitude,
                     longitude: longitude))
         }
-    
+        
         destinationController.locations = passedLocations
         
         self.navigationController?.pushViewController(destinationController, animated: true)
@@ -343,15 +307,13 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     func saveRecordsToCoreData() {
         
         let entityRecords = NSEntityDescription.insertNewObjectForEntityForName("Records", inManagedObjectContext: moc!) as! Records
-    
+        
         
         entityRecords.timestamp = date
         entityRecords.distance = traveledDistance
         entityRecords.duration = timeInterval
         entityRecords.calories = caloriesBurned
         entityRecords.averageSpeed = Int(averageSpeed)
-//        entityRecords.objectID
-        
         
         var savedLocations = [Location]()
         for location in myLocations {
@@ -361,12 +323,11 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
             entityLocation.latitude = location.coordinate.latitude
             entityLocation.longitude = location.coordinate.longitude
             savedLocations.append(entityLocation)
-
         }
         
         entityRecords.location = NSOrderedSet(array: savedLocations)
         
-//        print ("entityRecords: \(entityRecords)")
+        //        print ("entityRecords: \(entityRecords)")
         
         do {
             try self.moc?.save()
@@ -400,7 +361,7 @@ extension NewRecordViewController: MKMapViewDelegate {
             var coord = [oldCoord1, oldCoord2]
             let polyline = MKPolyline(coordinates: &coord, count: coord.count)
             
-            if startIsOn == true {
+            if timer.valid {
                 
                 self.mapView!.addOverlay(polyline)
                 
@@ -432,16 +393,14 @@ extension NewRecordViewController {
     
     func setupBackground() {
         
-//        view.opaque = false
+        // setupBackground
         view.backgroundColor = UIColor.clearColor()
         let color1 = UIColor.clearColor().colorWithAlphaComponent(0.6)
         let color2 = UIColor.clearColor().colorWithAlphaComponent(0.4)
         gradient.frame = self.view.bounds
         gradient.colors = [color1.CGColor,color2.CGColor]
         gradient.locations = [0.0, 1.0]
-        self.view.layer.insertSublayer(gradient, atIndex: 0)        
-
-        
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
     }
     
     func setupDistance() {
@@ -450,12 +409,10 @@ extension NewRecordViewController {
         distanceTitle.text = "Distance"
         letterSpacing(distanceTitle.text!, letterSpacing: 0.3, label: distanceTitle)
         
-        
         distanceValue.font = UIFont.mrTextStyle15Font()
         distanceValue.textColor = UIColor.mrWhiteColor()
         distanceValue.text = "0 m"
         letterSpacing(distanceValue.text!, letterSpacing: 0.7, label: distanceValue)
-        
     }
     
     func setupAverageSpeed() {
@@ -464,7 +421,6 @@ extension NewRecordViewController {
         currentSpeedTitle.textColor = UIColor.mrWhiteColor()
         currentSpeedTitle.text = "Current Speed"
         letterSpacing(currentSpeedTitle.text!, letterSpacing: 0.3, label: currentSpeedTitle)
-        
         
         currentSpeedValue.font = UIFont.mrTextStyle15Font()
         currentSpeedValue.textColor = UIColor.mrWhiteColor()
@@ -479,27 +435,27 @@ extension NewRecordViewController {
         caloriesTitle.text = "Calories"
         letterSpacing(caloriesTitle.text!, letterSpacing: 0.3, label: caloriesTitle)
         
-        
         caloriesValue.font = UIFont.mrTextStyle15Font()
         caloriesValue.textColor = UIColor.mrWhiteColor()
         caloriesValue.text = "0 kcal"
         letterSpacing(caloriesValue.text!, letterSpacing: 0.7, label: caloriesValue)
-        
     }
     
     func setupTimeLabel() {
+        
         timerLabel.font = UIFont(name: "RobotoMono-Light", size: 30)
         timerLabel.textColor = UIColor.mrWhiteColor()
         letterSpacing(timerLabel.text!, letterSpacing: 0.7, label: timerLabel)
         timerLabel.text = "00:00:00:00"
-        
     }
     
     func setupMap(){
+        
         mapView!.layer.cornerRadius = 10.0
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
+        
         let attributedText = NSMutableAttributedString (string: text)
         attributedText.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSMakeRange(0, attributedText.length))
         label.attributedText = attributedText
@@ -507,32 +463,10 @@ extension NewRecordViewController {
     
     func drawCircle() {
         
-//        let rect = CGRectMake(0, 0, 80, 80)
-//        let oval = UIBezierPath(ovalInRect: rect)
-//        UIColor.whiteColor().setStroke()
-//        UIColor.clearColor().setFill()
-//        oval.lineWidth = 4
-//        oval.stroke()
-//        oval.fill()
-        
-//        let circleRadius = min(circleView.bounds.size.width, circleView.bounds.size.height) / 2
-//        let circleCenter = CGPoint(x: circleView.bounds.minX, y: circleView.bounds.minY)
-//        
-//        let circlePath = UIBezierPath(arcCenter: circleCenter, radius: circleRadius, startAngle: 0.0, endAngle: CGFloat(2*M_PI), clockwise: false)
-//        circlePath.lineWidth = 4.0
-//        UIColor.whiteColor().setStroke()
-//        UIColor.clearColor().setFill()
-//        circlePath.stroke()
-//        circlePath.fill()
-        
-        
-        
-        
-        
         let circleLayer = CAShapeLayer()
         let circlePath = UIBezierPath(
             roundedRect: circleView.bounds,
-            byRoundingCorners: [ .AllCorners],//[.BottomLeft, .BottomRight, .TopLeft, .TopRight],
+            byRoundingCorners: [ .AllCorners],
             cornerRadii: CGSize(width: 80, height: 80))
         
         circleLayer.frame = circleView.bounds

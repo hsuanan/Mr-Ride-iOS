@@ -38,7 +38,8 @@ struct RecordsModel {
 struct RecordsModel2 {
     var timestamp = NSDate()
     var distance = 0.0
-    
+    var totalCount = 0
+    var duration = 0.0
 }
 
 struct StationModel{
@@ -109,7 +110,9 @@ class DataManager {
                 
                 guard
                     let timestemp = eachFetchedRecord.timestamp,
-                    let distance = eachFetchedRecord.distance as? Double
+                    let distance = eachFetchedRecord.distance as? Double,
+                    let totalCount = eachFetchedRecord.totalCount as? Int,
+                    let duration = eachFetchedRecord.duration as? Double
                     
                     else {
                         print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
@@ -118,7 +121,10 @@ class DataManager {
                 saveRecords.append(
                     RecordsModel2(
                         timestamp: timestemp,
-                        distance: distance))
+                        distance: distance,
+                        totalCount: totalCount,
+                        duration: duration
+                    ))
             }
             
         } catch {
@@ -126,68 +132,6 @@ class DataManager {
             print("fetchError:\(fetchError)")
         }
         
-        
-        
-        
-        //// storing data to array will cause memory usege raise
-        //        do {
-        //            let fetchedRecords = try moc.executeFetchRequest(fetchRequest) as! [Records]
-        //
-        ////            print("fetchedRecords: \(fetchedRecords)")
-        //
-        //            saveRecords.removeAll()
-        //
-        //            for eachFetchedRecord in fetchedRecords {
-        //
-        //                guard
-        //                    let timestemp = eachFetchedRecord.timestamp,
-        //                    let distance = eachFetchedRecord.distance as? Double,
-        //                    let calories = eachFetchedRecord.calories as? Double,
-        //                    let duration = eachFetchedRecord.duration as? Double,
-        //                    let averageSpeed = eachFetchedRecord.averageSpeed as? Double,
-        //                    let locationSet = eachFetchedRecord.location
-        //
-        //                    else {
-        //                        print("[StaticsViewController](fetchRecordsCoreData) can't get Records");
-        //                        continue }
-        //
-        //                guard let loctionArray = locationSet.array as? [Location]
-        //
-        //                    else {
-        //                        print("[StaticsViewController](fetchRecordsCoreData) can't get locationArray");
-        //                        return }
-        //
-        //                locationList.removeAll()  // 清空之前的array
-        //
-        //                for location in loctionArray {
-        //
-        ////                    print("latitude:\(location.latitude) longitude:\(location.longitude)")
-        //
-        //                    guard
-        //                        let latitude = location.latitude as? Double,
-        //                        let longitude = location.longitude as? Double
-        //
-        //                        else {
-        //                            print("[StaticsViewController](fetchRecordsCoreData) can't get latitude and logitude");
-        //                            continue}
-        //                    locationList.append(
-        //                        Locations(latitude: latitude, longitude: longitude))
-        //
-        //                }
-        //                saveRecords.append(
-        //                    RecordsModel(
-        //                        timestamp: timestemp,
-        //                        distance: distance,
-        //                        calories: calories,
-        //                        duration: duration,
-        //                        averageSpeed: averageSpeed,
-        //                        location: locationList))
-        //            }
-        //
-        //        } catch {
-        //            let fetchError = error as NSError
-        //            print("fetchError:\(fetchError)")
-        //        }
     }
     
     

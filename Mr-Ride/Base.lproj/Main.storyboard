@@ -596,16 +596,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="averageSpeedTitle" destination="vhU-Rr-cPX" id="JX1-hZ-8F5"/>
-                        <outlet property="averageSpeedValue" destination="F6d-g9-rPg" id="mdO-m3-QaN"/>
+                        <outlet property="averageSpeedTitleLabel" destination="vhU-Rr-cPX" id="2cR-ec-haW"/>
+                        <outlet property="averageSpeedValueLabel" destination="F6d-g9-rPg" id="VKZ-0o-I8i"/>
                         <outlet property="letsRideButton" destination="hcI-ed-Jnc" id="Ndm-08-QqB"/>
                         <outlet property="letsRideButtonLabel" destination="hSE-8E-TGB" id="vd8-j6-sEQ"/>
                         <outlet property="lineChartView" destination="X79-ee-wxT" id="r7r-g4-Ugf"/>
-                        <outlet property="sideBarButton" destination="bPo-4Q-byk" id="Ptw-du-Z0x"/>
-                        <outlet property="totalCountTitle" destination="rwP-5r-2tP" id="KvG-Mb-Dz1"/>
-                        <outlet property="totalCoutValue" destination="RPz-Uy-XBE" id="8gy-n2-waN"/>
-                        <outlet property="totalDistanceTitle" destination="AaD-lG-a99" id="5Uf-xy-vUb"/>
-                        <outlet property="totalDistanceValue" destination="bS8-4q-dgs" id="XIO-LW-TfD"/>
+                        <outlet property="totalCountTitleLabel" destination="rwP-5r-2tP" id="iZX-3q-hMO"/>
+                        <outlet property="totalCountValueLabel" destination="RPz-Uy-XBE" id="m8v-uP-rWd"/>
+                        <outlet property="totalDistanceTitleLabel" destination="AaD-lG-a99" id="0Ja-Qd-xGi"/>
+                        <outlet property="totalDistanceValueLabel" destination="bS8-4q-dgs" id="aFI-nd-w3R"/>
                         <segue destination="clF-au-wli" kind="presentation" identifier="presentNewRecordPage" id="Mk3-zT-w51"/>
                     </connections>
                 </viewController>

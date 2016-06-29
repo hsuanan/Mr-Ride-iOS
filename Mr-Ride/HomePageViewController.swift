@@ -15,112 +15,125 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     
     @IBOutlet weak var lineChartView: LineChartView!
     
-    @IBOutlet weak var totalDistanceTitle: UILabel!
+    @IBOutlet weak var totalDistanceTitleLabel: UILabel!
     
-    @IBOutlet weak var totalDistanceValue: UILabel!
+    @IBOutlet weak var totalDistanceValueLabel: UILabel!
     
-    @IBOutlet weak var totalCountTitle: UILabel!
+    @IBOutlet weak var totalCountTitleLabel: UILabel!
     
-    @IBOutlet weak var totalCoutValue: UILabel!
+    @IBOutlet weak var totalCountValueLabel: UILabel!
     
-    @IBOutlet weak var averageSpeedTitle: UILabel!
+    @IBOutlet weak var averageSpeedTitleLabel: UILabel!
     
-    @IBOutlet weak var averageSpeedValue: UILabel!
+    @IBOutlet weak var averageSpeedValueLabel: UILabel!
     
     @IBOutlet weak var letsRideButton: UIButton!
     
-    @IBAction func letsRideButtonTapped(sender: AnyObject) {
-        
-//        NSNotificationCenter.defaultCenter().addObserver(
-//            self,
-//            selector: #selector(newNewViewControllerDidDismiss(_:)),
-//            name: "NewRecordViewControllerWillDismiss",
-//            object: nil
-//        )
-        
-        let nvc = self.storyboard!.instantiateViewControllerWithIdentifier("NewRecordNavigationController") as! UINavigationController
-        nvc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-        self.navigationController?.presentViewController(nvc, animated: true, completion: nil)
-        let newRecordVC = nvc.viewControllers.first as! NewRecordViewController
-
-        newRecordVC.delegate = self
-       
-        
-        hideLabel()
-
-    }
-    
-    func didDismiss() {
-        
-        totalDistanceTitle.hidden = false
-        totalDistanceValue.hidden = false
-        totalCountTitle.hidden = false
-        totalCoutValue.hidden = false
-        averageSpeedTitle.hidden = false
-        averageSpeedValue.hidden = false
-        letsRideButton.hidden = false
-        letsRideButtonLabel.hidden = false
-        
-        print("labelResume")
-    }
-    
-//    @objc func newNewViewControllerDidDismiss(notification: NSNotification) {
-//        
-//        
-//        print("did received notification")
-//        
-//    }
-    
     @IBOutlet weak var letsRideButtonLabel: UILabel!
     
-    @IBOutlet weak var sideBarButton: UIBarButtonItem!
+    @IBAction func letsRideButtonTapped(sender: AnyObject) {
+        
+        let newRecordNavigationController = self.storyboard!.instantiateViewControllerWithIdentifier("NewRecordNavigationController") as! UINavigationController
+        newRecordNavigationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+        self.navigationController?.presentViewController(newRecordNavigationController, animated: true, completion: nil)
+        
+        let newRecordViewController = newRecordNavigationController.viewControllers.first as! NewRecordViewController
+        newRecordViewController.delegate = self
+        
+        hideLabel()
+    }
     
     @IBAction func sideBarButtonTapped(sender: AnyObject) {
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
         print ("HomePage : SideBarButtonTapped")
-        
     }
     
-//    @IBAction func cancelToHomePageViewController(segue:UIStoryboardSegue) {
-//    } //cancel button
+    var totalCount: Int?
+    var totalDistance = 0.0
+    var duration = 0.0
     
     let recordModel = DataManager.sharedDataManager
     
-//    weak var delegate: cancelDelegate?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //        print ("HomePageViewDidLoad")
-        
-        setupLabel()
-        //        historyPageController.getDataForChart()
-        
-        //
-        //        dates = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        //        distances = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
+        print ("HomePageViewDidLoad")
         
         recordModel.fetchRecordsCoreData()
-
+        setupLabel()
+        setLabelValue()
         setChart()
-        
-//        crashlyticsTest()
+        //        crashlyticsTest()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("HomePageViewDidAppear")
-        
-        didDismiss()
-    
     }
     
+    func setLabelValue() {
+        
+        totalCount = recordModel.saveRecords.count ?? 0
+        totalCountValueLabel.text = "\(totalCount!)"
+        
+        for data in recordModel.saveRecords {
+            totalDistance += data.distance
+            duration += data.duration
+        }
+        
+        let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
+        totalDistanceValueLabel.text = "\(stringTotalDistance) km"
+        
+        let averageSpeed = totalDistance/1000/(duration/(100*60*60))
+        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
+        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
+    }
+    
+    func hideLabel() {
+        
+        totalDistanceTitleLabel.hidden = true
+        totalDistanceValueLabel.hidden = true
+        totalCountTitleLabel.hidden = true
+        totalCountValueLabel.hidden = true
+        averageSpeedTitleLabel.hidden = true
+        averageSpeedValueLabel.hidden = true
+        letsRideButton.hidden = true
+        letsRideButtonLabel.hidden = true
+    }
+    
+    //MARK: Implement protocol
+    func updateLabelValue() {
+        
+        totalCount = recordModel.saveRecords.count+1
+        totalCountValueLabel.text = "\(totalCount!)"
+        
+        for data in recordModel.saveRecords {
+            totalDistance += data.distance
+            duration += data.duration
+        }
+        
+        let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
+        totalDistanceValueLabel.text = "\(stringTotalDistance) km"
+        
+        let averageSpeed = totalDistance/1000/(duration/(100*60*60))
+        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
+        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
+    }
+    
+    func didDismiss() {
+        
+        totalDistanceTitleLabel.hidden = false
+        totalDistanceValueLabel.hidden = false
+        totalCountTitleLabel.hidden = false
+        totalCountValueLabel.hidden = false
+        averageSpeedTitleLabel.hidden = false
+        averageSpeedValueLabel.hidden = false
+        letsRideButton.hidden = false
+        letsRideButtonLabel.hidden = false
+    }
     
     //MARK: Chart
-    
     func setChart() {
         
         var dates=[String]()
@@ -131,8 +144,8 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         
         for data in recordModel.saveRecords {
             
-            let date = data.timestamp,
-            distance = data.distance as Double
+            let date = data.timestamp
+            let distance = data.distance as Double
             
             dates.append(dateString2(date))
             distances.append(distance)
@@ -161,9 +174,6 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
             
             lineChartView.legend.enabled = false
             
-            
-            
-            //        lineChartDataSet.setColor(UIColor.mrBrightSkyColor())
             lineChartDataSet.colors = [UIColor.clearColor()]
             lineChartDataSet.drawCirclesEnabled = false
             lineChartDataSet.drawValuesEnabled = false
@@ -174,51 +184,47 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
             let colorLocations:[CGFloat] = [0.0, 1.0]
             if let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradColors, colorLocations) {
                 lineChartDataSet.fill = ChartFill(linearGradient: gradient, angle: 90.0)
-                
             }
         }
     }
     
-    // MARK : Setup Label
+    //MARK: Setup
     
     func setupLabel(){
         
         view.backgroundColor = UIColor.mrLightblueColor()
         
-        totalDistanceTitle.font = UIFont.mrTextStyle16Font()
-        totalDistanceTitle.textColor = UIColor.mrWhiteColor()
-        totalDistanceTitle.text = "Total Distance"
-        letterSpacing(totalDistanceTitle.text!, letterSpacing: 0.3, label: totalDistanceTitle)
+        totalDistanceTitleLabel.font = UIFont.mrTextStyle16Font()
+        totalDistanceTitleLabel.textColor = UIColor.mrWhiteColor()
+        totalDistanceTitleLabel.text = "Total Distance"
+        letterSpacing(totalDistanceTitleLabel.text!, letterSpacing: 0.3, label: totalDistanceTitleLabel)
         
-        totalDistanceValue.font = UIFont.mrTextStyle14Font()
-        totalDistanceValue.textColor = UIColor.mrWhiteColor()
-        totalDistanceValue.text = "12.5 km"
-        letterSpacing(totalDistanceValue.text!, letterSpacing: 1.9, label: totalDistanceValue)
+        totalDistanceValueLabel.font = UIFont.mrTextStyle14Font()
+        totalDistanceValueLabel.textColor = UIColor.mrWhiteColor()
+        letterSpacing(totalDistanceValueLabel.text!, letterSpacing: 1.9, label: totalDistanceValueLabel)
         //letter shadow
-        totalDistanceValue.layer.shadowColor = UIColor.blackColor().CGColor
-        totalDistanceValue.layer.shadowOpacity = 0.25
-        totalDistanceValue.layer.shadowRadius = 2
-        totalDistanceValue.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+        totalDistanceValueLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        totalDistanceValueLabel.layer.shadowOpacity = 0.25
+        totalDistanceValueLabel.layer.shadowRadius = 2
+        totalDistanceValueLabel.layer.shadowOffset = CGSizeMake(0.0, 2.0)
         
-        totalCountTitle.font = UIFont.mrTextStyle16Font()
-        totalCountTitle.textColor = UIColor.mrWhiteColor()
-        totalCountTitle.text = "Total Count"
-        letterSpacing(totalCountTitle.text!, letterSpacing: 0.3, label: totalCountTitle)
+        totalCountTitleLabel.font = UIFont.mrTextStyle16Font()
+        totalCountTitleLabel.textColor = UIColor.mrWhiteColor()
+        totalCountTitleLabel.text = "Total Count"
+        letterSpacing(totalCountTitleLabel.text!, letterSpacing: 0.3, label: totalCountTitleLabel)
         
-        totalCoutValue.font = UIFont.mrTextStyle15Font()
-        totalCoutValue.textColor = UIColor.mrWhiteColor()
-        totalCoutValue.text = "14 times"
-        letterSpacing(totalCoutValue.text!, letterSpacing: 0.7, label: totalCoutValue)
+        totalCountValueLabel.font = UIFont.mrTextStyle15Font()
+        totalCountValueLabel.textColor = UIColor.mrWhiteColor()
+        letterSpacing(totalCountValueLabel.text!, letterSpacing: 0.7, label: totalCountValueLabel)
         
-        averageSpeedTitle.font = UIFont.mrTextStyle16Font()
-        averageSpeedTitle.textColor = UIColor.mrWhiteColor()
-        averageSpeedTitle.text = "Average Speed"
-        letterSpacing(averageSpeedTitle.text!, letterSpacing: 0.3, label: averageSpeedTitle)
+        averageSpeedTitleLabel.font = UIFont.mrTextStyle16Font()
+        averageSpeedTitleLabel.textColor = UIColor.mrWhiteColor()
+        averageSpeedTitleLabel.text = "Average Speed"
+        letterSpacing(averageSpeedTitleLabel.text!, letterSpacing: 0.3, label: averageSpeedTitleLabel)
         
-        averageSpeedValue.font = UIFont.mrTextStyle15Font()
-        averageSpeedValue.textColor = UIColor.mrWhiteColor()
-        averageSpeedValue.text = "8 km / h"
-        letterSpacing(averageSpeedValue.text!, letterSpacing: 0.7, label: averageSpeedValue)
+        averageSpeedValueLabel.font = UIFont.mrTextStyle15Font()
+        averageSpeedValueLabel.textColor = UIColor.mrWhiteColor()
+        letterSpacing(averageSpeedValueLabel.text!, letterSpacing: 0.7, label: averageSpeedValueLabel)
         
         setupLetsRideButton(letsRideButton)
         
@@ -226,11 +232,11 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         letsRideButtonLabel.textColor = UIColor.mrLightblueColor()
         letsRideButtonLabel.text = "Let's Ride"
         letterSpacing(letsRideButtonLabel.text!, letterSpacing: 0.7, label: letsRideButtonLabel)
+        
         letsRideButtonLabel.layer.shadowColor = UIColor.blackColor().CGColor
         letsRideButtonLabel.layer.shadowOpacity = 0.25
         letsRideButtonLabel.layer.shadowRadius = 2
         letsRideButtonLabel.layer.shadowOffset = CGSizeMake(0.0, 1.0)
-        
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
@@ -265,22 +271,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         shadowLayer.shadowOpacity = 0.25
         shadowLayer.shadowRadius = 2
         letsRideButton.layer.insertSublayer(shadowLayer, below: roundLayer)
-        
     }
-    
-    func hideLabel() {
-        
-        totalDistanceTitle.hidden = true
-        totalDistanceValue.hidden = true
-        totalCountTitle.hidden = true
-        totalCoutValue.hidden = true
-        averageSpeedTitle.hidden = true
-        averageSpeedValue.hidden = true
-        letsRideButton.hidden = true
-        letsRideButtonLabel.hidden = true
-
-    }
-    
     
     func dateString2(date: NSDate) -> String {
         
@@ -298,12 +289,10 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
             for fontName in UIFont.fontNamesForFamilyName(fontFamilyName as String) {
                 print(fontName)
             }
-            
-            print(" ")
         }
-        
     }
     
+    //MARK: CrashlyticsTest
     func crashlyticsTest() {
         let button = UIButton(type: UIButtonType.RoundedRect)
         button.frame = CGRectMake(30, 100, 100, 30)
@@ -315,6 +304,5 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     @IBAction func crashButtonTapped(sender: AnyObject){
         Crashlytics.sharedInstance().crash()
     }
-    
 }
 
