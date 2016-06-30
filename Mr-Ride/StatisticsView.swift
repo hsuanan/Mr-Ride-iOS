@@ -34,7 +34,10 @@ class StatisticsView: UIView {
     
     @IBOutlet weak var goodJob: UILabel!
     
+    @IBOutlet weak var shareButton: UIButton!
+    
     let gradient = CAGradientLayer()
+    @IBOutlet weak var highlignt: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,6 +52,7 @@ class StatisticsView: UIView {
         setupMap()
         setupMedal()
         setupGoodJob()
+        setupShareButton()
         
     }
     
@@ -148,6 +152,19 @@ class StatisticsView: UIView {
         label.attributedText = attributedText
     }
     
- 
+    func setupShareButton() {
+        shareButton.layer.backgroundColor = UIColor.denimBlueColor().CGColor
+        shareButton.layer.cornerRadius = 10
+        shareButton.layer.masksToBounds = true
+        shareButton.setTitle("  Share on Facebook  ", forState: UIControlState.Normal)
+        shareButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        shareButton.titleLabel?.font = UIFont.mrTextStyle4Font(size: 20)
+        
+        highlignt.backgroundColor = UIColor.highlightColor()
+        highlignt.layer.cornerRadius = 10
+        highlignt.text = ""
+        highlignt.userInteractionEnabled = false
+
+    }
 
 }

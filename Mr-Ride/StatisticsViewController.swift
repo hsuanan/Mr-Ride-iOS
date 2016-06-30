@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreData
+import Social
 
 protocol StatisticsViewControllerDelegate: class {
     
@@ -34,7 +35,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     var isFromHistory = false
     
     weak var delegate: StatisticsViewControllerDelegate?
-        
+    
     @IBOutlet var statisticsView: StatisticsView!
     
     @IBAction func BackOrDoneButtonTapped(sender: AnyObject) {
@@ -50,6 +51,11 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
+    
+    @IBAction func shareButtonTapped(sender: UIButton) {
+        share()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,14 +87,14 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         super.viewWillDisappear(animated)
         
         print("____StatisticViewWillDisappear")
-    
+        
     }
     
     deinit {
         
         print("____Leave Statistics Page")
     }
-
+    
     func uploadRecord() {
         
         statisticsView.distanceValue.text = "\(Int(distance!)) m"
@@ -97,7 +103,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         statisticsView.averageSpeedValue.text = "\(Int(averageSpeed!)) km/hr"
         navigationItem.title = "\(dateString(timestamp!))"
     }
-
+    
     //MARK: Helper Method
     
     func dateString(date: NSDate) -> String {
@@ -123,12 +129,12 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     //MARK: Map
     func showRoute() {
-
+        
         for location in locations {
             
             coordToUse.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
         }
-    
+        
         let polyline = MKPolyline(coordinates: &coordToUse, count: coordToUse.count)
         
         statisticsView.mapView.addOverlay(polyline)
@@ -147,14 +153,36 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     }
 }
 
-extension MKMapView {
+extension StatisticsViewController {
     
-    private func zoomToPolyLine(polyline: MKPolyline, animated: Bool) {
+    func share() {
         
-        setVisibleMapRect(
-            polyline.boundingMapRect,
-            edgePadding: UIEdgeInsets(top: 50.0, left: 50.0, bottom: 50.0, right: 50.0),
-            animated: animated)
+        let screen = UIScreen.mainScreen()
+        
+        if let window = UIApplication.sharedApplication().keyWindow {
+            UIGraphicsBeginImageContextWithOptions(screen.bounds.size, false, 0);
+            window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: false)
+            let image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            let composeSheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            composeSheet.setInitialText("Mr. Ride is awesome")
+            composeSheet.addImage(image)
+            
+            presentViewController(composeSheet, animated: true, completion: nil)
+        }
     }
+}
+
+    
+extension MKMapView {
+        
+        private func zoomToPolyLine(polyline: MKPolyline, animated: Bool) {
+            
+            setVisibleMapRect(
+                polyline.boundingMapRect,
+                edgePadding: UIEdgeInsets(top: 50.0, left: 50.0, bottom: 50.0, right: 50.0),
+                animated: animated)
+        }
 }
 

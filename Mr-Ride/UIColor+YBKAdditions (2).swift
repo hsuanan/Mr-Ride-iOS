@@ -140,4 +140,12 @@ extension UIColor {
         
     }
 
+    class func denimBlueColor() -> UIColor {
+        return UIColor(red: 59.0 / 255.0, green: 89.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.0)
+    }
+    
+    class func highlightColor() -> UIColor {
+        return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1)
+    }
+
 }

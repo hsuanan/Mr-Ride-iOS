@@ -87,6 +87,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     var currentLocation: CLLocation?
     var myLocations = [CLLocation]()
     var startLocation: CLLocation?
+    var lastLocation: CLLocation?
     
     //Data properties
     var traveledDistance = 0.0
@@ -203,7 +204,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        currentLocation = locations.last
+        currentLocation = locationManager.location
         
         let center = CLLocationCoordinate2D(
             latitude: (currentLocation?.coordinate.latitude)!,
@@ -219,11 +220,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         // Distance Calculation
         
         if startLocation == nil {
-            
             startLocation = locations.last
-            
         } else {
-            
             startLocation = myLocations.last
         }
         
@@ -239,9 +237,10 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
             calculatCalories()
         }
         
-        myLocations.append(currentLocation!)
+        if distance < 1000 {
+            myLocations.append(currentLocation!)
+        }
         showRoute()
-        
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
