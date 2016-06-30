@@ -126,6 +126,7 @@
 		BC52085A1D07FE700051742A /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC5208611D095B1B0051742A /* DataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagement.swift; sourceTree = "<group>"; };
 		BC744C481D24065C0053F473 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master 2/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		BC744C621D24E8650053F473 /* Mr_Ride 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Mr_Ride 2.xcdatamodel"; sourceTree = "<group>"; };
 		BC77701E1D0FF23F00E036B6 /* HistoryCustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCustomHeaderCell.swift; sourceTree = "<group>"; };
 		BC77701F1D0FF23F00E036B6 /* HistoryCustomHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryCustomHeaderCell.xib; sourceTree = "<group>"; };
 		BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -761,9 +762,10 @@
 		BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				BC744C621D24E8650053F473 /* Mr_Ride 2.xcdatamodel */,
 				BC85F6131CF2A1C000B11F89 /* Mr_Ride.xcdatamodel */,
 			);
-			currentVersion = BC85F6131CF2A1C000B11F89 /* Mr_Ride.xcdatamodel */;
+			currentVersion = BC744C621D24E8650053F473 /* Mr_Ride 2.xcdatamodel */;
 			path = Mr_Ride.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
