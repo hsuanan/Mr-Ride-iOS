@@ -93,7 +93,10 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
         totalDistanceValueLabel.text = "\(stringTotalDistance) km"
         
-        let averageSpeed = totalDistance/1000/(duration/(100*60*60))
+        var averageSpeed = totalDistance/1000/(duration/(100*60*60))
+        if totalDistance == 0 && duration == 0 {
+            averageSpeed = 0
+        }
         let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
         averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
     }
