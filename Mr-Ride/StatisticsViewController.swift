@@ -160,10 +160,10 @@ extension StatisticsViewController {
         let screen = UIScreen.mainScreen()
         
         if let window = UIApplication.sharedApplication().keyWindow {
-            UIGraphicsBeginImageContextWithOptions(screen.bounds.size, false, 0);
+            UIGraphicsBeginImageContextWithOptions(screen.bounds.size, false, 0)
             window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: false)
-            let image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
             
             let composeSheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             composeSheet.setInitialText("Mr. Ride is awesome")

@@ -12,11 +12,6 @@ import Alamofire
 import SwiftyJSON
 import JWT
 
-//protocol JSONToiletDataDelegation: class {
-//    func didReceiveToiletDataFromServer()
-//    func didReceiveToiletDataFromCoreData()
-//}
-
 
 struct ToiletModel {
     
@@ -25,7 +20,6 @@ struct ToiletModel {
     var address: String = ""
     var latitude: Double = 0.0
     var longitude: Double = 0.0
-    
 }
 
 protocol JSONParsable {
@@ -73,7 +67,6 @@ extension ToiletModelHelper: JSONParsable {
             longitude: longitude)
         
         return toilet
-        
     }
 }
 
@@ -82,21 +75,14 @@ class ToiletDataManager {
     
     static let sharedToiletDataManager = ToiletDataManager()
     
-//    weak var delegate: JSONToiletDataDelegation?
-    
     var toiletArray = [ToiletModel]()
     
     let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    
-    
     
     func getToiletDataFromServer() {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)){
             print("This is run on the background quene")
-            
-            //            let JWT = self.generateJWT()
-            //            print ("This is JWT: \(JWT)")
             
             Alamofire.request(
                 .GET,
@@ -109,12 +95,10 @@ class ToiletDataManager {
                         if let value = response.result.value {
                             let json = JSON(value)
                             
-                            //                            print ("toilet JSON: \(json)")
                             for (_, subJSON) in json["result"]["results"] {
                                 do {
                                     let toilet = try ToiletModelHelper().parse(json: subJSON)
                                     self.toiletArray.append(toilet)
-//                                    print ("toiletArray: \(self.toiletArray)")
                                 }
                                 catch (let error){
                                     print ("Error: \(error)")
@@ -122,29 +106,17 @@ class ToiletDataManager {
                             }
                             self.cleanUpToiletCoreData()
                             self.SaveToiletToCoreData()
-                            
-//                            dispatch_async(dispatch_get_main_queue()) { [weak self] in
-//                                self?.delegate?.didReceiveToiletDataFromServer()
-//                                print("Toilet: This is run on the main quene, after the previos code in outer block")
-//                            }
-//                            print (response.response)
-                            
                         }
                     case .Failure(let error):
                         print(error)
                         self.fetchToiletCoreData()
-//                        self.showToiletCoreData()
-//                        dispatch_async(dispatch_get_main_queue()) { [weak self] in
-//                            self?.delegate?.didReceiveToiletDataFromCoreData()
-//                            print("This is run on the main quene, after the previos code in outer block")
-//                            return}
+                        //self.showToiletCoreData()
                         print (response.response)
                         return
                     }
             }
         }
     }
-    
     
     func generateJWT() -> String {
         return JWT.encode(.HS256("appworks")){ builder in
@@ -182,7 +154,6 @@ class ToiletDataManager {
         } catch {
             fatalError("Failed to fetch toilet coredata: \(error)")
         }
-
     }
     
     func cleanUpToiletCoreData() {
@@ -203,8 +174,6 @@ class ToiletDataManager {
         }catch {
             fatalError("Failure to cleanup toilet coredata: \(error)")
         }
-        print("clean up toilet core data")
-        
     }
     
     func SaveToiletToCoreData() {
@@ -222,9 +191,8 @@ class ToiletDataManager {
             
             do {
                 try moc.save()
-                //            print ("save Toilet coredata")
                 
-            }catch{
+            } catch {
                 fatalError("Failure to save toilet coredata: \(error)")
             }
         }
@@ -239,13 +207,8 @@ class ToiletDataManager {
             for result in results {
                 print ("Toilet name: \(result.title!) ")
             }
-        }catch {
+        } catch {
             fatalError("fail to fech data: \(error)")
         }
     }
-    
-    
-    
-    
-    
 }
