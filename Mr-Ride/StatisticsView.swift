@@ -53,10 +53,8 @@ class StatisticsView: UIView {
         setupMedal()
         setupGoodJob()
         setupShareButton()
-        
     }
     
-
     func setupBackground() {
         
         self.opaque = true
@@ -67,7 +65,6 @@ class StatisticsView: UIView {
         gradient.frame = self.bounds
         gradient.colors = [color1.CGColor,color2.CGColor]
         layer.insertSublayer(gradient, atIndex: 0)
-        
     }
     
     func setupDistance() {
@@ -81,7 +78,6 @@ class StatisticsView: UIView {
         distanceValue.textColor = UIColor.mrWhiteColor()
         distanceValue.text = "0 m"
         letterSpacing(distanceValue.text!, letterSpacing: 0.7, label: distanceValue)
-        
     }
     
     func setupAverageSpeed() {
@@ -161,7 +157,15 @@ class StatisticsView: UIView {
         shareButton.titleLabel?.font = UIFont.mrTextStyle4Font(size: 20)
         
         highlignt.backgroundColor = UIColor.highlightColor()
-        highlignt.layer.cornerRadius = 10
+        
+        let hightlightlLayer = CAShapeLayer()
+        let roundedPath = UIBezierPath(
+            roundedRect: shareButton.bounds,
+            byRoundingCorners:[.TopLeft, .TopRight],
+            cornerRadii: CGSize(width: 10 , height:10))
+        
+        hightlightlLayer.path = roundedPath.CGPath
+        highlignt.layer.mask = hightlightlLayer
         highlignt.text = ""
         highlignt.userInteractionEnabled = false
 

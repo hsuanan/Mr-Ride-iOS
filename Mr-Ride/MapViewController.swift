@@ -53,7 +53,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var pickerView = UIPickerView()
     var toolBar = UIToolbar()
     var pickOption = ["UBike Station", "Toilet"]
-
+    
     let recordModal = DataManager.sharedDataManager
     let toiletRecordModal = ToiletDataManager.sharedToiletDataManager
     
@@ -125,7 +125,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let inputButtonLabelLayer = CAShapeLayer()
         let rRoundedPath = UIBezierPath(
             roundedRect: inputButtonLabel.bounds,
-            byRoundingCorners:[.TopLeft, .BottomLeft],
+            byRoundingCorners:[.TopRight, .BottomRight],
             cornerRadii: CGSize(width: 4, height: 4))
         
         inputButtonLabelLayer.path = rRoundedPath.CGPath
@@ -156,7 +156,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         attributedText.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSMakeRange(0, attributedText.length))
         label.attributedText = attributedText
     }
-
+    
     
     //MARK: PickerView
     
@@ -292,7 +292,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId!)
-       
+        
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
             annotationView?.canShowCallout = true
@@ -310,7 +310,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         annotationView?.backgroundColor = UIColor.whiteColor()
         annotationView?.frame = CGRectMake(0, 0, 40, 40)
         annotationView?.layer.cornerRadius = annotationView!.frame.size.width / 2
-       
+        
         annotationView?.addSubview(iconImageView)
         iconImageView.center = (annotationView?.center)!
         
@@ -376,7 +376,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             
             let annotation = CustomPointAnnotation()
-            //            let annotation = MKPointAnnotation()
             annotation.coordinate = location
             annotation.title = toilet.title
             annotation.imageName = "icon-toilet"

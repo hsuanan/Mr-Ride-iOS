@@ -221,20 +221,15 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         } else {
             startLocation = myLocations.last
         }
-        
         let distance = startLocation?.distanceFromLocation(currentLocation!)
-        
         if timer.valid {
-            
-            traveledDistance += distance!
+            traveledDistance += distance ?? 0.0
             distanceValue.text = ("\(Int(traveledDistance)) m")
             
             calculateCurrentSpeed()
             calculateAverageSpeed()
             calculatCalories()
-        }
-        
-        if distance < 1000 {
+            
             myLocations.append(currentLocation!)
         }
         showRoute()
@@ -291,8 +286,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         var passedLocations = [Locations]()
         for location in myLocations {
             guard
-                let latitude = location.coordinate.latitude as? Double,
-                let longitude = location.coordinate.longitude as? Double
+                let latitude: Double = location.coordinate.latitude,
+                let longitude: Double = location.coordinate.longitude
                 
                 else {return}
             
