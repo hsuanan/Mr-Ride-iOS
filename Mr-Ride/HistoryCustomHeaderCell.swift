@@ -21,10 +21,8 @@ class HistoryCustomHeaderCell: UITableViewCell {
         headerView.backgroundColor = UIColor.whiteColor()
         headerView.layer.cornerRadius = 2
         
-//        dateLabel.font = UIFont.mrTextStyle125Font()
         dateLabel.textColor = UIColor.mrDarkSlateBlueColor()
         letterSpacing(dateLabel.text!, letterSpacing: -0.3, label: dateLabel)
-        
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){

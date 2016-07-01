@@ -82,7 +82,6 @@ class ToiletDataManager {
     func getToiletDataFromServer() {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)){
-            print("This is run on the background quene")
             
             Alamofire.request(
                 .GET,

@@ -59,9 +59,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
-        print ("cancel button pressed")
-        Amplitude.instance().logEvent("select_cancel_in_record_creating")
         
+        Amplitude.instance().logEvent("select_cancel_in_record_creating")
         delegate?.didDismiss()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -109,10 +108,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         setup()
         drawCircle()
         setupPlayButton()
-        
         getLocationUpdate()
         
-        //        dateTest("2016/04/21")
     }
     
     override func viewDidLayoutSubviews() {

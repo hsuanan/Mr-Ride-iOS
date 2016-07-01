@@ -142,7 +142,6 @@ class DataManager {
                                 self?.delegate?.didReceiveDataFromCoreData()
                                 return}
                             print (response.response)
-                            
                             return
                     }
                     self.cleanUpStationCoreData()

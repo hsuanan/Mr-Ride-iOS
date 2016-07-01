@@ -54,7 +54,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var toolBar = UIToolbar()
     var pickOption = ["UBike Station", "Toilet"]
 
-    
     let recordModal = DataManager.sharedDataManager
     let toiletRecordModal = ToiletDataManager.sharedToiletDataManager
     
@@ -70,7 +69,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         recordModal.delegate = self
         recordModal.getBikeDataFromServer()
         
-//        toiletRecordModal.delegate = self
         toiletRecordModal.getToiletDataFromServer()
         
     }
@@ -127,12 +125,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let inputButtonLabelLayer = CAShapeLayer()
         let rRoundedPath = UIBezierPath(
             roundedRect: inputButtonLabel.bounds,
-            byRoundingCorners:[.TopRight, .BottomRight, .TopLeft, .BottomLeft],
+            byRoundingCorners:[.TopLeft, .BottomLeft],
             cornerRadii: CGSize(width: 4, height: 4))
         
         inputButtonLabelLayer.path = rRoundedPath.CGPath
         inputButtonLabel.layer.mask = inputButtonLabelLayer
-        
     }
     
     func dashBoardViewSetUp() {
@@ -152,7 +149,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         addressLabel.font = UIFont.mrTextStyle16Font()
         trafficTimeLabel.textColor = UIColor.whiteColor()
         trafficTimeLabel.font = UIFont.mrTextStyle4Font()
-        
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
@@ -184,15 +180,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.cancelPickerTapped))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        //        spaceButton.title = "look For"
-        let lookFor = UIBarButtonItem(title: "Look for", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-        lookFor.tintColor = UIColor.blackColor()
+        let lookForTitle = UIBarButtonItem(title: "Look for", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        lookForTitle.tintColor = UIColor.blackColor()
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.donePickerTapped))
         
-        toolBar.setItems([cancelButton, spaceButton, lookFor, spaceButton, doneButton], animated: true)
+        toolBar.setItems([cancelButton, spaceButton, lookForTitle, spaceButton, doneButton], animated: true)
         toolBar.userInteractionEnabled = true
         
-        //        pickerView.addSubview(toolBar)
         view.addSubview(toolBar)
         view.addSubview(pickerView)
         
@@ -202,20 +196,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         pickerView.removeFromSuperview()
         toolBar.removeFromSuperview()
-        print("cancelPickerTapped")
-        
     }
     
     func donePickerTapped() {
         
         pickerView.removeFromSuperview()
         toolBar.removeFromSuperview()
-        print("donePickerTapped")
-        
     }
     
     
-    //MarkL pickerView delegate
+    //Mark: PickerView delegate
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -231,7 +221,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         inputButtonLabel.text = pickOption[row]
-        print("didSelectRow:\(row)")
         
         switch row {
         case 0:
@@ -264,7 +253,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         } else {
             
             print ("Need to Enable Location")
-            
         }
     }
     
@@ -331,7 +319,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         
-        print("didSelectAnnotationView")
         view.backgroundColor = UIColor.mrLightblueColor()
         
         if let annotation = view.annotation as? CustomPointAnnotation {
@@ -378,7 +365,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             mapView.addAnnotation(annotation)
         }
-        print("showStationAnnotation")
     }
     
     func showToiletAnnotation() {
@@ -400,39 +386,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotation.latitude = toilet.latitude
             annotation.longitude = toilet.longitude
             mapView.addAnnotation(annotation)
-
         }
-        
-        print("showToiletAnnotation")
     }
     
     func removeAnnotation() {
         let annotations = mapView.annotations
         mapView.removeAnnotations(annotations)
-        print("removeAnnotation")
     }
     
     
-    // Mark: implement protocol
+    //MARK: Implement protocol
     
     func didReceiveDataFromServer() {
-        print("didReceiveDataFromServer")
         showStationAnnotation()
     }
     
     func didReceiveDataFromCoreData() {
-        print("didReceiveDataFromCoreData")
         showStationAnnotation()
     }
-    
-//    func didReceiveToiletDataFromServer() {
-//        print("didReceiveToiletDataFromServer")
-//        //        showToiletAnnotation()
-//    }
-//    
-//    func didReceiveToiletDataFromCoreData() {
-//        print("didReceiveToiletDataFromServer")
-//        //        showToiletAnnotation()
-//    }
-    
 }

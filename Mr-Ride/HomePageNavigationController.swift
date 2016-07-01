@@ -15,16 +15,8 @@ class HomePageNavigationController: UINavigationController {
         super.viewDidLoad()
         
         setupNavigationBar()
-        
-    
-
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
     //setup status bar to white
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         

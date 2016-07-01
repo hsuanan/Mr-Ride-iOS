@@ -17,16 +17,10 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        print ("SideViewDidLoad")
-        
         view.backgroundColor = UIColor.mrDarkSlateBlueColor()
         tableView.backgroundColor = UIColor.mrDarkSlateBlueColor()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         
@@ -106,17 +100,4 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }
     }
-        
-    
-    
-    
-    //        estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-    //        {
-    //            return UITableViewAutomaticDimension;
-    //        }
-    //
-    //    }
-    
-
-    
 }

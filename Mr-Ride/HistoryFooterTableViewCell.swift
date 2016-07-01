@@ -16,10 +16,6 @@ class HistoryFooterTableViewCell: UITableViewCell {
         
         backgroundColor = UIColor.clearColor() 
         footerCell.backgroundColor = UIColor.clearColor()
-        
-        
+
     }
-
-
-    
 }

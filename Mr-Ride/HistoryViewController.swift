@@ -24,8 +24,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-        
-        print ("HistoryPage : SideBarButtonTapped")
     }
     
     let recordModel = DataManager.sharedDataManager

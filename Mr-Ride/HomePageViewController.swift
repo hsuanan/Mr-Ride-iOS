@@ -33,7 +33,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     @IBOutlet weak var letsRideButtonLabel: UILabel!
     
     @IBAction func letsRideButtonTapped(sender: AnyObject) {
-       
+        
         Amplitude.instance().logEvent("select_ride_in_home")
         
         let newRecordNavigationController = self.storyboard!.instantiateViewControllerWithIdentifier("NewRecordNavigationController") as! UINavigationController
@@ -49,12 +49,10 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     @IBAction func sideBarButtonTapped(sender: AnyObject) {
         
         Amplitude.instance().logEvent("select_menu_in_home")
-
+        
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-        print ("HomePage : SideBarButtonTapped")
-        
-            }
+    }
     
     var totalCount: Int?
     var totalDistance = 0.0

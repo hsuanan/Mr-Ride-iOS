@@ -20,7 +20,6 @@ class NewRecordNavigationController: UINavigationController {
     
     func setupNewRecordNavigationBar(){
         
-        
         navigationBar.translucent = false
         
         //change status bar color to white

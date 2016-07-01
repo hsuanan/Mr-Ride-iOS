@@ -43,15 +43,11 @@ class LeftSideTableViewCell: UITableViewCell {
             let bgColorView = UIView()
             self.selectedBackgroundView = bgColorView
         
-//            bullet.frame = CGRectMake (30, 28, 8, 8)
             bullet.layer.cornerRadius = bullet.frame.size.width / 2
             bullet.backgroundColor = UIColor.whiteColor()
-
         }
         else {
-            
             bullet.backgroundColor = UIColor.clearColor()
-
         }
     }
 }
