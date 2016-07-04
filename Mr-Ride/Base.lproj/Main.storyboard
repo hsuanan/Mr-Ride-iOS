@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2MK-6v-hjm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qFk-vY-DWe">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -481,9 +481,9 @@
                                 <exclude reference="QlO-fW-JUc"/>
                                 <exclude reference="XS7-5H-DDR"/>
                                 <exclude reference="ctO-IT-z0T"/>
+                                <exclude reference="SMg-ZI-HMg"/>
                                 <exclude reference="ePW-hv-kWB"/>
                                 <exclude reference="frj-c7-dEM"/>
-                                <exclude reference="SMg-ZI-HMg"/>
                                 <exclude reference="jNT-1W-eil"/>
                             </mask>
                         </variation>
@@ -662,6 +662,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1X-vj-pBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1476" y="-430"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="dwj-fh-OBu">
+            <objects>
+                <viewController id="qFk-vY-DWe" customClass="LoginViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="krI-tJ-pTS"/>
+                        <viewControllerLayoutGuide type="bottom" id="SHo-Pl-PXC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h2A-nC-idw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-history-background" translatesAutoresizingMaskIntoConstraints="NO" id="k2t-CW-3mx">
+                                <rect key="frame" x="0.0" y="266" width="600" height="334"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="334" id="uPw-OT-WJe"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vii-V1-XvQ">
+                                <rect key="frame" x="279" y="75" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6dm-ml-L1T">
+                                <rect key="frame" x="142" y="153" width="418" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="418" id="JXB-xr-lv4"/>
+                                    <constraint firstAttribute="height" constant="48" id="aTt-IB-laB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="JXB-xr-lv4"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QSM-vl-vj1">
+                                <rect key="frame" x="142" y="220" width="418" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="6Do-ge-9xO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="6dm-ml-L1T" secondAttribute="trailing" constant="20" id="3nJ-Ec-BNF"/>
+                            <constraint firstAttribute="trailing" secondItem="k2t-CW-3mx" secondAttribute="trailing" id="3o6-9D-9Xm"/>
+                            <constraint firstItem="vii-V1-XvQ" firstAttribute="top" secondItem="krI-tJ-pTS" secondAttribute="bottom" constant="55" id="BsA-f7-J9U"/>
+                            <constraint firstItem="vii-V1-XvQ" firstAttribute="centerX" secondItem="h2A-nC-idw" secondAttribute="centerX" id="E8m-Ky-ScL"/>
+                            <constraint firstItem="6dm-ml-L1T" firstAttribute="leading" secondItem="QSM-vl-vj1" secondAttribute="leading" id="GT5-VJ-Yxi"/>
+                            <constraint firstItem="QSM-vl-vj1" firstAttribute="top" secondItem="6dm-ml-L1T" secondAttribute="bottom" constant="19" id="IBZ-6f-sSM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6dm-ml-L1T" secondAttribute="trailing" constant="20" id="Knd-aw-5Tb"/>
+                            <constraint firstItem="QSM-vl-vj1" firstAttribute="leading" secondItem="h2A-nC-idw" secondAttribute="leadingMargin" constant="122" id="PvW-tt-028"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QSM-vl-vj1" secondAttribute="trailing" constant="20" id="XCf-Bq-ZuL"/>
+                            <constraint firstItem="k2t-CW-3mx" firstAttribute="top" secondItem="6dm-ml-L1T" secondAttribute="bottom" constant="65" id="esW-NB-TL5"/>
+                            <constraint firstItem="6dm-ml-L1T" firstAttribute="leading" secondItem="h2A-nC-idw" secondAttribute="leadingMargin" constant="122" id="mE6-wd-5dF"/>
+                            <constraint firstItem="k2t-CW-3mx" firstAttribute="leading" secondItem="h2A-nC-idw" secondAttribute="leading" id="mpE-pb-46p"/>
+                            <constraint firstItem="6dm-ml-L1T" firstAttribute="trailing" secondItem="QSM-vl-vj1" secondAttribute="trailing" id="ons-O9-vcN"/>
+                            <constraint firstItem="6dm-ml-L1T" firstAttribute="top" secondItem="vii-V1-XvQ" secondAttribute="bottom" constant="57" id="r33-mq-KuG"/>
+                            <constraint firstItem="k2t-CW-3mx" firstAttribute="bottom" secondItem="SHo-Pl-PXC" secondAttribute="top" id="uGe-a5-Jnw"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3nJ-Ec-BNF"/>
+                                <exclude reference="GT5-VJ-Yxi"/>
+                                <exclude reference="ons-O9-vcN"/>
+                                <exclude reference="esW-NB-TL5"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="k2t-CW-3mx" id="IuJ-Bq-sTw"/>
+                        <outlet property="heightTextField" destination="6dm-ml-L1T" id="dND-4w-uiV"/>
+                        <outlet property="titleLabel" destination="vii-V1-XvQ" id="NRd-cC-Uke"/>
+                        <outlet property="weightTextField" destination="QSM-vl-vj1" id="32c-ow-QiI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pyg-6S-fFG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-515" y="-430"/>
         </scene>
         <!--Home Page Navigation Controller-->
         <scene sceneID="8tt-42-smg">

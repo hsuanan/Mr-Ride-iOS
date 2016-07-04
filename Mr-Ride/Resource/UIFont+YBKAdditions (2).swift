@@ -85,4 +85,8 @@ extension UIFont {
     class func mrTextStyle4Font(size size:CGFloat) -> UIFont? {
         return UIFont(name: "Helvetica", size: size)
     }
+    
+    class func mrTextStyle24Font() -> UIFont {
+        return UIFont.systemFontOfSize(20.0, weight: UIFontWeightRegular)
+    }
 }

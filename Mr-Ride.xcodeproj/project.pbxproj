@@ -41,17 +41,18 @@
 		BC744D391D268FE40053F473 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC744D181D268FE40053F473 /* HistoryTableViewCell.xib */; };
 		BC744D3A1D268FE40053F473 /* LeftSideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D191D268FE40053F473 /* LeftSideTableViewCell.swift */; };
 		BC744D3B1D268FE40053F473 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D1A1D268FE40053F473 /* StatisticsView.swift */; };
-		BC744D3C1D268FE40053F473 /* HistoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D1C1D268FE40053F473 /* HistoryNavigationController.swift */; };
-		BC744D3D1D268FE40053F473 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D1D1D268FE40053F473 /* HistoryViewController.swift */; };
-		BC744D3E1D268FE40053F473 /* HomePageNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D1E1D268FE40053F473 /* HomePageNavigationController.swift */; };
-		BC744D3F1D268FE40053F473 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D1F1D268FE40053F473 /* HomePageViewController.swift */; };
-		BC744D401D268FE40053F473 /* LeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D201D268FE40053F473 /* LeftSideViewController.swift */; };
-		BC744D411D268FE40053F473 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D211D268FE40053F473 /* MapViewController.swift */; };
-		BC744D421D268FE40053F473 /* MapViewNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D221D268FE40053F473 /* MapViewNavigationController.swift */; };
-		BC744D431D268FE40053F473 /* NewRecordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D231D268FE40053F473 /* NewRecordNavigationController.swift */; };
-		BC744D441D268FE40053F473 /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D241D268FE40053F473 /* NewRecordViewController.swift */; };
-		BC744D451D268FE40053F473 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D251D268FE40053F473 /* StatisticsViewController.swift */; };
-		BC744D461D268FE40053F473 /* ToiletDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D261D268FE40053F473 /* ToiletDataManagement.swift */; };
+		BC744D781D28C1610053F473 /* HistoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D6C1D28C1610053F473 /* HistoryNavigationController.swift */; };
+		BC744D791D28C1610053F473 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D6D1D28C1610053F473 /* HistoryViewController.swift */; };
+		BC744D7A1D28C1610053F473 /* HomePageNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D6E1D28C1610053F473 /* HomePageNavigationController.swift */; };
+		BC744D7B1D28C1610053F473 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D6F1D28C1610053F473 /* HomePageViewController.swift */; };
+		BC744D7C1D28C1610053F473 /* LeftSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D701D28C1610053F473 /* LeftSideViewController.swift */; };
+		BC744D7D1D28C1610053F473 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D711D28C1610053F473 /* LoginViewController.swift */; };
+		BC744D7E1D28C1610053F473 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D721D28C1610053F473 /* MapViewController.swift */; };
+		BC744D7F1D28C1610053F473 /* MapViewNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D731D28C1610053F473 /* MapViewNavigationController.swift */; };
+		BC744D801D28C1610053F473 /* NewRecordNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D741D28C1610053F473 /* NewRecordNavigationController.swift */; };
+		BC744D811D28C1610053F473 /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D751D28C1610053F473 /* NewRecordViewController.swift */; };
+		BC744D821D28C1610053F473 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D761D28C1610053F473 /* StatisticsViewController.swift */; };
+		BC744D831D28C1610053F473 /* ToiletDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744D771D28C1610053F473 /* ToiletDataManagement.swift */; };
 		BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */; };
 		BC85F6111CF2A1C000B11F89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC85F60F1CF2A1C000B11F89 /* Main.storyboard */; };
 		BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC85F6121CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld */; };
@@ -116,17 +117,18 @@
 		BC744D181D268FE40053F473 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC744D191D268FE40053F473 /* LeftSideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideTableViewCell.swift; sourceTree = "<group>"; };
 		BC744D1A1D268FE40053F473 /* StatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		BC744D1C1D268FE40053F473 /* HistoryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNavigationController.swift; sourceTree = "<group>"; };
-		BC744D1D1D268FE40053F473 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		BC744D1E1D268FE40053F473 /* HomePageNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNavigationController.swift; sourceTree = "<group>"; };
-		BC744D1F1D268FE40053F473 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
-		BC744D201D268FE40053F473 /* LeftSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideViewController.swift; sourceTree = "<group>"; };
-		BC744D211D268FE40053F473 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		BC744D221D268FE40053F473 /* MapViewNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewNavigationController.swift; sourceTree = "<group>"; };
-		BC744D231D268FE40053F473 /* NewRecordNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordNavigationController.swift; sourceTree = "<group>"; };
-		BC744D241D268FE40053F473 /* NewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
-		BC744D251D268FE40053F473 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
-		BC744D261D268FE40053F473 /* ToiletDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletDataManagement.swift; sourceTree = "<group>"; };
+		BC744D6C1D28C1610053F473 /* HistoryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNavigationController.swift; sourceTree = "<group>"; };
+		BC744D6D1D28C1610053F473 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		BC744D6E1D28C1610053F473 /* HomePageNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNavigationController.swift; sourceTree = "<group>"; };
+		BC744D6F1D28C1610053F473 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		BC744D701D28C1610053F473 /* LeftSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideViewController.swift; sourceTree = "<group>"; };
+		BC744D711D28C1610053F473 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BC744D721D28C1610053F473 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BC744D731D28C1610053F473 /* MapViewNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewNavigationController.swift; sourceTree = "<group>"; };
+		BC744D741D28C1610053F473 /* NewRecordNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordNavigationController.swift; sourceTree = "<group>"; };
+		BC744D751D28C1610053F473 /* NewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
+		BC744D761D28C1610053F473 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		BC744D771D28C1610053F473 /* ToiletDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletDataManagement.swift; sourceTree = "<group>"; };
 		BC85F6081CF2A1C000B11F89 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC85F6101CF2A1C000B11F89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -253,23 +255,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		BC744D1B1D268FE40053F473 /* Controller */ = {
+		BC744D6B1D28C1610053F473 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BC744D1C1D268FE40053F473 /* HistoryNavigationController.swift */,
-				BC744D1D1D268FE40053F473 /* HistoryViewController.swift */,
-				BC744D1E1D268FE40053F473 /* HomePageNavigationController.swift */,
-				BC744D1F1D268FE40053F473 /* HomePageViewController.swift */,
-				BC744D201D268FE40053F473 /* LeftSideViewController.swift */,
-				BC744D211D268FE40053F473 /* MapViewController.swift */,
-				BC744D221D268FE40053F473 /* MapViewNavigationController.swift */,
-				BC744D231D268FE40053F473 /* NewRecordNavigationController.swift */,
-				BC744D241D268FE40053F473 /* NewRecordViewController.swift */,
-				BC744D251D268FE40053F473 /* StatisticsViewController.swift */,
-				BC744D261D268FE40053F473 /* ToiletDataManagement.swift */,
+				BC744D711D28C1610053F473 /* LoginViewController.swift */,
+				BC744D6C1D28C1610053F473 /* HistoryNavigationController.swift */,
+				BC744D6D1D28C1610053F473 /* HistoryViewController.swift */,
+				BC744D6E1D28C1610053F473 /* HomePageNavigationController.swift */,
+				BC744D6F1D28C1610053F473 /* HomePageViewController.swift */,
+				BC744D701D28C1610053F473 /* LeftSideViewController.swift */,
+				BC744D721D28C1610053F473 /* MapViewController.swift */,
+				BC744D731D28C1610053F473 /* MapViewNavigationController.swift */,
+				BC744D741D28C1610053F473 /* NewRecordNavigationController.swift */,
+				BC744D751D28C1610053F473 /* NewRecordViewController.swift */,
+				BC744D761D28C1610053F473 /* StatisticsViewController.swift */,
+				BC744D771D28C1610053F473 /* ToiletDataManagement.swift */,
 			);
-			name = Controller;
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		BC85F5FF1CF2A1C000B11F89 = {
@@ -297,7 +299,7 @@
 				BCCFE6111CF98E33004323B0 /* Mr-Ride-Bridging-Header.h */,
 				BC85F60B1CF2A1C000B11F89 /* AppDelegate.swift */,
 				BC85F60F1CF2A1C000B11F89 /* Main.storyboard */,
-				BC744D1B1D268FE40053F473 /* Controller */,
+				BC744D6B1D28C1610053F473 /* Controller */,
 				BC744D121D268FE40053F473 /* View */,
 				BC744CFA1D268FCA0053F473 /* Model */,
 				BC744CE11D268FBA0053F473 /* CoreData */,
@@ -470,11 +472,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC744D811D28C1610053F473 /* NewRecordViewController.swift in Sources */,
+				BC744D7D1D28C1610053F473 /* LoginViewController.swift in Sources */,
 				BC744CFF1D268FCA0053F473 /* MMDrawerVisualState.m in Sources */,
 				BC744D3A1D268FE40053F473 /* LeftSideTableViewCell.swift in Sources */,
-				BC744D421D268FE40053F473 /* MapViewNavigationController.swift in Sources */,
-				BC744D451D268FE40053F473 /* StatisticsViewController.swift in Sources */,
-				BC744D3E1D268FE40053F473 /* HomePageNavigationController.swift in Sources */,
+				BC744D7A1D28C1610053F473 /* HomePageNavigationController.swift in Sources */,
 				BC744CEC1D268FBA0053F473 /* Records.swift in Sources */,
 				BC744D331D268FE40053F473 /* UIFont+YBKAdditions (2).swift in Sources */,
 				BC744CED1D268FBA0053F473 /* Station+CoreDataProperties.swift in Sources */,
@@ -487,22 +489,23 @@
 				BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */,
 				BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */,
 				BC744D321D268FE40053F473 /* UIColor+YBKAdditions (2).swift in Sources */,
+				BC744D831D28C1610053F473 /* ToiletDataManagement.swift in Sources */,
 				BC744CEA1D268FBA0053F473 /* Location.swift in Sources */,
-				BC744D3D1D268FE40053F473 /* HistoryViewController.swift in Sources */,
-				BC744D3C1D268FE40053F473 /* HistoryNavigationController.swift in Sources */,
+				BC744D791D28C1610053F473 /* HistoryViewController.swift in Sources */,
+				BC744D781D28C1610053F473 /* HistoryNavigationController.swift in Sources */,
 				BC744D381D268FE40053F473 /* HistoryTableViewCell.swift in Sources */,
 				BC744D001D268FCA0053F473 /* UIViewController+MMDrawerController.m in Sources */,
-				BC744D431D268FE40053F473 /* NewRecordNavigationController.swift in Sources */,
-				BC744D3F1D268FE40053F473 /* HomePageViewController.swift in Sources */,
+				BC744D7B1D28C1610053F473 /* HomePageViewController.swift in Sources */,
 				BC744CFD1D268FCA0053F473 /* MMDrawerBarButtonItem.m in Sources */,
+				BC744D7F1D28C1610053F473 /* MapViewNavigationController.swift in Sources */,
+				BC744D801D28C1610053F473 /* NewRecordNavigationController.swift in Sources */,
 				BC744CE91D268FBA0053F473 /* Location+CoreDataProperties.swift in Sources */,
+				BC744D821D28C1610053F473 /* StatisticsViewController.swift in Sources */,
 				BC744D3B1D268FE40053F473 /* StatisticsView.swift in Sources */,
 				BC744CEB1D268FBA0053F473 /* Records+CoreDataProperties.swift in Sources */,
-				BC744D401D268FE40053F473 /* LeftSideViewController.swift in Sources */,
-				BC744D461D268FE40053F473 /* ToiletDataManagement.swift in Sources */,
+				BC744D7C1D28C1610053F473 /* LeftSideViewController.swift in Sources */,
+				BC744D7E1D28C1610053F473 /* MapViewController.swift in Sources */,
 				BC744D021D268FCA0053F473 /* Toilet.swift in Sources */,
-				BC744D411D268FE40053F473 /* MapViewController.swift in Sources */,
-				BC744D441D268FE40053F473 /* NewRecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
