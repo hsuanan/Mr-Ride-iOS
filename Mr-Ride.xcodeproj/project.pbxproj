@@ -263,8 +263,8 @@
 				BC744D231D268FE40053F473 /* NewRecordNavigationController.swift */,
 				BC744D241D268FE40053F473 /* NewRecordViewController.swift */,
 				BC744D251D268FE40053F473 /* StatisticsViewController.swift */,
-				BC744D211D268FE40053F473 /* MapViewController.swift */,
 				BC744D221D268FE40053F473 /* MapViewNavigationController.swift */,
+				BC744D211D268FE40053F473 /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

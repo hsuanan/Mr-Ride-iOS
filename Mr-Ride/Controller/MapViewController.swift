@@ -36,6 +36,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBAction func inputButtonTapped(sender: UIButton) {
         showPickerView()
     }
+    let inputButtonLabelLayer = CAShapeLayer()
     
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
@@ -61,7 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
+//        setup()
         dashBoardViewSetUp()
         getLocationUpdate()
         mapView.delegate = self
@@ -70,6 +71,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         recordModal.getBikeDataFromServer()
         
         toiletRecordModal.getToiletDataFromServer()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setup()
         
     }
     
@@ -119,10 +127,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         inputButtonLabel.font = UIFont.mrTextStyle10Font()
         inputButtonLabel.textColor = UIColor.mrDarkSlateBlueColor()
         inputButtonLabel.text = "Ubike Station"
-        
+       
         inputButton.backgroundColor = UIColor.clearColor()
         
-        let inputButtonLabelLayer = CAShapeLayer()
+        inputButtonLabelLayer.removeFromSuperlayer()
+      
         let rRoundedPath = UIBezierPath(
             roundedRect: inputButtonLabel.bounds,
             byRoundingCorners:[.TopRight, .BottomRight],
@@ -130,6 +139,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         inputButtonLabelLayer.path = rRoundedPath.CGPath
         inputButtonLabel.layer.mask = inputButtonLabelLayer
+        
     }
     
     func dashBoardViewSetUp() {

@@ -77,10 +77,17 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         print("____StatisticsViewWillAppear")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        statisticsView.gradient.frame = self.view.bounds
     }
     
     override func viewWillDisappear(animated: Bool) {
