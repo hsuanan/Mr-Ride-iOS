@@ -62,7 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setup()
+        setup()
         dashBoardViewSetUp()
         getLocationUpdate()
         mapView.delegate = self
@@ -77,7 +77,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        setup()
+        setupInputButtonLabelLayer()
         
     }
     
@@ -129,9 +129,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         inputButtonLabel.text = "Ubike Station"
        
         inputButton.backgroundColor = UIColor.clearColor()
+    }
+    
+    func setupInputButtonLabelLayer(){
         
         inputButtonLabelLayer.removeFromSuperlayer()
-      
+        
         let rRoundedPath = UIBezierPath(
             roundedRect: inputButtonLabel.bounds,
             byRoundingCorners:[.TopRight, .BottomRight],
@@ -139,7 +142,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         inputButtonLabelLayer.path = rRoundedPath.CGPath
         inputButtonLabel.layer.mask = inputButtonLabelLayer
-        
     }
     
     func dashBoardViewSetUp() {
