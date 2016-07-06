@@ -33,16 +33,20 @@ class HistoryTableViewCell: UITableViewCell {
         
         distanceLabel.font = UIFont(name: "RobotoMono-Light", size: 24)
         distanceLabel.textColor = UIColor.mrWhiteColor()
+        letterSpacing(distanceLabel.text!, letterSpacing: -0.6, label: distanceLabel)
         
         durationLabel.font = UIFont(name: "RobotoMono-Light", size: 24)
         durationLabel.textColor = UIColor.mrWhiteColor()
+        letterSpacing(durationLabel.text!, letterSpacing: -0.6, label: durationLabel)
         
         dateLabel.font = UIFont(name: "RobotoMono-Light", size: 24)
         dateLabel.textColor = UIColor.mrWhiteColor()
+        letterSpacing(dateLabel.text!, letterSpacing: -0.6, label: dateLabel)
         
         thLabel.font = UIFont(name: "RobotoMono-Light", size: 12)
         thLabel.textColor = UIColor.mrWhiteColor()
         thLabel.text = "th"
+        letterSpacing(thLabel.text!, letterSpacing: -0.6, label: thLabel)
         
     }
         
