@@ -481,9 +481,9 @@
                                 <exclude reference="QlO-fW-JUc"/>
                                 <exclude reference="XS7-5H-DDR"/>
                                 <exclude reference="ctO-IT-z0T"/>
+                                <exclude reference="SMg-ZI-HMg"/>
                                 <exclude reference="ePW-hv-kWB"/>
                                 <exclude reference="frj-c7-dEM"/>
-                                <exclude reference="SMg-ZI-HMg"/>
                                 <exclude reference="jNT-1W-eil"/>
                             </mask>
                         </variation>
@@ -1092,6 +1092,6 @@
         <image name="image-history-background" width="1536" height="1021"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w2h-y2-yE7"/>
+        <segue reference="Tio-gD-Ec1"/>
     </inferredMetricsTieBreakers>
 </document>

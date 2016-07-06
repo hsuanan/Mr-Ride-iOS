@@ -82,7 +82,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwH-a9-09G">
-                        <rect key="frame" x="74" y="15" width="1" height="39"/>
+                        <rect key="frame" x="66" y="15" width="1" height="39"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="Gf9-74-Trh"/>
@@ -114,6 +114,7 @@
                     <constraint firstItem="9sB-6u-6Oi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="13" id="eiQ-bg-o0d"/>
                     <constraint firstAttribute="bottomMargin" secondItem="dBm-d5-0HO" secondAttribute="bottom" constant="13" id="g56-0a-9XC"/>
                     <constraint firstItem="WIb-Xk-KbH" firstAttribute="baseline" secondItem="dBm-d5-0HO" secondAttribute="baseline" id="kPB-Qo-l6j"/>
+                    <constraint firstItem="MwH-a9-09G" firstAttribute="leading" secondItem="WIb-Xk-KbH" secondAttribute="trailing" constant="8" id="mWa-6x-dNf"/>
                     <constraint firstAttribute="bottomMargin" secondItem="9sB-6u-6Oi" secondAttribute="bottom" constant="13" id="nup-Ou-lQP"/>
                     <constraint firstItem="WIb-Xk-KbH" firstAttribute="leading" secondItem="dBm-d5-0HO" secondAttribute="trailing" id="q7p-OX-Mln"/>
                     <constraint firstItem="dBm-d5-0HO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qd7-IR-Pw5"/>
@@ -126,6 +127,7 @@
                         <exclude reference="g56-0a-9XC"/>
                         <exclude reference="YvJ-u4-Zzb"/>
                         <exclude reference="kPB-Qo-l6j"/>
+                        <exclude reference="9Tn-FF-tAE"/>
                         <exclude reference="EN8-hR-74C"/>
                         <exclude reference="vLe-zP-eKR"/>
                         <exclude reference="eiQ-bg-o0d"/>

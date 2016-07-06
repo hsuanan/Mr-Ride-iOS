@@ -372,7 +372,7 @@ extension NewRecordViewController: MKMapViewDelegate {
             
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
             polylineRenderer.strokeColor = UIColor.mrBubblegumColor()
-            polylineRenderer.lineWidth = 8
+            polylineRenderer.lineWidth = 10
             return polylineRenderer
         }
         

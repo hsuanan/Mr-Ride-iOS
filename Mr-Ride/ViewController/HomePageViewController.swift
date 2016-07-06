@@ -182,6 +182,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
             lineChartView.xAxis.drawLabelsEnabled = false
             
             lineChartView.legend.enabled = false
+            lineChartView.userInteractionEnabled = false
             
             lineChartDataSet.colors = [UIColor.clearColor()]
             lineChartDataSet.drawCirclesEnabled = false

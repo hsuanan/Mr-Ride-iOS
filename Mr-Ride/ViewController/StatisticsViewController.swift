@@ -146,7 +146,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
             polylineRenderer.strokeColor = UIColor.mrBubblegumColor()
-            polylineRenderer.lineWidth = 8
+            polylineRenderer.lineWidth = 10
             return polylineRenderer
         }
         return MKOverlayRenderer()

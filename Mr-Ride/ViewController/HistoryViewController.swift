@@ -112,6 +112,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         lineChartView.xAxis.labelTextColor = UIColor.whiteColor()
         
         lineChartView.legend.enabled = false
+        lineChartView.userInteractionEnabled = false
+
         
         lineChartDataSet.colors = [UIColor.clearColor()]
         lineChartDataSet.drawCirclesEnabled = false
