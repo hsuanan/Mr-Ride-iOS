@@ -268,8 +268,7 @@
 				BC744D251D268FE40053F473 /* StatisticsViewController.swift */,
 				BC744D261D268FE40053F473 /* ToiletDataManagement.swift */,
 			);
-			name = Controller;
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		BC85F5FF1CF2A1C000B11F89 = {
