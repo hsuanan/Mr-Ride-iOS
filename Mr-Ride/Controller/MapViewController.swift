@@ -22,14 +22,14 @@ class CustomPointAnnotation: MKPointAnnotation {
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
-    //dashBoardView
+    //MARK: DashBoardView property
     @IBOutlet weak var dashBoardView: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var trafficTimeLabel: UILabel!
     
-    // inputButtonLabel
+    //MARK: InputButton property
     @IBOutlet weak var lookForLabel: UILabel!
     @IBOutlet weak var inputButtonLabel: UILabel!
     @IBOutlet weak var inputButton: UIButton!
@@ -42,18 +42,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     
-    
+    //MARK: BarButton
     @IBAction func barButtonTapped(sender: AnyObject) {
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
-        
     }
-    //pickerView
-    var pickerView = UIPickerView()
-    var toolBar = UIToolbar()
-    var pickOption = ["UBike Station", "Toilet"]
+    
+    //MARK: pickerView property
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var toolBar: UIToolbar!
+    let pickOption = ["Ubike Station", "Toilet"]
+    var rowSelected = 0
     
     let recordModal = DataManager.sharedDataManager
     let toiletRecordModal = ToiletDataManager.sharedToiletDataManager
@@ -71,6 +72,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         recordModal.getBikeDataFromServer()
         
         toiletRecordModal.getToiletDataFromServer()
+        
+        pickerView.hidden = true
+        toolBar.hidden = true
         
     }
     
@@ -127,7 +131,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         inputButtonLabel.font = UIFont.mrTextStyle10Font()
         inputButtonLabel.textColor = UIColor.mrDarkSlateBlueColor()
         inputButtonLabel.text = "Ubike Station"
-       
+        
         inputButton.backgroundColor = UIColor.clearColor()
     }
     
@@ -173,8 +177,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     //MARK: PickerView
     
     func showPickerView() {
-        //        pickerView = UIPickerView()
-        pickerView = UIPickerView(frame: CGRectMake(0, 455, view.frame.width, 217))
+        
+        pickerView.hidden = false
+        toolBar.hidden = false
+        
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.backgroundColor = UIColor.whiteColor()
@@ -183,8 +189,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         pickerView.selectRow(0, inComponent: 0, animated: true)
         pickerView.delegate?.pickerView!(pickerView, didSelectRow: 0, inComponent: 0)
         
-        toolBar = UIToolbar(frame:CGRectMake(0, 411, view.frame.width, 44))
-        //        toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.barTintColor = UIColor.mrBarColor()
         toolBar.translucent = false
@@ -198,22 +202,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         toolBar.setItems([cancelButton, spaceButton, lookForTitle, spaceButton, doneButton], animated: true)
         toolBar.userInteractionEnabled = true
-        
-        view.addSubview(toolBar)
-        view.addSubview(pickerView)
-        
     }
     
     func cancelPickerTapped() {
         
-        pickerView.removeFromSuperview()
-        toolBar.removeFromSuperview()
+        pickerView.hidden = true
+        toolBar.hidden = true
+        
+        rowSelected = pickOption.indexOf(inputButtonLabel.text!)!
+        print ()
+        updateAnnotation()
     }
     
     func donePickerTapped() {
         
-        pickerView.removeFromSuperview()
-        toolBar.removeFromSuperview()
+        pickerView.hidden = true
+        toolBar.hidden = true
+        
+        inputButtonLabel.text = pickOption[rowSelected]
+        updateAnnotation()
     }
     
     
@@ -232,7 +239,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        inputButtonLabel.text = pickOption[row]
+        
+        rowSelected = row
         
         switch row {
         case 0:
@@ -294,13 +302,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         let annotationId: String?
-        
-        if inputButtonLabel.text == "UBike Station" {
-            annotationId = "station"
-        } else if inputButtonLabel.text == "Toilet" {
-            annotationId = "toilet"
-        } else {
-            annotationId = "reuseID"
+        switch rowSelected {
+        case 0: annotationId = "station"
+        case 1: annotationId = "toilet"
+        default: annotationId = "reuseID"
         }
         
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId!)
@@ -347,7 +352,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         dashBoardView.hidden = false
-        
     }
     
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
@@ -355,6 +359,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         view.backgroundColor = UIColor.whiteColor()
         dashBoardView.hidden = true
+    }
+    
+    func updateAnnotation() {
+        
+        switch rowSelected {
+        case 0:
+            removeAnnotation()
+            showStationAnnotation()
+        case 1:
+            removeAnnotation()
+            showToiletAnnotation()
+        default: showStationAnnotation()
+        }
     }
     
     func showStationAnnotation() {
