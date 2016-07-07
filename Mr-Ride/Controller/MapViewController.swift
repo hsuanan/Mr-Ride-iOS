@@ -71,8 +71,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         recordModal.delegate = self
         recordModal.getBikeDataFromServer()
-
-//        toiletRecordModal.getToiletDataFromServer()
         
         pickerView.hidden = true
         toolBar.hidden = true
@@ -341,7 +339,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let annotationLocation = CLLocation(latitude:annotation.latitude! , longitude: annotation.longitude!)
             
             let distance = annotationLocation.distanceFromLocation(currentLocation!)
-            print ("distance: \(distance)")
             
             titleLabel.text = annotation.labelTitle
             addressLabel.text = annotation.address
@@ -353,7 +350,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        print("didDeselectAnnotationView")
         
         view.backgroundColor = UIColor.whiteColor()
         dashBoardView.hidden = true
