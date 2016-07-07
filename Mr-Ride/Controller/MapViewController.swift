@@ -34,6 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var inputButtonLabel: UILabel!
     @IBOutlet weak var inputButton: UIButton!
     @IBAction func inputButtonTapped(sender: UIButton) {
+        print("inputButtonTapped")
         showPickerView()
     }
     let inputButtonLabelLayer = CAShapeLayer()
@@ -70,8 +71,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         recordModal.delegate = self
         recordModal.getBikeDataFromServer()
-        
-        toiletRecordModal.getToiletDataFromServer()
+
+//        toiletRecordModal.getToiletDataFromServer()
         
         pickerView.hidden = true
         toolBar.hidden = true
@@ -149,9 +150,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func dashBoardViewSetUp() {
-        
+
         dashBoardView.hidden = true
         dashBoardView.backgroundColor = UIColor.mrDarkSlateBlue90Color()
+        dashBoardView.layer.cornerRadius = 10
         
         categoryLabel.textColor = UIColor.whiteColor()
         categoryLabel.font = UIFont.mrTextStyle4Font()
@@ -242,15 +244,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         rowSelected = row
         
-        switch row {
-        case 0:
-            removeAnnotation()
-            showStationAnnotation()
-        case 1:
-            removeAnnotation()
-            showToiletAnnotation()
-        default: showStationAnnotation()
-        }
+        updateAnnotation()
     }
     
     
@@ -360,7 +354,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         view.backgroundColor = UIColor.whiteColor()
         dashBoardView.hidden = true
     }
-    
+//    
     func updateAnnotation() {
         
         switch rowSelected {
@@ -383,7 +377,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let location = CLLocationCoordinate2DMake(latitude, longitude)
             
             let annotation = CustomPointAnnotation()
-            annotation.coordinate = location  // pin a marker
+            annotation.coordinate = location
             annotation.title = "\(station.availableBikesNumber) bikes left"
             annotation.imageName = "icon-station"
             annotation.labelTitle = station.station
@@ -426,10 +420,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     //MARK: Implement protocol
     
     func didReceiveDataFromServer() {
-        showStationAnnotation()
+//        showStationAnnotation()
     }
     
     func didReceiveDataFromCoreData() {
-        showStationAnnotation()
+//        showStationAnnotation()
     }
 }

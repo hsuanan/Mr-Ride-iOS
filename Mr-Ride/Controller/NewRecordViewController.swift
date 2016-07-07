@@ -190,6 +190,8 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.distanceFilter = 10
             locationManager.activityType = .Fitness
+            locationManager.allowsBackgroundLocationUpdates = true
+            locationManager.pausesLocationUpdatesAutomatically = false
             mapView!.showsUserLocation = true
             
         } else {

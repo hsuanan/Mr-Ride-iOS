@@ -347,7 +347,7 @@
 						DevelopmentTeam = BGU87W5D85;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.HealthKit = {
 								enabled = 0;

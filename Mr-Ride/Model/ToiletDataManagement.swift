@@ -81,46 +81,41 @@ class ToiletDataManager {
     
     func getToiletDataFromServer() {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)){
-            
-            Alamofire.request(
-                .GET,
-                "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=008ed7cf-2340-4bc4-89b0-e258a5573be2")
-                .validate()
-                .responseJSON { response in
-                    switch response.result {
-                    case .Success:
+        
+        Alamofire.request(
+            .GET,
+            "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=008ed7cf-2340-4bc4-89b0-e258a5573be2")
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    
+                    if let value = response.result.value {
+                        let json = JSON(value)
                         
-                        if let value = response.result.value {
-                            let json = JSON(value)
-                            
-                            for (_, subJSON) in json["result"]["results"] {
-                                do {
-                                    let toilet = try ToiletModelHelper().parse(json: subJSON)
-                                    self.toiletArray.append(toilet)
-                                }
-                                catch (let error){
-                                    print ("Error: \(error)")
-                                }
+                        for (_, subJSON) in json["result"]["results"] {
+                            do {
+                                let toilet = try ToiletModelHelper().parse(json: subJSON)
+                                self.toiletArray.append(toilet)
                             }
+                            catch (let error){
+                                print ("Error: \(error)")
+                            }
+                        }
+                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED,0)){
+                            
                             self.cleanUpToiletCoreData()
                             self.SaveToiletToCoreData()
                         }
-                    case .Failure(let error):
-                        print(error)
-                        self.fetchToiletCoreData()
-                        //self.showToiletCoreData()
-                        print (response.response)
-                        return
                     }
-            }
-        }
-    }
-    
-    func generateJWT() -> String {
-        return JWT.encode(.HS256("appworks")){ builder in
-            builder.issuer = "Luffy Hsu"
-            builder.expiration = NSCalendar.currentCalendar().dateByAddingUnit(.Minute, value: 5, toDate: NSDate(), options: [])
+                case .Failure(let error):
+                    print(error)
+                    self.fetchToiletCoreData()
+                    //self.showToiletCoreData()
+//                    print (response.response)
+                    return
+                }
+                
         }
     }
     
@@ -156,43 +151,46 @@ class ToiletDataManager {
     }
     
     func cleanUpToiletCoreData() {
-        
-        let request = NSFetchRequest(entityName: "Toilet")
-        
-        do {
-            let results = try moc.executeFetchRequest(request) as! [Toilet]
+        moc.performBlock{
+            let request = NSFetchRequest(entityName: "Toilet")
             
-            for result in results {
-                moc.deleteObject(result)
-            }
             do {
-                try moc.save()
-            } catch {
-                fatalError("Failure to save context: \(error)")
+                //            NSBatchDeleteRequest
+                let results = try self.moc.executeFetchRequest(request) as! [Toilet]
+                
+                for result in results {
+                    self.moc.deleteObject(result)
+                }
+                do {
+                    try self.moc.save()
+                } catch {
+                    fatalError("Failure to save context: \(error)")
+                }
+            }catch {
+                fatalError("Failure to cleanup toilet coredata: \(error)")
             }
-        }catch {
-            fatalError("Failure to cleanup toilet coredata: \(error)")
         }
     }
     
     func SaveToiletToCoreData() {
         
-        
-        for dataInfo in toiletArray {
-            
-            let entityToilet = NSEntityDescription.insertNewObjectForEntityForName("Toilet", inManagedObjectContext: moc) as! Toilet
-            
-            entityToilet.category = dataInfo.category
-            entityToilet.title = dataInfo.title
-            entityToilet.address = dataInfo.address
-            entityToilet.latitude = dataInfo.latitude
-            entityToilet.longitude = dataInfo.longitude
-            
-            do {
-                try moc.save()
+        moc.performBlock {
+            for dataInfo in self.toiletArray {
                 
-            } catch {
-                fatalError("Failure to save toilet coredata: \(error)")
+                let entityToilet = NSEntityDescription.insertNewObjectForEntityForName("Toilet", inManagedObjectContext: self.moc) as! Toilet
+                
+                entityToilet.category = dataInfo.category
+                entityToilet.title = dataInfo.title
+                entityToilet.address = dataInfo.address
+                entityToilet.latitude = dataInfo.latitude
+                entityToilet.longitude = dataInfo.longitude
+                
+                do {
+                    try self.moc.save()
+                    
+                } catch {
+                    fatalError("Failure to save toilet coredata: \(error)")
+                }
             }
         }
     }
