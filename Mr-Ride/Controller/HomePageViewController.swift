@@ -191,7 +191,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
             lineChartDataSet.mode = .CubicBezier
             lineChartDataSet.drawFilledEnabled = true
             let gradColors = [UIColor.mrRobinsEggBlue0Color().CGColor,UIColor.mrWaterBlueColor().CGColor]
-            let colorLocations:[CGFloat] = [0.0, 1.0]
+            let colorLocations:[CGFloat] = [0.0, 0.5]
             if let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradColors, colorLocations) {
                 lineChartDataSet.fill = ChartFill(linearGradient: gradient, angle: 90.0)
             }
