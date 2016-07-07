@@ -321,7 +321,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         annotationView?.backgroundColor = UIColor.whiteColor()
         annotationView?.frame = CGRectMake(0, 0, 40, 40)
         annotationView?.layer.cornerRadius = annotationView!.frame.size.width / 2
-        
+        annotationView!.layer.shadowPath = UIBezierPath(ovalInRect: annotationView!.bounds).CGPath
+        annotationView!.layer.shadowOffset = CGSize(width: 0, height: 2)
+        annotationView!.layer.shadowOpacity = 0.5
+        annotationView!.layer.shadowRadius = 4
+
         annotationView?.addSubview(iconImageView)
         iconImageView.center = (annotationView?.center)!
         
@@ -420,7 +424,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     //MARK: Implement protocol
     
     func didReceiveDataFromServer() {
-//        showStationAnnotation()
+        showStationAnnotation()
     }
     
     func didReceiveDataFromCoreData() {
