@@ -128,21 +128,20 @@ class DataManager {
                 .responseJSON {
                     response in
                     
-//                    guard 
-                    let json = response.result.value as? [String: AnyObject]
-//                    
-//                        else{
+                    guard let json = response.result.value as? [String: AnyObject]
+                    
+                        else{
 //                            self.fetchStationCoreData()
 //                            //self.showStationCoreData() //test if get data
 //                            
 //                            dispatch_async(dispatch_get_main_queue()) { [weak self] in
 //                                self?.delegate?.didReceiveDataFromCoreData()
 //                                return}
-//                            print (response.response)
-//                            return
-//                    }
+                            print (response.response)
+                            return
+                    }
 //                    self.cleanUpStationCoreData()
-                    self.readJSONObject(json!)
+                    self.readJSONObject(json)
 //                    self.SaveStationToCoreData()
 //                    //self.showStationCoreData() //test if get data
                     

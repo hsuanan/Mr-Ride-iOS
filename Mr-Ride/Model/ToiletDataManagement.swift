@@ -102,110 +102,110 @@ class ToiletDataManager {
                                 print ("Error: \(error)")
                             }
                         }
-                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED,0)){
-                            
-                            self.cleanUpToiletCoreData()
-                            self.SaveToiletToCoreData()
-                        }
+//                        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED,0)){
+//                            
+//                            self.cleanUpToiletCoreData()
+//                            self.SaveToiletToCoreData()
+//                        }
                     }
                 case .Failure(let error):
                     print(error)
-                    self.fetchToiletCoreData()
+//                    self.fetchToiletCoreData()
                     //self.showToiletCoreData()
-//                    print (response.response)
+                    print (response.response)
                     return
                 }
                 
         }
     }
     
-    func fetchToiletCoreData() {
-        
-        let fetchToiletRequest = NSFetchRequest(entityName: "Toilet")
-        
-        do {
-            let fetchedToilet = try moc.executeFetchRequest(fetchToiletRequest) as! [Toilet]
-            
-            for eachFethcToiletData in fetchedToilet {
-                guard
-                    let Category = eachFethcToiletData.category,
-                    let title = eachFethcToiletData.title,
-                    let address = eachFethcToiletData.address,
-                    let latitude = eachFethcToiletData.latitude as? Double,
-                    let longitude = eachFethcToiletData.longitude as? Double
-                    else { continue }
-                
-                self.toiletArray.append(
-                    ToiletModel(
-                        category: Category,
-                        title: title,
-                        address: address,
-                        latitude: latitude,
-                        longitude: longitude))
-            }
-            print("Fetch toilet data from coredata")
-            
-        } catch {
-            fatalError("Failed to fetch toilet coredata: \(error)")
-        }
-    }
-    
-    func cleanUpToiletCoreData() {
-        moc.performBlock{
-            let request = NSFetchRequest(entityName: "Toilet")
-            
-            do {
-                //            NSBatchDeleteRequest
-                let results = try self.moc.executeFetchRequest(request) as! [Toilet]
-                
-                for result in results {
-                    self.moc.deleteObject(result)
-                }
-                do {
-                    try self.moc.save()
-                } catch {
-                    fatalError("Failure to save context: \(error)")
-                }
-            }catch {
-                fatalError("Failure to cleanup toilet coredata: \(error)")
-            }
-        }
-    }
-    
-    func SaveToiletToCoreData() {
-        
-        moc.performBlock {
-            for dataInfo in self.toiletArray {
-                
-                let entityToilet = NSEntityDescription.insertNewObjectForEntityForName("Toilet", inManagedObjectContext: self.moc) as! Toilet
-                
-                entityToilet.category = dataInfo.category
-                entityToilet.title = dataInfo.title
-                entityToilet.address = dataInfo.address
-                entityToilet.latitude = dataInfo.latitude
-                entityToilet.longitude = dataInfo.longitude
-                
-                do {
-                    try self.moc.save()
-                    
-                } catch {
-                    fatalError("Failure to save toilet coredata: \(error)")
-                }
-            }
-        }
-    }
-    
-    func showToiletCoreData(){
-        let request = NSFetchRequest(entityName: "Toilet")
-        
-        do {
-            let results = try moc.executeFetchRequest(request) as! [Toilet]
-            
-            for result in results {
-                print ("Toilet name: \(result.title!) ")
-            }
-        } catch {
-            fatalError("fail to fech data: \(error)")
-        }
-    }
+//    func fetchToiletCoreData() {
+//        
+//        let fetchToiletRequest = NSFetchRequest(entityName: "Toilet")
+//        
+//        do {
+//            let fetchedToilet = try moc.executeFetchRequest(fetchToiletRequest) as! [Toilet]
+//            
+//            for eachFethcToiletData in fetchedToilet {
+//                guard
+//                    let Category = eachFethcToiletData.category,
+//                    let title = eachFethcToiletData.title,
+//                    let address = eachFethcToiletData.address,
+//                    let latitude = eachFethcToiletData.latitude as? Double,
+//                    let longitude = eachFethcToiletData.longitude as? Double
+//                    else { continue }
+//                
+//                self.toiletArray.append(
+//                    ToiletModel(
+//                        category: Category,
+//                        title: title,
+//                        address: address,
+//                        latitude: latitude,
+//                        longitude: longitude))
+//            }
+//            print("Fetch toilet data from coredata")
+//            
+//        } catch {
+//            fatalError("Failed to fetch toilet coredata: \(error)")
+//        }
+//    }
+//    
+//    func cleanUpToiletCoreData() {
+//        moc.performBlock{
+//            let request = NSFetchRequest(entityName: "Toilet")
+//            
+//            do {
+//                //            NSBatchDeleteRequest
+//                let results = try self.moc.executeFetchRequest(request) as! [Toilet]
+//                
+//                for result in results {
+//                    self.moc.deleteObject(result)
+//                }
+//                do {
+//                    try self.moc.save()
+//                } catch {
+//                    fatalError("Failure to save context: \(error)")
+//                }
+//            }catch {
+//                fatalError("Failure to cleanup toilet coredata: \(error)")
+//            }
+//        }
+//    }
+//    
+//    func SaveToiletToCoreData() {
+//        
+//        moc.performBlock {
+//            for dataInfo in self.toiletArray {
+//                
+//                let entityToilet = NSEntityDescription.insertNewObjectForEntityForName("Toilet", inManagedObjectContext: self.moc) as! Toilet
+//                
+//                entityToilet.category = dataInfo.category
+//                entityToilet.title = dataInfo.title
+//                entityToilet.address = dataInfo.address
+//                entityToilet.latitude = dataInfo.latitude
+//                entityToilet.longitude = dataInfo.longitude
+//                
+//                do {
+//                    try self.moc.save()
+//                    
+//                } catch {
+//                    fatalError("Failure to save toilet coredata: \(error)")
+//                }
+//            }
+//        }
+//    }
+//    
+//    func showToiletCoreData(){
+//        let request = NSFetchRequest(entityName: "Toilet")
+//        
+//        do {
+//            let results = try moc.executeFetchRequest(request) as! [Toilet]
+//            
+//            for result in results {
+//                print ("Toilet name: \(result.title!) ")
+//            }
+//        } catch {
+//            fatalError("fail to fech data: \(error)")
+//        }
+//    }
 }
