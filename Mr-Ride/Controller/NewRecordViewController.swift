@@ -45,7 +45,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     @IBAction func playPauseButtonPressed(sender: UIButton) {
         
         if !timer.valid {
-            
+
             trackTime()
             animateFromCircleToSquare()
             Amplitude.instance().logEvent("select_start_in_record_creating")
@@ -53,6 +53,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         } else {
             
             timer.invalidate()
+            pauseTime()
             animateFromSqareToCircle()
             Amplitude.instance().logEvent("select_pause_in_record_creating")
         }
@@ -67,8 +68,9 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
-        print ("finishButtonTapped")
         Amplitude.instance().logEvent("select_finish_in_record_creating")
+        pauseTime()
+        calculateAverageSpeed()
         saveRecordsToCoreData()
         passDataToStatisticsPage()
         timer.invalidate()
@@ -80,6 +82,11 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     //Timer
     var timeInterval = 0.0
     var timer = NSTimer()
+    var startTime = NSTimeInterval()
+    var elapsedTimePerRound = NSTimeInterval()
+    var totalTimeInterval = NSTimeInterval()
+
+
     
     //Location
     let locationManager = CLLocationManager()
@@ -155,19 +162,32 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     // MARK: Timer
     func trackTime() {
-        
+    
         timer = NSTimer.scheduledTimerWithTimeInterval(
             0.01,
             target: self,
             selector: #selector(addTime),
             userInfo: nil,
             repeats: true)
+        startTime = NSDate.timeIntervalSinceReferenceDate()
+        
     }
     
     @objc func addTime(){
         
-        timeInterval += 1.0
-        timerLabel.text = "\(timerString(timeInterval))"
+        timeInterval += 1
+        
+        let currentTime = NSDate.timeIntervalSinceReferenceDate()
+        var elapsedTime = (currentTime - startTime)*100
+        elapsedTime += 1.0
+        elapsedTimePerRound = elapsedTime
+        elapsedTime += totalTimeInterval
+
+        timerLabel.text = "\(timerString(elapsedTime))"
+    }
+    
+    func pauseTime() {
+        totalTimeInterval += elapsedTimePerRound
     }
     
     func timerString(time: NSTimeInterval) -> String {
@@ -229,7 +249,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
             distanceValue.text = ("\(Int(traveledDistance)) m")
             
             calculateCurrentSpeed()
-            calculateAverageSpeed()
             calculatCalories()
             
             myLocations.append(currentLocation!)
@@ -246,13 +265,32 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     func calculateAverageSpeed() {
         
-        averageSpeed = (traveledDistance / 1000) / (timeInterval / (100 * 60 * 60))
+        averageSpeed = (traveledDistance / 1000) / (totalTimeInterval / (100 * 60 * 60))
     }
     
     func calculateCurrentSpeed() {
         
-        let currentSpeed = Int((currentLocation?.speed)!/1000*(60*60)) // m/s -> km /hr
-        currentSpeedValue.text = ("\(String(currentSpeed)) km / hr")
+//        if let currentSpeed = currentLocation?.speed {
+//            a = (currentSpeed<0) ? 0 : Int()
+//            
+//            if currentSpeed < 0 {
+//                a = 0
+//            } else {
+//                a = Int()
+//            }
+//            
+//            let a = optionalString ?? ""
+//        }
+        if let currentSpeed = currentLocation?.speed {
+            
+            let speed = (currentSpeed < 0) ? 0 : Int(currentSpeed/1000*(60*60))
+            
+            currentSpeedValue.text = ("\(String(speed)) km / hr")
+        }
+        
+        
+//        let currentSpeed = Int((currentLocation?.speed)!/1000*(60*60)) // m/s -> km /hr
+//        currentSpeedValue.text = ("\(String(currentSpeed)) km / hr")
     }
     
     func calculatCalories() {
@@ -281,7 +319,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         
         destinationController.timestamp = date
         destinationController.distance = traveledDistance
-        destinationController.duration = timeInterval
+        destinationController.duration = totalTimeInterval
         destinationController.calories = Double(caloriesBurned)
         destinationController.averageSpeed = averageSpeed
         
@@ -314,7 +352,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         
         entityRecords.timestamp = date
         entityRecords.distance = traveledDistance
-        entityRecords.duration = timeInterval
+        entityRecords.duration = totalTimeInterval
         entityRecords.calories = caloriesBurned
         entityRecords.averageSpeed = Int(averageSpeed)
         
