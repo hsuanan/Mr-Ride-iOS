@@ -70,7 +70,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         
         Amplitude.instance().logEvent("select_finish_in_record_creating")
         pauseTime()
-        calculateAverageSpeed()
         saveRecordsToCoreData()
         passDataToStatisticsPage()
         timer.invalidate()
@@ -98,7 +97,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     //Data properties
     var traveledDistance = 0.0
     var averageSpeed = 0.0
-    var currentSpeed = 0.0
+    var currentSpeed = 0
     var caloriesBurned = 0
     var date = NSDate()
     var weight = 0.0
@@ -247,7 +246,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         if timer.valid {
             traveledDistance += distance ?? 0.0
             distanceValue.text = ("\(Int(traveledDistance)) m")
-            
+            calculateAverageSpeed()
             calculateCurrentSpeed()
             calculatCalories()
             
@@ -265,7 +264,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     
     func calculateAverageSpeed() {
         
-        averageSpeed = (traveledDistance / 1000) / (totalTimeInterval / (100 * 60 * 60))
+        averageSpeed = (traveledDistance / 1000) / (timeInterval / (100 * 60 * 60))
     }
     
     func calculateCurrentSpeed() {
@@ -281,11 +280,11 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
 //            
 //            let a = optionalString ?? ""
 //        }
-        if let currentSpeed = currentLocation?.speed {
+        if let speed = currentLocation?.speed {
             
-            let speed = (currentSpeed < 0) ? 0 : Int(currentSpeed/1000*(60*60))
+            currentSpeed = (speed < 0) ? 0 : Int(speed/1000*(60*60))
             
-            currentSpeedValue.text = ("\(String(speed)) km / hr")
+            currentSpeedValue.text = ("\(String(currentSpeed)) km / hr")
         }
         
         
@@ -298,10 +297,10 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         weight = 50.0
         var CaloriesBurnedPerHourPerKg: Double
         
-        switch averageSpeed {
-        case 1.0 ..< 20.0: CaloriesBurnedPerHourPerKg = 4.0
-        case 20.0 ..< 30.0: CaloriesBurnedPerHourPerKg = 8.4
-        case 30.0 ..< 210: CaloriesBurnedPerHourPerKg = 12.6
+        switch currentSpeed {
+        case 1 ..< 20: CaloriesBurnedPerHourPerKg = 4.0
+        case 20 ..< 30: CaloriesBurnedPerHourPerKg = 8.4
+        case 30 ..< 210: CaloriesBurnedPerHourPerKg = 12.6
         default : CaloriesBurnedPerHourPerKg = 0
         }
         
