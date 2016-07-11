@@ -14,6 +14,10 @@ import Amplitude_iOS
 
 class HomePageViewController: UIViewController, NewRecordViewControllerDelegate {
     
+    @IBOutlet weak var totalDistanceConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var letsRideButttonTopConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var lineChartView: LineChartView!
     
     @IBOutlet weak var totalDistanceTitleLabel: UILabel!
@@ -67,7 +71,8 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         setupLabel()
         setLabelValue()
         setChart()
-//        crashlyticsTest()
+        
+        //        crashlyticsTest()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -84,7 +89,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         
         var totalDistance = 0.0
         var duration = 0.0
-
+        
         for data in recordModel.saveRecords {
             totalDistance += data.distance
             duration += data.duration
@@ -116,35 +121,35 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     }
     
     //MARK: Implement protocol
-//    func updateLabelValue() {
-//        
-//        recordModel.fetchRecordsCoreData()
-//        
-//        var totalDistance = 0.0
-//        var
-//        
-//        totalCount = recordModel.saveRecords.count+1
-//        totalCountValueLabel.text = "\(totalCount!)"
-//        
-//        
-//        for data in recordModel.saveRecords {
-//            totalDistance += data.distance
-//            duration += data.duration
-//        }
-//        
-//        let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
-//        totalDistanceValueLabel.text = "\(stringTotalDistance) km"
-//        
-//        
-//        if totalDistance == 0.0 && duration == 0.0 {
-//            averageSpeed = 0.0
-//        } else {
-//            averageSpeed = totalDistance/1000/(duration/(100*60*60))
-//        }
-//        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
-//        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
-//    
-//    }
+    //    func updateLabelValue() {
+    //
+    //        recordModel.fetchRecordsCoreData()
+    //
+    //        var totalDistance = 0.0
+    //        var
+    //
+    //        totalCount = recordModel.saveRecords.count+1
+    //        totalCountValueLabel.text = "\(totalCount!)"
+    //
+    //
+    //        for data in recordModel.saveRecords {
+    //            totalDistance += data.distance
+    //            duration += data.duration
+    //        }
+    //
+    //        let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
+    //        totalDistanceValueLabel.text = "\(stringTotalDistance) km"
+    //
+    //
+    //        if totalDistance == 0.0 && duration == 0.0 {
+    //            averageSpeed = 0.0
+    //        } else {
+    //            averageSpeed = totalDistance/1000/(duration/(100*60*60))
+    //        }
+    //        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
+    //        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
+    //
+    //    }
     
     func didDismiss() {
         
@@ -263,6 +268,9 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         letsRideButtonLabel.layer.shadowOpacity = 0.25
         letsRideButtonLabel.layer.shadowRadius = 2
         letsRideButtonLabel.layer.shadowOffset = CGSizeMake(0.0, 1.0)
+        
+        totalDistanceConstraint.constant = totalDistanceConstraintConstant()
+        letsRideButttonTopConstraint.constant = letsRideButtonConstraintConstant()
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
@@ -278,8 +286,28 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         letsRideButton.layer.shadowOffset = CGSize(width: 0, height: 2)
         letsRideButton.layer.shadowOpacity = 0.25
         letsRideButton.layer.shadowRadius = 2
-      
+        
     }
+    
+    func screenHeight() -> CGFloat {
+        return UIScreen.mainScreen().bounds.height
+    }
+    
+    func totalDistanceConstraintConstant() -> CGFloat {
+        switch(screenHeight()){
+        case 480: return 5
+        case 568: return 35
+        default: return 75
+        }
+    }
+    
+    func letsRideButtonConstraintConstant() -> CGFloat {
+        switch(screenHeight()){
+        case 480: return 15
+        default: return 51
+        }
+    }
+    
     
     func dateString2(date: NSDate) -> String {
         

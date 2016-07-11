@@ -533,50 +533,68 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X79-ee-wxT" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="-20" y="190" width="640" height="122"/>
+                                <rect key="frame" x="-20" y="257" width="640" height="122"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="122" id="7pv-Ij-JPp"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaD-lG-a99">
-                                <rect key="frame" x="58" y="139" width="42" height="21"/>
+                                <rect key="frame" x="58" y="139" width="42" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="YW1-1r-3sk"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bS8-4q-dgs">
-                                <rect key="frame" x="279" y="161" width="42" height="21"/>
+                                <rect key="frame" x="279" y="154" width="42" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="aCG-ho-fH2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwP-5r-2tP">
-                                <rect key="frame" x="58" y="282" width="42" height="21"/>
+                                <rect key="frame" x="58" y="349" width="42" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="8uQ-FQ-hGl"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPz-Uy-XBE">
-                                <rect key="frame" x="58" y="304" width="42" height="21"/>
+                                <rect key="frame" x="58" y="364" width="42" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="uNM-CM-fiw"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhU-Rr-cPX">
-                                <rect key="frame" x="58" y="340" width="42" height="21"/>
+                                <rect key="frame" x="58" y="415" width="42" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="fwg-9T-rdv"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6d-g9-rPg">
-                                <rect key="frame" x="58" y="362" width="42" height="21"/>
+                                <rect key="frame" x="58" y="430" width="42" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="qRN-UP-900"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcI-ed-Jnc">
-                                <rect key="frame" x="188" y="434" width="224" height="60"/>
+                                <rect key="frame" x="188" y="517" width="224" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8LQ-pW-Cvq"/>
                                     <constraint firstAttribute="width" constant="224" id="dKL-Wi-mbm"/>
@@ -591,8 +609,8 @@
                                     <action selector="letsRideButtonTapped:" destination="M0q-5d-7g8" eventType="touchUpInside" id="5Uc-b5-IZe"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSE-8E-TGB">
-                                <rect key="frame" x="279" y="453" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Ride" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSE-8E-TGB">
+                                <rect key="frame" x="263" y="536" width="75" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -633,9 +651,11 @@
                         <outlet property="averageSpeedValueLabel" destination="F6d-g9-rPg" id="VKZ-0o-I8i"/>
                         <outlet property="letsRideButton" destination="hcI-ed-Jnc" id="Ndm-08-QqB"/>
                         <outlet property="letsRideButtonLabel" destination="hSE-8E-TGB" id="vd8-j6-sEQ"/>
+                        <outlet property="letsRideButttonTopConstraint" destination="pN4-mM-0Zf" id="joY-UH-kt1"/>
                         <outlet property="lineChartView" destination="X79-ee-wxT" id="r7r-g4-Ugf"/>
                         <outlet property="totalCountTitleLabel" destination="rwP-5r-2tP" id="iZX-3q-hMO"/>
                         <outlet property="totalCountValueLabel" destination="RPz-Uy-XBE" id="m8v-uP-rWd"/>
+                        <outlet property="totalDistanceConstraint" destination="8nB-o3-h8j" id="7t6-hj-3un"/>
                         <outlet property="totalDistanceTitleLabel" destination="AaD-lG-a99" id="0Ja-Qd-xGi"/>
                         <outlet property="totalDistanceValueLabel" destination="bS8-4q-dgs" id="aFI-nd-w3R"/>
                         <segue destination="clF-au-wli" kind="presentation" identifier="presentNewRecordPage" id="Mk3-zT-w51"/>
