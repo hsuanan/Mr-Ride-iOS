@@ -55,8 +55,6 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     }
     
     var totalCount: Int?
-    var totalDistance = 0.0
-    var duration = 0.0
     var averageSpeed = 0.0
     
     let recordModel = DataManager.sharedDataManager
@@ -84,6 +82,9 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         totalCount = recordModel.saveRecords.count ?? 0
         totalCountValueLabel.text = "\(totalCount!)"
         
+        var totalDistance = 0.0
+        var duration = 0.0
+
         for data in recordModel.saveRecords {
             totalDistance += data.distance
             duration += data.duration
@@ -115,30 +116,35 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     }
     
     //MARK: Implement protocol
-    func updateLabelValue() {
-        
-        recordModel.fetchRecordsCoreData()
-        totalCount = recordModel.saveRecords.count ?? 0
-        totalCountValueLabel.text = "\(totalCount!)"
-        
-        for data in recordModel.saveRecords {
-            totalDistance += data.distance
-            duration += data.duration
-        }
-        
-        let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
-        totalDistanceValueLabel.text = "\(stringTotalDistance) km"
-        
-        
-        if totalDistance == 0.0 && duration == 0.0 {
-            averageSpeed = 0.0
-        } else {
-            averageSpeed = totalDistance/1000/(duration/(100*60*60))
-        }
-        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
-        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
-    
-    }
+//    func updateLabelValue() {
+//        
+//        recordModel.fetchRecordsCoreData()
+//        
+//        var totalDistance = 0.0
+//        var
+//        
+//        totalCount = recordModel.saveRecords.count+1
+//        totalCountValueLabel.text = "\(totalCount!)"
+//        
+//        
+//        for data in recordModel.saveRecords {
+//            totalDistance += data.distance
+//            duration += data.duration
+//        }
+//        
+//        let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
+//        totalDistanceValueLabel.text = "\(stringTotalDistance) km"
+//        
+//        
+//        if totalDistance == 0.0 && duration == 0.0 {
+//            averageSpeed = 0.0
+//        } else {
+//            averageSpeed = totalDistance/1000/(duration/(100*60*60))
+//        }
+//        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
+//        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
+//    
+//    }
     
     func didDismiss() {
         
@@ -267,6 +273,9 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     
     func setupLetsRideButton(Button: UIButton) {
         
+//        letsRideButton.layer.backgroundColor = UIColor.whiteColor().CGColor
+//        letsRideButton.layer.cornerRadius = 30
+        
         letsRideButton.layer.backgroundColor = UIColor.clearColor().CGColor
         
         let roundLayer = CAShapeLayer()
@@ -282,6 +291,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         roundLayer.path = roundedPath.CGPath
         roundLayer.fillColor = UIColor.whiteColor().CGColor
         letsRideButton.layer.insertSublayer(roundLayer, atIndex: 0)
+     
         
         //shadow
         shadowLayer.frame = letsRideButton.bounds

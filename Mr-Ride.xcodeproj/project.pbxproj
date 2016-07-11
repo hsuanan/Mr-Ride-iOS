@@ -205,9 +205,9 @@
 		BC744CFA1D268FCA0053F473 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */,
 				BC744CFB1D268FCA0053F473 /* DataManagement.swift */,
 				BC0385571D33372400E78B82 /* StationDataManagement.swift */,
+				BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

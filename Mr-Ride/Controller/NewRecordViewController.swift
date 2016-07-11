@@ -17,7 +17,7 @@ protocol NewRecordViewControllerDelegate: class {
     
     func didDismiss()
     func setChart()
-    func updateLabelValue()
+    func setLabelValue()
 }
 
 class NewRecordViewController: UIViewController, CLLocationManagerDelegate, StatisticsViewControllerDelegate {
@@ -73,9 +73,12 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         saveRecordsToCoreData()
         passDataToStatisticsPage()
         timer.invalidate()
-        delegate?.updateLabelValue()
+        recordModel.fetchRecordsCoreData()
+        delegate?.setLabelValue()
     }
     
+    let recordModel = DataManager.sharedDataManager
+
     weak var delegate: NewRecordViewControllerDelegate?
     
     //Timer
