@@ -57,7 +57,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let pickOption = ["Ubike Station", "Toilet"]
     var rowSelected = 0
     
-    let recordModal = DataManager.sharedDataManager
+    let stationRecordModal = StationDataManager.sharedDataManager
     let toiletRecordModal = ToiletDataManager.sharedToiletDataManager
     
     
@@ -69,8 +69,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         getLocationUpdate()
         mapView.delegate = self
         
-        recordModal.delegate = self
-        recordModal.getBikeDataFromServer()
+        stationRecordModal.delegate = self
+        stationRecordModal.getBikeDataFromServer()
         
         pickerView.hidden = true
         toolBar.hidden = true
@@ -370,7 +370,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func showStationAnnotation() {
         
-        for station in recordModal.stationArray {
+        for station in stationRecordModal.stationArray {
             
             let latitude = station.latitude
             let longitude = station.longitude

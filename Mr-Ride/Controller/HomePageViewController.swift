@@ -69,7 +69,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         setupLabel()
         setLabelValue()
         setChart()
-        //        crashlyticsTest()
+//        crashlyticsTest()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -117,29 +117,27 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     //MARK: Implement protocol
     func updateLabelValue() {
         
-        totalCount = recordModel.saveRecords.count+1
+        recordModel.fetchRecordsCoreData()
+        totalCount = recordModel.saveRecords.count ?? 0
         totalCountValueLabel.text = "\(totalCount!)"
-    
         
-        if recordModel.saveRecords.last?.distance == nil {
-            totalDistance = 0.0
-        } else {
-            totalDistance = totalDistance + (recordModel.saveRecords.last?.distance)!
+        for data in recordModel.saveRecords {
+            totalDistance += data.distance
+            duration += data.duration
         }
         
         let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
         totalDistanceValueLabel.text = "\(stringTotalDistance) km"
         
+        
         if totalDistance == 0.0 && duration == 0.0 {
             averageSpeed = 0.0
         } else {
-            duration = duration + (recordModel.saveRecords.last?.duration)!
             averageSpeed = totalDistance/1000/(duration/(100*60*60))
-            
-            let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
-            averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
         }
-        
+        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
+        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
+    
     }
     
     func didDismiss() {

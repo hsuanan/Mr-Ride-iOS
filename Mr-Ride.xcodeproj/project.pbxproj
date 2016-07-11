@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0385561D3336F100E78B82 /* Toilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0385551D3336F100E78B82 /* Toilet.swift */; };
+		BC0385581D33372400E78B82 /* StationDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0385571D33372400E78B82 /* StationDataManagement.swift */; };
 		BC3092A11D2CD6E3001ED105 /* ToiletDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */; };
 		BC744CE91D268FBA0053F473 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744CE21D268FBA0053F473 /* Location+CoreDataProperties.swift */; };
 		BC744CEA1D268FBA0053F473 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744CE31D268FBA0053F473 /* Location.swift */; };
@@ -20,7 +22,6 @@
 		BC744CFF1D268FCA0053F473 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = BC744CF71D268FCA0053F473 /* MMDrawerVisualState.m */; };
 		BC744D001D268FCA0053F473 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC744CF91D268FCA0053F473 /* UIViewController+MMDrawerController.m */; };
 		BC744D011D268FCA0053F473 /* DataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744CFB1D268FCA0053F473 /* DataManagement.swift */; };
-		BC744D021D268FCA0053F473 /* Toilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744CFC1D268FCA0053F473 /* Toilet.swift */; };
 		BC744D271D268FE40053F473 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC744D051D268FE40053F473 /* LICENSE.txt */; };
 		BC744D281D268FE40053F473 /* RobotoMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC744D061D268FE40053F473 /* RobotoMono-Bold.ttf */; };
 		BC744D291D268FE40053F473 /* RobotoMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC744D071D268FE40053F473 /* RobotoMono-BoldItalic.ttf */; };
@@ -76,6 +77,8 @@
 /* Begin PBXFileReference section */
 		822A143AD7925C20893C3096 /* Pods-Mr-Ride.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.debug.xcconfig"; sourceTree = "<group>"; };
 		8AD2AEFF933FADEBF33BB95D /* Pods-Mr-Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.release.xcconfig"; sourceTree = "<group>"; };
+		BC0385551D3336F100E78B82 /* Toilet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toilet.swift; sourceTree = "<group>"; };
+		BC0385571D33372400E78B82 /* StationDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDataManagement.swift; sourceTree = "<group>"; };
 		BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletDataManagement.swift; sourceTree = "<group>"; };
 		BC744C621D24E8650053F473 /* Mr_Ride 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Mr_Ride 2.xcdatamodel"; sourceTree = "<group>"; };
 		BC744CE21D268FBA0053F473 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -95,7 +98,6 @@
 		BC744CF81D268FCA0053F473 /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
 		BC744CF91D268FCA0053F473 /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 		BC744CFB1D268FCA0053F473 /* DataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagement.swift; sourceTree = "<group>"; };
-		BC744CFC1D268FCA0053F473 /* Toilet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toilet.swift; sourceTree = "<group>"; };
 		BC744D051D268FE40053F473 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BC744D061D268FE40053F473 /* RobotoMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Bold.ttf"; sourceTree = "<group>"; };
 		BC744D071D268FE40053F473 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				BC744CE61D268FBA0053F473 /* Station+CoreDataProperties.swift */,
 				BC744CE71D268FBA0053F473 /* Station.swift */,
 				BC744CE81D268FBA0053F473 /* Toilet+CoreDataProperties.swift */,
+				BC0385551D3336F100E78B82 /* Toilet.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -204,7 +207,7 @@
 			children = (
 				BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */,
 				BC744CFB1D268FCA0053F473 /* DataManagement.swift */,
-				BC744CFC1D268FCA0053F473 /* Toilet.swift */,
+				BC0385571D33372400E78B82 /* StationDataManagement.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				BC744CFF1D268FCA0053F473 /* MMDrawerVisualState.m in Sources */,
 				BC744D3A1D268FE40053F473 /* LeftSideTableViewCell.swift in Sources */,
 				BC744D421D268FE40053F473 /* MapViewNavigationController.swift in Sources */,
+				BC0385581D33372400E78B82 /* StationDataManagement.swift in Sources */,
 				BC744D451D268FE40053F473 /* StatisticsViewController.swift in Sources */,
 				BC744D3E1D268FE40053F473 /* HomePageNavigationController.swift in Sources */,
 				BC744CEC1D268FBA0053F473 /* Records.swift in Sources */,
@@ -484,6 +488,7 @@
 				BC85F6141CF2A1C000B11F89 /* Mr_Ride.xcdatamodeld in Sources */,
 				BC85F60C1CF2A1C000B11F89 /* AppDelegate.swift in Sources */,
 				BC744D321D268FE40053F473 /* UIColor+YBKAdditions (2).swift in Sources */,
+				BC0385561D3336F100E78B82 /* Toilet.swift in Sources */,
 				BC744CEA1D268FBA0053F473 /* Location.swift in Sources */,
 				BC744D3D1D268FE40053F473 /* HistoryViewController.swift in Sources */,
 				BC744D3C1D268FE40053F473 /* HistoryNavigationController.swift in Sources */,
@@ -497,7 +502,6 @@
 				BC744CEB1D268FBA0053F473 /* Records+CoreDataProperties.swift in Sources */,
 				BC744D401D268FE40053F473 /* LeftSideViewController.swift in Sources */,
 				BC3092A11D2CD6E3001ED105 /* ToiletDataManagement.swift in Sources */,
-				BC744D021D268FCA0053F473 /* Toilet.swift in Sources */,
 				BC744D411D268FE40053F473 /* MapViewController.swift in Sources */,
 				BC744D441D268FE40053F473 /* NewRecordViewController.swift in Sources */,
 			);
