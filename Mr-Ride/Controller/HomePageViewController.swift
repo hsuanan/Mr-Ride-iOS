@@ -273,34 +273,12 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     
     func setupLetsRideButton(Button: UIButton) {
         
-//        letsRideButton.layer.backgroundColor = UIColor.whiteColor().CGColor
-//        letsRideButton.layer.cornerRadius = 30
-        
-        letsRideButton.layer.backgroundColor = UIColor.clearColor().CGColor
-        
-        let roundLayer = CAShapeLayer()
-        let shadowLayer = CAShapeLayer()
-        
-        //round corner
-        let roundedPath = UIBezierPath(
-            roundedRect: letsRideButton.bounds,
-            byRoundingCorners: [ .BottomLeft, .BottomRight, .TopLeft, .TopRight],
-            cornerRadii: CGSize(width: 60, height: 60))
-        
-        roundLayer.frame = letsRideButton.bounds
-        roundLayer.path = roundedPath.CGPath
-        roundLayer.fillColor = UIColor.whiteColor().CGColor
-        letsRideButton.layer.insertSublayer(roundLayer, atIndex: 0)
-     
-        
-        //shadow
-        shadowLayer.frame = letsRideButton.bounds
-        shadowLayer.fillColor = UIColor.clearColor().CGColor
-        shadowLayer.shadowPath = roundedPath.CGPath
-        shadowLayer.shadowOffset = CGSize(width: 0, height: 2)
-        shadowLayer.shadowOpacity = 0.25
-        shadowLayer.shadowRadius = 2
-        letsRideButton.layer.insertSublayer(shadowLayer, below: roundLayer)
+        letsRideButton.layer.backgroundColor = UIColor.whiteColor().CGColor
+        letsRideButton.layer.cornerRadius = 30
+        letsRideButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        letsRideButton.layer.shadowOpacity = 0.25
+        letsRideButton.layer.shadowRadius = 2
+      
     }
     
     func dateString2(date: NSDate) -> String {
