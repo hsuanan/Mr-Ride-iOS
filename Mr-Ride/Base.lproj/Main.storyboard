@@ -496,9 +496,11 @@
                             <outlet property="distanceValue" destination="i6T-IS-Otb" id="cME-bD-rf1"/>
                             <outlet property="goodJob" destination="IcI-Ie-a4N" id="bJh-pp-czq"/>
                             <outlet property="highlignt" destination="aZ8-Pn-AMr" id="bZf-zu-FJD"/>
+                            <outlet property="mapHeightConstraint" destination="wYo-eB-Pas" id="adL-OF-t5p"/>
                             <outlet property="mapView" destination="MkN-UZ-mmf" id="Gnk-Ez-4Ki"/>
                             <outlet property="medal" destination="DQ4-r5-cai" id="H0N-NO-e3M"/>
                             <outlet property="shareButton" destination="xhB-mo-X1p" id="rUF-rU-Pg6"/>
+                            <outlet property="shareOnFBButtonTopConstraint" destination="LCF-V3-uDV" id="hsP-pA-Pw1"/>
                             <outlet property="totalTimeTitle" destination="o8c-3F-umA" id="slb-1n-DKn"/>
                             <outlet property="totalTimeValue" destination="bcY-Fe-xi5" id="kWC-OF-O6Y"/>
                         </connections>

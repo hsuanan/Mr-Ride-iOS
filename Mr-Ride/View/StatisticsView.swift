@@ -12,6 +12,10 @@ import MapKit
 
 class StatisticsView: UIView {
     
+    @IBOutlet weak var mapHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var shareOnFBButtonTopConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var distanceTitle: UILabel!
     
     @IBOutlet weak var distanceValue: UILabel!
@@ -29,7 +33,7 @@ class StatisticsView: UIView {
     @IBOutlet weak var totalTimeValue: UILabel!
     
     @IBOutlet weak var mapView: MKMapView!
- 
+    
     @IBOutlet weak var medal: UIImageView!
     
     @IBOutlet weak var goodJob: UILabel!
@@ -41,9 +45,9 @@ class StatisticsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
+        
         print("____StatisticsViewAwakeFromNib")
-    
+        
         setupBackground()
         setupDistance()
         setupAverageSpeed()
@@ -126,11 +130,13 @@ class StatisticsView: UIView {
     func setupMap() {
         
         mapView.layer.cornerRadius = 10.0
+        mapHeightConstraint.constant = mapHeightConstraintConstant()!
     }
     
     func setupMedal() {
         
         medal.image = UIImage(named: "image-medal")
+        
     }
     
     
@@ -140,6 +146,27 @@ class StatisticsView: UIView {
         goodJob.textColor = UIColor.mrWhiteColor()
         goodJob.text = "Good Job!"
         letterSpacing(goodJob.text!, letterSpacing: 0.3, label: goodJob)
+    }
+    
+    
+    func screenHeight() -> CGFloat {
+        return UIScreen.mainScreen().bounds.height
+    }
+    
+    func shareOnFBTopConstraintConstant() -> CGFloat? {
+        switch(screenHeight()){
+        case 480: return 5
+        case 568: return 20
+        default: return 38
+        }
+    }
+    
+    func mapHeightConstraintConstant() -> CGFloat? {
+        switch(screenHeight()){
+        case 480: return 0
+        case 568: return 140
+        default: return 200
+        }
     }
     
     func letterSpacing(text: String, letterSpacing: Double, label: UILabel){
@@ -168,7 +195,9 @@ class StatisticsView: UIView {
         highlignt.layer.mask = hightlightlLayer
         highlignt.text = ""
         highlignt.userInteractionEnabled = false
-
+        
+        shareOnFBButtonTopConstraint.constant = shareOnFBTopConstraintConstant()!
+        
     }
-
+    
 }
