@@ -57,6 +57,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     var totalCount: Int?
     var totalDistance = 0.0
     var duration = 0.0
+    var averageSpeed = 0.0
     
     let recordModel = DataManager.sharedDataManager
     
@@ -91,9 +92,11 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
         totalDistanceValueLabel.text = "\(stringTotalDistance) km"
         
-        var averageSpeed = totalDistance/1000/(duration/(100*60*60))
-        if totalDistance == 0 && duration == 0 {
-            averageSpeed = 0
+        
+        if totalDistance == 0.0 && duration == 0.0 {
+            averageSpeed = 0.0
+        } else {
+            averageSpeed = totalDistance/1000/(duration/(100*60*60))
         }
         let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
         averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
@@ -116,18 +119,27 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         
         totalCount = recordModel.saveRecords.count+1
         totalCountValueLabel.text = "\(totalCount!)"
+    
         
-        for data in recordModel.saveRecords {
-            totalDistance += data.distance
-            duration += data.duration
+        if recordModel.saveRecords.last?.distance == nil {
+            totalDistance = 0.0
+        } else {
+            totalDistance = totalDistance + (recordModel.saveRecords.last?.distance)!
         }
         
         let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
         totalDistanceValueLabel.text = "\(stringTotalDistance) km"
         
-        let averageSpeed = totalDistance/1000/(duration/(100*60*60))
-        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
-        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
+        if totalDistance == 0.0 && duration == 0.0 {
+            averageSpeed = 0.0
+        } else {
+            duration = duration + (recordModel.saveRecords.last?.duration)!
+            averageSpeed = totalDistance/1000/(duration/(100*60*60))
+            
+            let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
+            averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
+        }
+        
     }
     
     func didDismiss() {
