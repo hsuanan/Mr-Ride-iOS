@@ -18,7 +18,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAh-jH-0t0" userLabel="cellView">
                         <rect key="frame" x="0.0" y="0.0" width="451" height="68"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEb-t3-Wi9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEb-t3-Wi9">
                                 <rect key="frame" x="396" y="24" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="DCf-Rv-lOH"/>
@@ -40,7 +40,7 @@
                             <constraint firstAttribute="trailing" secondItem="UEb-t3-Wi9" secondAttribute="trailing" constant="13" id="ByF-5C-W0g"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBm-d5-0HO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBm-d5-0HO">
                         <rect key="frame" x="21" y="24" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="28" id="5bR-lj-BYy"/>
@@ -56,8 +56,8 @@
                             </mask>
                         </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sB-6u-6Oi">
-                        <rect key="frame" x="339" y="24" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sB-6u-6Oi">
+                        <rect key="frame" x="82" y="24" width="299" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="mPj-xz-Obr"/>
                             <constraint firstAttribute="height" constant="32" id="nkP-0I-T1E"/>
@@ -72,7 +72,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIb-Xk-KbH">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIb-Xk-KbH">
                         <rect key="frame" x="42" y="31" width="16" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="14" id="eX2-SP-muH"/>
@@ -115,6 +115,7 @@
                     <constraint firstItem="rAh-jH-0t0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dGf-FU-PR6"/>
                     <constraint firstItem="dBm-d5-0HO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="e41-hd-Stv"/>
                     <constraint firstItem="9sB-6u-6Oi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="13" id="eiQ-bg-o0d"/>
+                    <constraint firstItem="9sB-6u-6Oi" firstAttribute="leading" secondItem="MwH-a9-09G" secondAttribute="trailing" constant="15" id="fhQ-Jw-Q2u"/>
                     <constraint firstAttribute="bottomMargin" secondItem="dBm-d5-0HO" secondAttribute="bottom" constant="13" id="g56-0a-9XC"/>
                     <constraint firstItem="9sB-6u-6Oi" firstAttribute="leading" secondItem="MwH-a9-09G" secondAttribute="trailing" constant="15" id="iuu-MP-cYC"/>
                     <constraint firstItem="WIb-Xk-KbH" firstAttribute="baseline" secondItem="dBm-d5-0HO" secondAttribute="baseline" id="kPB-Qo-l6j"/>
