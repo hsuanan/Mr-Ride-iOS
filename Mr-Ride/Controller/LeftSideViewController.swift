@@ -85,6 +85,9 @@ class LeftSideViewController: UIViewController, UITableViewDataSource, UITableVi
             
         case 2:
             
+            let toiletRecordModal = ToiletDataManager.sharedToiletDataManager
+            toiletRecordModal.getToiletDataFromServer()
+            
             let mapNav = self.storyboard?.instantiateViewControllerWithIdentifier("MapViewNavigationController") as! MapViewNavigationController
             
             let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
