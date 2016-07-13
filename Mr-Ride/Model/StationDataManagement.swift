@@ -61,6 +61,7 @@ class StationDataManager {
                             return
                     }
                     //                    self.cleanUpStationCoreData()
+                    self.stationArray.removeAll()
                     self.readJSONObject(json)
                     //                    self.SaveStationToCoreData()
                     //                    //self.showStationCoreData() //test if get data
@@ -102,7 +103,8 @@ class StationDataManager {
                     latitude: Double(latitude)!,
                     longitude: Double(longitude)!))
         }
-}
+    }
+    
 
 //    func SaveStationToCoreData(){
 //

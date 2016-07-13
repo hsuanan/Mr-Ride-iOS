@@ -47,7 +47,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBAction func barButtonTapped(sender: AnyObject) {
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
     
@@ -63,6 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print ("MapPageViewDidLoad")
         
         setup()
         dashBoardViewSetUp()
@@ -95,7 +95,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print ("______MapViewWillDisappear")
         
         locationManager.stopUpdatingLocation()
-        print("Stop Updating Location")
         
         mapView = nil
         
@@ -293,14 +292,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return nil
         }
         
-        let annotationId: String?
+        var annotationId: String = ""
         switch rowSelected {
         case 0: annotationId = "station"
         case 1: annotationId = "toilet"
         default: annotationId = "reuseID"
         }
         
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId!)
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotationId)
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
@@ -318,6 +317,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         annotationView?.backgroundColor = UIColor.whiteColor()
         annotationView?.frame = CGRectMake(0, 0, 40, 40)
+        
+        annotationView!.layer.removeFromSuperlayer()
         annotationView?.layer.cornerRadius = annotationView!.frame.size.width / 2
         annotationView!.layer.shadowPath = UIBezierPath(ovalInRect: annotationView!.bounds).CGPath
         annotationView!.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -354,7 +355,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         view.backgroundColor = UIColor.whiteColor()
         dashBoardView.hidden = true
     }
-//    
+    
     func updateAnnotation() {
         
         switch rowSelected {
