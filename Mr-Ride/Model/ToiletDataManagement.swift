@@ -89,7 +89,7 @@ class ToiletDataManager {
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    
+                    self.toiletArray.removeAll()
                     if let value = response.result.value {
                         let json = JSON(value)
                         
