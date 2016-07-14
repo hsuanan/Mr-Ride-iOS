@@ -15,12 +15,12 @@ import Amplitude_iOS
 
 protocol NewRecordViewControllerDelegate: class {
     
-    func didDismiss()
+    func showLabel()
     func setChart()
     func setLabelValue()
 }
 
-class NewRecordViewController: UIViewController, CLLocationManagerDelegate, StatisticsViewControllerDelegate {
+class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView?
     
@@ -62,7 +62,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         
         TrackingManager.sharedManager.createEventTracking("NewRecord", action: "select_cancel_in_record_creating")
-        delegate?.didDismiss()
+        delegate?.showLabel()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -155,13 +155,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         print("__Leave New Record Page")
         
     }
-    
-    func didDismiss2() {
         
-        delegate?.didDismiss()
-        delegate?.setChart()
-    }
-    
     // MARK: Timer
     func trackTime() {
     
@@ -317,7 +311,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         
         let destinationController = self.storyboard?.instantiateViewControllerWithIdentifier("StatisticsViewController")as! StatisticsViewController
         
-        destinationController.delegate = self
+        destinationController.delegate = delegate
         
         destinationController.timestamp = date
         destinationController.distance = traveledDistance

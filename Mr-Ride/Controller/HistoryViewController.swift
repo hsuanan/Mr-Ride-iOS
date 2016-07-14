@@ -38,15 +38,13 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         
         setup()
         
-        tableView.dataSource = self  // or 從storyboard拉tableview到controller選擇dataSource
-        tableView.delegate = self   // or 從storyboard拉tableview到controller選擇delegate
+        tableView.dataSource = self
+        tableView.delegate = self
         
         recordModel.fetchRecordsCoreData()
         
         getDataForChart()
         setChart(date.reverse(), yAxis: distances.reverse())
-        //        setChart()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -61,9 +59,6 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     func getDataForChart() {
-        
-        //        var date=[String]()
-        //        var distances=[Double]()
         
         for section in 0..<tableView.numberOfSections {
             for row in 0..<tableView.numberOfRowsInSection(section) {

@@ -11,12 +11,6 @@ import MapKit
 import CoreData
 import Social
 
-protocol StatisticsViewControllerDelegate: class {
-    
-    func didDismiss2()
-    
-}
-
 class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var coordToUse = [CLLocationCoordinate2D]()
@@ -34,7 +28,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     var isFromHistory = false
     
-    weak var delegate: StatisticsViewControllerDelegate?
+    weak var delegate: NewRecordViewControllerDelegate?  //NewRecordViewController的 Delegate
     
     @IBOutlet var statisticsView: StatisticsView!
     
@@ -46,7 +40,7 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
         } else {
             print("DoneButtonTapped")
             
-            delegate?.didDismiss2()
+            delegate?.showLabel()
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }

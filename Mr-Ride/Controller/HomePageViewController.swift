@@ -120,38 +120,9 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         letsRideButtonLabel.hidden = true
     }
     
-    //MARK: Implement protocol
-    //    func updateLabelValue() {
-    //
-    //        recordModel.fetchRecordsCoreData()
-    //
-    //        var totalDistance = 0.0
-    //        var
-    //
-    //        totalCount = recordModel.saveRecords.count+1
-    //        totalCountValueLabel.text = "\(totalCount!)"
-    //
-    //
-    //        for data in recordModel.saveRecords {
-    //            totalDistance += data.distance
-    //            duration += data.duration
-    //        }
-    //
-    //        let stringTotalDistance = NSString(format: "%.1f", totalDistance/1000)
-    //        totalDistanceValueLabel.text = "\(stringTotalDistance) km"
-    //
-    //
-    //        if totalDistance == 0.0 && duration == 0.0 {
-    //            averageSpeed = 0.0
-    //        } else {
-    //            averageSpeed = totalDistance/1000/(duration/(100*60*60))
-    //        }
-    //        let stringAverageSpeed = NSString(format: "%.1f", averageSpeed)
-    //        averageSpeedValueLabel.text = "\(stringAverageSpeed) km / h"
-    //
-    //    }
+
     
-    func didDismiss() {
+    func showLabel() {
         
         totalDistanceTitleLabel.hidden = false
         totalDistanceValueLabel.hidden = false
