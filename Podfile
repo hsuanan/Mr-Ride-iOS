@@ -12,6 +12,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 pod 'Amplitude-iOS', '~> 3.7.0'
 pod 'Charts', '~> 2.2'
+pod 'Google/Analytics'
 
 end
 

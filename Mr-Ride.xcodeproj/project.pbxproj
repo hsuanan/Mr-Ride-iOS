@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BC0385561D3336F100E78B82 /* Toilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0385551D3336F100E78B82 /* Toilet.swift */; };
 		BC0385581D33372400E78B82 /* StationDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0385571D33372400E78B82 /* StationDataManagement.swift */; };
+		BC0C883C1D373BB1009AFD32 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC0C883B1D373BB1009AFD32 /* GoogleService-Info.plist */; };
 		BC3092A11D2CD6E3001ED105 /* ToiletDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */; };
 		BC744CE91D268FBA0053F473 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744CE21D268FBA0053F473 /* Location+CoreDataProperties.swift */; };
 		BC744CEA1D268FBA0053F473 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744CE31D268FBA0053F473 /* Location.swift */; };
@@ -79,6 +80,7 @@
 		8AD2AEFF933FADEBF33BB95D /* Pods-Mr-Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.release.xcconfig"; sourceTree = "<group>"; };
 		BC0385551D3336F100E78B82 /* Toilet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toilet.swift; sourceTree = "<group>"; };
 		BC0385571D33372400E78B82 /* StationDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDataManagement.swift; sourceTree = "<group>"; };
+		BC0C883B1D373BB1009AFD32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletDataManagement.swift; sourceTree = "<group>"; };
 		BC744C621D24E8650053F473 /* Mr_Ride 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Mr_Ride 2.xcdatamodel"; sourceTree = "<group>"; };
 		BC744CE21D268FBA0053F473 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				BC85F6151CF2A1C000B11F89 /* Assets.xcassets */,
 				BC85F6171CF2A1C000B11F89 /* LaunchScreen.storyboard */,
 				BC85F61A1CF2A1C000B11F89 /* Info.plist */,
+				BC0C883B1D373BB1009AFD32 /* GoogleService-Info.plist */,
 			);
 			path = "Mr-Ride";
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				BC744D281D268FE40053F473 /* RobotoMono-Bold.ttf in Resources */,
 				BC744D2C1D268FE40053F473 /* RobotoMono-LightItalic.ttf in Resources */,
 				BC85F6191CF2A1C000B11F89 /* LaunchScreen.storyboard in Resources */,
+				BC0C883C1D373BB1009AFD32 /* GoogleService-Info.plist in Resources */,
 				BC85F6161CF2A1C000B11F89 /* Assets.xcassets in Resources */,
 				BC85F6111CF2A1C000B11F89 /* Main.storyboard in Resources */,
 				BC744D2D1D268FE40053F473 /* RobotoMono-Medium.ttf in Resources */,

@@ -40,6 +40,12 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         
         Amplitude.instance().logEvent("select_ride_in_home")
         
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: "select_ride_in_home")
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
         let newRecordNavigationController = self.storyboard!.instantiateViewControllerWithIdentifier("NewRecordNavigationController") as! UINavigationController
         newRecordNavigationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         self.navigationController?.presentViewController(newRecordNavigationController, animated: true, completion: nil)
