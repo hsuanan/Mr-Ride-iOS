@@ -10,6 +10,7 @@
 		BC0385561D3336F100E78B82 /* Toilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0385551D3336F100E78B82 /* Toilet.swift */; };
 		BC0385581D33372400E78B82 /* StationDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0385571D33372400E78B82 /* StationDataManagement.swift */; };
 		BC0C883C1D373BB1009AFD32 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC0C883B1D373BB1009AFD32 /* GoogleService-Info.plist */; };
+		BC0C883E1D37456F009AFD32 /* TrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0C883D1D37456F009AFD32 /* TrackingManager.swift */; };
 		BC3092A11D2CD6E3001ED105 /* ToiletDataManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */; };
 		BC744CE91D268FBA0053F473 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744CE21D268FBA0053F473 /* Location+CoreDataProperties.swift */; };
 		BC744CEA1D268FBA0053F473 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC744CE31D268FBA0053F473 /* Location.swift */; };
@@ -81,6 +82,7 @@
 		BC0385551D3336F100E78B82 /* Toilet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toilet.swift; sourceTree = "<group>"; };
 		BC0385571D33372400E78B82 /* StationDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationDataManagement.swift; sourceTree = "<group>"; };
 		BC0C883B1D373BB1009AFD32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BC0C883D1D37456F009AFD32 /* TrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingManager.swift; sourceTree = "<group>"; };
 		BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToiletDataManagement.swift; sourceTree = "<group>"; };
 		BC744C621D24E8650053F473 /* Mr_Ride 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Mr_Ride 2.xcdatamodel"; sourceTree = "<group>"; };
 		BC744CE21D268FBA0053F473 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				BC744CFB1D268FCA0053F473 /* DataManagement.swift */,
 				BC0385571D33372400E78B82 /* StationDataManagement.swift */,
 				BC3092A01D2CD6E3001ED105 /* ToiletDataManagement.swift */,
+				BC0C883D1D37456F009AFD32 /* TrackingManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				BC744CEC1D268FBA0053F473 /* Records.swift in Sources */,
 				BC744D331D268FE40053F473 /* UIFont+YBKAdditions (2).swift in Sources */,
 				BC744CED1D268FBA0053F473 /* Station+CoreDataProperties.swift in Sources */,
+				BC0C883E1D37456F009AFD32 /* TrackingManager.swift in Sources */,
 				BC744CEF1D268FBA0053F473 /* Toilet+CoreDataProperties.swift in Sources */,
 				BC744CFE1D268FCA0053F473 /* MMDrawerController.m in Sources */,
 				BC744CEE1D268FBA0053F473 /* Station.swift in Sources */,

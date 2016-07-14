@@ -48,27 +48,27 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
 
             trackTime()
             animateFromCircleToSquare()
-            Amplitude.instance().logEvent("select_start_in_record_creating")
+            TrackingManager.sharedManager.createEventTracking("NewRecord", action: "select_start_in_record_creating")
             
         } else {
             
             timer.invalidate()
             pauseTime()
             animateFromSqareToCircle()
-            Amplitude.instance().logEvent("select_pause_in_record_creating")
+            TrackingManager.sharedManager.createEventTracking("NewRecord", action: "select_pause_in_record_creating")
         }
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         
-        Amplitude.instance().logEvent("select_cancel_in_record_creating")
+        TrackingManager.sharedManager.createEventTracking("NewRecord", action: "select_cancel_in_record_creating")
         delegate?.didDismiss()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
-        Amplitude.instance().logEvent("select_finish_in_record_creating")
+        TrackingManager.sharedManager.createEventTracking("NewRecord", action: "select_finish_in_record_creating")
         pauseTime()
         saveRecordsToCoreData()
         passDataToStatisticsPage()
@@ -138,7 +138,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate, Stat
         super.viewWillDisappear(animated)
         
         print("__NewRecordsViewWillDisappear")
-        Amplitude.instance().logEvent("view_in_record_creating")
+        TrackingManager.sharedManager.createScreenTracking("view_in_record_creating")
         locationManager.stopUpdatingLocation()
         
         mapView = nil

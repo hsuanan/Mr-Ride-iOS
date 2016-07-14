@@ -38,13 +38,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     
     @IBAction func letsRideButtonTapped(sender: AnyObject) {
         
-        Amplitude.instance().logEvent("select_ride_in_home")
-        
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "select_ride_in_home")
-        
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        TrackingManager.sharedManager.createEventTracking("Home", action: "select_ride_in_home")
         
         let newRecordNavigationController = self.storyboard!.instantiateViewControllerWithIdentifier("NewRecordNavigationController") as! UINavigationController
         newRecordNavigationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
@@ -58,7 +52,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     
     @IBAction func sideBarButtonTapped(sender: AnyObject) {
         
-        Amplitude.instance().logEvent("select_menu_in_home")
+        TrackingManager.sharedManager.createEventTracking("Home", action: "select_menu_in_home")
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
@@ -84,8 +78,8 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("HomePageViewDidAppear")
-        Amplitude.instance().logEvent("view_in_home")
-        
+
+        TrackingManager.sharedManager.createScreenTracking("view_in_home")
     }
     
     func setLabelValue() {

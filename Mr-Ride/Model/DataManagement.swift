@@ -95,4 +95,5 @@ class DataManager {
             print("fetchError:\(fetchError)")
         }
     }
+    
 }
