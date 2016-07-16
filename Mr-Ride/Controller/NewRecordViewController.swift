@@ -107,6 +107,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     let gradient = CAGradientLayer()
     
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         print ("__NewRecordsViewDidLoad")
