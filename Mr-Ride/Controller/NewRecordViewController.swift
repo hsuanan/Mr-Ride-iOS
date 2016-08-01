@@ -22,7 +22,7 @@ protocol NewRecordViewControllerDelegate: class {
 
 class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
-    @IBOutlet weak var mapView: MKMapView?
+    @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var distanceTitle: UILabel!
     
@@ -113,7 +113,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
         print ("__NewRecordsViewDidLoad")
         
         locationManager.delegate = self
-        mapView!.delegate = self
+        mapView.delegate = self
         
         setup()
         drawCircle()
@@ -209,7 +209,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.activityType = .Fitness
             locationManager.allowsBackgroundLocationUpdates = true
             locationManager.pausesLocationUpdatesAutomatically = false
-            mapView!.showsUserLocation = true
+            mapView.showsUserLocation = true
             
         } else {
             
@@ -230,7 +230,7 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
             center: center,
             span: MKCoordinateSpanMake(0.005, 0.005))
         
-        mapView!.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: true)
         
         
         // Distance Calculation
@@ -267,17 +267,6 @@ class NewRecordViewController: UIViewController, CLLocationManagerDelegate {
     
     func calculateCurrentSpeed() {
         
-//        if let currentSpeed = currentLocation?.speed {
-//            a = (currentSpeed<0) ? 0 : Int()
-//            
-//            if currentSpeed < 0 {
-//                a = 0
-//            } else {
-//                a = Int()
-//            }
-//            
-//            let a = optionalString ?? ""
-//        }
         if let speed = currentLocation?.speed {
             
             currentSpeed = (speed < 0) ? 0 : Int(speed/1000*(60*60))
@@ -397,7 +386,7 @@ extension NewRecordViewController: MKMapViewDelegate {
             
             if timer.valid {
                 
-                self.mapView!.addOverlay(polyline)
+                self.mapView.addOverlay(polyline)
                 
             } else { return }
         }
@@ -476,7 +465,7 @@ extension NewRecordViewController {
         timerLabel.text = "00:00:00:00"
         
         //setupMap
-        mapView!.layer.cornerRadius = 10.0
+        mapView.layer.cornerRadius = 10.0
         
     }
     
