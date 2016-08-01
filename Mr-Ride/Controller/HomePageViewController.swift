@@ -58,7 +58,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
     
-    var totalCount: Int?
+    var totalCount = 0
     var averageSpeed = 0.0
     
     let recordModel = DataManager.sharedDataManager
@@ -85,7 +85,7 @@ class HomePageViewController: UIViewController, NewRecordViewControllerDelegate 
     func setLabelValue() {
         
         totalCount = recordModel.saveRecords.count ?? 0
-        totalCountValueLabel.text = "\(totalCount!)"
+        totalCountValueLabel.text = "\(totalCount)"
         
         var totalDistance = 0.0
         var duration = 0.0

@@ -258,8 +258,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.distanceFilter = 10
             locationManager.activityType = .Fitness
             //            locationManager.startUpdatingLocation()
-            mapView!.delegate = self
-            mapView!.showsUserLocation = true
+            mapView.delegate = self
+            mapView.showsUserLocation = true
             
         } else {
             
@@ -274,7 +274,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.01, 0.01))
-        mapView!.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: true)
         
     }
     
@@ -303,10 +303,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
-            annotationView?.canShowCallout = true
+            annotationView!.canShowCallout = true
         }
         else {
-            annotationView?.annotation = annotation
+            annotationView!.annotation = annotation
         }
         
         let customPointAnnotation = annotation as! CustomPointAnnotation
@@ -318,12 +318,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         annotationView?.backgroundColor = UIColor.whiteColor()
         annotationView?.frame = CGRectMake(0, 0, 40, 40)
         
-        annotationView!.layer.removeFromSuperlayer()
+        annotationView?.layer.removeFromSuperlayer()
         annotationView?.layer.cornerRadius = annotationView!.frame.size.width / 2
-        annotationView!.layer.shadowPath = UIBezierPath(ovalInRect: annotationView!.bounds).CGPath
-        annotationView!.layer.shadowOffset = CGSize(width: 0, height: 2)
-        annotationView!.layer.shadowOpacity = 0.5
-        annotationView!.layer.shadowRadius = 4
+        annotationView?.layer.shadowPath = UIBezierPath(ovalInRect: annotationView!.bounds).CGPath
+        annotationView?.layer.shadowOffset = CGSize(width: 0, height: 2)
+        annotationView?.layer.shadowOpacity = 0.5
+        annotationView?.layer.shadowRadius = 4
 
         annotationView?.addSubview(iconImageView)
         iconImageView.center = (annotationView?.center)!
