@@ -20,10 +20,10 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     let recordModel = DataManager.sharedDataManager
     
     var timestamp: NSDate?
-    var distance: Double?
-    var averageSpeed: Double?
-    var calories: Double?
-    var duration: Double?
+    var distance: Double = 0.0
+    var averageSpeed: Double = 0.0
+    var calories: Double = 0.0
+    var duration: Double = 0.0
     var locations: [Locations]=[]
     
     var isFromHistory = false
@@ -98,10 +98,10 @@ class StatisticsViewController: UIViewController, MKMapViewDelegate, CLLocationM
     
     func uploadRecord() {
         
-        statisticsView.distanceValue.text = "\(Int(distance!)) m"
-        statisticsView.caloriesValue.text = "\(Int(calories!)) kcal"
-        statisticsView.totalTimeValue.text = "\(timerString(duration!))"
-        statisticsView.averageSpeedValue.text = "\(Int(averageSpeed!)) km/hr"
+        statisticsView.distanceValue.text = "\(Int(distance)) m"
+        statisticsView.caloriesValue.text = "\(Int(calories)) kcal"
+        statisticsView.totalTimeValue.text = "\(timerString(duration))"
+        statisticsView.averageSpeedValue.text = "\(Int(averageSpeed)) km/hr"
         navigationItem.title = "\(dateString(timestamp!))"
     }
     
