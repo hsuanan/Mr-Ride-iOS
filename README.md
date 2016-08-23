@@ -43,7 +43,6 @@ Mr. Ride app is for bikers to tracking ridding time, distance, route and calorie
 ![simulator screen shot aug 22 2016 11 41 57 pm](https://cloud.githubusercontent.com/assets/18036117/17883570/2a2705fe-68c8-11e6-9b4e-c905fb835947.png)
 ![simulator screen shot aug 22 2016 11 42 10 pm](https://cloud.githubusercontent.com/assets/18036117/17883432/57a2feda-68c7-11e6-87eb-9e541c4d8b83.png)
 ![simulator screen shot aug 22 2016 11 42 43 pm](https://cloud.githubusercontent.com/assets/18036117/17883447/6c539786-68c7-11e6-90f7-5096ddb42078.png)
-![simulator screen shot aug 22 2016 11 42 54 pm](https://cloud.githubusercontent.com/assets/18036117/17883580/33b3247c-68c8-11e6-90f7-f9a8dec132e4.png)
 ![simulator screen shot aug 22 2016 11 43 01 pm](https://cloud.githubusercontent.com/assets/18036117/17883565/225b69f0-68c8-11e6-8288-f72a18d19e56.png)
 
 
