@@ -5,36 +5,36 @@ Mr. Ride app is for bikers to tracking ridding time, distance, route and calorie
 # Feature
 
 - Home Page
-	- Total Distance
-	- Average Speed
-	- Riding Count
-	- Activity Chart
+	- Total distance
+	- Average speed
+	- Riding count
+	- Activity chart
 
 - Tracking Page
-  - Track Distance, Time, Speed, Calories, Route, Current Location in real time
+	- Track distance, time, speed, calories, route, current location in real time
 
 - Result Page
-  - Final Riding Result
-  - Share Result on Facebook
+	- Final riding result
+	- Share result on Facebook
 
 - History Page
-  - Records of Rides List
-  - Activities Chart
+	- Records of rides presented by list and chart
+
 
 - Map Page
-  - Find YouBike Stations and Real Time Bike Availability Information
+  - show nearby YouBike stations and how many bikes are available
   - Find Public Toilets
   - Location's Estimate Distance
   - Location's Detail
 
 # Libraries
-- SwiftyJSON
-- MMDrawerController
-- Alamofire
-- Charts
-- Amplitude
-- Google Analytics
-- Crashlytics
+	- SwiftyJSON
+	- MMDrawerController
+	- Alamofire
+	- Charts
+	- Amplitude
+	- Google Analytics
+	- Crashlytics
 
 #ScreenShot
 ![simulator screen shot aug 22 2016 11 43 45 pm](https://cloud.githubusercontent.com/assets/18036117/17883348/dcc2c4f2-68c6-11e6-848d-69e826498ed8.png)
@@ -46,4 +46,11 @@ Mr. Ride app is for bikers to tracking ridding time, distance, route and calorie
 ![simulator screen shot aug 22 2016 11 42 43 pm](https://cloud.githubusercontent.com/assets/18036117/17883447/6c539786-68c7-11e6-90f7-5096ddb42078.png)
 ![simulator screen shot aug 22 2016 11 43 01 pm](https://cloud.githubusercontent.com/assets/18036117/17883565/225b69f0-68c8-11e6-8288-f72a18d19e56.png)
 
+#Requirement
+	- iOS 9.0+
+	- Xcode 7.3+
+	- Cocoapods
+
+#Contact
+hsinan.hsu@gmail.com
 
