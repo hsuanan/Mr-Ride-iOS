@@ -21,7 +21,6 @@ class CustomPointAnnotation: MKPointAnnotation {
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
     
-
     //MARK: DashBoardView property
     @IBOutlet weak var dashBoardView: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -45,7 +44,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     //MARK: BarButton
     @IBAction func barButtonTapped(sender: AnyObject) {
-        
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.centerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
@@ -74,14 +72,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         pickerView.hidden = true
         toolBar.hidden = true
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         setupInputButtonLabelLayer()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -91,17 +86,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         print ("______MapViewWillDisappear")
         
         locationManager.stopUpdatingLocation()
         
         mapView = nil
-        
     }
     
     deinit {
-        
         print("Leave Map Page")
     }
     
@@ -109,7 +101,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MARK: Setup
     
     func setup() {
-        
         view.backgroundColor = UIColor.mrLightblueColor()
         mapView.layer.cornerRadius = 10.0
         
@@ -147,7 +138,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func dashBoardViewSetUp() {
-
+        
         dashBoardView.hidden = true
         dashBoardView.backgroundColor = UIColor.mrDarkSlateBlue90Color()
         dashBoardView.layer.cornerRadius = 10
@@ -275,7 +266,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.01, 0.01))
         mapView.setRegion(region, animated: true)
-        
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -315,7 +305,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         titleView.numberOfLines = 1
         titleView.text = annotation.subtitle!
         annotationView!.detailCalloutAccessoryView = titleView
-
+        
         
         let customPointAnnotation = annotation as! CustomPointAnnotation
         let pinImage = UIImage(named: customPointAnnotation.imageName!)
@@ -332,7 +322,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         annotationView?.layer.shadowOffset = CGSize(width: 0, height: 2)
         annotationView?.layer.shadowOpacity = 0.5
         annotationView?.layer.shadowRadius = 4
-
+        
         annotationView?.addSubview(iconImageView)
         iconImageView.center = (annotationView?.center)!
         
@@ -431,9 +421,5 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func didReceiveDataFromServer() {
         showStationAnnotation()
-    }
-    
-    func didReceiveDataFromCoreData() {
-//        showStationAnnotation()
     }
 }

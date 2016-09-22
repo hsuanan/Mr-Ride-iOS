@@ -14,7 +14,6 @@ import CoreLocation
 
 protocol JSONDataDelegation: class {
     func didReceiveDataFromServer()
-    func didReceiveDataFromCoreData()
 }
 
 struct StationModel{
