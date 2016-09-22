@@ -21,7 +21,7 @@ class CustomPointAnnotation: MKPointAnnotation {
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, JSONDataDelegation, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    
+
     //MARK: DashBoardView property
     @IBOutlet weak var dashBoardView: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -309,6 +309,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             annotationView!.annotation = annotation
         }
         
+        // change subtitle font size
+        let titleView = UILabel()
+        titleView.font = titleView.font.fontWithSize(17)
+        titleView.numberOfLines = 1
+        titleView.text = annotation.subtitle!
+        annotationView!.detailCalloutAccessoryView = titleView
+
+        
         let customPointAnnotation = annotation as! CustomPointAnnotation
         let pinImage = UIImage(named: customPointAnnotation.imageName!)
         let iconImageView = UIImageView(image: pinImage)
@@ -379,7 +387,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             let annotation = CustomPointAnnotation()
             annotation.coordinate = location
-            annotation.title = "\(station.availableBikesNumber) bikes left"
+            annotation.title = "\(station.availableBikesNumber) bikes available"
+            annotation.subtitle = "\(station.availableDocks) docks available"
             annotation.imageName = "icon-station"
             annotation.labelTitle = station.station
             annotation.category = station.district
